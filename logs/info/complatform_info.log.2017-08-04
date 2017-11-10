@@ -1,0 +1,28 @@
+2017-08-04 10:01:11,206 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-08-04 10:01:11,237 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Fri Aug 04 10:01:11 CST 2017]; root of context hierarchy
+2017-08-04 10:01:11,261 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-08-04 10:01:11,466 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-08-04 10:01:11,782 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 575 ms
+2017-08-04 10:01:11,827 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-08-04 10:01:11,829 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Aug 04 10:01:11 CST 2017]; parent: Root WebApplicationContext
+2017-08-04 10:01:11,829 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-08-04 10:01:11,909 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-08-04 10:01:12,001 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/login/],methods=[GET]}" onto public java.lang.Object com.www.ssmTest.controller.Login.login()
+2017-08-04 10:01:12,094 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Aug 04 10:01:11 CST 2017]; parent: Root WebApplicationContext
+2017-08-04 10:01:12,126 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Aug 04 10:01:11 CST 2017]; parent: Root WebApplicationContext
+2017-08-04 10:01:12,178 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-08-04 10:01:12,228 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 401 ms
+2017-08-04 10:02:56,171 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-08-04 10:02:56,201 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Fri Aug 04 10:02:56 CST 2017]; root of context hierarchy
+2017-08-04 10:02:56,224 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-08-04 10:02:56,413 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-08-04 10:02:56,720 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 548 ms
+2017-08-04 10:02:56,765 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-08-04 10:02:56,768 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Aug 04 10:02:56 CST 2017]; parent: Root WebApplicationContext
+2017-08-04 10:02:56,768 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-08-04 10:02:56,848 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-08-04 10:02:56,939 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/login/],methods=[GET]}" onto public java.lang.Object com.www.ssmTest.controller.Login.login()
+2017-08-04 10:02:56,994 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Aug 04 10:02:56 CST 2017]; parent: Root WebApplicationContext
+2017-08-04 10:02:57,025 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Aug 04 10:02:56 CST 2017]; parent: Root WebApplicationContext
+2017-08-04 10:02:57,074 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-08-04 10:02:57,126 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 360 ms

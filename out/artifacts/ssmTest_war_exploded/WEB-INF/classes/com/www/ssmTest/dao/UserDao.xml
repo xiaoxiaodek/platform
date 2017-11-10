@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.www.ssmTest.dao.UserDao">
+
+    <resultMap id="user_map" type="User">
+        <id property="user_id" column="user_id"/>
+        <result property="password" column="password"/>
+        <result property="role_ids" column="role_ids"/>
+        <result property="salt" column="salt"/>
+        <result property="locked" column="locked"/>
+    </resultMap>
+
+    <select id="findByAll" resultMap="user_map">
+        SELECT * FROM user
+    </select>
+
+    <select id="findByName" resultType="User">
+        SELECT * FROM user where username=#{username}
+    </select>
+
+    <insert id="add" parameterType="User">
+        INSERT INTO user(user_id,password,role_ids,salt,locked) VALUES (#{user_id},#{password},#{role_ids},#{salt},#{locked})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM user WHERE user_id = #{user_id}
+    </delete>
+
+</mapper>
