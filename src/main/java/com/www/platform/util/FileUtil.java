@@ -1,6 +1,6 @@
-package com.unionpaysmart.drip.util;
+package com.www.platform.util;
 
-import com.unionpaysmart.drip.constant.GlobalConstants;
+import com.www.platform.constant.GlobalConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,6 +1,6 @@
-package com.unionpaysmart.drip.util;
+package com.www.platform.util;
 
-import com.unionpaysmart.drip.constant.GlobalConstants;
+import com.www.platform.constant.GlobalConstants;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

@@ -1,13 +1,14 @@
-package com.unionpaysmart.drip.util;
+package com.www.platform.util;
 
-import com.unionpaysmart.drip.constant.GlobalConstants;
-import com.unionpaysmart.drip.message.BaseMessage;
-import com.unionpaysmart.drip.message.MessageCode;
-import com.unionpaysmart.drip.message.StatusCode;
+
+import com.www.platform.constant.GlobalConstants;
+import com.www.platform.message.BaseMessage;
+import com.www.platform.message.MessageCode;
+import com.www.platform.message.StatusCode;
 
 import java.util.*;
 
-import static org.apache.commons.lang.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 /**
  * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司

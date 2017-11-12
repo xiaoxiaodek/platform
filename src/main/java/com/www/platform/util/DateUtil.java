@@ -1,4 +1,4 @@
-package com.unionpaysmart.drip.util;
+package com.www.platform.util;
 
 import java.sql.Timestamp;
 import java.text.ParseException;

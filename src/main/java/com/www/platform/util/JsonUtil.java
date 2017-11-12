@@ -1,10 +1,10 @@
-package com.unionpaysmart.drip.util;
+package com.www.platform.util;
 
-import org.codehaus.jackson.map.ObjectMapper;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,17 +12,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司
+ * Created by upsmart on 17-8-3.
  *
- * @author json工具类
- * @version 0.0.1
- * @desc 接口返回结果工具类
- * @date 6/6/16
+ * @author wss
+ * @version 0.0
+ * @desc
+ * @modified by  下午3:57
  */
-public class JSONUtil {
-    private static Logger logger = LoggerFactory.getLogger(JSONUtil.class);
-    private static ObjectMapper objectMapper = new ObjectMapper();
-
+public class JsonUtil {
+    private static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
     /**
      * 对象转为JSON字符串
      * @param object
@@ -31,8 +29,8 @@ public class JSONUtil {
     public static String toJson(Object object) {
         String str = null;
         try {
-            str = objectMapper.writeValueAsString(object);
-        } catch (IOException e) {
+            str = JSON.toJSONString(object);
+        } catch (Exception e) {
             logger.info("对象转为JSON字符串失败" + e.getMessage(), e);
         }
         return str;
@@ -49,16 +47,17 @@ public class JSONUtil {
     public static <T> T toObject(String json, Class<T> valueType) throws IOException {
         T object = null;
         try {
-            object = objectMapper.reader(valueType).readValue(json);
-        } catch (IOException e) {
+            object =JSON.parseObject(json, valueType);
+        } catch (Exception e) {
             logger.info("JSON字符串转为对象" + e.getMessage());
             throw e;
         }
         return object;
     }
-    public static Map<String, Object> jsonToObject(String jsonStr) throws Exception {
-        JSONObject jsonObj = JSONObject.fromObject(jsonStr); 
-        Iterator<String> nameItr = jsonObj.keys();
+
+    public static Map<String, Object> jsonToMap(String jsonStr) throws Exception {
+        JSONObject jsonObj = JSONObject.parseObject(jsonStr);
+        Iterator<String> nameItr =(Iterator<String>) jsonObj.keySet();
         String name;
         Map<String, Object> outMap = new HashMap<String, Object>();
         while (nameItr.hasNext()) {
