@@ -1,57 +1,65 @@
 package com.www.platform.entity;
 
-/**
- * Created by upsmart on 17-7-21.
- *
- * @author wss
- * @version 0.0
- * @desc
- * @modified by  上午9:37
- */
+import java.util.Date;
+
 public class User {
-    String user_id;
-    String password;
-    String salt;
-    String role_ids;
-    boolean locked;
+    private Integer uid;
 
-    public String getUser_id() {
-        return user_id;
+    private Date createtime;
+
+    private Date modtime;
+
+    private String uemail;
+
+    private String uname;
+
+    private String upwd;
+
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public String getPassword() {
-        return password;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
-    public String getSalt() {
-        return salt;
+    public Date getModtime() {
+        return modtime;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public void setModtime(Date modtime) {
+        this.modtime = modtime;
     }
 
-    public String getRole_ids() {
-        return role_ids;
+    public String getUemail() {
+        return uemail;
     }
 
-    public void setRole_ids(String role_ids) {
-        this.role_ids = role_ids;
+    public void setUemail(String uemail) {
+        this.uemail = uemail == null ? null : uemail.trim();
     }
 
-    public boolean isLocked() {
-        return locked;
+    public String getUname() {
+        return uname;
     }
 
-    public void setLocked(boolean locked) {
-        this.locked = locked;
+    public void setUname(String uname) {
+        this.uname = uname == null ? null : uname.trim();
+    }
+
+    public String getUpwd() {
+        return upwd;
+    }
+
+    public void setUpwd(String upwd) {
+        this.upwd = upwd == null ? null : upwd.trim();
     }
 }
