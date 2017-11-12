@@ -1,9 +1,11 @@
 package com.www.platform.controller;
 
-import com.www.platform.dao.UserDao;
+import com.www.platform.dao.UserMapper;
 import com.www.platform.service.GenerateTokens;
 import com.www.platform.service.LoginService;
 import io.jsonwebtoken.Claims;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -27,37 +30,24 @@ import java.util.Map;
 @Controller
 @RequestMapping("login")
 public class LoginController {
-    @Autowired
-    private UserDao userdao;
+    private static Logger logger= LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private LoginService loginService;
 
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public String login(@RequestBody Map<String,String> map, HttpServletResponse res){
+    public String login(@RequestBody Map<String,String> map, HttpSession session){
         String username=map.get("uname");
-        String password=map.get("upassword");
-
-        boolean a=false;
+        String password=map.get("upwd");
+        session.setAttribute();
         try{
-            a=loginService.validateUser(username,password);
-        }catch (Exception e){
-                e.printStackTrace();
-                return "验证出错";
-            }
+            if(null==this.loginService.login(map)){
 
-        if(a){
-            String JWT=loginService.JWT(username);
-            Cookie cookie =new Cookie("JWT",JWT);
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-            res.addCookie(cookie);
+            }else{}
+        }catch (){}
 
-            return "授权成功";
-        }else{
-            return "密码验证不通过";
-        }
+
     }
 
 
