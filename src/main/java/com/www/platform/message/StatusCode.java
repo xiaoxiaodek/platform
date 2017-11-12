@@ -1,4 +1,4 @@
-package com.unionpaysmart.drip.message;
+package com.www.platform.message;
 
 /**
  * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司

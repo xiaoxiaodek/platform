@@ -1,4 +1,4 @@
-package com.unionpaysmart.drip.message;
+package com.www.platform.message;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
