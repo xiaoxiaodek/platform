@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="79d14a7d-2d12-420b-a03e-83929d4e6527" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/debug/complatform_debug.log" afterPath="$PROJECT_DIR$/logs/debug/complatform_debug.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/info/complatform_info.log" afterPath="$PROJECT_DIR$/logs/info/complatform_info.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/www/platform/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/www/platform/entity/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/db.properties" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/db.properties" afterPath="$PROJECT_DIR$/target/classes/db.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/classes/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring.xml" afterPath="$PROJECT_DIR$/target/classes/spring.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-    </list>
+    <list default="true" id="79d14a7d-2d12-420b-a03e-83929d4e6527" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/www/platform/service/GenerateTokens.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+              <caret line="17" column="3" lean-forward="false" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -1555,7 +1543,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/www/platform/service/GenerateTokens.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+          <caret line="17" column="3" lean-forward="false" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
           <folding />
         </state>
       </provider>
