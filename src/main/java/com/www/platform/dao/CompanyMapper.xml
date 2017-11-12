@@ -139,4 +139,8 @@
     where comid = #{comid,jdbcType=INTEGER}
   </update>
 
+  <select id="selectAll" resultType="java.util.List">
+    select comid,pid,comaddr,comemail,comname,comcontact,createtime,typeId,modtime from company
+  </select>
+
 </mapper>
