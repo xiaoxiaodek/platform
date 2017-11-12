@@ -1,5 +1,6 @@
 package com.www.platform.controller;
 
+import com.www.platform.constant.GlobalConstants;
 import com.www.platform.dao.UserMapper;
 import com.www.platform.service.GenerateTokens;
 import com.www.platform.service.LoginService;
@@ -40,9 +41,10 @@ public class LoginController {
     public String login(@RequestBody Map<String,String> map, HttpSession session){
         String username=map.get("uname");
         String password=map.get("upwd");
-        session.setAttribute();
+
         try{
             if(null==this.loginService.login(map)){
+
 
             }else{}
         }catch (){}

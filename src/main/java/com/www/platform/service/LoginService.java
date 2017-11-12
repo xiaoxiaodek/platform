@@ -4,6 +4,7 @@ import com.www.platform.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by upsmart on 17-8-4.
@@ -14,9 +15,6 @@ import java.util.List;
  * @modified by  下午2:31
  */
 public interface LoginService {
-    List<User> findByAll();
-    void add();
-    void delete(@Param("user_id") int user_id);
-    boolean validateUser(String username,String password);
-    String JWT(@Param("username")String username);
+   String login(Map<String,Object> map);
+
 }

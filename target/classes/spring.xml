@@ -7,7 +7,7 @@
        xmlns:task="http://www.springframework.org/schema/task">
 
     <!--自动扫描bean-->
-    <context:component-scan base-package="com.www.ssmTest">
+    <context:component-scan base-package="com.www.platform">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -38,14 +38,14 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.www.ssmTest"/>
+        <property name="typeAliasesPackage" value="com.www.platform"/>
         <!--mapperlocation不指定则默认xml文件与dao文件同名-->
         <!--<property name="mapperLocations" value="classpath:com/huaxin/**/*Mapper.xml"></property>-->
     </bean>
 
     <!--扫描mapper-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.www.ssmTest.dao"></property>
+        <property name="basePackage" value="com.www.platform.dao"></property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 </beans>

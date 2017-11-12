@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by upsmart on 17-8-4.
@@ -19,46 +20,16 @@ import java.util.List;
  */
 @Service
 public class LoginServiceImpl implements LoginService{
-    @Autowired
-    private UserMapper userMapper;
-    @Override
-    public List<User> findByAll(){
-       return userMapper.findByAll();
-    }
-    @Override
-    public  void delete(int user_id ){
-    }
-    @Override
-    public boolean validateUser(String username,String password) {
-        String pwd=Crypt.decodeBase64(password);
-        User xiaoming;
-        try{
-            xiaoming=userMapper.findByName(username);
-            if(xiaoming.getPassword().equals(pwd)){
-                return true;
-            }else{
-                return false;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
 
+
+    @Override public String login(Map<String, Object> map) {
+        User user=new User();
+        user.setUname(map.get("uname").toString());
+        
+
+
+
+
+        return null;
     }
-
-    @Override
-    public String JWT(String username) {
-        User a=userMapper.findByName(username);
-        String JWT="";
-        try {
-            JWT=GenerateTokens.createJWT("1","Online JWT Builder",username,1800000);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return JWT;
-    }
-
-    @Override
-    public  void add(){}
-
 }
