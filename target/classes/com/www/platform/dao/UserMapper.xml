@@ -19,11 +19,11 @@
     where uid = #{uid,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByUname" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByUname" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
-    where uid = #{uid,jdbcType=INTEGER}
+    where uname = #{uname,jdbcType=VARCHAR}
   </select>
 
 

@@ -22,12 +22,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
- * Created by upsmart on 17-8-7.
- *
- * @author wss
- * @version 0.0
- * @desc
- * @modified by  下午6:00
+ * @Author zjl
+
  */
 @Controller
 @RequestMapping("login")
@@ -37,12 +33,15 @@ public class LoginController {
     private LoginService loginService;
 
 
-    @RequestMapping(value = "/",method = RequestMethod.POST)
+    @RequestMapping(value = "/logi",method = RequestMethod.POST)
     @ResponseBody
-    public BaseMessage login(@RequestBody Map<String,Object> map, HttpSession session){
+        public BaseMessage login(@RequestBody Map<String,Object> map, HttpSession session){
+//    public String login(@RequestBody Map<String,Object> map, HttpSession session){
+
         BaseMessage msg=new BaseMessage();
         String username=map.get("uname").toString();
         String password=map.get("upwd").toString();
+
         if(username!=null&&password!=null) {
                 if ("succcess".equals( this.loginService.login(map))) {
                     session.setAttribute(GlobalConstants.USERNAME,username);
@@ -53,6 +52,7 @@ public class LoginController {
         }else {
     msg.setData("用户名和密码不能为空");
 }
+
 return msg;
     }
 
@@ -64,7 +64,7 @@ return msg;
        Claims a= GenerateTokens.parseJWT(cookies[0].getValue());
        String id=a.getSubject();
     }
-    @RequestMapping(value = "register", method = RequestMethod.POST) @ResponseBody
+    @RequestMapping(value = "/register", method = RequestMethod.POST) @ResponseBody
     public BaseMessage register(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         msg.setData(this.loginService.register(map));

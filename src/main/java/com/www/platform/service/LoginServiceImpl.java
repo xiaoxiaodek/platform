@@ -13,12 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by upsmart on 17-8-4.
+ * Created by upsmart on 17-11-12.
  *
- * @author wss
+ * @author zjl
  * @version 0.0
- * @desc
- * @modified by  下午2:32
  */
 @Service
 public class LoginServiceImpl implements LoginService{
@@ -51,11 +49,11 @@ public class LoginServiceImpl implements LoginService{
         User user=new User();
         user.setUname((String) map.get("uname"));
         user.setUemail((String) map.get("uemail"));
-        user.setUpwd((String)map.get("upwd"));
+        user.setUpwd(Md5.MD5((String)map.get("upwd")));
         user.setCreatetime(new Date());
         user.setModtime(new Date());
         if(!(user.getUpwd().equals(Md5.MD5((String) map.get("upwdconfirm"))))) {
-            result = "两次输入密码不一样";
+                result = "两次输入密码不一样!!!!";
         }else{
         try {
             a = this.userMapper.insert(user);
