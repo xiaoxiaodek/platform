@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.platform.dao.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.www.platform.entity.Account">
+    <id column="acctid" jdbcType="INTEGER" property="acctid" />
+    <result column="acctname" jdbcType="VARCHAR" property="acctname" />
+    <result column="accttype" jdbcType="INTEGER" property="accttype" />
+    <result column="acctamt" jdbcType="DECIMAL" property="acctamt" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
+    <result column="maid" jdbcType="INTEGER" property="maid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    acctid, acctname, accttype, acctamt, createtime, modtime, maid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where acctid = #{acctid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from account
+    where acctid = #{acctid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.www.platform.entity.Account">
+    insert into account (acctid, acctname, accttype, 
+      acctamt, createtime, modtime, 
+      maid)
+    values (#{acctid,jdbcType=INTEGER}, #{acctname,jdbcType=VARCHAR}, #{accttype,jdbcType=INTEGER}, 
+      #{acctamt,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{modtime,jdbcType=TIMESTAMP}, 
+      #{maid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.www.platform.entity.Account">
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acctid != null">
+        acctid,
+      </if>
+      <if test="acctname != null">
+        acctname,
+      </if>
+      <if test="accttype != null">
+        accttype,
+      </if>
+      <if test="acctamt != null">
+        acctamt,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="modtime != null">
+        modtime,
+      </if>
+      <if test="maid != null">
+        maid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acctid != null">
+        #{acctid,jdbcType=INTEGER},
+      </if>
+      <if test="acctname != null">
+        #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="accttype != null">
+        #{accttype,jdbcType=INTEGER},
+      </if>
+      <if test="acctamt != null">
+        #{acctamt,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modtime != null">
+        #{modtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maid != null">
+        #{maid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.www.platform.entity.Account">
+    update account
+    <set>
+      <if test="acctname != null">
+        acctname = #{acctname,jdbcType=VARCHAR},
+      </if>
+      <if test="accttype != null">
+        accttype = #{accttype,jdbcType=INTEGER},
+      </if>
+      <if test="acctamt != null">
+        acctamt = #{acctamt,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modtime != null">
+        modtime = #{modtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maid != null">
+        maid = #{maid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where acctid = #{acctid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.www.platform.entity.Account">
+    update account
+    set acctname = #{acctname,jdbcType=VARCHAR},
+      accttype = #{accttype,jdbcType=INTEGER},
+      acctamt = #{acctamt,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      modtime = #{modtime,jdbcType=TIMESTAMP},
+      maid = #{maid,jdbcType=INTEGER}
+    where acctid = #{acctid,jdbcType=INTEGER}
+  </update>
+</mapper>
