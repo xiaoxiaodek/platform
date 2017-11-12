@@ -1,4 +1,4 @@
-package com.unionpaysmart.drip.util;
+package com.www.platform.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

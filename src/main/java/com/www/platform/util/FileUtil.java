@@ -1,4 +1,5 @@
 package com.www.platform.util;
+
 import com.www.platform.constant.GlobalConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

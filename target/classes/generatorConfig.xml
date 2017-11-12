@@ -69,9 +69,10 @@
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
+
         <!-- 指定数据库表 -->
-<<<<<<< HEAD
-        <!-- 指定数据库表 -->
+
+
         <table tableName="account"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
@@ -107,12 +108,12 @@
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="interfaceexinf"
+        <table tableName="intfaceexinf"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="masteract"
+        <table tableName="masteracct"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
@@ -122,7 +123,7 @@
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="printerface"
+        <table tableName="pinterface"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
@@ -133,9 +134,6 @@
             <property name="useActualColumnNames" value="false"/>
         </table>
         <table tableName="user"
-=======
-        <table tableName="b_blog"
->>>>>>> 60d9045d2c4ddeda961ef1034e3a9155cfdc11b2
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>

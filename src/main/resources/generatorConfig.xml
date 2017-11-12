@@ -50,7 +50,7 @@
 
         <!-- targetProject:生成PO类的位置 -->
         <javaModelGenerator targetPackage="com.www.platform.entity"
-                            targetProject="/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java">
+                            targetProject="/home/upsmart/task/2017.10/platform/src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
             <!-- 从数据库返回的值被清理前后的空格 -->
@@ -58,14 +58,14 @@
         </javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置 -->
         <sqlMapGenerator targetPackage="com.www.platform.dao"
-                         targetProject="/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java">
+                         targetProject="/home/upsmart/task/2017.10/platform/src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
         <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.www.platform.dao"
-                             targetProject="/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java">
+                             targetProject="/home/upsmart/task/2017.10/platform/src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
@@ -108,12 +108,12 @@
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="interfaceexinf"
+        <table tableName="intfaceexinf"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="masteract"
+        <table tableName="masteracct"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
@@ -123,7 +123,7 @@
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="printerface"
+        <table tableName="pinterface"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>

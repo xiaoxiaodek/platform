@@ -16,16 +16,15 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where uid = #{uid,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
   </select>
 
   <select id="selectByUname" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
-    where uname = #{uname,jdbcType=INTEGER}
+    where uid = #{uid,jdbcType=INTEGER}
   </select>
-
 
 
 
@@ -114,4 +113,28 @@
       upwd = #{upwd,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+
+  <update id="updateUpwd" parameterType="com.www.platform.entity.User">
+    update user
+    set
+    modtime = #{modtime,jdbcType=TIMESTAMP},
+    upwd = #{upwd,jdbcType=VARCHAR}
+    where uname = #{uname,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

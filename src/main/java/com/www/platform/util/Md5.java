@@ -1,6 +1,6 @@
-package com.unionpaysmart.drip.util;
+package com.www.platform.util;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

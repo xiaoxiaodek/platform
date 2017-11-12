@@ -1,7 +1,8 @@
 package com.www.platform.controller;
 
 import com.www.platform.constant.GlobalConstants;
-import com.www.platform.dao.UserMapper;
+
+import com.www.platform.message.BaseMessage;
 import com.www.platform.service.GenerateTokens;
 import com.www.platform.service.LoginService;
 import io.jsonwebtoken.Claims;
@@ -38,18 +39,21 @@ public class LoginController {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public String login(@RequestBody Map<String,String> map, HttpSession session){
-        String username=map.get("uname");
-        String password=map.get("upwd");
-
-        try{
-            if(null==this.loginService.login(map)){
-
-
-            }else{}
-        }catch (){}
-
-
+    public BaseMessage login(@RequestBody Map<String,Object> map, HttpSession session){
+        BaseMessage msg=new BaseMessage();
+        String username=map.get("uname").toString();
+        String password=map.get("upwd").toString();
+        if(username!=null&&password!=null) {
+                if ("succcess".equals( this.loginService.login(map))) {
+                    session.setAttribute(GlobalConstants.USERNAME,username);
+                    msg.setData("登陆成功");
+                } else {
+                    msg.setData("用户名或密码错误");
+                }
+        }else {
+    msg.setData("用户名和密码不能为空");
+}
+return msg;
     }
 
 
@@ -59,5 +63,11 @@ public class LoginController {
        Cookie[] cookies = req.getCookies();
        Claims a= GenerateTokens.parseJWT(cookies[0].getValue());
        String id=a.getSubject();
+    }
+    @RequestMapping(value = "register", method = RequestMethod.POST) @ResponseBody
+    public BaseMessage register(@RequestBody Map<String, Object> map) {
+        BaseMessage msg = new BaseMessage();
+        msg.setData(this.loginService.register(map));
+        return msg;
     }
 }

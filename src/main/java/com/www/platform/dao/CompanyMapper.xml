@@ -138,4 +138,5 @@
       modtime = #{modtime,jdbcType=TIMESTAMP}
     where comid = #{comid,jdbcType=INTEGER}
   </update>
+
 </mapper>

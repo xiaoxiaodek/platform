@@ -16,5 +16,6 @@ import java.util.Map;
  */
 public interface LoginService {
    String login(Map<String,Object> map);
-
+  String register(Map<String ,Object> map);
+   String editPassword(Map<String, Object> map);
 }

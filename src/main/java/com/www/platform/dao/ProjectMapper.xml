@@ -207,4 +207,5 @@
       uid = #{uid,jdbcType=INTEGER}
     where pid = #{pid,jdbcType=INTEGER}
   </update>
+
 </mapper>
