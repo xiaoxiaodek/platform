@@ -2,10 +2,6 @@ package com.www.platform.dao;
 
 import com.www.platform.entity.Interface;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public interface InterfaceMapper {
     int deleteByPrimaryKey(Integer idfid);
 
@@ -19,5 +15,5 @@ public interface InterfaceMapper {
 
     int updateByPrimaryKey(Interface record);
 
-    ArrayList<Interface> selectByIds(List ids);//考虑set
+    Interface[] selectByIds(Integer[] ids);//考虑set
 }

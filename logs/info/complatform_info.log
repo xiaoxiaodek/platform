@@ -1,247 +1,20 @@
-2017-11-12 16:28:59,679 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:28:59,712 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:28:59 CST 2017]; root of context hierarchy
-2017-11-12 16:28:59,735 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:29:00,056 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:29:00,143 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.entity.User' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-2017-11-12 16:29:00,145 ERROR [main] org.springframework.web.context.ContextLoader : Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.entity.User' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+2017-11-13 10:23:52,704 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:23:52,732 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:23:52 CST 2017]; root of context hierarchy
+2017-11-13 10:23:52,760 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:23:53,093 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:23:53,793 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1088 ms
+2017-11-13 10:23:53,853 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 10:23:53,855 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:23:53 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:23:53,855 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 10:23:53,921 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:23:54,031 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'interFacesController': Unsatisfied dependency expressed through field 'interfacesService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.service.interfaces.InterfacesService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2017-11-13 10:23:54,032 ERROR [main] org.springframework.web.servlet.DispatcherServlet : Context initialization failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'interFacesController': Unsatisfied dependency expressed through field 'interfacesService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.service.interfaces.InterfacesService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
-	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:443)
-	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:325)
-	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
-	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:775)
-	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
-	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:767)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
-	at org.mortbay.jetty.plugin.JettyWebAppContext.doStart(JettyWebAppContext.java:293)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.server.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:172)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:280)
-	at org.mortbay.jetty.plugin.JettyServer.doStart(JettyServer.java:65)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:520)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:365)
-	at org.mortbay.jetty.plugin.JettyRunMojo.execute(JettyRunMojo.java:523)
-	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
-	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
-	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
-	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
-	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
-	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
-	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
-	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.entity.User' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1493)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1104)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:518)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:169)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
-	... 57 more
-2017-11-12 16:29:26,715 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:29:26,747 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:29:26 CST 2017]; root of context hierarchy
-2017-11-12 16:29:26,769 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:29:27,029 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:29:27,101 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2017-11-12 16:29:27,102 ERROR [main] org.springframework.web.context.ContextLoader : Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
-	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:443)
-	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:325)
-	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
-	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:775)
-	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
-	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:767)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
-	at org.mortbay.jetty.plugin.JettyWebAppContext.doStart(JettyWebAppContext.java:293)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.server.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:172)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:280)
-	at org.mortbay.jetty.plugin.JettyServer.doStart(JettyServer.java:65)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:520)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:365)
-	at org.mortbay.jetty.plugin.JettyRunMojo.execute(JettyRunMojo.java:523)
-	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
-	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
-	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
-	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
-	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
-	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
-	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
-	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1493)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1104)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:518)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
-	... 57 more
-2017-11-12 16:30:13,944 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:30:13,974 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:30:13 CST 2017]; root of context hierarchy
-2017-11-12 16:30:13,996 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:30:14,216 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:30:14,291 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2017-11-12 16:30:14,293 ERROR [main] org.springframework.web.context.ContextLoader : Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
-	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:443)
-	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:325)
-	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
-	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:775)
-	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
-	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:767)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
-	at org.mortbay.jetty.plugin.JettyWebAppContext.doStart(JettyWebAppContext.java:293)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.server.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:172)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:280)
-	at org.mortbay.jetty.plugin.JettyServer.doStart(JettyServer.java:65)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:520)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:365)
-	at org.mortbay.jetty.plugin.JettyRunMojo.execute(JettyRunMojo.java:523)
-	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
-	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
-	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
-	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
-	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
-	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
-	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
-	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1493)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1104)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:518)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
-	... 57 more
-2017-11-12 16:31:48,381 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:31:48,410 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:31:48 CST 2017]; root of context hierarchy
-2017-11-12 16:31:48,431 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:31:48,655 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:31:49,302 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 920 ms
-2017-11-12 16:31:49,357 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:31:49,359 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:31:49 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:31:49,359 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:31:49,426 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:31:49,595 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:31:49,717 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-2017-11-12 16:31:49,717 ERROR [main] org.springframework.web.servlet.DispatcherServlet : Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1155)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1099)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
 	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
@@ -302,48 +75,24 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
 	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:154)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1147)
-	... 62 more
-Caused by: java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.init(AbstractJackson2HttpMessageConverter.java:97)
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.<init>(AbstractJackson2HttpMessageConverter.java:90)
-	at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:66)
-	at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:57)
-	at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:61)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.<init>(RequestMappingHandlerAdapter.java:182)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:142)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.service.interfaces.InterfacesService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1493)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1104)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
 	... 64 more
-Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.core.util.DefaultIndenter
-	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
-	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
-	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
-	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
-	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:430)
-	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:383)
-	... 75 more
-2017-11-12 16:32:01,311 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:32:01,341 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:32:01 CST 2017]; root of context hierarchy
-2017-11-12 16:32:01,362 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:32:01,593 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:32:02,020 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 708 ms
-2017-11-12 16:32:02,063 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:32:02,065 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:32:02 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:32:02,065 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:32:02,145 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:32:02,328 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:32:02,410 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-2017-11-12 16:32:02,411 ERROR [main] org.springframework.web.servlet.DispatcherServlet : Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1155)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1099)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
+2017-11-13 10:24:27,320 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:24:27,348 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:24:27 CST 2017]; root of context hierarchy
+2017-11-13 10:24:27,368 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:24:27,582 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:24:28,045 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'interfacesServiceImpl': Unsatisfied dependency expressed through field 'pinterface'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.entity.Pinterface' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2017-11-13 10:24:28,046 ERROR [main] org.springframework.web.context.ContextLoader : Context initialization failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'interfacesServiceImpl': Unsatisfied dependency expressed through field 'pinterface'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.entity.Pinterface' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
 	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
@@ -352,18 +101,13 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
-	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
-	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
-	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
-	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:171)
-	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
-	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:519)
-	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:331)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:742)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:443)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:325)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:775)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:767)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
 	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
 	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
 	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
@@ -404,399 +148,375 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
 	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:154)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1147)
-	... 62 more
-Caused by: java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/DefaultIndenter
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.init(AbstractJackson2HttpMessageConverter.java:97)
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.<init>(AbstractJackson2HttpMessageConverter.java:90)
-	at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:66)
-	at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:57)
-	at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:61)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.<init>(RequestMappingHandlerAdapter.java:182)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:142)
-	... 64 more
-Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.core.util.DefaultIndenter
-	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
-	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
-	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
-	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
-	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:430)
-	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:383)
-	... 75 more
-2017-11-12 16:34:49,373 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:34:49,401 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:34:49 CST 2017]; root of context hierarchy
-2017-11-12 16:34:49,420 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:34:49,723 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:34:50,219 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 845 ms
-2017-11-12 16:34:50,262 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:34:50,263 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:34:50 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:34:50,264 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:34:50,332 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:34:50,520 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:34:50,717 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:34:50 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:34:50,749 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:34:50 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:34:50,788 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 16:34:50,823 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 561 ms
-2017-11-12 16:40:20,532 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:40:20,563 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:40:20 CST 2017]; root of context hierarchy
-2017-11-12 16:40:20,589 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:40:20,814 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:40:21,382 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 849 ms
-2017-11-12 16:40:21,423 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:40:21,425 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:40:21 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:40:21,425 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:40:21,486 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:40:21,620 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:40:21,806 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:40:21 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:40:21,836 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:40:21 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:40:21,874 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 16:40:21,909 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 486 ms
-2017-11-12 16:43:10,411 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:43:10,439 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:43:10 CST 2017]; root of context hierarchy
-2017-11-12 16:43:10,459 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:43:10,676 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:43:11,195 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 784 ms
-2017-11-12 16:43:11,237 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:43:11,239 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:43:11 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:43:11,239 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:43:11,305 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:43:11,443 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:43:11,444 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'interFacesController' method 
-public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-to {[/interfaces],methods=[GET]}: There is already 'interFacesController' bean method
-public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List) mapped.
-2017-11-12 16:43:11,445 ERROR [main] org.springframework.web.servlet.DispatcherServlet : Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'interFacesController' method 
-public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-to {[/interfaces],methods=[GET]}: There is already 'interFacesController' bean method
-public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List) mapped.
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.www.platform.entity.Pinterface' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1493)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1104)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 59 more
+2017-11-13 10:25:21,214 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:25:21,244 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:25:21 CST 2017]; root of context hierarchy
+2017-11-13 10:25:21,265 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:25:21,512 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:25:22,015 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 800 ms
+2017-11-13 10:25:22,060 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 10:25:22,062 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:25:22 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:25:22,062 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 10:25:22,125 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:25:22,283 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 10:25:22,497 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:25:22 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:25:22,527 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:25:22 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:25:22,564 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 10:25:22,599 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 539 ms
+2017-11-13 10:29:09,906 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:29:09,946 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:29:09 CST 2017]; root of context hierarchy
+2017-11-13 10:29:09,983 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:29:10,406 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:29:11,117 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1209 ms
+2017-11-13 10:29:11,198 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 10:29:11,200 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:29:11 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:29:11,201 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 10:29:11,273 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:29:11,529 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 10:29:11,770 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:29:11 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:29:11,811 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:29:11 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:29:11,871 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 10:29:11,936 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 738 ms
+2017-11-13 10:30:44,193 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:30:44,228 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:30:44 CST 2017]; root of context hierarchy
+2017-11-13 10:30:44,252 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:30:44,512 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:30:45,136 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 942 ms
+2017-11-13 10:30:45,196 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 10:30:45,198 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:30:45 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:30:45,198 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 10:30:45,268 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:30:45,449 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 10:30:45,686 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:30:45 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:30:45,725 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:30:45 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:30:45,784 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 10:30:45,850 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 654 ms
+2017-11-13 10:33:01,249 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:33:01,285 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:33:01 CST 2017]; root of context hierarchy
+2017-11-13 10:33:01,309 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:33:01,581 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:33:01,948 ERROR [main] org.mybatis.spring.mapper.MapperFactoryBean : Error while adding the mapper 'interface com.www.platform.dao.PinterfaceMapper' to configuration.
+org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:169)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:120)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:706)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:81)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:443)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:325)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:775)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:767)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
+	at org.mortbay.jetty.plugin.JettyWebAppContext.doStart(JettyWebAppContext.java:293)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:172)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:280)
+	at org.mortbay.jetty.plugin.JettyServer.doStart(JettyServer.java:65)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:520)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:365)
+	at org.mortbay.jetty.plugin.JettyRunMojo.execute(JettyRunMojo.java:523)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:74)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 78 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 82 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 84 more
+2017-11-13 10:33:01,951 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'interfacesServiceImpl': Unsatisfied dependency expressed through field 'pinterfaceMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pinterfaceMapper' defined in file [/home/upsmart/task/2017.10/platform/target/classes/com/www/platform/dao/PinterfaceMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+2017-11-13 10:33:01,953 ERROR [main] org.springframework.web.context.ContextLoader : Context initialization failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'interfacesServiceImpl': Unsatisfied dependency expressed through field 'pinterfaceMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pinterfaceMapper' defined in file [/home/upsmart/task/2017.10/platform/target/classes/com/www/platform/dao/PinterfaceMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:443)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:325)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:775)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:767)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
+	at org.mortbay.jetty.plugin.JettyWebAppContext.doStart(JettyWebAppContext.java:293)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:172)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:280)
+	at org.mortbay.jetty.plugin.JettyServer.doStart(JettyServer.java:65)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:520)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:365)
+	at org.mortbay.jetty.plugin.JettyRunMojo.execute(JettyRunMojo.java:523)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pinterfaceMapper' defined in file [/home/upsmart/task/2017.10/platform/target/classes/com/www/platform/dao/PinterfaceMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
 	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
-	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
-	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
-	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
-	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:171)
-	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
-	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:519)
-	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:331)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:742)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
-	at org.mortbay.jetty.plugin.JettyWebAppContext.doStart(JettyWebAppContext.java:293)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.server.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:172)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:280)
-	at org.mortbay.jetty.plugin.JettyServer.doStart(JettyServer.java:65)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:520)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:365)
-	at org.mortbay.jetty.plugin.JettyRunMojo.execute(JettyRunMojo.java:523)
-	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
-	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
-	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
-	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
-	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
-	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
-	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
-	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
-Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'interFacesController' method 
-public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-to {[/interfaces],methods=[GET]}: There is already 'interFacesController' bean method
-public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List) mapped.
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.assertUniqueMethodMapping(AbstractHandlerMethodMapping.java:576)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:540)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:264)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:250)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:214)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:184)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:127)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 59 more
+Caused by: java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:84)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
-	... 61 more
-2017-11-12 16:45:07,499 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:45:07,530 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:45:07 CST 2017]; root of context hierarchy
-2017-11-12 16:45:07,552 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:45:07,770 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:45:08,317 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 816 ms
-2017-11-12 16:45:08,358 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:45:08,360 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:45:08 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:45:08,360 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:45:08,427 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:45:08,570 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:45:08,570 WARN [main] org.springframework.web.context.support.XmlWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'interFacesController' method 
-public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-to {[/interfaces],methods=[GET]}: There is already 'interFacesController' bean method
-public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List) mapped.
-2017-11-12 16:45:08,571 ERROR [main] org.springframework.web.servlet.DispatcherServlet : Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'interFacesController' method 
-public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-to {[/interfaces],methods=[GET]}: There is already 'interFacesController' bean method
-public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List) mapped.
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
-	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
-	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
-	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
-	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:171)
-	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
-	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:519)
-	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:331)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:742)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:710)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
-	at org.mortbay.jetty.plugin.JettyWebAppContext.doStart(JettyWebAppContext.java:293)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.server.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:172)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerCollection.doStart(HandlerCollection.java:229)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:280)
-	at org.mortbay.jetty.plugin.JettyServer.doStart(JettyServer.java:65)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:520)
-	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:365)
-	at org.mortbay.jetty.plugin.JettyRunMojo.execute(JettyRunMojo.java:523)
-	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
-	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
-	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
-	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
-	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
-	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
-	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
-	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
-Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'interFacesController' method 
-public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-to {[/interfaces],methods=[GET]}: There is already 'interFacesController' bean method
-public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List) mapped.
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.assertUniqueMethodMapping(AbstractHandlerMethodMapping.java:576)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:540)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:264)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:250)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:214)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:184)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:127)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
-	... 61 more
-2017-11-12 16:45:50,608 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:45:50,639 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:45:50 CST 2017]; root of context hierarchy
-2017-11-12 16:45:50,662 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:45:50,880 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:45:51,397 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 788 ms
-2017-11-12 16:45:51,442 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:45:51,444 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:45:51 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:45:51,444 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:45:51,518 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:45:51,667 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 16:45:51,668 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:45:51,858 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:45:51 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:45:51,896 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:45:51 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:45:51,936 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 16:45:51,974 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 532 ms
-2017-11-12 16:50:41,648 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:50:41,677 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:50:41 CST 2017]; root of context hierarchy
-2017-11-12 16:50:41,698 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:50:41,915 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:50:42,426 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 777 ms
-2017-11-12 16:50:42,467 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:50:42,469 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:50:42 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:50:42,469 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:50:42,536 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:50:42,680 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:50:42,681 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 16:50:42,880 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:50:42 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:50:42,910 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:50:42 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:50:42,950 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 16:50:42,987 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 520 ms
-2017-11-12 16:52:37,564 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:52:37,600 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:52:37 CST 2017]; root of context hierarchy
-2017-11-12 16:52:37,622 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:52:37,877 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:52:38,404 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 839 ms
-2017-11-12 16:52:38,466 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:52:38,468 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:52:38 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:52:38,468 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:52:38,544 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:52:38,901 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.util.ArrayList<com.www.platform.entity.Interface> com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:52:38,901 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 16:52:39,130 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:52:38 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:52:39,169 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:52:38 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:52:39,231 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 16:52:39,299 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 833 ms
-2017-11-12 16:54:55,042 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:54:55,076 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:54:55 CST 2017]; root of context hierarchy
-2017-11-12 16:54:55,100 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:54:55,354 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:54:55,963 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 920 ms
-2017-11-12 16:54:56,025 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:54:56,027 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:54:56 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:54:56,027 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:54:56,100 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:54:56,284 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.serchByProject(java.util.List)
-2017-11-12 16:54:56,284 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 16:54:56,521 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:54:56 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:54:56,563 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:54:56 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:54:56,625 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 16:54:56,694 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 669 ms
-2017-11-12 16:58:53,575 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 16:58:53,638 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 16:58:53 CST 2017]; root of context hierarchy
-2017-11-12 16:58:53,667 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 16:58:54,070 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:58:54,855 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1279 ms
-2017-11-12 16:58:54,924 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 16:58:54,926 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:58:54 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:58:54,926 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 16:58:55,001 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 16:58:55,186 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 16:58:55,187 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.serchByProject()
-2017-11-12 16:58:55,433 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:58:54 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:58:55,475 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 16:58:54 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 16:58:55,538 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 16:58:55,606 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 682 ms
-2017-11-12 17:11:56,546 INFO [qtp919045066-20] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
-2017-11-12 17:11:56,571 INFO [qtp919045066-20] org.springframework.jdbc.support.SQLErrorCodesFactory : SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
-2017-11-12 17:27:01,533 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 17:27:01,570 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 17:27:01 CST 2017]; root of context hierarchy
-2017-11-12 17:27:01,595 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 17:27:01,847 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:27:02,483 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 949 ms
-2017-11-12 17:27:02,545 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 17:27:02,547 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:27:02 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:27:02,547 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 17:27:02,617 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:27:02,807 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.serchByProject()
-2017-11-12 17:27:02,808 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 17:27:03,050 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:27:02 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:27:03,093 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:27:02 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:27:03,153 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 17:27:03,221 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 676 ms
-2017-11-12 17:41:59,627 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 17:41:59,658 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 17:41:59 CST 2017]; root of context hierarchy
-2017-11-12 17:41:59,678 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 17:41:59,900 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:42:00,418 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 790 ms
-2017-11-12 17:42:00,459 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 17:42:00,461 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:42:00 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:42:00,461 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 17:42:00,528 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:42:00,665 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 17:42:00,666 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.serchByProject()
-2017-11-12 17:42:00,860 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:42:00 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:42:00,890 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:42:00 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:42:00,927 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 17:42:00,963 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 504 ms
-2017-11-12 17:42:36,500 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 17:42:36,530 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 17:42:36 CST 2017]; root of context hierarchy
-2017-11-12 17:42:36,553 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 17:42:36,951 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:42:37,458 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 958 ms
-2017-11-12 17:42:37,503 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 17:42:37,504 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:42:37 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:42:37,505 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 17:42:37,570 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:42:37,710 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 17:42:37,711 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.serchByProject()
-2017-11-12 17:42:37,893 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:42:37 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:42:37,923 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:42:37 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:42:37,960 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 17:42:37,996 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 493 ms
-2017-11-12 17:47:03,976 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 17:47:04,011 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 17:47:04 CST 2017]; root of context hierarchy
-2017-11-12 17:47:04,034 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 17:47:04,317 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:47:04,902 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 925 ms
-2017-11-12 17:47:04,962 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 17:47:04,964 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:47:04 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:47:04,964 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 17:47:05,035 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:47:05,213 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.serchByProject()
-2017-11-12 17:47:05,213 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 17:47:05,452 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:47:04 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:47:05,492 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:47:04 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:47:05,553 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 17:47:05,621 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 659 ms
-2017-11-12 17:47:56,274 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
-2017-11-12 17:47:56,305 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Sun Nov 12 17:47:56 CST 2017]; root of context hierarchy
-2017-11-12 17:47:56,329 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
-2017-11-12 17:47:56,571 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:47:57,202 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 927 ms
-2017-11-12 17:47:57,263 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
-2017-11-12 17:47:57,265 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:47:57 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:47:57,266 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
-2017-11-12 17:47:57,341 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2017-11-12 17:47:57,533 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.serchByProject()
-2017-11-12 17:47:57,534 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.search()
-2017-11-12 17:47:57,777 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:47:57 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:47:57,818 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Nov 12 17:47:57 CST 2017]; parent: Root WebApplicationContext
-2017-11-12 17:47:57,880 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
-2017-11-12 17:47:57,947 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 684 ms
+	... 69 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:169)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:120)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:706)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:81)
+	... 72 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:74)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 78 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'java.util.list'.  Cause: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 82 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: java.util.list
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 84 more
+2017-11-13 10:33:20,607 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:33:20,639 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:33:20 CST 2017]; root of context hierarchy
+2017-11-13 10:33:20,661 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:33:20,911 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:33:21,430 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 822 ms
+2017-11-13 10:33:21,491 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 10:33:21,493 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:33:21 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:33:21,494 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 10:33:21,590 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:33:21,817 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 10:33:22,042 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:33:21 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:33:22,082 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:33:21 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:33:22,142 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 10:33:22,208 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 717 ms
+2017-11-13 10:49:23,892 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:49:23,925 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:49:23 CST 2017]; root of context hierarchy
+2017-11-13 10:49:23,949 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:49:24,191 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:49:24,820 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 927 ms
+2017-11-13 10:49:24,879 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 10:49:24,881 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:49:24 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:49:24,881 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 10:49:24,951 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:49:25,129 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 10:49:25,363 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:49:24 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:49:25,403 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:49:24 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:49:25,463 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 10:49:25,529 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 650 ms
+2017-11-13 10:53:05,660 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 10:53:05,693 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 10:53:05 CST 2017]; root of context hierarchy
+2017-11-13 10:53:05,718 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 10:53:05,972 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:53:06,550 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 889 ms
+2017-11-13 10:53:06,616 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 10:53:06,618 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:53:06 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:53:06,618 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 10:53:06,691 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 10:53:06,931 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 10:53:07,170 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:53:06 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:53:07,212 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 10:53:06 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 10:53:07,273 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 10:53:07,340 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 724 ms
+2017-11-13 11:17:52,344 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 11:17:52,388 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 11:17:52 CST 2017]; root of context hierarchy
+2017-11-13 11:17:52,413 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 11:17:52,670 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 11:17:53,284 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 939 ms
+2017-11-13 11:17:53,344 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 11:17:53,346 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:17:53 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:17:53,346 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 11:17:53,419 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 11:17:53,598 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 11:17:53,836 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:17:53 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:17:53,877 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:17:53 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:17:53,936 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 11:17:54,001 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 657 ms
+2017-11-13 11:57:30,848 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 11:57:30,880 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 11:57:30 CST 2017]; root of context hierarchy
+2017-11-13 11:57:30,902 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 11:57:31,144 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 11:57:31,786 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 937 ms
+2017-11-13 11:57:31,846 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 11:57:31,849 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:57:31 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:57:31,849 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 11:57:31,919 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 11:57:32,108 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 11:57:32,359 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:57:31 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:57:32,400 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:57:31 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:57:32,462 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 11:57:32,531 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 684 ms
+2017-11-13 11:59:15,481 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 11:59:15,515 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 11:59:15 CST 2017]; root of context hierarchy
+2017-11-13 11:59:15,538 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 11:59:15,818 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 11:59:16,347 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 865 ms
+2017-11-13 11:59:16,431 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 11:59:16,435 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:59:16 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:59:16,436 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 11:59:16,508 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 11:59:16,745 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 11:59:16,978 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:59:16 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:59:17,018 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 11:59:16 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 11:59:17,080 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 11:59:17,149 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 718 ms
+2017-11-13 12:06:47,265 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 12:06:47,301 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 12:06:47 CST 2017]; root of context hierarchy
+2017-11-13 12:06:47,326 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 12:06:47,630 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 12:06:48,560 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1294 ms
+2017-11-13 12:06:48,662 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 12:06:48,664 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 12:06:48 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 12:06:48,664 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 12:06:48,804 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 12:06:49,131 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 12:06:49,371 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 12:06:48 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 12:06:49,415 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 12:06:48 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 12:06:49,478 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 12:06:49,545 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 883 ms
+2017-11-13 12:12:26,332 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization started
+2017-11-13 12:12:26,367 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing Root WebApplicationContext: startup date [Mon Nov 13 12:12:26 CST 2017]; root of context hierarchy
+2017-11-13 12:12:26,391 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring.xml]
+2017-11-13 12:12:26,647 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 12:12:27,182 INFO [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 849 ms
+2017-11-13 12:12:27,242 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization started
+2017-11-13 12:12:27,245 INFO [main] org.springframework.web.context.support.XmlWebApplicationContext : Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 12:12:27 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 12:12:27,245 INFO [main] org.springframework.beans.factory.xml.XmlBeanDefinitionReader : Loading XML bean definitions from class path resource [spring-mvc.xml]
+2017-11-13 12:12:27,321 INFO [main] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-11-13 12:12:27,552 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/interfaces/project],methods=[GET]}" onto public java.lang.String com.www.platform.controller.interfaces.InterFacesController.searchByProject(int)
+2017-11-13 12:12:27,780 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 12:12:27 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 12:12:27,821 INFO [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Nov 13 12:12:27 CST 2017]; parent: Root WebApplicationContext
+2017-11-13 12:12:27,881 INFO [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2017-11-13 12:12:27,949 INFO [main] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcher': initialization completed in 706 ms
