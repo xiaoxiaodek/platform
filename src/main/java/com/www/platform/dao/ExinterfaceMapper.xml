@@ -114,4 +114,5 @@
       modtime = #{modtime,jdbcType=TIMESTAMP}
     where exinfid = #{exinfid,jdbcType=INTEGER}
   </update>
+
 </mapper>

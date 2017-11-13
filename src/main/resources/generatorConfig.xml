@@ -71,6 +71,8 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
+
+
         <table tableName="account"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >

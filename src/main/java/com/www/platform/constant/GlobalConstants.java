@@ -1,13 +1,13 @@
 package com.www.platform.constant;
 
 /**
- * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司
+
+ * Copyright (C), 2017, 银联智惠信息服务（上海）有限公司
  *
- * @author qianjc
+ * @author upsmart
  * @version 0.0.1
- * @desc 常量
- * @date 7/5/16
  */
+
 public class GlobalConstants {
 
     public static final String EMPTY_STR = "";
@@ -17,9 +17,9 @@ public class GlobalConstants {
     public static final String UID = "uid";
     public static final String UEMAIL = "uemail";
     public static final String RID = "rid";
-    
+
     public static final String SALT = "upsmart";
-    
+
     // 标点符号
     public static final String SPACE = " ";
     public static final String COMMA = ",";
@@ -59,4 +59,5 @@ public class GlobalConstants {
     public static final String SCRIPT_SCRIPT = "file/script/script";
     //脚本文件结果存取路径
     public static final String SCRIPT_RESULT = "file/script/result/";
+
 }

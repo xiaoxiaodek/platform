@@ -137,4 +137,5 @@
       interfacecol = #{interfacecol,jdbcType=TIMESTAMP}
     where idfid = #{idfid,jdbcType=INTEGER}
   </update>
+
 </mapper>

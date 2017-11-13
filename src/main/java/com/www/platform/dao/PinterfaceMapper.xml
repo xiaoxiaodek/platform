@@ -76,4 +76,5 @@
       infid = #{infid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -15,6 +15,7 @@
     from pinterface
     where id = #{id,jdbcType=INTEGER}
   </select>
+<<<<<<< HEAD
   <!--自定义-->
   <select id="selectByProject" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select
@@ -23,6 +24,8 @@
     where pid =#{pid,jdbcType=INTEGER}
   </select>
 
+=======
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pinterface
     where id = #{id,jdbcType=INTEGER}
@@ -76,4 +79,8 @@
       infid = #{infid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 </mapper>

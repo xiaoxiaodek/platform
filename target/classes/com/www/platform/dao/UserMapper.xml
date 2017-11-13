@@ -18,6 +18,19 @@
     from user
     where uid = #{uid,jdbcType=INTEGER}
   </select>
+<<<<<<< HEAD
+=======
+
+  <select id="selectByUname" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+
+
+
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where uid = #{uid,jdbcType=INTEGER}
@@ -103,4 +116,31 @@
       upwd = #{upwd,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+<<<<<<< HEAD
+=======
+
+
+  <update id="updateUpwd" parameterType="com.www.platform.entity.User">
+    update user
+    set
+    modtime = #{modtime,jdbcType=TIMESTAMP},
+    upwd = #{upwd,jdbcType=VARCHAR}
+    where uname = #{uname,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 </mapper>

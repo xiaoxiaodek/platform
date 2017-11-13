@@ -138,4 +138,32 @@
       modtime = #{modtime,jdbcType=TIMESTAMP}
     where comid = #{comid,jdbcType=INTEGER}
   </update>
+<<<<<<< HEAD
+=======
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select comid,pid,comaddr,comemail,comname,comcontact,createtime,typeId,modtime from company
+  </select>
+  <select id="selectSelective" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
+    select comid,pid,comaddr,comemail,comname,comcontact,createtime,typeId,modtime from company where 1=1
+    <if test="comaddr != null and !comaddr.trim().equals('')">
+        AND comaddr LIKE '%${comaddr}%'
+    </if>
+    <if test="comemail != null and !comemail.trim().equals('')">
+        AND comemail LIKE '%${comemail}%'
+    </if>
+    <if test="comname != null and !comname.trim().equals('')">
+        AND comname LIKE '%${comname}%'
+    </if>
+    <if test="comcontact != null and !comcontact.trim().equals('')">
+        AND comcontact LIKE '%${comcontact}%'
+    </if>
+    <if test="createtime != null and !createtime.trim().equals('')">
+        AND createtime LIKE '%${createtime}%'
+    </if>
+    <if test="modtime != null and !modtime.trim().equals('')">
+        AND modtime LIKE '%${modtime}%'
+    </if>
+  </select>
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 </mapper>

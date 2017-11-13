@@ -136,4 +136,5 @@
       aid = #{aid,jdbcType=INTEGER}
     where oid = #{oid,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -20,6 +20,7 @@
     from interface
     where idfid = #{idfid,jdbcType=INTEGER}
   </select>
+<<<<<<< HEAD
   <!--自定义语句-->
   <select id="selectByIds"  parameterType="java.util.Arrays" resultMap="BaseResultMap">
     select
@@ -34,6 +35,10 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from interface
 
+=======
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from interface
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
     where idfid = #{idfid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.www.platform.entity.Interface">
@@ -137,4 +142,8 @@
       interfacecol = #{interfacecol,jdbcType=TIMESTAMP}
     where idfid = #{idfid,jdbcType=INTEGER}
   </update>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 </mapper>

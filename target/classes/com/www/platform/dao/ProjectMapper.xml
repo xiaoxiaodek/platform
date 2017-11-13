@@ -207,4 +207,22 @@
       uid = #{uid,jdbcType=INTEGER}
     where pid = #{pid,jdbcType=INTEGER}
   </update>
+<<<<<<< HEAD
+=======
+
+  <select id="selectByauditstatidOrSuppid" parameterType="com.www.platform.entity.Project" resultMap="ResultMapWithBLOBs">
+      select
+      <include refid="Base_Column_List" />
+      ,
+      <include refid="Blob_Column_List" />
+      from project
+      where 1=1
+      <if test="auditstatid != null">
+        AND auditstatid = #{auditstatid,jdbcType=INTEGER}
+      </if>
+      <if test="suppid != null">
+        AND suppid = #{suppid,jdbcType=INTEGER}
+      </if>
+  </select>
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 </mapper>

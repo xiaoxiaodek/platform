@@ -2,6 +2,7 @@ com/www/platform/dao/MasteracctMapper.class
 com/www/platform/message/Message.class
 com/www/platform/util/Md5.class
 com/www/platform/util/FileUtil.class
+<<<<<<< HEAD
 com/www/platform/service/interfaces/InterfacesServiceImpl.class
 com/www/platform/dao/ExinterfaceMapper.class
 com/www/platform/service/GenerateTokens.class
@@ -14,18 +15,44 @@ com/www/platform/util/DateUtil.class
 com/www/platform/dao/InterfaceMapper.class
 com/www/platform/util/MailUtil.class
 com/www/platform/message/StatusCode.class
+=======
+com/www/platform/dao/ExinterfaceMapper.class
+com/www/platform/service/GenerateTokens.class
+com/www/platform/service/LoginService.class
+com/www/platform/service/LoginServiceImpl.class
+com/www/platform/entity/Operate.class
+com/www/platform/service/company/CompanyService.class
+com/www/platform/entity/User.class
+com/www/platform/entity/Intfaceexinf.class
+com/www/platform/util/DateUtil.class
+com/www/platform/dao/InterfaceMapper.class
+com/www/platform/message/StatusCode.class
+com/www/platform/util/MailUtil.class
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 com/www/platform/entity/Cfile.class
 com/www/platform/dao/CfileMapper.class
 com/www/platform/dao/UserMapper.class
 com/www/platform/entity/Company.class
+<<<<<<< HEAD
 com/www/platform/dao/CompanyMapper.class
 com/www/platform/constant/GlobalConstants.class
 com/www/platform/entity/Exinterface.class
 com/www/platform/filter/Validate.class
+=======
+com/www/platform/service/company/CompanyServiceImpl.class
+com/www/platform/constant/GlobalConstants.class
+com/www/platform/dao/CompanyMapper.class
+com/www/platform/filter/Validate.class
+com/www/platform/entity/Exinterface.class
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 com/www/platform/message/BaseMessage.class
 com/www/platform/dao/ContractMapper.class
 com/www/platform/dao/AccountMapper.class
 com/www/platform/util/Crypt.class
+<<<<<<< HEAD
+=======
+com/www/platform/controller/LoginController.class
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 com/www/platform/util/JsonUtil.class
 com/www/platform/entity/Account.class
 com/www/platform/util/SendMsgUtil.class
@@ -34,13 +61,21 @@ com/www/platform/dao/OperateMapper.class
 com/www/platform/entity/Contract.class
 com/www/platform/dao/FileMapper.class
 com/www/platform/util/SpringUtils.class
+<<<<<<< HEAD
+=======
+com/www/platform/util/DBUtil.class
+com/www/platform/controller/company/CompanyController.class
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 com/www/platform/entity/Project.class
 com/www/platform/dao/PinterfaceMapper.class
 com/www/platform/entity/File.class
 com/www/platform/dao/ProjectMapper.class
 com/www/platform/util/ApiKey.class
 com/www/platform/entity/Masteracct.class
+<<<<<<< HEAD
 com/www/platform/service/interfaces/InterfacesService.class
+=======
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 com/www/platform/entity/Pinterface.class
 com/www/platform/message/MessageCode.class
 com/www/platform/util/ResponseUtil.class

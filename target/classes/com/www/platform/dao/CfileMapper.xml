@@ -68,4 +68,8 @@
       fid = #{fid,jdbcType=INTEGER}
     where cfid = #{cfid,jdbcType=INTEGER}
   </update>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9db7e1cbec4501b2c03b78b475ab96816b7bd215
 </mapper>
