@@ -12,6 +12,7 @@ import java.util.Map;
  */
 public interface CompanyService {
 
-    List<Company> findByAll();
-    Boolean addCompany(Map<String, Object> map);
+    String deleteCompany(int comid);
+    Boolean modifyCompany(Map<String, Object> map);
+    Map<String, List> findSelective(String serachWord,String type);
 }

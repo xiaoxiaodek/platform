@@ -9,10 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -30,17 +27,47 @@ public class CompanyController {
     private CompanyService companyService;
 
     /**
-     * @desc 获取客户和供应商列表
-     * @return
+     * @desc 删除客户和供应商
+     * @return BaseMessage
      */
-    @RequestMapping(value = "/companyList", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteCompany", method = RequestMethod.GET)
     @ResponseBody
-    public BaseMessage companyList() {
+    public BaseMessage deleteCompany(@RequestParam(value="comid") int comid) {
         BaseMessage message = new BaseMessage();
         try {
-            if (null != this.companyService.findByAll()) {
+            if ("删除公司成功" == this.companyService.deleteCompany(comid)) {
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                message.setData(this.companyService.findByAll());
+                message.setData("删除公司成功");
+            } else if("不存在该公司" == this.companyService.deleteCompany(comid)){
+                ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+                message.setData("不存在该公司");
+            }else{
+                ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+                message.setData("有与公司相关的项目");
+            }
+        } catch (Exception e) {
+            logger.error("获取公司异常");
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
+            e.printStackTrace();
+        }
+        return message;
+    }
+
+
+    /**
+     * @desc 获取客户和供应商列表
+     * @param serachWord 搜索关键词
+     * @return BaseMessage
+     */
+    @RequestMapping(value = "/companySelective", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseMessage companySelective(@RequestParam(value="searchWord") String serachWord,
+                                        @RequestParam(value = "type") String type) {
+        BaseMessage message = new BaseMessage();
+        try {
+            if (null != this.companyService.findSelective(serachWord,type)) {
+                ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+                message.setData(this.companyService.findSelective(serachWord,type));
             } else {
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 message.setData("未获取公司数据");
@@ -54,18 +81,24 @@ public class CompanyController {
     }
 
     /**
-     * 添加客户
-     * @param map
-     * @return message
+     * 添加和修改客户
+     * @param map 前端参数
+     * @return BaseMessage
      * @throws Exception
      */
-    @RequestMapping(value = "/addCompany",method = RequestMethod.POST)
+    @RequestMapping(value = "/modifyCompany",method = RequestMethod.POST)
     @ResponseBody
-    public BaseMessage addCompany(@RequestBody Map<String, Object> map) throws Exception{
+    public BaseMessage modifyCompany(@RequestBody Map<String, Object> map) throws Exception{
 
         BaseMessage message = new BaseMessage();
-        Boolean b = this.companyService.addCompany(map);
+        Boolean b = this.companyService.modifyCompany(map);
+        if(b)
+            ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        else
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         return message;
 
     }
+
 }
+
