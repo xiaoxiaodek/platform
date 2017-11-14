@@ -33,6 +33,14 @@
     from project
     where pid = #{pid,jdbcType=INTEGER}
   </select>
+  <!--自定义-->
+  <select id="selectByCid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    pid
+    from project
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from project
     where pid = #{pid,jdbcType=INTEGER}

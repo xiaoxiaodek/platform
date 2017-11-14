@@ -32,6 +32,12 @@ import org.springframework.stereotype.Service;
         return interfaceMapper.selectByIds(ids);
     }
 
+    @Override public Interface[] searchAll() {
+        Interface[] result;
+        result = interfaceMapper.selectAll();
+        return result;
+    }
+
     @Override public Interface searchById(int id) {
         return interfaceMapper.selectByPrimaryKey(id);
     }

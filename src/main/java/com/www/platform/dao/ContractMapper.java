@@ -2,6 +2,8 @@ package com.www.platform.dao;
 
 import com.www.platform.entity.Contract;
 
+import java.util.List;
+
 public interface ContractMapper {
     int deleteByPrimaryKey(Integer cid);
 
@@ -10,6 +12,8 @@ public interface ContractMapper {
     int insertSelective(Contract record);
 
     Contract selectByPrimaryKey(Integer cid);
+
+    List<Contract> selectAll();
 
     int updateByPrimaryKeySelective(Contract record);
 

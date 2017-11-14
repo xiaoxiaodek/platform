@@ -32,8 +32,11 @@
     delete from file
     where fid = #{fid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.www.platform.entity.File">
-    insert into file (fid, uid, pid, 
+  <insert id="insert" parameterType="com.www.platform.entity.File" keyProperty="fid">
+    <selectKey keyProperty='fid' resultType='int' order='AFTER'  >
+      select LAST_INSERT_ID();
+    </selectKey>
+    insert into file (fid, uid, pid,
       cid, createtime, flocal, 
       fname, modtime, fsummary
       )
