@@ -14,4 +14,8 @@ public interface PinterfaceMapper {
     int updateByPrimaryKeySelective(Pinterface record);
 
     int updateByPrimaryKey(Pinterface record);
+
+
+    Integer[] selectByProject(Integer projectId);
+
 }

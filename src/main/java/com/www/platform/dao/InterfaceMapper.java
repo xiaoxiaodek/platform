@@ -14,4 +14,6 @@ public interface InterfaceMapper {
     int updateByPrimaryKeySelective(Interface record);
 
     int updateByPrimaryKey(Interface record);
+
+    Interface[] selectByIds(Integer[] ids);//考虑set
 }

@@ -20,4 +20,6 @@ public interface ProjectMapper {
     int updateByPrimaryKeyWithBLOBs(Project record);
 
     int updateByPrimaryKey(Project record);
+
+    List<Project> selectByauditstatidOrSuppid(Project record);
 }

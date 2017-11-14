@@ -15,6 +15,14 @@
     from pinterface
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <!--自定义-->
+  <select id="selectByProject" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    infid
+    from pinterface
+    where pid =#{pid,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pinterface
     where id = #{id,jdbcType=INTEGER}
