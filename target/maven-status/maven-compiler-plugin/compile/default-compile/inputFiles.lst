@@ -1,3 +1,4 @@
+/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Log.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/util/ApiKey.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/util/Md5.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/service/GenerateTokens.java
@@ -17,6 +18,7 @@
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/dao/IntfaceexinfMapper.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Cfile.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/dao/CfileMapper.java
+/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/util/SystemLog.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/util/SpringUtils.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Intfaceexinf.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Account.java
@@ -29,6 +31,7 @@
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Operate.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/util/Crypt.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Project.java
+/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/dao/LogMapper.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/message/StatusCode.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/message/BaseMessage.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/util/DBUtil.java
@@ -36,6 +39,7 @@
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/dao/PinterfaceMapper.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/dao/CompanyMapper.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/User.java
+/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/filter/OperateFilter.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/constant/GlobalConstants.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Contract.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/service/LoginService.java
@@ -48,3 +52,4 @@
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/message/Message.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Interface.java
 /home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/entity/Masteracct.java
+/home/upsmart/JavaWorkspace/IdeaProject/platform/src/main/java/com/www/platform/util/GetLocalIp.java

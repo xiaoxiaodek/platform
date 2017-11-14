@@ -1,7 +1,5 @@
 package com.www.platform.service.company;
 
-import com.www.platform.entity.Company;
-
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +10,8 @@ import java.util.Map;
  */
 public interface CompanyService {
 
-    String deleteCompany(int comid);
+    String deleteCompany(int[] comid);
     Boolean modifyCompany(Map<String, Object> map);
+    Boolean modifyCompanyStatus(Map<String, Object> map);
     Map<String, List> findSelective(String serachWord,String type);
 }

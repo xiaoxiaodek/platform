@@ -33,31 +33,39 @@ public class CompanyServiceImpl implements CompanyService{
 
     /**
      * 删除客户
-     * @param comid
+     * @param comids
      * @return String
      */
     @Override
-    public String deleteCompany(int comid) {
+    public String deleteCompany(int[] comids) {
 
-        Company company = companyMapper.selectByPrimaryKey(comid);
-        List<Project> projects = null;
-        if(company != null) {
-            Project project1 = new Project();
-            project1.setSuppid(new Integer(comid));
-            projects = projectMapper.selectByauditstatidOrSuppid(project1);
-            if (projects.size() == 0) {
-                Project project = new Project();
-                project.setAuditstatid(new Integer(comid));
-                projects = projectMapper.selectByauditstatidOrSuppid(project);
-                if (projects.size() == 0) {
-                    companyMapper.deleteByPrimaryKey(comid);
-                    return "删除公司成功";
-                }
-            }
-            return "有与公司相关的项目";
-        }else{
+        if (null == comids || comids.length == 0) {
             return "不存在该公司";
         }
+        for(int comid:comids) {
+            Company company = companyMapper.selectByPrimaryKey(comid);
+            List<Project> projects = null;
+            if (company != null) {
+                Project project1 = new Project();
+                project1.setSuppid(new Integer(comid));
+                projects = projectMapper.selectByauditstatidOrSuppid(project1);
+                if (projects.size() == 0) {
+                    Project project = new Project();
+                    project.setAuditstatid(new Integer(comid));
+                    projects = projectMapper.selectByauditstatidOrSuppid(project);
+                    if (projects.size() == 0) {
+                        companyMapper.deleteByPrimaryKey(comid);
+                    }else {
+                        return "有与公司相关的项目";
+                    }
+                }else {
+                    return "有与公司相关的项目";
+                }
+            } else {
+                return "不存在该公司";
+            }
+        }
+        return "删除公司成功";
     }
 
     /**
@@ -73,9 +81,11 @@ public class CompanyServiceImpl implements CompanyService{
         List<Project> projects = null;
         Company company = new Company();
         Project project = new Project();
-        int typeId = Integer.parseInt(type);
+        int typeId = 0;
+        if(type!="")
+            typeId = new Integer(type);
         switch(typeId){
-            case 0:
+            case 6:
                 project.setAuditstatid(new Integer(serachWord));
                 projects = projectMapper.selectByauditstatidOrSuppid(project);
                 break;
@@ -99,7 +109,11 @@ public class CompanyServiceImpl implements CompanyService{
                 company.setComname(serachWord);
                 companies = companyMapper.selectSelective(company);
                 break;
-            case 6:
+            case 7:
+                company.setComid(new Integer(serachWord));
+                companies = companyMapper.selectSelective(company);
+                break;
+            case 0:
                 companies = companyMapper.selectSelective(company);
                 break;
             default:
@@ -114,7 +128,7 @@ public class CompanyServiceImpl implements CompanyService{
         }
     }
     /**
-     * 添加和修改公司
+     * 添加和修改公司信息不包括状态
      * @param map 前端参数
      * @return
      */
@@ -132,6 +146,22 @@ public class CompanyServiceImpl implements CompanyService{
             company = addAndUpdate(map,company,(Integer) map.get("comid"));
             return companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
         }
+    }
+
+    /**
+     * 添加和修改公司信息不包括状态
+     * @param map 前端参数
+     * @return
+     */
+    @Override
+    public Boolean modifyCompanyStatus(Map<String, Object> map){
+
+        Company company = new Company();
+
+        company.setComid((Integer) map.get("comid"));
+        company = addAndUpdate(map,company,(Integer) map.get("comid"));
+        return companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
+
     }
 
     /**
@@ -153,6 +183,11 @@ public class CompanyServiceImpl implements CompanyService{
             company.setComname((String) map.get("comname"));
             company.setComcontact((String) map.get("comcontact"));
             company.setTypeid((Integer)map.get("typeid"));
+            company.setStatusid((Integer)map.get("statusid"));
+            company.setCommercestatus((Integer)map.get("commercestatus"));
+            company.setTechstatus((Integer)map.get("techstatus"));
+            company.setAccountstatus((Integer)map.get("accountstatus"));
+            company.setOnlinestatus((Integer)map.get("onlinestatus"));
             if(comid == 0){
                 company.setCreatetime(c);
                 company.setModtime(c);

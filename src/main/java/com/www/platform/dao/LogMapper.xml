@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.platform.dao.LogMapper">
+  <resultMap id="BaseResultMap" type="com.www.platform.entity.Log">
+    <id column="lid" jdbcType="INTEGER" property="lid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="otime" jdbcType="VARCHAR" property="otime" />
+    <result column="responseTime" jdbcType="VARCHAR" property="responsetime" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    lid, uid, module, method, ip, otime, responseTime, result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log
+    where lid = #{lid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from log
+    where lid = #{lid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.www.platform.entity.Log">
+    insert into log (lid, uid, module, 
+      method, ip, otime, 
+      responseTime, result)
+    values (#{lid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{module,jdbcType=VARCHAR}, 
+      #{method,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{otime,jdbcType=VARCHAR}, 
+      #{responsetime,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.www.platform.entity.Log">
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lid != null">
+        lid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="module != null">
+        module,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="otime != null">
+        otime,
+      </if>
+      <if test="responsetime != null">
+        responseTime,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lid != null">
+        #{lid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="otime != null">
+        #{otime,jdbcType=VARCHAR},
+      </if>
+      <if test="responsetime != null">
+        #{responsetime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.www.platform.entity.Log">
+    update log
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="module != null">
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="otime != null">
+        otime = #{otime,jdbcType=VARCHAR},
+      </if>
+      <if test="responsetime != null">
+        responseTime = #{responsetime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lid = #{lid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.www.platform.entity.Log">
+    update log
+    set uid = #{uid,jdbcType=INTEGER},
+      module = #{module,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      otime = #{otime,jdbcType=VARCHAR},
+      responseTime = #{responsetime,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR}
+    where lid = #{lid,jdbcType=INTEGER}
+  </update>
+</mapper>
