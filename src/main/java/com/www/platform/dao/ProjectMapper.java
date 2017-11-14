@@ -2,6 +2,8 @@ package com.www.platform.dao;
 
 import com.www.platform.entity.Project;
 
+import java.util.List;
+
 public interface ProjectMapper {
     int deleteByPrimaryKey(Integer pid);
 
@@ -10,6 +12,8 @@ public interface ProjectMapper {
     int insertSelective(Project record);
 
     Project selectByPrimaryKey(Integer pid);
+
+    List<Project> selectProjectBySuppid(Integer suppid);
 
     int updateByPrimaryKeySelective(Project record);
 

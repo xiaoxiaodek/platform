@@ -115,7 +115,7 @@
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 
-<!--修改密码 爱到底 -->
+<!--修改密码 -->
   <update id="updateUpwd" parameterType="com.www.platform.entity.User">
     update user
     set

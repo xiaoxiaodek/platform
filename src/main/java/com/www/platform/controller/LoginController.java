@@ -22,8 +22,10 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
- * @Author zjl
-
+ * Created by upsmart on 17-11-13.
+ *
+ * @author zjl
+ * @version 0.0
  */
 @Controller
 @RequestMapping("login")
@@ -33,7 +35,7 @@ public class LoginController {
     private LoginService loginService;
 
 
-    @RequestMapping(value = "/logi",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
         public BaseMessage login(@RequestBody Map<String,Object> map, HttpSession session){
 //    public String login(@RequestBody Map<String,Object> map, HttpSession session){
@@ -43,7 +45,7 @@ public class LoginController {
         String password=map.get("upwd").toString();
 
         if(username!=null&&password!=null) {
-                if ("succcess".equals( this.loginService.login(map))) {
+                if ("success".equals( this.loginService.login(map ))) {
                     session.setAttribute(GlobalConstants.USERNAME,username);
                     msg.setData("登陆成功");
                 } else {
@@ -57,17 +59,43 @@ return msg;
     }
 
 
-    @RequestMapping(value = "/preview",method = RequestMethod.GET)
-    @ResponseBody
-    public void perview(HttpServletRequest req) throws Exception{
-       Cookie[] cookies = req.getCookies();
-       Claims a= GenerateTokens.parseJWT(cookies[0].getValue());
-       String id=a.getSubject();
-    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST) @ResponseBody
     public BaseMessage register(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         msg.setData(this.loginService.register(map));
         return msg;
     }
+
+
+    @RequestMapping(value = "editPassword", method = RequestMethod.POST) @ResponseBody
+    public BaseMessage editPassword(@RequestBody Map<String, Object> map, HttpSession sesssion) {
+        BaseMessage msg = new BaseMessage();
+        String uname = (String) sesssion.getAttribute(GlobalConstants.USERNAME);
+        if(uname!=null) {
+            map.put("uname", uname);
+            msg.setData(this.loginService.editPassword(map));
+
+        }else {
+            msg.setData("请登录后再修改");
+        }
+        return msg;
+    }
+
+
+    // 登出系统
+    @RequestMapping(value = "/logout", method = RequestMethod.GET) @ResponseBody
+    public BaseMessage logout(HttpSession session) {
+        BaseMessage msg = new BaseMessage();
+        try {
+            session.removeAttribute(GlobalConstants.USERNAME);
+            session.invalidate();
+            msg.setData("success");
+        } catch (NullPointerException e) {
+            logger.error("退出异常");
+        }
+        return msg;
+    }
+
+
 }
