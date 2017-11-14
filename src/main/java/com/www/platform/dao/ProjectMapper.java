@@ -13,6 +13,8 @@ public interface ProjectMapper {
 
     Project selectByPrimaryKey(Integer pid);
 
+    List<Project> selectProjectBySuppid(Integer suppid);
+
     int updateByPrimaryKeySelective(Project record);
 
     int updateByPrimaryKeyWithBLOBs(Project record);

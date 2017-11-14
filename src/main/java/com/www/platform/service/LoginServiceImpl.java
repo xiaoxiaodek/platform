@@ -8,17 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by upsmart on 17-8-4.
+ * Created by upsmart on 17-11-12.
  *
- * @author wss
+ * @author zjl
  * @version 0.0
- * @desc
- * @modified by  下午2:32
  */
 @Service
 public class LoginServiceImpl implements LoginService{
@@ -31,6 +30,7 @@ public class LoginServiceImpl implements LoginService{
         String uname=map.get("uname").toString();
         String upwd=map.get("upwd").toString();
         user.setUname(uname);
+
         try {
             user=userMapper.selectByUname(uname);
             if(user.getUpwd().equals(Md5.MD5(upwd))){
@@ -49,53 +49,75 @@ public class LoginServiceImpl implements LoginService{
         String result = "";
         Integer a=0;
         User user=new User();
-        user.setUname((String) map.get("uname"));
-        user.setUemail((String) map.get("uemail"));
-        user.setUpwd((String)map.get("upwd"));
-        user.setCreatetime(new Date());
-        user.setModtime(new Date());
-        if(!(user.getUpwd().equals(Md5.MD5((String) map.get("upwdconfirm"))))) {
-            result = "两次输入密码不一样";
-        }else{
-        try {
-            a = this.userMapper.insert(user);
-            if (a==1) {
-                result = "新建成功";
+        User user1=new User();
+        String uname=(String) map.get("uname");
+
+        user1=userMapper.selectByUname(uname);
+
+        if(user1!=null){
+            result="用户名已存在";
+            return result;
+        }else {
+            user.setUname((String) map.get("uname"));
+            user.setUemail((String) map.get("uemail"));
+            user.setUpwd(Md5.MD5((String) map.get("upwd")));
+            user.setCreatetime(new Date());
+            user.setModtime(new Date());
+
+            if (!(user.getUpwd().equals(Md5.MD5((String) map.get("upwdconfirm"))))) {
+                result = "两次输入密码不一样!!!!";
+            } else {
+                try {
+                    a = this.userMapper.insert(user);
+                    if (a == 1) {
+                        result = "新建成功";
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    result = "新建失败";
+                }
             }
-        }  catch (Exception e){
-            e.printStackTrace();
-            result = "新建失败";
-        }
         }
         return result;
     }
 
     @Override public String editPassword(Map<String, Object> map) {
         String result = "0";
+        int a=21;
         User user = new User();
-        user.setUname((String) map.get("name"));
+        user.setUname((String) map.get("uname"));
         try {
             user = this.userMapper.selectByUname(user.getUname());
-            if (user != null) {
-                if (! map.get("unewpassword").equals(map.get("uconfnewpwd"))) {
-                      if (Md5.MD5((String) map.get("uoldpassword")).equals(user.getUpwd())) {
-                          result="密码错误";
 
-                        return result;
+            if (user != null) {
+                if ( map.get("unewpassword").equals(map.get("uconfnewpwd"))) {
+                      if (Md5.MD5((String) map.get("uoldpassword")).equals(user.getUpwd())) {
+                          user.setUpwd(Md5.MD5((String) map.get("unewpassword")));
+                          String uname=user.getUname();
+                          String upwd=user.getUpwd();
+                          Date modtime=new Date();
+                          a= this.userMapper.updateUpwd(modtime,upwd,uname);
+                          if(a==1) {
+                              result = "修改成功";
+                          }else{
+                              result = "修改失败";
+                              return result;
+                          }
                     }else {
-                        user.setUpwd(Md5.MD5((String) map.get("unewpassword")));
+                          result="密码错误";
+                          return result;
                     }
                 } else {
                     result = "两次输入密码不一样";
-
                     return result;
                 }
             }
 
-            this.userMapper.updateUpwd(user.getUname(),new Date());
         } catch (NullPointerException e) {
             result = "修改失败";
+
             e.printStackTrace();
+            return result;
         }
         return result;
     }

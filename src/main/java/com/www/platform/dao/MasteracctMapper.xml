@@ -91,4 +91,5 @@
     where maid = #{maid,jdbcType=INTEGER}
   </update>
 
+
 </mapper>

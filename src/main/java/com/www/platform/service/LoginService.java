@@ -7,12 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by upsmart on 17-8-4.
+ * Created by upsmart on 17-11-13.
  *
- * @author wss
+ * @author zjl
  * @version 0.0
- * @desc
- * @modified by  下午2:31
  */
 public interface LoginService {
    String login(Map<String,Object> map);

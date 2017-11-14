@@ -20,8 +20,20 @@
     from interface
     where idfid = #{idfid,jdbcType=INTEGER}
   </select>
+  <!--自定义语句-->
+  <select id="selectByIds"  parameterType="java.util.Arrays" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from interface
+    where idfid in
+    <foreach collection="array" item="ids" index="index" open="(" close=")" separator=",">
+      #{ids}
+    </foreach>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from interface
+
     where idfid = #{idfid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.www.platform.entity.Interface">
