@@ -36,8 +36,7 @@ import java.util.Map;
     @RequestMapping(value = "/addProject", method = RequestMethod.POST) @ResponseBody
     public BaseMessage addProject(@RequestBody Map<String, Object> map, HttpSession session) {
         BaseMessage msg = new BaseMessage();
-        int uid = Integer.parseInt(session.getAttribute(GlobalConstants.UID).toString());
-        map.put("uid", uid);
+
         try {
             msg.setData(projectService.addProject(map));
             if ("添加成功".equals(msg.getData())) {
