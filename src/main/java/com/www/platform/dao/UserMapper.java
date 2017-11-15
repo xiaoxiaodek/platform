@@ -21,5 +21,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
       int     updateUpwd(@Param("modtime") Date modtime, @Param("upwd") String upwd,
           @Param("uname") String uname);
+    int     updateInfo(@Param("modtime") Date modtime, @Param("uemail") String uemail,
+        @Param("uname") String uname);
     int updateByPrimaryKey(User record);
 }
