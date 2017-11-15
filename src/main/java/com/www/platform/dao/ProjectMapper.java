@@ -21,6 +21,8 @@ public interface ProjectMapper {
 
     int updateByPrimaryKeyWithBLOBs(Project record);
 
+    List selectByCid(Integer cid);
+
     int updateByPrimaryKey(Project record);
 
     List<Project> selectByauditstatidOrSuppid(Project record);

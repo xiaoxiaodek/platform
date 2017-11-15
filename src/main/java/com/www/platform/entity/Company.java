@@ -21,6 +21,16 @@ public class Company {
 
     private Date modtime;
 
+    private Integer statusid;
+
+    private Integer commercestatus;
+
+    private Integer techstatus;
+
+    private Integer accountstatus;
+
+    private Integer onlinestatus;
+
     public Integer getComid() {
         return comid;
     }
@@ -91,5 +101,45 @@ public class Company {
 
     public void setModtime(Date modtime) {
         this.modtime = modtime;
+    }
+
+    public Integer getStatusid() {
+        return statusid;
+    }
+
+    public void setStatusid(Integer statusid) {
+        this.statusid = statusid;
+    }
+
+    public Integer getCommercestatus() {
+        return commercestatus;
+    }
+
+    public void setCommercestatus(Integer commercestatus) {
+        this.commercestatus = commercestatus;
+    }
+
+    public Integer getTechstatus() {
+        return techstatus;
+    }
+
+    public void setTechstatus(Integer techstatus) {
+        this.techstatus = techstatus;
+    }
+
+    public Integer getAccountstatus() {
+        return accountstatus;
+    }
+
+    public void setAccountstatus(Integer accountstatus) {
+        this.accountstatus = accountstatus;
+    }
+
+    public Integer getOnlinestatus() {
+        return onlinestatus;
+    }
+
+    public void setOnlinestatus(Integer onlinestatus) {
+        this.onlinestatus = onlinestatus;
     }
 }

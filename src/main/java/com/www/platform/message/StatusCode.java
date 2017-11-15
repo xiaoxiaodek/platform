@@ -19,7 +19,23 @@ public enum StatusCode {
     INVALID_PARAM("10105", "请求参数不合法"),
 
     SYSTEM_ERROR("20101", "系统异常"),
-    DATA_ERROR("20102", "数据异常");
+    DATA_ERROR("20102", "数据异常"),
+
+    //公司状态
+    COMMERCE_COMMUNICATION_NO("0","未进行"),
+    COMMERCE_COMMUNICATION_NOW("1","正在"),
+    COMMERCE_COMMUNICATION_FINISH("2","完成"),
+    COMMERCE_CONTRACT_NO("3","拟定中"),
+    COMMERCE_CONTRACT_FINISH("4","拟定完毕"),
+
+    TECH_TEST("5","测试"),
+    TECH_COMMit("6","正式对接"),
+
+    ACCOUNT_NO("7","尚未到账"),
+    ACCOUNT_FINISH("8","已经到账"),
+
+    ONLINE_NO("9","未运营"),
+    ONLINE_FINISH("10","未运营");
 
     private String code;
     private String msg;

@@ -28,6 +28,22 @@ import java.util.Map;
 
     @Autowired private InterfacesService interfacesService;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET) @ResponseBody
+    public BaseMessage SearchAll() {
+        BaseMessage msg = new BaseMessage();
+        try {
+            Interface[] a = interfacesService.searchAll();
+            msg.setData(a);
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
+        }
+        return msg;
+    }
+
+
+
     @RequestMapping(value = "/project", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByProject(@RequestParam int projectId) {
         BaseMessage msg = new BaseMessage();
@@ -69,7 +85,7 @@ import java.util.Map;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage delete(@RequestParam int[] ids) {
+    public BaseMessage delete(@RequestBody  int[] ids) {
         BaseMessage msg = new BaseMessage();
         try {
             interfacesService.delete(ids);
@@ -92,10 +108,10 @@ import java.util.Map;
         in.setDicount((Long) params.get("dicount"));
         in.setCreatetime((Date) params.get("createtime"));
         in.setInterfacecol((Date) params.get("modtime"));
-        try{
+        try {
             interfacesService.update(in);
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-        }catch (Exception e){
+        } catch (Exception e) {
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.DATA_ERROR);
         }
         return msg;

@@ -33,6 +33,16 @@
     from project
     where pid = #{pid,jdbcType=INTEGER}
   </select>
+<<<<<<< HEAD
+  <!--自定义-->
+  <select id="selectByCid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    pid
+    from project
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+
+=======
 
   <select id="selectProjectBySuppid" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select
@@ -57,6 +67,7 @@
 
 
 
+>>>>>>> 13167b3aa48dd8e8006506074fba1f12f74d87b2
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from project
     where pid = #{pid,jdbcType=INTEGER}

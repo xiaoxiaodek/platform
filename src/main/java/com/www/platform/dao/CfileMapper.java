@@ -2,6 +2,8 @@ package com.www.platform.dao;
 
 import com.www.platform.entity.Cfile;
 
+import java.util.List;
+
 public interface CfileMapper {
     int deleteByPrimaryKey(Integer cfid);
 
@@ -10,6 +12,8 @@ public interface CfileMapper {
     int insertSelective(Cfile record);
 
     Cfile selectByPrimaryKey(Integer cfid);
+
+    List<Cfile> selectByCid(Integer cid);
 
     int updateByPrimaryKeySelective(Cfile record);
 
