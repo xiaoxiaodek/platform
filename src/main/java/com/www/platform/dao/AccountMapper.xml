@@ -114,4 +114,5 @@
       maid = #{maid,jdbcType=INTEGER}
     where acctid = #{acctid,jdbcType=INTEGER}
   </update>
+
 </mapper>

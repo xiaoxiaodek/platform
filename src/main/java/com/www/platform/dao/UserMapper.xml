@@ -18,6 +18,17 @@
     from user
     where uid = #{uid,jdbcType=INTEGER}
   </select>
+
+  <!--根据用户名查询-->
+  <select id="selectByUname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where uname = #{uname,jdbcType=VARCHAR}
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where uid = #{uid,jdbcType=INTEGER}
@@ -103,4 +114,28 @@
       upwd = #{upwd,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+<!--修改密码 -->
+  <update id="updateUpwd" parameterType="com.www.platform.entity.User">
+    update user
+    set
+    modtime = #{modtime,jdbcType=TIMESTAMP},
+    upwd = #{upwd,jdbcType=VARCHAR}
+    where uname = #{uname,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

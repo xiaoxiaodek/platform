@@ -13,6 +13,8 @@ public interface ProjectMapper {
 
     Project selectByPrimaryKey(Integer pid);
 
+    List<Project> selectProjectBySuppid(Integer suppid);
+
     int updateByPrimaryKeySelective(Project record);
 
     int updateByPrimaryKeyWithBLOBs(Project record);
@@ -20,4 +22,6 @@ public interface ProjectMapper {
     List selectByCid(Integer cid);
 
     int updateByPrimaryKey(Project record);
+
+    List<Project> selectByauditstatidOrSuppid(Project record);
 }

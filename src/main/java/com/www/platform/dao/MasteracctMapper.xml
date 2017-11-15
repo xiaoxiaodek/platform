@@ -90,4 +90,6 @@
       comid = #{comid,jdbcType=INTEGER}
     where maid = #{maid,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

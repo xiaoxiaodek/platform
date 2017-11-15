@@ -204,4 +204,5 @@
       modtime = #{modtime,jdbcType=TIMESTAMP}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+
 </mapper>
