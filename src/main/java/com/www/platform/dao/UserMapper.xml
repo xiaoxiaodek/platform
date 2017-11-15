@@ -127,6 +127,15 @@
 
 
 
+  <!--修改信息 -->
+  <update id="updateInfo" parameterType="com.www.platform.entity.User">
+    update user
+    set
+    modtime = #{modtime,jdbcType=TIMESTAMP},
+    uemail = #{uemail,jdbcType=VARCHAR}
+    where uname = #{uname,jdbcType=VARCHAR}
+  </update>
+
 
 
 

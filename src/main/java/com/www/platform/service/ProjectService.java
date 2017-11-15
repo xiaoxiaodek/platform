@@ -22,5 +22,5 @@ public interface ProjectService {
 
     List<Project> selectProjectBySuppid(Map<String,Object> map);
 
-
+    List<Project> selectProjectByAuditstatid(Map<String,Object> map);
 }
