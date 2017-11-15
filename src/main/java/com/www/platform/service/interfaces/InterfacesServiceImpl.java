@@ -79,9 +79,10 @@ import org.springframework.stereotype.Service;
             logs.error("接口不存在");
         }
         try {
-            interfaceMapper.updateByPrimaryKey(intefaces);
+            interfaceMapper.updateByPrimaryKeySelective(intefaces);
         } catch (Exception e) {
             logs.error("更新出错");
+            e.printStackTrace();
         }
         return false;
 
@@ -95,6 +96,7 @@ import org.springframework.stereotype.Service;
             return true;
         } catch (Exception e) {
             logs.error("数据删除失败");
+            e.printStackTrace();
         }
         return false;
     }

@@ -5,14 +5,14 @@
     <id column="idfid" jdbcType="INTEGER" property="idfid" />
     <result column="infname" jdbcType="VARCHAR" property="infname" />
     <result column="inftype" jdbcType="INTEGER" property="inftype" />
-    <result column="exinf" jdbcType="TINYINT" property="exinf" />
+    <result column="exinf" jdbcType="BIT" property="exinf" />
     <result column="basprice" jdbcType="DECIMAL" property="basprice" />
     <result column="dicount" jdbcType="DECIMAL" property="dicount" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="interfacecol" jdbcType="TIMESTAMP" property="interfacecol" />
+    <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    idfid, infname, inftype, exinf, basprice, dicount, createtime, interfacecol
+    idfid, infname, inftype, exinf, basprice, dicount, createtime, modtime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -20,6 +20,7 @@
     from interface
     where idfid = #{idfid,jdbcType=INTEGER}
   </select>
+
   <!--自定义语句-->
   <select id="selectByIds"  parameterType="java.util.Arrays" resultMap="BaseResultMap">
     select
@@ -37,18 +38,18 @@
     from interface
   </select>
 
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from interface
-
     where idfid = #{idfid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.www.platform.entity.Interface">
     insert into interface (idfid, infname, inftype, 
       exinf, basprice, dicount, 
-      createtime, interfacecol)
+      createtime, modtime)
     values (#{idfid,jdbcType=INTEGER}, #{infname,jdbcType=VARCHAR}, #{inftype,jdbcType=INTEGER}, 
-      #{exinf,jdbcType=TINYINT}, #{basprice,jdbcType=DECIMAL}, #{dicount,jdbcType=DECIMAL}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{interfacecol,jdbcType=TIMESTAMP})
+      #{exinf,jdbcType=BIT}, #{basprice,jdbcType=DECIMAL}, #{dicount,jdbcType=DECIMAL}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{modtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.Interface">
     insert into interface
@@ -74,8 +75,8 @@
       <if test="createtime != null">
         createtime,
       </if>
-      <if test="interfacecol != null">
-        interfacecol,
+      <if test="modtime != null">
+        modtime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -89,7 +90,7 @@
         #{inftype,jdbcType=INTEGER},
       </if>
       <if test="exinf != null">
-        #{exinf,jdbcType=TINYINT},
+        #{exinf,jdbcType=BIT},
       </if>
       <if test="basprice != null">
         #{basprice,jdbcType=DECIMAL},
@@ -100,8 +101,8 @@
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="interfacecol != null">
-        #{interfacecol,jdbcType=TIMESTAMP},
+      <if test="modtime != null">
+        #{modtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -115,7 +116,7 @@
         inftype = #{inftype,jdbcType=INTEGER},
       </if>
       <if test="exinf != null">
-        exinf = #{exinf,jdbcType=TINYINT},
+        exinf = #{exinf,jdbcType=BIT},
       </if>
       <if test="basprice != null">
         basprice = #{basprice,jdbcType=DECIMAL},
@@ -126,8 +127,8 @@
       <if test="createtime != null">
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="interfacecol != null">
-        interfacecol = #{interfacecol,jdbcType=TIMESTAMP},
+      <if test="modtime != null">
+        modtime = #{modtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where idfid = #{idfid,jdbcType=INTEGER}
@@ -136,12 +137,11 @@
     update interface
     set infname = #{infname,jdbcType=VARCHAR},
       inftype = #{inftype,jdbcType=INTEGER},
-      exinf = #{exinf,jdbcType=TINYINT},
+      exinf = #{exinf,jdbcType=BIT},
       basprice = #{basprice,jdbcType=DECIMAL},
       dicount = #{dicount,jdbcType=DECIMAL},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      interfacecol = #{interfacecol,jdbcType=TIMESTAMP}
+      modtime = #{modtime,jdbcType=TIMESTAMP}
     where idfid = #{idfid,jdbcType=INTEGER}
   </update>
-
 </mapper>

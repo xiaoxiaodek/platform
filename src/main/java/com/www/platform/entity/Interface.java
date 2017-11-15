@@ -9,7 +9,7 @@ public class Interface {
 
     private Integer inftype;
 
-    private Byte exinf;
+    private Boolean exinf;
 
     private Long basprice;
 
@@ -17,7 +17,7 @@ public class Interface {
 
     private Date createtime;
 
-    private Date interfacecol;
+    private Date modtime;
 
     public Integer getIdfid() {
         return idfid;
@@ -43,11 +43,11 @@ public class Interface {
         this.inftype = inftype;
     }
 
-    public Byte getExinf() {
+    public Boolean getExinf() {
         return exinf;
     }
 
-    public void setExinf(Byte exinf) {
+    public void setExinf(Boolean exinf) {
         this.exinf = exinf;
     }
 
@@ -75,11 +75,11 @@ public class Interface {
         this.createtime = createtime;
     }
 
-    public Date getInterfacecol() {
-        return interfacecol;
+    public Date getModtime() {
+        return modtime;
     }
 
-    public void setInterfacecol(Date interfacecol) {
-        this.interfacecol = interfacecol;
+    public void setModtime(Date modtime) {
+        this.modtime = modtime;
     }
 }
