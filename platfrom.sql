@@ -325,7 +325,7 @@ CREATE TABLE `log` (
   `method` varchar(500) NOT NULL,
   `ip` varchar(200) NOT NULL,
   `otime` varchar(200) NOT NULL,
-  `responseTime` int(11) NOT NULL,
+  `responseTime` varchar(20) NOT NULL,
   `result` varchar(500) NOT NULL,
   PRIMARY KEY (`lid`),
   UNIQUE KEY `lid` (`lid`)

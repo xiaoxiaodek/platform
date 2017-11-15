@@ -205,6 +205,9 @@
     <if test="comid != null" >
       AND comid = #{comid,jdbcType=INTEGER}
     </if>
+    <if test="typeid != null" >
+      AND typeId = #{typeid,jdbcType=INTEGER}
+    </if>
     <if test="comaddr != null and !comaddr.trim().equals('')">
       AND comaddr LIKE '%${comaddr}%'
     </if>

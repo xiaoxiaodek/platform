@@ -66,12 +66,13 @@ public class CompanyController {
     @ResponseBody
     @SystemLog(module="公司管理",methods="查询客户或者供应商")
     public BaseMessage companySelective(@RequestParam(value="searchWord") String serachWord,
-                                        @RequestParam(value = "type") String type) {
+                                        @RequestParam(value = "type") String type,
+                                        @RequestParam(value = "typeId") int typeId) {
         BaseMessage message = new BaseMessage();
         try {
-            if (null != this.companyService.findSelective(serachWord,type)) {
+            if (null != this.companyService.findSelective(serachWord,type,typeId)) {
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                message.setData(this.companyService.findSelective(serachWord,type));
+                message.setData(this.companyService.findSelective(serachWord,type,typeId));
             } else {
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 message.setData("未获取公司数据");

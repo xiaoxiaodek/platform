@@ -13,5 +13,5 @@ public interface CompanyService {
     String deleteCompany(int[] comid);
     Boolean modifyCompany(Map<String, Object> map);
     Boolean modifyCompanyStatus(Map<String, Object> map);
-    Map<String, List> findSelective(String serachWord,String type);
+    Map<String, List> findSelective(String serachWord,String type,int typeId);
 }

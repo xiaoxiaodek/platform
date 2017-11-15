@@ -69,30 +69,38 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     /**
-     * @param serachWord,type
+     * @param serachWord,type,typeId
      * @desc 根据条件查询符合条件的客户
      * @return Map<String, List>
      */
     @Override
-    public Map<String, List> findSelective(String serachWord,String type){
+    public Map<String, List> findSelective(String serachWord,String type,int typeId){
 
         Map<String,List> map = new HashMap<>();
         List<Company> companies = null;
-        List<Project> projects = null;
+//        List<Project> projects = null;
         Company company = new Company();
-        Project project = new Project();
-        int typeId = 0;
+        company.setTypeid(new Integer(typeId));
+//        Project project = new Project();
+        int types = 0;
         if(type!="")
-            typeId = new Integer(type);
-        switch(typeId){
-            case 6:
-                project.setAuditstatid(new Integer(serachWord));
-                projects = projectMapper.selectByauditstatidOrSuppid(project);
+            types = new Integer(type);
+        switch(types){
+            case 0:
+                companies = companyMapper.selectSelective(company);
                 break;
             case 1:
-                project.setSuppid(new Integer(serachWord));
-                projects = projectMapper.selectByauditstatidOrSuppid(project);
+                company.setComid(new Integer(serachWord));
+                companies = companyMapper.selectSelective(company);
                 break;
+//            case 2:
+//                project.setAuditstatid(new Integer(serachWord));
+//                projects = projectMapper.selectByauditstatidOrSuppid(project);
+//                break;
+//            case 3:
+//                project.setSuppid(new Integer(serachWord));
+//                projects = projectMapper.selectByauditstatidOrSuppid(project);
+//                break;
             case 2:
                 company.setComaddr(serachWord);
                 companies = companyMapper.selectSelective(company);
@@ -109,21 +117,14 @@ public class CompanyServiceImpl implements CompanyService{
                 company.setComname(serachWord);
                 companies = companyMapper.selectSelective(company);
                 break;
-            case 7:
-                company.setComid(new Integer(serachWord));
-                companies = companyMapper.selectSelective(company);
-                break;
-            case 0:
-                companies = companyMapper.selectSelective(company);
-                break;
             default:
                 break;
         }
-        if(companies.size() == 0 && projects == null){
+        if(companies.size() == 0){
             return null;
         }else {
             map.put("companies", companies);
-            map.put("projects", projects);
+//            map.put("projects", projects);
             return map;
         }
     }
