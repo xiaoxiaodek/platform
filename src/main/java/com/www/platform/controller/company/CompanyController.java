@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -64,7 +65,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "/companySelective", method = RequestMethod.GET)
     @ResponseBody
-    @SystemLog(module="公司管理",methods="查询客户或者供应商")
+    @SystemLog(module="公司管理",methods="查询公司")
     public BaseMessage companySelective(@RequestParam(value="searchWord") String serachWord,
                                         @RequestParam(value = "type") String type,
                                         @RequestParam(value = "typeId") int typeId) {
@@ -86,18 +87,18 @@ public class CompanyController {
     }
 
     /**
-     * 添加和修改客户
+     * @dessc 添加和修改客户
      * @param map 前端参数
      * @return BaseMessage
      * @throws Exception
      */
     @RequestMapping(value = "/modifyCompany",method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module="公司管理",methods="添加和删除客户")
-    public BaseMessage modifyCompany(@RequestBody Map<String, Object> map) throws Exception{
+    @SystemLog(module="公司管理",methods="修改状态")
+    public BaseMessage modifyCompany(@RequestBody Map<String, Object> map,HttpSession session) throws Exception{
 
         BaseMessage message = new BaseMessage();
-        Boolean b = this.companyService.modifyCompany(map);
+        Boolean b = this.companyService.modifyCompany(map,session);
         if(b)
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
         else
@@ -107,18 +108,18 @@ public class CompanyController {
     }
 
     /**
-     * 修改客户或者供应商状态
+     * @desc 修改客户或者供应商状态
      * @param map 前端参数
      * @return BaseMessage
      * @throws Exception
      */
     @RequestMapping(value = "/modifyCompanyStatus",method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module="公司管理",methods="修改客户或者供应商状态")
-    public BaseMessage modifyCompanyStatus(@RequestBody Map<String, Object> map) throws Exception{
+    @SystemLog(module="公司管理",methods="修改状态")
+    public BaseMessage modifyCompanyStatus(@RequestBody Map<String, Object> map,HttpSession session) throws Exception{
 
         BaseMessage message = new BaseMessage();
-        Boolean b = this.companyService.modifyCompanyStatus(map);
+        Boolean b = this.companyService.modifyCompanyStatus(map,session);
         if(b)
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
         else

@@ -142,4 +142,24 @@ public class Company {
     public void setOnlinestatus(Integer onlinestatus) {
         this.onlinestatus = onlinestatus;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "comid=" + comid +
+                ", pid=" + pid +
+                ", comaddr='" + comaddr + '\'' +
+                ", comemail='" + comemail + '\'' +
+                ", comname='" + comname + '\'' +
+                ", comcontact='" + comcontact + '\'' +
+                ", createtime=" + createtime +
+                ", typeid=" + typeid +
+                ", modtime=" + modtime +
+                ", statusid=" + statusid +
+                ", commercestatus=" + commercestatus +
+                ", techstatus=" + techstatus +
+                ", accountstatus=" + accountstatus +
+                ", onlinestatus=" + onlinestatus +
+                '}';
+    }
 }

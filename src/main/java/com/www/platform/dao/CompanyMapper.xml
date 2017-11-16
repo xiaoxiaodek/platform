@@ -44,6 +44,9 @@
       #{accountstatus,jdbcType=INTEGER}, #{onlinestatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.Company">
+    <selectKey keyProperty='comid' resultType='int' order='AFTER'  >
+      select LAST_INSERT_ID();
+    </selectKey>
     insert into company
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="comid != null">
@@ -227,4 +230,33 @@
       AND modtime LIKE '%${modtime}%'
     </if>
   </select>
+
+  <select id="selectByAll" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from company
+    where 1=1
+    <if test="comid != null" >
+      AND comid = #{comid,jdbcType=INTEGER}
+    </if>
+    <if test="pid != null" >
+      AND pid = #{comid,jdbcType=INTEGER}
+    </if>
+    <if test="typeid != null" >
+      AND typeId = #{typeid,jdbcType=INTEGER}
+    </if>
+    <if test="comaddr != null">
+      AND comaddr = #{comaddr,jdbcType=VARCHAR}
+    </if>
+    <if test="comemail != null">
+      AND comemail = #{comemail,jdbcType=VARCHAR}
+    </if>
+    <if test="comname != null">
+      AND comname = #{comname,jdbcType=VARCHAR}
+    </if>
+    <if test="comcontact != null">
+      AND comcontact = #{comcontact,jdbcType=VARCHAR}
+    </if>
+  </select>
+
 </mapper>

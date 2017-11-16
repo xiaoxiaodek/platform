@@ -76,6 +76,6 @@
     <!--第三种静态资源映射-->
     <!--<mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>-->
     <!-- 启动AspectJ支持   只对扫描过的bean有效-->
-    <aop:aspectj-autoproxy proxy-target-class="true" />
+    <aop:aspectj-autoproxy/>
     <bean id="logAopAction" class="com.www.platform.filter.OperateFilter"/>
 </beans>

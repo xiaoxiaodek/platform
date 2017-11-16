@@ -1,5 +1,6 @@
 package com.www.platform.service.company;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ import java.util.Map;
 public interface CompanyService {
 
     String deleteCompany(int[] comid);
-    Boolean modifyCompany(Map<String, Object> map);
-    Boolean modifyCompanyStatus(Map<String, Object> map);
+    Boolean modifyCompany(Map<String, Object> map,HttpSession session);
+    Boolean modifyCompanyStatus(Map<String, Object> map,HttpSession session);
     Map<String, List> findSelective(String serachWord,String type,int typeId);
 }

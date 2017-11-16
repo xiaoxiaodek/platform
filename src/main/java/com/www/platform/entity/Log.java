@@ -3,7 +3,9 @@ package com.www.platform.entity;
 public class Log {
     private Integer lid;
 
-    private Integer uid;
+    private Integer comid;
+
+    private String uname;
 
     private String module;
 
@@ -25,12 +27,20 @@ public class Log {
         this.lid = lid;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Integer getComid() {
+        return comid;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setComid(Integer comid) {
+        this.comid = comid;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname == null ? null : uname.trim();
     }
 
     public String getModule() {
