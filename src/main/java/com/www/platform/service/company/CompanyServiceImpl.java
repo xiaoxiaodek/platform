@@ -141,7 +141,7 @@ public class CompanyServiceImpl implements CompanyService{
         int comid = 0;
         if(map.get("comid") == null) {
             company = addAndUpdate(map,company,comid);
-            int id = companyMapper.insertSelective(company);
+            companyMapper.insertSelective(company);
             Boolean itemTrue = itemService.addAndUpdateItem(map,company.getComid());
             session.setAttribute("comid",company.getComid());
             return itemTrue;

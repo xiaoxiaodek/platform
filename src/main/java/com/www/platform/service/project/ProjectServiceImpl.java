@@ -1,7 +1,8 @@
-package com.www.platform.service;
+package com.www.platform.service.project;
 
 import com.www.platform.dao.ProjectMapper;
 import com.www.platform.entity.Project;
+import com.www.platform.service.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.Map;
  * @version 0.0
  */
 @Service
-public class ProjectServiceImpl implements ProjectService{
+public class ProjectServiceImpl implements ProjectService {
 @Autowired private ProjectMapper projectMapper;
 
     @Override public String addProject(Map<String, Object> map) {
@@ -93,7 +94,8 @@ public class ProjectServiceImpl implements ProjectService{
 
         }catch ( ParseException e){
             e.printStackTrace();
-            result="apptime修改失败";
+            result="修改失败";
+            return result;
         }
         try {
             this.projectMapper.updateByPrimaryKeySelective(project);
@@ -119,29 +121,46 @@ public class ProjectServiceImpl implements ProjectService{
             e.printStackTrace();
         }
         System.out.println("pros =  "+pros.size());
-        int size=pros.size();
-        if(pros!=null) {
-            for(int i=0;i<size;i++){
-//            for (Project pro : pros) {
-                project.setPname(pros.get(i).getPname());
-                project.setAuditstatid(pros.get(i).getAuditstatid());
-                project.setAppreason(pros.get(i).getAppreason());
-                project.setApptype(pros.get(i).getApptype());
-                project.setCid(pros.get(i).getCid());
-                project.setUid(pros.get(i).getUid());
-                project.setPsid(pros.get(i).getPsid());
-                project.setAid(pros.get(i).getAid());
-                project.setSuppid(pros.get(i).getSuppid());
-                project.setModtime(pros.get(i).getModtime());
-                project.setApptime(pros.get(i).getApptime());
 
+        if(pros.size()==0) {
+//            for(int i=0;i<size;i++){
+////            for (Project pro : pros) {
+//                project.setPname(pros.get(i).getPname());
+//                project.setAuditstatid(pros.get(i).getAuditstatid());
+//                project.setAppreason(pros.get(i).getAppreason());
+//                project.setApptype(pros.get(i).getApptype());
+//                project.setCid(pros.get(i).getCid());
+//                project.setUid(pros.get(i).getUid());
+//                project.setPsid(pros.get(i).getPsid());
+//                project.setAid(pros.get(i).getAid());
+//                project.setSuppid(pros.get(i).getSuppid());
+//                project.setModtime(pros.get(i).getModtime());
+//                project.setApptime(pros.get(i).getApptime());
+//
+//
+//                pros.add(project);
+//                System.out.println("pro " + pros.get(i).getPid());
+//            }
+            return null;
+        }
+        return pros;
+    }
 
-                pros.add(project);
-                System.out.println("pro " + pros.get(i).getPid());
-            }
-        }else{
-            result="没有相关项目";
-            System.out.println("result= "+result);
+    @Override public List<Project> selectProjectByAuditstatid(Map<String, Object> map) {
+
+        String result=null;
+        Project project=new Project();
+        List<Project> pros=new ArrayList<Project>();
+        int auditstatid=Integer.parseInt(map.get("auditstatid").toString());
+        System.out.println("auditstatid"+auditstatid);
+        try {
+            pros = this.projectMapper.selectProjectByAuditstatid(auditstatid);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("pros =  "+pros.size());
+        if(pros.size()==0) {
+            return null;
         }
         return pros;
     }

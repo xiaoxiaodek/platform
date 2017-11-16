@@ -33,7 +33,13 @@
     from project
     where pid = #{pid,jdbcType=INTEGER}
   </select>
-
+  <!--自定义-->
+  <select id="selectByCid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    pid
+    from project
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
   <select id="selectProjectBySuppid" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />
@@ -42,14 +48,14 @@
     from project
     where suppid = #{suppid,jdbcType=INTEGER}
   </select>
-
-
-
-
-
-
-
-
+  <select id="selectProjectByAuditstatid" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from project
+    where auditstatid = #{auditstatid,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from project
     where pid = #{pid,jdbcType=INTEGER}

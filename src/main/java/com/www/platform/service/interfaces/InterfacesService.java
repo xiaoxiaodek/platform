@@ -20,13 +20,17 @@ import org.springframework.stereotype.Service;
 
     Interface searchById(@Param("id") int id);
 
+    Interface[] searchAll();
+
     Interface[] searchByProject(@Param("projectId") int projectId);
 
     //    ArrayList<Interface> searchByCompany(@Param("companyId") int companyId);
-        Boolean add(@Param("interfaces") Interface interfaces);
+    Boolean add(@Param("interfaces") Interface interfaces);
+
     //    String add(@Param("interfaces") LinkedList<Interface> interfaces);
-        Boolean update(@Param("interfaces") Interface interfaces);
+    Boolean update(@Param("interfaces") Interface interfaces);
+
     //    String delete(@Param("interfaces") Interface interfaces);
-        Boolean delete(@Param("interfaces") int[] ids);
+    Boolean delete(@Param("interfaces") int[] ids);
 
 }
