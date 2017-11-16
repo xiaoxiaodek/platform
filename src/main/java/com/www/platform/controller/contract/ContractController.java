@@ -124,7 +124,7 @@ import java.util.List;
     // 新增合同，并在cfile表添加目录
     @RequestMapping(value = "add", method = RequestMethod.POST) @ResponseBody
     public BaseMessage addContract(HttpServletRequest request, HttpSession sesssion,
-        @RequestParam("info") String s,
+        @RequestParam(value = "info", required = false) String s,
         @RequestParam(value = "file", required = false) MultipartFile[] files) {
 
         BaseMessage msg = new BaseMessage();
@@ -212,28 +212,28 @@ import java.util.List;
 //    }
 
 
-//    //根据公司名获取合同列表
-//
-//    @RequestMapping(value = "queryContractByComid", method = RequestMethod.GET) @ResponseBody
-//    public BaseMessage queryContractByComid(
-//        @RequestParam(value = "comid", required = true) Integer comid) {
-//        BaseMessage msg = new BaseMessage();
-//        try {
-//            Object result = this.contractService.queryContractByComid(comid);
-//            if (null != result) {
-//                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-//                msg.setData(result);
-//            } else {
-//                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-//                msg.setData("未获取到合同数据");
-//            }
-//        } catch (Exception e) {
-//            logger.error("获取所有的合同列表异常");
-//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
-//            e.printStackTrace();
-//        }
-//        return msg;
-//    }
+    //根据客户公司id获取合同列表
+
+    @RequestMapping(value = "queryContractByComid", method = RequestMethod.GET) @ResponseBody
+    public BaseMessage queryContractByComid(
+        @RequestParam(value = "comid", required = true) Integer comid) {
+        BaseMessage msg = new BaseMessage();
+        try {
+            Object result = this.contractService.queryContractByComid(comid);
+            if (null != result) {
+                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+                msg.setData(result);
+            } else {
+                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+                msg.setData("未获取到合同数据");
+            }
+        } catch (Exception e) {
+            logger.error("获取所有的合同列表异常");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
+            e.printStackTrace();
+        }
+        return msg;
+    }
 
 //    @RequestMapping(value = "sort", method = RequestMethod.GET) @ResponseBody
 //    public BaseMessage sort(@RequestParam(value = "data", required = true) String startOrEnd) {

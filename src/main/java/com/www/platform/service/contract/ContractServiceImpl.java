@@ -195,24 +195,24 @@ import java.util.regex.Pattern;
 
         String cname;
         String cendtime;
-        String cremarks;
-        int ctype;
+        String appreason;
+        int apptype;
         Double camt;
         String cstarttime;
-        if ((String) map.get("cname") != null && (String) map.get("ctype") != null
-            && (String) map.get("camt") != null && (String) map.get("cstarttime") != null
-            && (String) map.get("cendtime") != null && (String) map.get("cremarks") != null) {
+        if (map.get("cname") != null && map.get("apptype") != null
+            &&  map.get("camt") != null &&  map.get("cstarttime") != null
+            && map.get("cendtime") != null &&  map.get("appreason") != null) {
             cname = (String) map.get("cname");
-            ctype = Integer.parseInt((String) map.get("ctype"));
-            camt = Double.parseDouble((String) map.get("camt"));
-            String amtstr = (String) map.get("camt");
+            apptype = Integer.parseInt( map.get("apptype").toString());
+            camt = Double.parseDouble(map.get("camt").toString());
+            String amtstr =  map.get("camt").toString();
             Boolean strResult = amtstr.matches("^[0-9]+\\.?[0-9]?[0-9]?$");
             if (!strResult) {
                 return "请检查金额是否正确";
             }
-            cstarttime = (String) map.get("cstarttime");
-            cendtime = (String) map.get("cendtime");
-            cremarks = (String) map.get("cremarks");
+            cstarttime =  map.get("cstarttime").toString();
+            cendtime =  map.get("cendtime").toString();
+            appreason =  map.get("appreason").toString();
         } else {
             return result = "表单不完整";
         }
@@ -271,7 +271,7 @@ import java.util.regex.Pattern;
                 //            if (null != fnames && 0 != fnames.size()) {
                 for (int i = 0; i < fnames.size(); i++) {
                     int fid = this.fileService
-                        .addFile(fnames.get(i), comid, GlobalConstants.CONTRACT, cremarks);
+                        .addFile(fnames.get(i), comid, GlobalConstants.CONTRACT, appreason);
                     System.out.println("fid = " + fid);
                     this.cFileService.addCFile(cid, fid);
                 }
@@ -439,6 +439,23 @@ import java.util.regex.Pattern;
             logger.error("删除合同异常");
         }
         return result;
+    }
+
+    @Override public Object queryContractByComid(int comid) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        List<Contract> dtos =
+            this.contractMapper.selectByCompany(comid);
+        if (null == dtos || dtos.size() == 0) {
+            return null;
+        } else {
+            for (Contract dto : dtos) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("cid", dto.getCid());
+                map.put("cname", dto.getCname());
+                results.add(map);
+            }
+            return results;
+        }
     }
 
 }
