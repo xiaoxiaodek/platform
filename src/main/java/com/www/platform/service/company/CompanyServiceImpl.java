@@ -2,6 +2,7 @@ package com.www.platform.service.company;
 
 import com.www.platform.constant.GlobalConstants;
 import com.www.platform.dao.CompanyMapper;
+import com.www.platform.dao.ItemMapper;
 import com.www.platform.dao.ProjectMapper;
 import com.www.platform.entity.Company;
 import com.www.platform.entity.Item;
@@ -49,9 +50,9 @@ public class CompanyServiceImpl implements CompanyService{
         if (null == comids || comids.length == 0) {
             return "不存在该公司";
         }
+        List<Project> projects = null;
         for(int comid:comids) {
             Company company = companyMapper.selectByPrimaryKey(comid);
-            List<Project> projects = null;
             if (company != null) {
                 Project project1 = new Project();
                 project1.setSuppid(new Integer(comid));
@@ -62,6 +63,7 @@ public class CompanyServiceImpl implements CompanyService{
                     projects = projectMapper.selectByauditstatidOrSuppid(project);
                     if (projects.size() == 0) {
                         companyMapper.deleteByPrimaryKey(comid);
+                        itemService.deleteByComid(comid);
                     }else {
                         return "有与公司相关的项目";
                     }
@@ -148,9 +150,10 @@ public class CompanyServiceImpl implements CompanyService{
         }else{
             company.setComid((Integer) map.get("comid"));
             company = addAndUpdate(map,company,(Integer) map.get("comid"));
+            Boolean companyTrue = companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
             Boolean itemTrue = itemService.addAndUpdateItem(map,(Integer) map.get("comid"));
             session.setAttribute("comid",map.get("comid"));
-            return companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false && itemTrue;
+            return companyTrue && itemTrue;
         }
     }
 

@@ -76,4 +76,8 @@ public class ItemServiceImpl implements ItemService{
         }
         return item;
     }
+
+    public Boolean deleteByComid(int comid){
+        return itemMapper.deleteByComid(comid) !=0 ? true : false;
+    }
 }

@@ -155,4 +155,9 @@
     </if>
   </select>
 
+  <delete id="deleteByComid" parameterType="java.lang.Integer">
+    delete from item
+    where comid = #{comid,jdbcType=INTEGER}
+  </delete>
+
 </mapper>

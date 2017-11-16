@@ -15,4 +15,5 @@ public interface ItemService {
 
     List<Item> findSelective(Item item);
     Boolean addAndUpdateItem(Map<String, Object> map,int comid);
+    Boolean deleteByComid(int comid);
 }

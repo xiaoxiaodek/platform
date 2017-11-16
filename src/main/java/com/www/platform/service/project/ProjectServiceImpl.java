@@ -2,7 +2,6 @@ package com.www.platform.service.project;
 
 import com.www.platform.dao.ProjectMapper;
 import com.www.platform.entity.Project;
-import com.www.platform.service.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

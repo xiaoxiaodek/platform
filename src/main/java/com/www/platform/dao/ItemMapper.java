@@ -19,4 +19,6 @@ public interface ItemMapper {
 
     List<Item> selectSelective(Item record);
 
+    int deleteByComid(Integer comid);
+
 }
