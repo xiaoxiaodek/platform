@@ -1,15 +1,14 @@
 package com.www.platform.util;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Created by upsmart on 17-8-3.
@@ -21,49 +20,65 @@ import java.util.Map;
  */
 public class JsonUtil {
     private static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
+    // 定义jackson对象
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+
+    private static final String DEFAULT_DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
+    static {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+        MAPPER.setDateFormat(dateFormat);
+    }
     /**
-     * 对象转为JSON字符串
-     * @param object
+     * 将对象转换成json字符串。
+     * <p>Title: pojoToJson</p>
+     * <p>Description: </p>
+     * @param data
      * @return
      */
-    public static String toJson(Object object) {
-        String str = null;
+    public static String toJson(Object data) {
         try {
-            str = JSON.toJSONString(object);
-        } catch (Exception e) {
-            logger.info("对象转为JSON字符串失败" + e.getMessage(), e);
+            String string = MAPPER.writeValueAsString(data);
+            return string;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
-        return str;
+        return null;
     }
 
     /**
-     * JSON字符串转为对象
-     * @param json
-     * @param valueType
-     * @param <T>
+     * 将json结果集转化为对象
+     *
+     * @param jsonData json数据
+     * @param clazz 对象中的object类型
      * @return
-     * @throws IOException
      */
-    public static <T> T toObject(String json, Class<T> valueType) throws IOException {
-        T object = null;
+    public static <T> T toObject(String jsonData, Class<T> beanType) {
         try {
-            object =JSON.parseObject(json, valueType);
+            T t = MAPPER.readValue(jsonData, beanType);
+            return t;
         } catch (Exception e) {
-            logger.info("JSON字符串转为对象" + e.getMessage());
-            throw e;
+            e.printStackTrace();
         }
-        return object;
+        return null;
     }
 
-    public static Map<String, Object> jsonToMap(String jsonStr) throws Exception {
-        JSONObject jsonObj = JSONObject.parseObject(jsonStr);
-        Iterator<String> nameItr =(Iterator<String>) jsonObj.keySet();
-        String name;
-        Map<String, Object> outMap = new HashMap<String, Object>();
-        while (nameItr.hasNext()) {
-            name = nameItr.next();
-            outMap.put(name, jsonObj.getString(name));
+    /**
+     * 将json数据转换成pojo对象list
+     * <p>Title: jsonToList</p>
+     * <p>Description: </p>
+     * @param jsonData
+     * @param beanType
+     * @return
+     */
+    public static <T>List<T> jsonToList(String jsonData, Class<T> beanType) {
+        JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);
+        try {
+            List<T> list = MAPPER.readValue(jsonData, javaType);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return outMap;
+
+        return null;
     }
 }

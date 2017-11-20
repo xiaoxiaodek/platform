@@ -1,5 +1,7 @@
 package com.www.platform.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Contract {
@@ -7,8 +9,11 @@ public class Contract {
 
     private Double camt;
 
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date cstarttime;
 
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date cendtime;
 
     private String cname;
@@ -52,6 +57,7 @@ public class Contract {
     public void setCstarttime(Date cstarttime) {
         this.cstarttime = cstarttime;
     }
+
 
     public Date getCendtime() {
         return cendtime;

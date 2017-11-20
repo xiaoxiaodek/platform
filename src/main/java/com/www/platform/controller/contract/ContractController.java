@@ -138,9 +138,11 @@ import java.util.List;
         }
         logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         try {
-            //上传文件
-            List<String> fnames = FileUtil.addFiles(files);
-
+            List<String> fnames =null;
+            if (null != files) {
+                //上传文件
+                 fnames = FileUtil.addFiles(files);
+            }
 
             System.out.println("====fnames======" + fnames);
             // 写入合同表
