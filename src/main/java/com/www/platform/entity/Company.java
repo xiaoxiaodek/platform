@@ -1,6 +1,7 @@
 package com.www.platform.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Company {
     private Integer comid;
@@ -30,6 +31,16 @@ public class Company {
     private Integer accountstatus;
 
     private Integer onlinestatus;
+
+    private List<Log> logs;
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
+    }
 
     public Integer getComid() {
         return comid;
@@ -143,23 +154,4 @@ public class Company {
         this.onlinestatus = onlinestatus;
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "comid=" + comid +
-                ", pid=" + pid +
-                ", comaddr='" + comaddr + '\'' +
-                ", comemail='" + comemail + '\'' +
-                ", comname='" + comname + '\'' +
-                ", comcontact='" + comcontact + '\'' +
-                ", createtime=" + createtime +
-                ", typeid=" + typeid +
-                ", modtime=" + modtime +
-                ", statusid=" + statusid +
-                ", commercestatus=" + commercestatus +
-                ", techstatus=" + techstatus +
-                ", accountstatus=" + accountstatus +
-                ", onlinestatus=" + onlinestatus +
-                '}';
-    }
 }

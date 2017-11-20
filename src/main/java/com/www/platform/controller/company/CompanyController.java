@@ -29,23 +29,23 @@ public class CompanyController {
     private CompanyService companyService;
 
     /**
-     * @desc 删除客户和供应商
      * @param comids 客户和供应商的id
      * @return BaseMessage
+     * @desc 删除客户和供应商
      */
     @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module="公司管理",methods="删除公司")
+    @SystemLog(module = "公司管理", methods = "删除公司")
     public BaseMessage deleteCompany(@RequestBody int[] comids) {
         BaseMessage message = new BaseMessage();
         try {
             if ("删除公司成功" == this.companyService.deleteCompany(comids)) {
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
                 message.setData("删除公司成功");
-            } else if("不存在该公司" == this.companyService.deleteCompany(comids)){
+            } else if ("不存在该公司" == this.companyService.deleteCompany(comids)) {
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 message.setData("不存在该公司");
-            }else{
+            } else {
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 message.setData("有与公司相关的项目");
             }
@@ -59,21 +59,21 @@ public class CompanyController {
 
 
     /**
-     * @desc 获取客户和供应商列表
      * @param serachWord 搜索关键词
      * @return BaseMessage
+     * @desc 获取客户和供应商列表
      */
     @RequestMapping(value = "/companySelective", method = RequestMethod.GET)
     @ResponseBody
-    @SystemLog(module="公司管理",methods="查询公司")
-    public BaseMessage companySelective(@RequestParam(value="searchWord") String serachWord,
+    @SystemLog(module = "公司管理", methods = "查询公司")
+    public BaseMessage companySelective(@RequestParam(value = "searchWord") String serachWord,
                                         @RequestParam(value = "type") String type,
                                         @RequestParam(value = "typeId") int typeId) {
         BaseMessage message = new BaseMessage();
         try {
-            if (null != this.companyService.findSelective(serachWord,type,typeId)) {
+            if (null != this.companyService.findSelective(serachWord, type, typeId)) {
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                message.setData(this.companyService.findSelective(serachWord,type,typeId));
+                message.setData(this.companyService.findSelective(serachWord, type, typeId));
             } else {
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 message.setData("未获取公司数据");
@@ -87,19 +87,19 @@ public class CompanyController {
     }
 
     /**
+     * @param map 前端参数
+     * @return BaseMessage
+     * @throws Exception
      * @dessc 添加和修改客户
-     * @param map 前端参数
-     * @return BaseMessage
-     * @throws Exception
      */
-    @RequestMapping(value = "/modifyCompany",method = RequestMethod.POST)
+    @RequestMapping(value = "/modifyCompany", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module="公司管理",methods="修改状态")
-    public BaseMessage modifyCompany(@RequestBody Map<String, Object> map,HttpSession session) throws Exception{
+    @SystemLog(module = "公司管理", methods = "修改状态")
+    public BaseMessage modifyCompany(@RequestBody Map<String, Object> map, HttpSession session) throws Exception {
 
         BaseMessage message = new BaseMessage();
-        Boolean b = this.companyService.modifyCompany(map,session);
-        if(b)
+        Boolean b = this.companyService.modifyCompany(map, session);
+        if (b)
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
         else
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
@@ -107,25 +107,5 @@ public class CompanyController {
 
     }
 
-    /**
-     * @desc 修改客户或者供应商状态
-     * @param map 前端参数
-     * @return BaseMessage
-     * @throws Exception
-     */
-    @RequestMapping(value = "/modifyCompanyStatus",method = RequestMethod.POST)
-    @ResponseBody
-    @SystemLog(module="公司管理",methods="修改状态")
-    public BaseMessage modifyCompanyStatus(@RequestBody Map<String, Object> map,HttpSession session) throws Exception{
-
-        BaseMessage message = new BaseMessage();
-        Boolean b = this.companyService.modifyCompanyStatus(map,session);
-        if(b)
-            ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-        else
-            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-        return message;
-
-    }
 }
 

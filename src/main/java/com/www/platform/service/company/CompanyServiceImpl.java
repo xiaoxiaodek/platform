@@ -2,7 +2,6 @@ package com.www.platform.service.company;
 
 import com.www.platform.constant.GlobalConstants;
 import com.www.platform.dao.CompanyMapper;
-import com.www.platform.dao.ItemMapper;
 import com.www.platform.dao.ProjectMapper;
 import com.www.platform.entity.Company;
 import com.www.platform.entity.Item;
@@ -131,7 +130,7 @@ public class CompanyServiceImpl implements CompanyService{
         }
     }
     /**
-     * 添加和修改公司信息不包括状态
+     * @desc 添加和修改公司信息不包括状态
      * @param map 前端参数
      * @param session
      * @return
@@ -158,24 +157,7 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     /**
-     * 添加和修改公司信息不包括状态
-     * @param map 前端参数
-     * @param session
-     * @return
-     */
-    @Override
-    public Boolean modifyCompanyStatus(Map<String, Object> map,HttpSession session){
-
-        Company company = new Company();
-        company.setComid((Integer) map.get("comid"));
-        session.setAttribute("comid",map.get("comid"));
-        company = addAndUpdate(map,company,(Integer) map.get("comid"));
-        return companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
-
-    }
-
-    /**
-     * 添加和修改公司代码复用
+     * @desc 添加和修改公司代码复用
      * @param map 前端参数
      * @param company 需要添加和修改的公司
      * @param comid 前端参数用来判断是否添加还是修改
@@ -184,7 +166,7 @@ public class CompanyServiceImpl implements CompanyService{
     public Company addAndUpdate(Map<String, Object> map,Company company,int comid){
 
         Date t = DateUtil.getNowDate();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date c = sdf.parse(sdf.format(t));
             company.setPid((Integer)map.get("pid"));
@@ -211,7 +193,6 @@ public class CompanyServiceImpl implements CompanyService{
         }
         return company;
     }
-
 
     /**
      * @desc 重构代码

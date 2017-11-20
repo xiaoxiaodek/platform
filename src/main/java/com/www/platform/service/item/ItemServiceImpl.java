@@ -3,14 +3,13 @@ package com.www.platform.service.item;
 import com.www.platform.dao.ItemMapper;
 import com.www.platform.entity.Item;
 import com.www.platform.service.company.CompanyService;
-import com.www.platform.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public class ItemServiceImpl implements ItemService{
      * @param map,comid
      * @return Boolean
      */
-    public Boolean addAndUpdateItem(Map<String, Object> map,int comid){
+    public Boolean addAndUpdateItem(Map<String, Object> map, int comid){
 
         Item item = new Item();
 
@@ -57,15 +56,22 @@ public class ItemServiceImpl implements ItemService{
         }
     }
 
+    /**
+     *
+     * @param map
+     * @param item
+     * @param comid
+     * @return
+     */
     public Item addAndUpdate(Map<String, Object> map,Item item,int comid){
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             item.setPid((Integer)map.get("pid"));
             item.setPtypeid((Integer)map.get("pTypeid"));
             item.setPstatus((Integer)map.get("pStatus"));
             item.setComid(comid);
-            item.setUid((Integer)map.get("uid"));
+            item.setUname((String)map.get("uname"));
             item.setStarttime(sdf.parse((String)map.get("starttime")));
             item.setEndtime(sdf.parse((String)map.get("endtime")));
             item.setRemark((String)map.get("remark"));
