@@ -7,6 +7,7 @@ import com.www.platform.message.StatusCode;
 import com.www.platform.service.contract.ContractService;
 import com.www.platform.util.FileUtil;
 import com.www.platform.util.ResponseUtil;
+import com.www.platform.util.SystemLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ import java.util.List;
     @Autowired private ContractMapper contractMapper;
 
     //获取所有的合同列表
+    @SystemLog(module="合同管理",methods="查询所有")
     @RequestMapping(value = "contractList", method = RequestMethod.GET) @ResponseBody
-
     public BaseMessage contractList() {
         BaseMessage msg = new BaseMessage();
         try {
@@ -76,7 +77,7 @@ import java.util.List;
 //    }
 
     //合同详情
-
+    @SystemLog(module="合同管理",methods="查看合同详情")
     @RequestMapping(value = "/detail", method = RequestMethod.GET) @ResponseBody
 
     public BaseMessage detail(@RequestParam(value = "cid", required = true) Integer cid) {
@@ -93,7 +94,7 @@ import java.util.List;
     }
 
     //删除合同
-
+    @SystemLog(module="合同管理",methods="删除合同")
     @RequestMapping(value = "delete", method = RequestMethod.POST) @ResponseBody
     public BaseMessage delete(@RequestBody int[] cids) {
         BaseMessage msg = new BaseMessage();
@@ -122,6 +123,7 @@ import java.util.List;
 
 
     // 新增合同，并在cfile表添加目录
+    @SystemLog(module="合同管理",methods="新增合同")
     @RequestMapping(value = "add", method = RequestMethod.POST) @ResponseBody
     public BaseMessage addContract(HttpServletRequest request, HttpSession sesssion,
         @RequestParam(value = "info", required = false) String s,
@@ -168,7 +170,7 @@ import java.util.List;
     }
 
     // 编辑合同
-
+    @SystemLog(module="合同管理",methods="编辑合同")
     @RequestMapping(value = "edit", method = RequestMethod.POST) @ResponseBody
     public BaseMessage editContract(HttpServletRequest request, HttpSession sesssion,
         @RequestParam("info") String s,
@@ -215,7 +217,7 @@ import java.util.List;
 
 
     //根据客户公司id获取合同列表
-
+    @SystemLog(module="合同管理",methods="根据公司查询")
     @RequestMapping(value = "queryContractByComid", method = RequestMethod.GET) @ResponseBody
     public BaseMessage queryContractByComid(
         @RequestParam(value = "comid", required = true) Integer comid) {

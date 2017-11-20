@@ -6,6 +6,7 @@ import com.www.platform.message.MessageCode;
 import com.www.platform.message.StatusCode;
 import com.www.platform.service.interfaces.InterfacesService;
 import com.www.platform.util.ResponseUtil;
+import com.www.platform.util.SystemLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import java.util.Map;
 
     @Autowired private InterfacesService interfacesService;
 
+    @SystemLog(module="公司管理",methods="查询所有")
     @RequestMapping(value = "/", method = RequestMethod.GET) @ResponseBody
     public BaseMessage SearchAll() {
         BaseMessage msg = new BaseMessage();
@@ -44,7 +46,7 @@ import java.util.Map;
     }
 
 
-
+    @SystemLog(module="公司管理",methods="根据项目查询")
     @RequestMapping(value = "/project", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByProject(@RequestParam int projectId) {
         BaseMessage msg = new BaseMessage();
@@ -64,12 +66,14 @@ import java.util.Map;
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="根据公司查询")
     @RequestMapping(value = "/company", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByCompany(@RequestParam int companyId) {
         BaseMessage msg = new BaseMessage();
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="新增接口")
     @RequestMapping(value = "/add", method = RequestMethod.POST) @ResponseBody
     public BaseMessage add(@RequestBody Map<String, Object> params) throws Exception {
         BaseMessage msg = new BaseMessage();
@@ -132,6 +136,7 @@ import java.util.Map;
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="删除接口")
     @RequestMapping(value = "/delete", method = RequestMethod.POST) @ResponseBody
     public BaseMessage delete(@RequestBody int[] ids) throws Exception {
         BaseMessage msg = new BaseMessage();
@@ -144,6 +149,7 @@ import java.util.Map;
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="编辑接口")
     @RequestMapping(value = "/update", method = RequestMethod.POST) @ResponseBody
     public BaseMessage edit(@RequestBody Map<String, Object> params) throws Exception {
         BaseMessage msg = new BaseMessage();
