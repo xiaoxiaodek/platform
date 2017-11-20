@@ -1,4 +1,4 @@
-package com.www.platform.service;
+package com.www.platform.service.project;
 
 import com.www.platform.entity.Project;
 import org.springframework.stereotype.Service;

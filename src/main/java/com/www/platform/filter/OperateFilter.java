@@ -7,10 +7,7 @@ import com.www.platform.util.SystemLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -33,13 +30,15 @@ import org.aspectj.lang.reflect.MethodSignature;
  */
 
 @Aspect
-@Component
+//@Component
 public class OperateFilter {
 
     private  static  final Logger logger = LoggerFactory.getLogger(OperateFilter.class);
     //注入service,用来将日志信息保存在数据库
     @Resource(name="logMapper")
     private LogMapper logMapper;
+
+    Log log = new Log();
 
     //配置接入点,如果不知道怎么配置,可以百度一下规则
     @Pointcut("execution(* com.www.platform.controller..*.*(..))")
@@ -50,16 +49,24 @@ public class OperateFilter {
         System.out.println("=====SysLogAspect前置通知开始=====");
     }
 
+    @After("controllerAspect()")
+    public void doAfter(JoinPoint joinPoint) {
+        System.out.println("=====SysLogAspect前置通知结束=====");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//        int uid = (Integer) request.getSession().getAttribute("uname");
+        Integer comid = (Integer) request.getSession().getAttribute("comid");
+        if(comid != null)
+            log.setComid(comid);
+        logMapper.insert(log);
+    }
 
     @Around("controllerAspect()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        //常见日志实体对象
-        Log log = new Log();
         //获取登录用户账户
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//        int uid = (Integer) request.getSession().getAttribute("uid");
+//        int uid = (Integer) request.getSession().getAttribute("uname");
         //获取系统ip,这里用的是我自己的工具类,可自行网上查询获取ip方法
-        log.setUid(1);
+        log.setUname("yy");
         String ip = GetLocalIp.getIpAddr(request);
         log.setIp(ip);
         //获取系统时间
@@ -108,13 +115,11 @@ public class OperateFilter {
                     log.setResponsetime(""+(end-start));
                     log.setResult("执行成功！");
                     //保存进数据库
-                    logMapper.insert(log);
                 } catch (Throwable e) {
                     // TODO Auto-generated catch block
                     long end = System.currentTimeMillis();
                     log.setResponsetime(""+(end-start));
                     log.setResult("执行失败");
-                    logMapper.insert(log);
                 }
             } else {//没有包含注解
                 object = pjp.proceed();

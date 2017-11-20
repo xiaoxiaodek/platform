@@ -1,7 +1,8 @@
-package com.www.platform.service;
+package com.www.platform.service.project;
 
 import com.www.platform.dao.ProjectMapper;
 import com.www.platform.entity.Project;
+import com.www.platform.service.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.Map;
  * @version 0.0
  */
 @Service
-public class ProjectServiceImpl implements ProjectService{
+public class ProjectServiceImpl implements ProjectService {
 @Autowired private ProjectMapper projectMapper;
 
     @Override public String addProject(Map<String, Object> map) {

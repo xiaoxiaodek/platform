@@ -60,4 +60,12 @@ public class GlobalConstants {
     //脚本文件结果存取路径
     public static final String SCRIPT_RESULT = "file/script/result/";
 
+    //查询公司的类型
+    public static final int COMPANY_ALL = 0;
+    public static final int COMPANY_COMMID = 1;
+    public static final int COMPANY_COMMADDR = 2;
+    public static final int COMPANY_COMMEMAIL = 3;
+    public static final int COMPANY_COMCONTACT = 4;
+    public static final int COMPANY_COMNAME = 5;
+
 }

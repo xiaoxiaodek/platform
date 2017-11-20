@@ -2,7 +2,7 @@ package com.www.platform.controller.user;
 
 import com.www.platform.constant.GlobalConstants;
 import com.www.platform.message.BaseMessage;
-import com.www.platform.service.LoginService;
+import com.www.platform.service.user.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

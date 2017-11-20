@@ -3,7 +3,8 @@
 <mapper namespace="com.www.platform.dao.LogMapper">
   <resultMap id="BaseResultMap" type="com.www.platform.entity.Log">
     <id column="lid" jdbcType="INTEGER" property="lid" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="comid" jdbcType="INTEGER" property="comid" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
     <result column="module" jdbcType="VARCHAR" property="module" />
     <result column="method" jdbcType="VARCHAR" property="method" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
@@ -12,7 +13,7 @@
     <result column="result" jdbcType="VARCHAR" property="result" />
   </resultMap>
   <sql id="Base_Column_List">
-    lid, uid, module, method, ip, otime, responseTime, result
+    lid, comid, uname, module, method, ip, otime, responseTime, result
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,12 +26,14 @@
     where lid = #{lid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.www.platform.entity.Log">
-    insert into log (lid, uid, module, 
-      method, ip, otime, 
-      responseTime, result)
-    values (#{lid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{module,jdbcType=VARCHAR}, 
-      #{method,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{otime,jdbcType=VARCHAR}, 
-      #{responsetime,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR})
+    insert into log (lid, comid, uname, 
+      module, method, ip, 
+      otime, responseTime, result
+      )
+    values (#{lid,jdbcType=INTEGER}, #{comid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, 
+      #{module,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{otime,jdbcType=VARCHAR}, #{responsetime,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.Log">
     insert into log
@@ -38,8 +41,11 @@
       <if test="lid != null">
         lid,
       </if>
-      <if test="uid != null">
-        uid,
+      <if test="comid != null">
+        comid,
+      </if>
+      <if test="uname != null">
+        uname,
       </if>
       <if test="module != null">
         module,
@@ -64,8 +70,11 @@
       <if test="lid != null">
         #{lid,jdbcType=INTEGER},
       </if>
-      <if test="uid != null">
-        #{uid,jdbcType=INTEGER},
+      <if test="comid != null">
+        #{comid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
       </if>
       <if test="module != null">
         #{module,jdbcType=VARCHAR},
@@ -90,8 +99,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.www.platform.entity.Log">
     update log
     <set>
-      <if test="uid != null">
-        uid = #{uid,jdbcType=INTEGER},
+      <if test="comid != null">
+        comid = #{comid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
       </if>
       <if test="module != null">
         module = #{module,jdbcType=VARCHAR},
@@ -116,7 +128,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.www.platform.entity.Log">
     update log
-    set uid = #{uid,jdbcType=INTEGER},
+    set comid = #{comid,jdbcType=INTEGER},
+      uname = #{uname,jdbcType=VARCHAR},
       module = #{module,jdbcType=VARCHAR},
       method = #{method,jdbcType=VARCHAR},
       ip = #{ip,jdbcType=VARCHAR},
@@ -125,4 +138,12 @@
       result = #{result,jdbcType=VARCHAR}
     where lid = #{lid,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByComid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from log
+    where comid = #{comid,jdbcType=INTEGER}
+  </select>
+
 </mapper>

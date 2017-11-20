@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.platform.dao.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.www.platform.entity.Item">
+    <id column="iid" jdbcType="INTEGER" property="iid" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="pTypeid" jdbcType="INTEGER" property="ptypeid" />
+    <result column="pStatus" jdbcType="INTEGER" property="pstatus" />
+    <result column="comid" jdbcType="INTEGER" property="comid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    iid, pid, pTypeid, pStatus, comid, uid, starttime, endtime, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where iid = #{iid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where iid = #{iid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.www.platform.entity.Item">
+    insert into item (iid, pid, pTypeid, 
+      pStatus, comid, uid, 
+      starttime, endtime, remark
+      )
+    values (#{iid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{ptypeid,jdbcType=INTEGER}, 
+      #{pstatus,jdbcType=INTEGER}, #{comid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.www.platform.entity.Item">
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iid != null">
+        iid,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="ptypeid != null">
+        pTypeid,
+      </if>
+      <if test="pstatus != null">
+        pStatus,
+      </if>
+      <if test="comid != null">
+        comid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iid != null">
+        #{iid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="ptypeid != null">
+        #{ptypeid,jdbcType=INTEGER},
+      </if>
+      <if test="pstatus != null">
+        #{pstatus,jdbcType=INTEGER},
+      </if>
+      <if test="comid != null">
+        #{comid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.www.platform.entity.Item">
+    update item
+    <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="ptypeid != null">
+        pTypeid = #{ptypeid,jdbcType=INTEGER},
+      </if>
+      <if test="pstatus != null">
+        pStatus = #{pstatus,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comid = #{comid,jdbcType=INTEGER},
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.www.platform.entity.Item">
+    update item
+    set pid = #{pid,jdbcType=INTEGER},
+      pTypeid = #{ptypeid,jdbcType=INTEGER},
+      pStatus = #{pstatus,jdbcType=INTEGER},
+      comid = #{comid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where iid = #{iid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectSelective" parameterType="com.www.platform.entity.Item" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item
+    where 1=1
+    <if test="pid != null" >
+      AND pid = #{pid,jdbcType=INTEGER}
+    </if>
+    <if test="ptypeid != null" >
+      AND pTypeid = #{ptypeid,jdbcType=INTEGER}
+    </if>
+    <if test="comid != null" >
+      AND comid = #{comid,jdbcType=INTEGER}
+    </if>
+    <if test="uid != null" >
+      AND uid = #{uid,jdbcType=INTEGER}
+    </if>
+  </select>
+
+</mapper>
