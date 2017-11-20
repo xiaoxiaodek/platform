@@ -3,6 +3,7 @@ package com.www.platform.controller.user;
 import com.www.platform.constant.GlobalConstants;
 import com.www.platform.message.BaseMessage;
 import com.www.platform.service.LoginService;
+import com.www.platform.util.SystemLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,9 @@ public class LoginController {
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-        public BaseMessage login(@RequestBody Map<String,Object> map, HttpSession session){
+    @SystemLog(module="用户管理",methods="登陆")
+
+    public BaseMessage login(@RequestBody Map<String,Object> map, HttpSession session){
         BaseMessage msg=new BaseMessage();
         String username=map.get("uname").toString();
         String password=map.get("upwd").toString();
@@ -64,6 +67,8 @@ return msg;
      * @return
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="注册")
+
     public BaseMessage register(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         msg.setData(this.loginService.register(map));
@@ -79,6 +84,8 @@ return msg;
      * @return
      */
     @RequestMapping(value = "editPassword", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="修改密码")
+
     public BaseMessage editPassword(@RequestBody Map<String, Object> map, HttpSession sesssion) {
         BaseMessage msg = new BaseMessage();
         String uname = (String) sesssion.getAttribute(GlobalConstants.USERNAME);
@@ -99,6 +106,8 @@ return msg;
      * @return
      */
     @RequestMapping(value = "editInfo", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="修改信息")
+
     public BaseMessage editInfo(@RequestBody Map<String, Object> map, HttpSession sesssion) {
         BaseMessage msg = new BaseMessage();
         String uname = (String) sesssion.getAttribute(GlobalConstants.USERNAME);
@@ -121,6 +130,8 @@ return msg;
      * @param session
      * @return
      */    @RequestMapping(value = "/logout", method = RequestMethod.GET) @ResponseBody
+    @SystemLog(module="用户管理",methods="退出登录")
+
     public BaseMessage logout(HttpSession session) {
         BaseMessage msg = new BaseMessage();
         try {
