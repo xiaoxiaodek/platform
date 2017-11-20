@@ -7,6 +7,7 @@ import com.www.platform.message.StatusCode;
 import com.www.platform.service.interfaces.InterfacesService;
 import com.www.platform.util.ResponseUtil;
 import com.www.platform.util.SystemLog;
+import org.apache.ibatis.annotations.Lang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ import java.util.Map;
     }
 
 
-    @SystemLog(module="公司管理",methods="根据项目查询")
+    @SystemLog(module="接口管理",methods="根据项目查询")
     @RequestMapping(value = "/project", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByProject(@RequestParam int projectId) {
         BaseMessage msg = new BaseMessage();
@@ -83,12 +84,12 @@ import java.util.Map;
             in.setInftype((Integer) params.get("inftype"));
             in.setExinf(Boolean.valueOf(params.get("exinf").toString()));
             in.setBasprice(Long.valueOf(params.get("basprice").toString()));
-            in.setDicount(BigDecimal.valueOf((Long) params.get("dicount")));
+            in.setDicount(BigDecimal.valueOf((Double) params.get("dicount")));
 
             Date createtime = new Date();
             in.setCreatetime(createtime);
             //            in.setCreatetime((Date) params.get("createtime"));
-            //            in.setModtime((Date) params.get("modtime"));
+            in.setModtime(createtime);
             Boolean result = interfacesService.add(in);
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
         } catch (Exception e) {

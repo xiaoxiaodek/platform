@@ -32,15 +32,15 @@
     </bean>
     <mvc:annotation-driven conversion-service="conversionService">
         <mvc:message-converters register-defaults="false">
-            <!--<bean id="fastJsonHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">-->
-                <!--<property name="supportedMediaTypes">-->
-                    <!--<list>-->
-                        <!--&lt;!&ndash; 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 &ndash;&gt;-->
-                        <!--<value>text/html;charset=UTF-8</value>-->
-                        <!--<value>application/json;charset=UTF-8</value>-->
-                    <!--</list>-->
-                <!--</property>-->
-            <!--</bean>-->
+            <bean id="fastJsonHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
             <!--<bean id="messageConverter" class="org.springframework.http.converter.ResourceHttpMessageConverter">-->
                 <!--<property name="supportedMediaTypes">-->
                     <!--<list>-->
@@ -55,7 +55,7 @@
                     <list>
                         <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
                         <value>text/html;charset=UTF-8</value>
-                        <!--<value>application/json;charset=UTF-8</value>-->
+                        <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
                 <property name="objectMapper">

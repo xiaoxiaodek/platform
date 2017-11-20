@@ -29,10 +29,11 @@ import java.util.Date;
                 file.setPid(pid);
                 file.setFsummary(fsummary);
         //TODO
-        file.setFlocal("/file/contractfile/" + fname);
+        file.setFlocal("src/main/webapp/uploadFiles/" + fname);
         Date date = DateUtil.getNowDate();
         file.setCreatetime(date);
         file.setModtime(date);
+        file.setUid(1);
         //        file.setEmpid(this.comempRepository.findByUid(uid).getEmpid());
         //        file.setBrid(this.comempRepository.findByUid(uid).getBid());
         try {
@@ -60,6 +61,7 @@ import java.util.Date;
         Date date = DateUtil.getNowDate();
         file.setModtime(date);
         file.setCreatetime(new Date());
+        file.setUid(1);
         //        file.setEmpid(this.comempRepository.findByUid(uid).getEmpid());
         //        file.setBrid(this.comempRepository.findByUid(uid).getBid());
         try {
