@@ -1,5 +1,6 @@
 package com.www.platform.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Interface {
@@ -9,15 +10,15 @@ public class Interface {
 
     private Integer inftype;
 
-    private Byte exinf;
+    private Boolean exinf;
 
     private Long basprice;
 
-    private Long dicount;
+    private BigDecimal dicount;
 
     private Date createtime;
 
-    private Date interfacecol;
+    private Date modtime;
 
     public Integer getIdfid() {
         return idfid;
@@ -43,11 +44,11 @@ public class Interface {
         this.inftype = inftype;
     }
 
-    public Byte getExinf() {
+    public Boolean getExinf() {
         return exinf;
     }
 
-    public void setExinf(Byte exinf) {
+    public void setExinf(Boolean exinf) {
         this.exinf = exinf;
     }
 
@@ -59,11 +60,11 @@ public class Interface {
         this.basprice = basprice;
     }
 
-    public Long getDicount() {
+    public BigDecimal getDicount() {
         return dicount;
     }
 
-    public void setDicount(Long dicount) {
+    public void setDicount(BigDecimal dicount) {
         this.dicount = dicount;
     }
 
@@ -75,11 +76,11 @@ public class Interface {
         this.createtime = createtime;
     }
 
-    public Date getInterfacecol() {
-        return interfacecol;
+    public Date getModtime() {
+        return modtime;
     }
 
-    public void setInterfacecol(Date interfacecol) {
-        this.interfacecol = interfacecol;
+    public void setModtime(Date modtime) {
+        this.modtime = modtime;
     }
 }

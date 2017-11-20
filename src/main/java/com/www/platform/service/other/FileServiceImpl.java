@@ -22,12 +22,12 @@ import java.util.Date;
     private static Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
     @Autowired private FileMapper fileMapper;
 
-    @Override public int addFile(String fname, int comid, String flocal, String fremarks) {
+    @Override public int addFile(String fname, int pid, String flocal, String fsummary) {
         int fid = 1;
         File file = new File();
         file.setFname(fname);
-        //        file.setComid(comid);
-        //        file.setFremarks(fremarks);
+                file.setPid(pid);
+                file.setFsummary(fsummary);
         //TODO
         file.setFlocal("/file/contractfile/" + fname);
         Date date = DateUtil.getNowDate();
@@ -45,7 +45,7 @@ import java.util.Date;
         return fid;
     }
 
-    @Override public String editFile(String fname, int comid, String flocal, String fremarks) {
+    @Override public String editFile(String fname, int comid, String flocal, String fsummary) {
         //TODO
         //      Subject subject = SecurityUtils.getSubject();
         //      Session session = subject.getSession();

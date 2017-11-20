@@ -36,12 +36,9 @@
     select
     <include refid="Base_Column_List" />
     from contract
-    where cid = #{cid,jdbcType=INTEGER}
+    where auditstatid = #{auditstatid,jdbcType=INTEGER}
   </select>
-
-
-
-  
+  <!--<select id="selectBy"-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from contract
     where cid = #{cid,jdbcType=INTEGER}

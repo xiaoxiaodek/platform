@@ -1,6 +1,8 @@
 package com.www.platform.message;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司

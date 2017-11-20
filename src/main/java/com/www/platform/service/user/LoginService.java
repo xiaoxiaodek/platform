@@ -1,4 +1,4 @@
-package com.www.platform.service;
+package com.www.platform.service.user;
 
 
 import java.util.Map;

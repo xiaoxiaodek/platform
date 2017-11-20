@@ -15,6 +15,8 @@ public interface ContractMapper {
 
     List<Contract> selectAll();
 
+    List<Contract> selectByCompany(Integer comId);
+
     int updateByPrimaryKeySelective(Contract record);
 
     int updateByPrimaryKey(Contract record);

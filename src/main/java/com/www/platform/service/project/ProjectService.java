@@ -1,8 +1,7 @@
-package com.www.platform.service;
+package com.www.platform.service.project;
 
 import com.www.platform.entity.Project;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,7 @@ import java.util.Map;
  * @author zjl
  * @version 0.0
  */
+@Service
 public interface ProjectService {
     String addProject(Map<String,Object> map);
 

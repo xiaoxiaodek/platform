@@ -3,7 +3,7 @@ package com.www.platform.controller.project;
 import com.www.platform.message.BaseMessage;
 import com.www.platform.message.MessageCode;
 import com.www.platform.message.StatusCode;
-import com.www.platform.service.ProjectService;
+import com.www.platform.service.project.ProjectService;
 import com.www.platform.util.ResponseUtil;
 import com.www.platform.util.SystemLog;
 import org.slf4j.Logger;

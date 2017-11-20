@@ -320,14 +320,32 @@ CREATE TABLE `operate` (
 
 CREATE TABLE `log` (
   `lid` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
+  `comid` int(11) DEFAULT NULL,
+  `uname` varchar(100) NOT NULL,
   `module` varchar(500) NOT NULL,
   `method` varchar(500) NOT NULL,
   `ip` varchar(200) NOT NULL,
   `otime` varchar(200) NOT NULL,
-  `responseTime` int(11) NOT NULL,
+  `responseTime` varchar(20) NOT NULL,
   `result` varchar(500) NOT NULL,
   PRIMARY KEY (`lid`),
   UNIQUE KEY `lid` (`lid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `item`
+--
+
+CREATE TABLE `item` (
+  `iid` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL,
+  `pTypeid` int(11) NOT NULL,
+  `pStatus` int(11) NOT NULL,
+  `comid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `starttime` datetime DEFAULT NULL,
+  `endtime` datetime DEFAULT NULL,
+  `remark` varchar(500) NOT NULL,
+  PRIMARY KEY (`iid`),
+  UNIQUE KEY `iid` (`iid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

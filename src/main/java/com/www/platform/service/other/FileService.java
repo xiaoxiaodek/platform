@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
  * @modified by  下午1:34
  */
 @Service public interface FileService {
-    int addFile(String fname, int comid, String flocal, String fremarks);
+    int addFile(String fname, int comid, String flocal, String fsummary);
 
-    String editFile(String fname, int comid, String flocal, String fremarks);
+    String editFile(String fname, int comid, String flocal, String fsummary);
 
 }
