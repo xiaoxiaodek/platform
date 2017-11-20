@@ -3,6 +3,7 @@ package com.www.platform.service.user;
 import com.www.platform.dao.UserMapper;
 import com.www.platform.entity.User;
 
+import com.www.platform.service.user.LoginService;
 import com.www.platform.util.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

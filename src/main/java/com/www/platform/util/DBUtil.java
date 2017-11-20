@@ -22,7 +22,7 @@ public class DBUtil {
 
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(DBUtil.class);
 //    @Value("#{configProperties['mysql.url.upsmart']}")
-    private String DB_URL="jdbc:mysql://localhost:3306/drip?characterEncoding=utf8";
+    private String DB_URL="jdbc:mysql://192.168.199.109:3306/platform?characterEncoding=utf8";
 
 //    @Value("#{configProperties['mysql.username.upsmart']}")
     private String USER="root";
