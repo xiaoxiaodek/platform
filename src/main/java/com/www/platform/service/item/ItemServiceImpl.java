@@ -3,14 +3,13 @@ package com.www.platform.service.item;
 import com.www.platform.dao.ItemMapper;
 import com.www.platform.entity.Item;
 import com.www.platform.service.company.CompanyService;
-import com.www.platform.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -33,18 +32,27 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     @Override
-    public List<Item> findSelective(Item item) {
-        List<Item> items = itemMapper.selectSelective(item);
+    public Item findSelective(Item item) {
+        Item items = itemMapper.selectSelective(item);
         return items;
     }
 
-
+    /**
+     * @desc 根据条件查询状态表
+     * @param comid
+     * @return List<Item>
+     */
+    @Override
+    public List<Item> findByComid(int comid) {
+        List<Item> items = itemMapper.selectByComid(comid);
+        return items;
+    }
     /**
      * @desc 添加或者更新
      * @param map,comid
      * @return Boolean
      */
-    public Boolean addAndUpdateItem(Map<String, Object> map,int comid){
+    public Boolean addAndUpdateItem(Map<String, Object> map, int comid){
 
         Item item = new Item();
 
@@ -53,19 +61,28 @@ public class ItemServiceImpl implements ItemService{
             return itemMapper.insertSelective(item) != 0 ? true : false;
         }else{
             item = addAndUpdate(map,item,(Integer) map.get("comid"));
+            Item iidItem = itemMapper.selectSelective(item);
+            item.setIid(iidItem.getIid());
             return itemMapper.updateByPrimaryKeySelective(item) != 0 ? true : false;
         }
     }
 
+    /**
+     *
+     * @param map
+     * @param item
+     * @param comid
+     * @return
+     */
     public Item addAndUpdate(Map<String, Object> map,Item item,int comid){
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             item.setPid((Integer)map.get("pid"));
             item.setPtypeid((Integer)map.get("pTypeid"));
             item.setPstatus((Integer)map.get("pStatus"));
             item.setComid(comid);
-            item.setUid((Integer)map.get("uid"));
+            item.setUname((String)map.get("uname"));
             item.setStarttime(sdf.parse((String)map.get("starttime")));
             item.setEndtime(sdf.parse((String)map.get("endtime")));
             item.setRemark((String)map.get("remark"));
@@ -75,5 +92,9 @@ public class ItemServiceImpl implements ItemService{
             return null;
         }
         return item;
+    }
+
+    public Boolean deleteByComid(int comid){
+        return itemMapper.deleteByComid(comid) !=0 ? true : false;
     }
 }

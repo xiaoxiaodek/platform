@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -49,9 +50,9 @@ public class CompanyServiceImpl implements CompanyService{
         if (null == comids || comids.length == 0) {
             return "不存在该公司";
         }
+        List<Project> projects = null;
         for(int comid:comids) {
             Company company = companyMapper.selectByPrimaryKey(comid);
-            List<Project> projects = null;
             if (company != null) {
                 Project project1 = new Project();
                 project1.setSuppid(new Integer(comid));
@@ -62,6 +63,7 @@ public class CompanyServiceImpl implements CompanyService{
                     projects = projectMapper.selectByauditstatidOrSuppid(project);
                     if (projects.size() == 0) {
                         companyMapper.deleteByPrimaryKey(comid);
+                        itemService.deleteByComid(comid);
                     }else {
                         return "有与公司相关的项目";
                     }
@@ -129,61 +131,55 @@ public class CompanyServiceImpl implements CompanyService{
         }
     }
     /**
-     * 添加和修改公司信息不包括状态
+     * @desc 添加和修改公司信息
      * @param map 前端参数
      * @param session
-     * @return
+     * @return Boolean
      */
     @Override
     public Boolean modifyCompany(Map<String, Object> map,HttpSession session){
 
+        Date t = DateUtil.getNowDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date c = null;
+        try {
+            c = sdf.parse(sdf.format(t));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Company company = new Company();
-        int comid = 0;
         if(map.get("comid") == null) {
-            company = addAndUpdate(map,company,comid);
-            companyMapper.insertSelective(company);
-            Boolean itemTrue = itemService.addAndUpdateItem(map,company.getComid());
+            company = addAndUpdate(map,company);
+            Company com = companyMapper.selectByAll(company);
+            if(com ==null) {
+                company.setCreatetime(c);
+                company.setModtime(c);
+                companyMapper.insertSelective(company);
+                com = company;
+            }
+            Boolean itemTrue = itemService.addAndUpdateItem(map,com.getComid());
             session.setAttribute("comid",company.getComid());
             return itemTrue;
         }else{
             company.setComid((Integer) map.get("comid"));
-            company = addAndUpdate(map,company,(Integer) map.get("comid"));
+            company = addAndUpdate(map,company);
+            company.setModtime(c);
+            Boolean companyTrue = companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
             Boolean itemTrue = itemService.addAndUpdateItem(map,(Integer) map.get("comid"));
             session.setAttribute("comid",map.get("comid"));
-            return companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false && itemTrue;
+            return companyTrue && itemTrue;
         }
     }
 
     /**
-     * 添加和修改公司信息不包括状态
-     * @param map 前端参数
-     * @param session
-     * @return
-     */
-    @Override
-    public Boolean modifyCompanyStatus(Map<String, Object> map,HttpSession session){
-
-        Company company = new Company();
-        company.setComid((Integer) map.get("comid"));
-        session.setAttribute("comid",map.get("comid"));
-        company = addAndUpdate(map,company,(Integer) map.get("comid"));
-        return companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
-
-    }
-
-    /**
-     * 添加和修改公司代码复用
+     * @desc 添加和修改公司代码复用
      * @param map 前端参数
      * @param company 需要添加和修改的公司
-     * @param comid 前端参数用来判断是否添加还是修改
-     * @return
+     * @return Company
      */
-    public Company addAndUpdate(Map<String, Object> map,Company company,int comid){
+    public Company addAndUpdate(Map<String, Object> map,Company company){
 
-        Date t = DateUtil.getNowDate();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         try {
-            Date c = sdf.parse(sdf.format(t));
             company.setPid((Integer)map.get("pid"));
             company.setComaddr((String) map.get("comaddr"));
             company.setComemail((String) map.get("comemail"));
@@ -191,16 +187,6 @@ public class CompanyServiceImpl implements CompanyService{
             company.setComcontact((String) map.get("comcontact"));
             company.setTypeid((Integer)map.get("typeId"));
             company.setStatusid((Integer)map.get("statusId"));
-            company.setCommercestatus((Integer)map.get("commercestatus"));
-            company.setTechstatus((Integer)map.get("techstatus"));
-            company.setAccountstatus((Integer)map.get("accountstatus"));
-            company.setOnlinestatus((Integer)map.get("onlinestatus"));
-            if(comid == 0){
-                company.setCreatetime(c);
-                company.setModtime(c);
-            }else{
-                company.setModtime(c);
-            }
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("新增公司失败，空指针");
@@ -208,7 +194,6 @@ public class CompanyServiceImpl implements CompanyService{
         }
         return company;
     }
-
 
     /**
      * @desc 重构代码
@@ -228,16 +213,14 @@ public class CompanyServiceImpl implements CompanyService{
                         logs.add(l);
                         map.put("logs", logs);
                     }
-            }
-            else {
-                    Item item = new Item();
-                    item.setComid(c.getComid());
-                    if (itemService.findSelective(item) != null)
-                        for (Item i : itemService.findSelective(item)) {
-                            items.add(i);
-                            map.put("items",items);
-                        }
+            }else {
+                if (itemService.findByComid(c.getComid()) != null) {
+                    for (Item item : itemService.findByComid(c.getComid())) {
+                        items.add(item);
+                        map.put("items", items);
+                    }
                 }
+            }
         }
         return map;
     }

@@ -23,14 +23,6 @@ public class Company {
 
     private Integer statusid;
 
-    private Integer commercestatus;
-
-    private Integer techstatus;
-
-    private Integer accountstatus;
-
-    private Integer onlinestatus;
-
     public Integer getComid() {
         return comid;
     }
@@ -109,57 +101,5 @@ public class Company {
 
     public void setStatusid(Integer statusid) {
         this.statusid = statusid;
-    }
-
-    public Integer getCommercestatus() {
-        return commercestatus;
-    }
-
-    public void setCommercestatus(Integer commercestatus) {
-        this.commercestatus = commercestatus;
-    }
-
-    public Integer getTechstatus() {
-        return techstatus;
-    }
-
-    public void setTechstatus(Integer techstatus) {
-        this.techstatus = techstatus;
-    }
-
-    public Integer getAccountstatus() {
-        return accountstatus;
-    }
-
-    public void setAccountstatus(Integer accountstatus) {
-        this.accountstatus = accountstatus;
-    }
-
-    public Integer getOnlinestatus() {
-        return onlinestatus;
-    }
-
-    public void setOnlinestatus(Integer onlinestatus) {
-        this.onlinestatus = onlinestatus;
-    }
-
-    @Override
-    public String toString() {
-        return "Company{" +
-                "comid=" + comid +
-                ", pid=" + pid +
-                ", comaddr='" + comaddr + '\'' +
-                ", comemail='" + comemail + '\'' +
-                ", comname='" + comname + '\'' +
-                ", comcontact='" + comcontact + '\'' +
-                ", createtime=" + createtime +
-                ", typeid=" + typeid +
-                ", modtime=" + modtime +
-                ", statusid=" + statusid +
-                ", commercestatus=" + commercestatus +
-                ", techstatus=" + techstatus +
-                ", accountstatus=" + accountstatus +
-                ", onlinestatus=" + onlinestatus +
-                '}';
     }
 }

@@ -12,14 +12,10 @@
     <result column="typeId" jdbcType="INTEGER" property="typeid" />
     <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
     <result column="statusId" jdbcType="INTEGER" property="statusid" />
-    <result column="commerceStatus" jdbcType="INTEGER" property="commercestatus" />
-    <result column="techStatus" jdbcType="INTEGER" property="techstatus" />
-    <result column="accountStatus" jdbcType="INTEGER" property="accountstatus" />
-    <result column="onlineStatus" jdbcType="INTEGER" property="onlinestatus" />
   </resultMap>
   <sql id="Base_Column_List">
     comid, pid, comaddr, comemail, comname, comcontact, createtime, typeId, modtime, 
-    statusId, commerceStatus, techStatus, accountStatus, onlineStatus
+    statusId
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -35,13 +31,11 @@
     insert into company (comid, pid, comaddr, 
       comemail, comname, comcontact, 
       createtime, typeId, modtime, 
-      statusId, commerceStatus, techStatus, 
-      accountStatus, onlineStatus)
+      statusId)
     values (#{comid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{comaddr,jdbcType=VARCHAR}, 
       #{comemail,jdbcType=VARCHAR}, #{comname,jdbcType=VARCHAR}, #{comcontact,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP}, #{typeid,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}, 
-      #{statusid,jdbcType=INTEGER}, #{commercestatus,jdbcType=INTEGER}, #{techstatus,jdbcType=INTEGER}, 
-      #{accountstatus,jdbcType=INTEGER}, #{onlinestatus,jdbcType=INTEGER})
+      #{statusid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.Company">
     <selectKey keyProperty='comid' resultType='int' order='AFTER'  >
@@ -79,18 +73,6 @@
       <if test="statusid != null">
         statusId,
       </if>
-      <if test="commercestatus != null">
-        commerceStatus,
-      </if>
-      <if test="techstatus != null">
-        techStatus,
-      </if>
-      <if test="accountstatus != null">
-        accountStatus,
-      </if>
-      <if test="onlinestatus != null">
-        onlineStatus,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="comid != null">
@@ -122,18 +104,6 @@
       </if>
       <if test="statusid != null">
         #{statusid,jdbcType=INTEGER},
-      </if>
-      <if test="commercestatus != null">
-        #{commercestatus,jdbcType=INTEGER},
-      </if>
-      <if test="techstatus != null">
-        #{techstatus,jdbcType=INTEGER},
-      </if>
-      <if test="accountstatus != null">
-        #{accountstatus,jdbcType=INTEGER},
-      </if>
-      <if test="onlinestatus != null">
-        #{onlinestatus,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -167,18 +137,6 @@
       <if test="statusid != null">
         statusId = #{statusid,jdbcType=INTEGER},
       </if>
-      <if test="commercestatus != null">
-        commerceStatus = #{commercestatus,jdbcType=INTEGER},
-      </if>
-      <if test="techstatus != null">
-        techStatus = #{techstatus,jdbcType=INTEGER},
-      </if>
-      <if test="accountstatus != null">
-        accountStatus = #{accountstatus,jdbcType=INTEGER},
-      </if>
-      <if test="onlinestatus != null">
-        onlineStatus = #{onlinestatus,jdbcType=INTEGER},
-      </if>
     </set>
     where comid = #{comid,jdbcType=INTEGER}
   </update>
@@ -192,71 +150,63 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       typeId = #{typeid,jdbcType=INTEGER},
       modtime = #{modtime,jdbcType=TIMESTAMP},
-      statusId = #{statusid,jdbcType=INTEGER},
-      commerceStatus = #{commercestatus,jdbcType=INTEGER},
-      techStatus = #{techstatus,jdbcType=INTEGER},
-      accountStatus = #{accountstatus,jdbcType=INTEGER},
-      onlineStatus = #{onlinestatus,jdbcType=INTEGER}
+      statusId = #{statusid,jdbcType=INTEGER}
     where comid = #{comid,jdbcType=INTEGER}
   </update>
 
-  <select id="selectSelective" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from company
-    where 1=1
-    <if test="comid != null" >
-      AND comid = #{comid,jdbcType=INTEGER}
-    </if>
-    <if test="typeid != null" >
-      AND typeId = #{typeid,jdbcType=INTEGER}
-    </if>
-    <if test="comaddr != null and !comaddr.trim().equals('')">
-      AND comaddr LIKE '%${comaddr}%'
-    </if>
-    <if test="comemail != null and !comemail.trim().equals('')">
-      AND comemail LIKE '%${comemail}%'
-    </if>
-    <if test="comname != null and !comname.trim().equals('')">
-      AND comname LIKE '%${comname}%'
-    </if>
-    <if test="comcontact != null and !comcontact.trim().equals('')">
-      AND comcontact LIKE '%${comcontact}%'
-    </if>
-    <if test="createtime != null and !createtime.trim().equals('')">
-      AND createtime LIKE '%${createtime}%'
-    </if>
-    <if test="modtime != null and !modtime.trim().equals('')">
-      AND modtime LIKE '%${modtime}%'
-    </if>
-  </select>
+    <select id="selectSelective" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from company
+        where 1=1
+        <if test="comid != null" >
+            AND comid = #{comid,jdbcType=INTEGER}
+        </if>
+        <if test="typeid != null" >
+            AND typeId = #{typeid,jdbcType=INTEGER}
+        </if>
+        <if test="comaddr != null and !comaddr.trim().equals('')">
+            AND comaddr LIKE '%${comaddr}%'
+        </if>
+        <if test="comemail != null and !comemail.trim().equals('')">
+            AND comemail LIKE '%${comemail}%'
+        </if>
+        <if test="comname != null and !comname.trim().equals('')">
+            AND comname LIKE '%${comname}%'
+        </if>
+        <if test="comcontact != null and !comcontact.trim().equals('')">
+            AND comcontact LIKE '%${comcontact}%'
+        </if>
+        <if test="createtime != null and !createtime.trim().equals('')">
+            AND createtime LIKE '%${createtime}%'
+        </if>
+        <if test="modtime != null and !modtime.trim().equals('')">
+            AND modtime LIKE '%${modtime}%'
+        </if>
+    </select>
 
-  <select id="selectByAll" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from company
-    where 1=1
-    <if test="comid != null" >
-      AND comid = #{comid,jdbcType=INTEGER}
-    </if>
-    <if test="pid != null" >
-      AND pid = #{comid,jdbcType=INTEGER}
-    </if>
-    <if test="typeid != null" >
-      AND typeId = #{typeid,jdbcType=INTEGER}
-    </if>
-    <if test="comaddr != null">
-      AND comaddr = #{comaddr,jdbcType=VARCHAR}
-    </if>
-    <if test="comemail != null">
-      AND comemail = #{comemail,jdbcType=VARCHAR}
-    </if>
-    <if test="comname != null">
-      AND comname = #{comname,jdbcType=VARCHAR}
-    </if>
-    <if test="comcontact != null">
-      AND comcontact = #{comcontact,jdbcType=VARCHAR}
-    </if>
-  </select>
-
+    <select id="selectByAll" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from company
+        where 1=1
+        <if test="pid != null" >
+            AND pid = #{pid,jdbcType=INTEGER}
+        </if>
+        <if test="typeid != null" >
+            AND typeId = #{typeid,jdbcType=INTEGER}
+        </if>
+        <if test="comaddr != null">
+            AND comaddr = #{comaddr,jdbcType=VARCHAR}
+        </if>
+        <if test="comemail != null">
+            AND comemail = #{comemail,jdbcType=VARCHAR}
+        </if>
+        <if test="comname != null">
+            AND comname = #{comname,jdbcType=VARCHAR}
+        </if>
+        <if test="comcontact != null">
+            AND comcontact = #{comcontact,jdbcType=VARCHAR}
+        </if>
+    </select>
 </mapper>

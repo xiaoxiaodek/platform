@@ -144,6 +144,7 @@
     <include refid="Base_Column_List" />
     from log
     where comid = #{comid,jdbcType=INTEGER}
+    order BY otime
   </select>
 
 </mapper>

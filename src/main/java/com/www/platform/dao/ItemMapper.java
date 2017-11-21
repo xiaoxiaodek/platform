@@ -11,12 +11,13 @@ public interface ItemMapper {
 
     int insertSelective(Item record);
 
-    Item selectByPrimaryKey(Integer iid);
+    List<Item> selectByComid(Integer comid);
 
     int updateByPrimaryKeySelective(Item record);
 
     int updateByPrimaryKey(Item record);
 
-    List<Item> selectSelective(Item record);
+    Item selectSelective(Item record);
 
+    int deleteByComid(Integer comid);
 }
