@@ -3,7 +3,10 @@ package com.www.platform.controller.user;
 import com.www.platform.constant.GlobalConstants;
 import com.www.platform.message.BaseMessage;
 
+import com.www.platform.message.MessageCode;
+import com.www.platform.message.StatusCode;
 import com.www.platform.service.user.LoginService;
+import com.www.platform.util.ResponseUtil;
 import com.www.platform.util.SystemLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,12 +54,15 @@ public class LoginController {
                 if (!("fail".equals(uid )) ){
                     session.setAttribute(GlobalConstants.USERNAME,username);
                     session.setAttribute(GlobalConstants.UID,Integer.parseInt(uid));
+                    ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
                     msg.setData("登陆成功");
                 } else {
                     msg.setData("用户名或密码错误");
+                    ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 }
         }else {
-    msg.setData("用户名和密码不能为空");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            msg.setData("用户名和密码不能为空");
 }
 
 return msg;
@@ -73,6 +79,11 @@ return msg;
     public BaseMessage register(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         msg.setData(this.loginService.register(map));
+        if("新建成功".equals(msg.getData())){
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
         return msg;
     }
 
@@ -87,15 +98,22 @@ return msg;
     @RequestMapping(value = "editPassword", method = RequestMethod.POST) @ResponseBody
     @SystemLog(module="用户管理",methods="修改密码")
 
-    public BaseMessage editPassword(@RequestBody Map<String, Object> map, HttpSession sesssion) {
+    public BaseMessage editPassword(@RequestBody Map<String, Object> map, HttpSession session) {
         BaseMessage msg = new BaseMessage();
-        String uname = (String) sesssion.getAttribute(GlobalConstants.USERNAME);
+        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
             map.put("uname", uname);
             msg.setData(this.loginService.editPassword(map));
+            if("修改成功".equals(msg.getData())){
+                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+
+            }else {
+                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            }
 
         }else {
             msg.setData("请登录后再修改");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         }
         return msg;
     }
@@ -109,15 +127,20 @@ return msg;
     @RequestMapping(value = "editInfo", method = RequestMethod.POST) @ResponseBody
     @SystemLog(module="用户管理",methods="修改信息")
 
-    public BaseMessage editInfo(@RequestBody Map<String, Object> map, HttpSession sesssion) {
+    public BaseMessage editInfo(@RequestBody Map<String, Object> map, HttpSession session) {
         BaseMessage msg = new BaseMessage();
-        String uname = (String) sesssion.getAttribute(GlobalConstants.USERNAME);
+        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
             map.put("uname", uname);
             msg.setData(this.loginService.editInfo(map));
-
+            if("修改成功".equals(msg.getData())){
+                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+            }else {
+                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            }
         }else {
             msg.setData("请登录后再修改");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         }
         return msg;
     }
@@ -139,8 +162,11 @@ return msg;
             session.removeAttribute(GlobalConstants.USERNAME);
             session.invalidate();
             msg.setData("success");
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
         } catch (NullPointerException e) {
             logger.error("退出异常");
+            msg.setData("退出异常");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
         }
         return msg;
     }

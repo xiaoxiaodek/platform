@@ -36,6 +36,7 @@ import java.util.Map;
             uid=user.getUid().toString();
             if (user.getUpwd().equals(Md5.MD5(upwd))) {
                 result = uid;
+                System.out.println("登陆成功");
 
             }
         } catch (NullPointerException e) {
@@ -56,6 +57,7 @@ import java.util.Map;
         String uname = (String) map.get("uname");
         String uemail = (String) map.get("uemail");
         String upwd = (String) map.get("upwd");
+        System.out.println("uemail++++++"+uemail+"======");
         String upwdconfirm = (String) map.get("upwdconfirm");
         if (null != uname && uname.indexOf(" ") == -1 && null != uemail && uemail.indexOf(" ") == -1
             && null != upwd && upwd.indexOf(" ") == -1 && null != upwdconfirm
@@ -84,6 +86,7 @@ import java.util.Map;
                     } catch (Exception e) {
                         e.printStackTrace();
                         result = "新建失败";
+                        return result;
                     }
                 }
             }
