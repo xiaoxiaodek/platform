@@ -1,7 +1,6 @@
 package com.www.platform.entity;
 
 import java.util.Date;
-import java.util.List;
 
 public class Company {
     private Integer comid;
@@ -23,24 +22,6 @@ public class Company {
     private Date modtime;
 
     private Integer statusid;
-
-    private Integer commercestatus;
-
-    private Integer techstatus;
-
-    private Integer accountstatus;
-
-    private Integer onlinestatus;
-
-    private List<Log> logs;
-
-    public List<Log> getLogs() {
-        return logs;
-    }
-
-    public void setLogs(List<Log> logs) {
-        this.logs = logs;
-    }
 
     public Integer getComid() {
         return comid;
@@ -121,37 +102,4 @@ public class Company {
     public void setStatusid(Integer statusid) {
         this.statusid = statusid;
     }
-
-    public Integer getCommercestatus() {
-        return commercestatus;
-    }
-
-    public void setCommercestatus(Integer commercestatus) {
-        this.commercestatus = commercestatus;
-    }
-
-    public Integer getTechstatus() {
-        return techstatus;
-    }
-
-    public void setTechstatus(Integer techstatus) {
-        this.techstatus = techstatus;
-    }
-
-    public Integer getAccountstatus() {
-        return accountstatus;
-    }
-
-    public void setAccountstatus(Integer accountstatus) {
-        this.accountstatus = accountstatus;
-    }
-
-    public Integer getOnlinestatus() {
-        return onlinestatus;
-    }
-
-    public void setOnlinestatus(Integer onlinestatus) {
-        this.onlinestatus = onlinestatus;
-    }
-
 }

@@ -13,7 +13,8 @@ import java.util.Map;
  */
 public interface ItemService {
 
-    List<Item> findSelective(Item item);
+    Item findSelective(Item item);
+    List<Item> findByComid(int comid);
     Boolean addAndUpdateItem(Map<String, Object> map,int comid);
     Boolean deleteByComid(int comid);
 }

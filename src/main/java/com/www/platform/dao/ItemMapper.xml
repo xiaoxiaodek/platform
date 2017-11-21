@@ -15,11 +15,11 @@
   <sql id="Base_Column_List">
     iid, pid, pTypeid, pStatus, comid, uname, starttime, endtime, remark
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByComid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from item
-    where iid = #{iid,jdbcType=INTEGER}
+    where comid = #{comid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from item

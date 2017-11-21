@@ -49,4 +49,6 @@
         <appender-ref ref="dailyInfoFile" />
         <appender-ref ref="dailyErrorFile" />
     </root>
+
+
 </log4j:configuration>

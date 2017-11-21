@@ -32,12 +32,21 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     @Override
-    public List<Item> findSelective(Item item) {
-        List<Item> items = itemMapper.selectSelective(item);
+    public Item findSelective(Item item) {
+        Item items = itemMapper.selectSelective(item);
         return items;
     }
 
-
+    /**
+     * @desc 根据条件查询状态表
+     * @param comid
+     * @return List<Item>
+     */
+    @Override
+    public List<Item> findByComid(int comid) {
+        List<Item> items = itemMapper.selectByComid(comid);
+        return items;
+    }
     /**
      * @desc 添加或者更新
      * @param map,comid
@@ -52,6 +61,8 @@ public class ItemServiceImpl implements ItemService{
             return itemMapper.insertSelective(item) != 0 ? true : false;
         }else{
             item = addAndUpdate(map,item,(Integer) map.get("comid"));
+            Item iidItem = itemMapper.selectSelective(item);
+            item.setIid(iidItem.getIid());
             return itemMapper.updateByPrimaryKeySelective(item) != 0 ? true : false;
         }
     }
