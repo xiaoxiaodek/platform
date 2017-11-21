@@ -7,6 +7,7 @@ import com.www.platform.message.StatusCode;
 import com.www.platform.service.contract.ContractService;
 import com.www.platform.util.FileUtil;
 import com.www.platform.util.ResponseUtil;
+import com.www.platform.util.SystemLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ import java.util.List;
     @Autowired private ContractMapper contractMapper;
 
     //获取所有的合同列表
+    @SystemLog(module = "合同管理", methods = "查询所有")
     @RequestMapping(value = "contractList", method = RequestMethod.GET) @ResponseBody
-
     public BaseMessage contractList() {
         BaseMessage msg = new BaseMessage();
         try {
@@ -53,30 +54,30 @@ import java.util.List;
         return msg;
     }
 
-//    //获取销售员的合同列表
-//
-//    @RequestMapping(value = "salecontractList", method = RequestMethod.GET) @ResponseBody
-//
-//    public BaseMessage saleContractList() {
-//        BaseMessage msg = new BaseMessage();
-//        try {
-//            if (null != this.contractService.saleContractList()) {
-//                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-//                msg.setData(this.contractService.saleContractList());
-//            } else {
-//                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-//                msg.setData("未获取到合同数据");
-//            }
-//        } catch (Exception e) {
-//            logger.error("获取销售员的合同列表异常");
-//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
-//            e.printStackTrace();
-//        }
-//        return msg;
-//    }
+    //    //获取销售员的合同列表
+    //
+    //    @RequestMapping(value = "salecontractList", method = RequestMethod.GET) @ResponseBody
+    //
+    //    public BaseMessage saleContractList() {
+    //        BaseMessage msg = new BaseMessage();
+    //        try {
+    //            if (null != this.contractService.saleContractList()) {
+    //                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+    //                msg.setData(this.contractService.saleContractList());
+    //            } else {
+    //                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+    //                msg.setData("未获取到合同数据");
+    //            }
+    //        } catch (Exception e) {
+    //            logger.error("获取销售员的合同列表异常");
+    //            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
+    //            e.printStackTrace();
+    //        }
+    //        return msg;
+    //    }
 
     //合同详情
-
+    @SystemLog(module = "合同管理", methods = "查看合同详情")
     @RequestMapping(value = "/detail", method = RequestMethod.GET) @ResponseBody
 
     public BaseMessage detail(@RequestParam(value = "cid", required = true) Integer cid) {
@@ -93,9 +94,9 @@ import java.util.List;
     }
 
     //删除合同
-
+    @SystemLog(module = "合同管理", methods = "删除合同")
     @RequestMapping(value = "delete", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage delete(@RequestBody int[] cids) {
+    public BaseMessage delete(@RequestParam(value = "cids") int[] cids) {
         BaseMessage msg = new BaseMessage();
         try {
             String result = (String) this.contractService.deleteContract(cids);
@@ -122,6 +123,7 @@ import java.util.List;
 
 
     // 新增合同，并在cfile表添加目录
+    @SystemLog(module = "合同管理", methods = "新增合同")
     @RequestMapping(value = "add", method = RequestMethod.POST) @ResponseBody
     public BaseMessage addContract(HttpServletRequest request, HttpSession sesssion,
         @RequestParam(value = "info", required = false) String s,
@@ -138,10 +140,10 @@ import java.util.List;
         }
         logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         try {
-            List<String> fnames =null;
+            List<String> fnames = null;
             if (null != files) {
                 //上传文件
-                 fnames = FileUtil.addFiles(files);
+                fnames = FileUtil.addFiles(files);
             }
 
             System.out.println("====fnames======" + fnames);
@@ -168,7 +170,7 @@ import java.util.List;
     }
 
     // 编辑合同
-
+    @SystemLog(module = "合同管理", methods = "编辑合同")
     @RequestMapping(value = "edit", method = RequestMethod.POST) @ResponseBody
     public BaseMessage editContract(HttpServletRequest request, HttpSession sesssion,
         @RequestParam("info") String s,
@@ -177,7 +179,7 @@ import java.util.List;
         BaseMessage msg = new BaseMessage();
         try {
             // 编辑合同表
-            String path = request.getSession().getServletContext().getRealPath("/file/contract/");
+            String path = request.getSession().getServletContext().getRealPath("src/main/webapp/uploadFiles/");
             String result = this.contractService.editContract(path, s, file1);
 
             if (null != result) {
@@ -196,26 +198,26 @@ import java.util.List;
         return msg;
     }
 
-//    @RequestMapping(value = "/findbycomid", method = RequestMethod.GET) @ResponseBody
-//
-//    public BaseMessage findbycomid(@RequestParam(value = "comid", required = true) Integer comid) {
-//        BaseMessage msg = new BaseMessage();
-//        try {
-//            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-//
-//            System.out.println(this.contractRepository.findByComid(comid) == null);
-//            msg.setData(this.contractRepository.findByComid(comid));
-//        } catch (Exception e) {
-//            logger.error("获取合同列表异常");
-//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
-//            e.printStackTrace();
-//        }
-//        return msg;
-//    }
+    //    @RequestMapping(value = "/findbycomid", method = RequestMethod.GET) @ResponseBody
+    //
+    //    public BaseMessage findbycomid(@RequestParam(value = "comid", required = true) Integer comid) {
+    //        BaseMessage msg = new BaseMessage();
+    //        try {
+    //            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+    //
+    //            System.out.println(this.contractRepository.findByComid(comid) == null);
+    //            msg.setData(this.contractRepository.findByComid(comid));
+    //        } catch (Exception e) {
+    //            logger.error("获取合同列表异常");
+    //            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
+    //            e.printStackTrace();
+    //        }
+    //        return msg;
+    //    }
 
 
     //根据客户公司id获取合同列表
-
+    @SystemLog(module = "合同管理", methods = "根据公司查询")
     @RequestMapping(value = "queryContractByComid", method = RequestMethod.GET) @ResponseBody
     public BaseMessage queryContractByComid(
         @RequestParam(value = "comid", required = true) Integer comid) {
@@ -237,23 +239,23 @@ import java.util.List;
         return msg;
     }
 
-//    @RequestMapping(value = "sort", method = RequestMethod.GET) @ResponseBody
-//    public BaseMessage sort(@RequestParam(value = "data", required = true) String startOrEnd) {
-//        BaseMessage msg = new BaseMessage();
-//        try {
-//            if (null != this.contractService.sortContractList(startOrEnd)) {
-//                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-//                msg.setData(this.contractService.sortContractList(startOrEnd));
-//            } else {
-//                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-//                msg.setData("未获取到合同数据");
-//            }
-//        } catch (Exception e) {
-//            logger.error("获取所有的合同列表异常");
-//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
-//            e.printStackTrace();
-//        }
-//        return msg;
-//    }
+    //    @RequestMapping(value = "sort", method = RequestMethod.GET) @ResponseBody
+    //    public BaseMessage sort(@RequestParam(value = "data", required = true) String startOrEnd) {
+    //        BaseMessage msg = new BaseMessage();
+    //        try {
+    //            if (null != this.contractService.sortContractList(startOrEnd)) {
+    //                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+    //                msg.setData(this.contractService.sortContractList(startOrEnd));
+    //            } else {
+    //                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+    //                msg.setData("未获取到合同数据");
+    //            }
+    //        } catch (Exception e) {
+    //            logger.error("获取所有的合同列表异常");
+    //            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
+    //            e.printStackTrace();
+    //        }
+    //        return msg;
+    //    }
 
 }

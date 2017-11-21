@@ -11,6 +11,7 @@
     <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
   </resultMap>
   <sql id="Base_Column_List">
+
     exinfid, exinfname, exinftype, payprice, discount, exinterfacecol, modtime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

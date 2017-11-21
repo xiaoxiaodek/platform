@@ -7,19 +7,19 @@
     <result column="pTypeid" jdbcType="INTEGER" property="ptypeid" />
     <result column="pStatus" jdbcType="INTEGER" property="pstatus" />
     <result column="comid" jdbcType="INTEGER" property="comid" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
     <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
     <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
-    iid, pid, pTypeid, pStatus, comid, uid, starttime, endtime, remark
+    iid, pid, pTypeid, pStatus, comid, uname, starttime, endtime, remark
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByComid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from item
-    where iid = #{iid,jdbcType=INTEGER}
+    where comid = #{comid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from item
@@ -27,11 +27,11 @@
   </delete>
   <insert id="insert" parameterType="com.www.platform.entity.Item">
     insert into item (iid, pid, pTypeid, 
-      pStatus, comid, uid, 
+      pStatus, comid, uname, 
       starttime, endtime, remark
       )
     values (#{iid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{ptypeid,jdbcType=INTEGER}, 
-      #{pstatus,jdbcType=INTEGER}, #{comid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{pstatus,jdbcType=INTEGER}, #{comid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, 
       #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
@@ -53,8 +53,8 @@
       <if test="comid != null">
         comid,
       </if>
-      <if test="uid != null">
-        uid,
+      <if test="uname != null">
+        uname,
       </if>
       <if test="starttime != null">
         starttime,
@@ -82,8 +82,8 @@
       <if test="comid != null">
         #{comid,jdbcType=INTEGER},
       </if>
-      <if test="uid != null">
-        #{uid,jdbcType=INTEGER},
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
       </if>
       <if test="starttime != null">
         #{starttime,jdbcType=TIMESTAMP},
@@ -108,8 +108,11 @@
       <if test="pstatus != null">
         pStatus = #{pstatus,jdbcType=INTEGER},
       </if>
-      <if test="uid != null">
-        uid = #{uid,jdbcType=INTEGER},
+      <if test="comid != null">
+        comid = #{comid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
       </if>
       <if test="starttime != null">
         starttime = #{starttime,jdbcType=TIMESTAMP},
@@ -121,7 +124,7 @@
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where comid = #{comid,jdbcType=INTEGER},
+    where iid = #{iid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.www.platform.entity.Item">
     update item
@@ -129,7 +132,7 @@
       pTypeid = #{ptypeid,jdbcType=INTEGER},
       pStatus = #{pstatus,jdbcType=INTEGER},
       comid = #{comid,jdbcType=INTEGER},
-      uid = #{uid,jdbcType=INTEGER},
+      uname = #{uname,jdbcType=VARCHAR},
       starttime = #{starttime,jdbcType=TIMESTAMP},
       endtime = #{endtime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
@@ -150,9 +153,10 @@
     <if test="comid != null" >
       AND comid = #{comid,jdbcType=INTEGER}
     </if>
-    <if test="uid != null" >
-      AND uid = #{uid,jdbcType=INTEGER}
-    </if>
   </select>
 
+  <delete id="deleteByComid" parameterType="java.lang.Integer">
+    delete from item
+    where comid = #{comid,jdbcType=INTEGER}
+  </delete>
 </mapper>
