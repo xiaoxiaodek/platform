@@ -5,6 +5,7 @@ import com.www.platform.message.MessageCode;
 import com.www.platform.message.StatusCode;
 import com.www.platform.service.project.ProjectService;
 import com.www.platform.util.ResponseUtil;
+import com.www.platform.util.SystemLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ import java.util.Map;
      * @return
      */
     @RequestMapping(value = "/addProject", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="项目管理",methods="添加项目")
+
     public BaseMessage addProject(@RequestBody Map<String, Object> map, HttpSession session) {
         BaseMessage msg = new BaseMessage();
 
@@ -63,6 +66,8 @@ import java.util.Map;
      * @return
      */
     @RequestMapping(value = "/updateProject", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="项目管理",methods="修改项目")
+
     public BaseMessage updateProject(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         try {
@@ -89,6 +94,8 @@ import java.util.Map;
      * @return
      */
     @RequestMapping(value = "/deleteProject", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="项目管理",methods="删除项目")
+
     public BaseMessage deleteProject(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         try {
@@ -115,6 +122,8 @@ import java.util.Map;
      * @return
      */
     @RequestMapping(value = "/selectProjectBySuppid", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="项目管理",methods="根据供应商查询项目")
+
     public BaseMessage selectProjectBySuppid(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         try {
@@ -140,6 +149,8 @@ import java.util.Map;
      */
     @RequestMapping(value = "/selectProjectByAuditstatid", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(module="项目管理",methods="根据客户查询项目")
+
     public BaseMessage selectProjectByAuditstatid(@RequestBody Map<String, Object> map) {
         BaseMessage msg = new BaseMessage();
         try {

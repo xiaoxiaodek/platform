@@ -45,7 +45,11 @@ import org.springframework.stereotype.Service;
     @Override public Interface[] searchByProject(int id) {
         Interface[] result;
         Integer[] a = pinterfaceMapper.selectByProject(id);
-        result = interfaceMapper.selectByIds(a);
+        if (a!=null && a.length!=0) {
+            result = interfaceMapper.selectByIds(a);
+        }else {
+            result=null;
+        }
         return result;
     }
 

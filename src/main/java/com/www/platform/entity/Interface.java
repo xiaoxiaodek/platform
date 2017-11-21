@@ -1,5 +1,6 @@
 package com.www.platform.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Interface {
@@ -13,7 +14,7 @@ public class Interface {
 
     private Long basprice;
 
-    private Long dicount;
+    private BigDecimal dicount;
 
     private Date createtime;
 
@@ -59,11 +60,11 @@ public class Interface {
         this.basprice = basprice;
     }
 
-    public Long getDicount() {
+    public BigDecimal getDicount() {
         return dicount;
     }
 
-    public void setDicount(Long dicount) {
+    public void setDicount(BigDecimal dicount) {
         this.dicount = dicount;
     }
 

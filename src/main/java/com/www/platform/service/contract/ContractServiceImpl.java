@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -78,8 +79,8 @@ import java.util.regex.Pattern;
     //    }
 
     @Override public Object contractList() {
-        List<Contract> contracts =this.contractMapper.selectAll();
-            //            this.contractConvertor.toDtos(this.contractRepository.findAll());
+        List<Contract> contracts = this.contractMapper.selectAll();
+        //            this.contractConvertor.toDtos(this.contractRepository.findAll());
 
         if (null == contracts) {
             return null;
@@ -97,6 +98,7 @@ import java.util.regex.Pattern;
                 //                result.put("comname",
                 //                    this.clientCompanyRepository.findByComid(con.getComid()).getComname());
                 result.put("cstarttime", con.getCstarttime());
+                String a = con.getCstarttime().toString();
                 result.put("cendtime", con.getCendtime());
             } catch (Exception e) {
                 result.clear();
@@ -105,7 +107,8 @@ import java.util.regex.Pattern;
             }
             results.add(result);
         }
-        return results;
+        //        return results;
+        return contracts;
     }
 
     //    @Override public Object sortContractList(String startOrEnd){
@@ -180,9 +183,12 @@ import java.util.regex.Pattern;
 
     @Override public String addContract(String s, List<String> fnames) {
         String result = null;
-        //        Subject subject = SecurityUtils.getSubject();
-        //        Session session = subject.getSession();
-        //        int uid = (int) session.getAttribute(GlobalConstants.UID);
+        String cname;
+        String cendtime;
+        String appreason;
+        int pid;
+        Double camt;
+        String cstarttime;
         Contract contract1;
         Map<String, Object> map = new HashMap<>();
         try {
@@ -192,74 +198,75 @@ import java.util.regex.Pattern;
             result = "获取前台数据失败";
             e1.printStackTrace();
         }
-
-        String cname;
-        String cendtime;
-        String cremarks;
-        int ctype;
-        Double camt;
-        String cstarttime;
-        if ((String) map.get("cname") != null && (String) map.get("ctype") != null
-            && (String) map.get("camt") != null && (String) map.get("cstarttime") != null
-            && (String) map.get("cendtime") != null && (String) map.get("cremarks") != null) {
+        if (map.get("camt") != null && map.get("cstarttime") != null && map.get("cendtime") != null
+            && map.get("cname") != null && map.get("appreason") != null
+            && map.get("auditstatid") != null && map.get("suppid") != null
+            && map.get("cstat") != null && map.get("pid") != null && map.get("appusrid") != null) {
             cname = (String) map.get("cname");
-            ctype = Integer.parseInt((String) map.get("ctype"));
-            camt = Double.parseDouble((String) map.get("camt"));
-            String amtstr = (String) map.get("camt");
+            camt = Double.parseDouble(map.get("camt").toString());
+            String amtstr = map.get("camt").toString();
             Boolean strResult = amtstr.matches("^[0-9]+\\.?[0-9]?[0-9]?$");
             if (!strResult) {
                 return "请检查金额是否正确";
             }
-            cstarttime = (String) map.get("cstarttime");
-            cendtime = (String) map.get("cendtime");
-            cremarks = (String) map.get("cremarks");
+            cstarttime = map.get("cstarttime").toString();
+            cendtime = map.get("cendtime").toString();
+            appreason = map.get("appreason").toString();
+            pid = (int) map.get("pid");
         } else {
             return result = "表单不完整";
         }
 
-        Pattern p = Pattern.compile("^(\\d{4})/(\\d{2})/(\\d{2})$");
-        Matcher matcher1 = p.matcher(cstarttime);
-        Matcher matcher2 = p.matcher(cendtime);
-        boolean rs1 = matcher1.matches();
-        boolean rs2 = matcher2.matches();
+        //        Pattern p = Pattern.compile("^(\\d{4})/(\\d{2})/(\\d{2})$");
+        //        Matcher matcher1 = p.matcher(cstarttime);
+        //        Matcher matcher2 = p.matcher(cendtime);
+        //        boolean rs1 = matcher1.matches();
+        //        boolean rs2 = matcher2.matches();
 
 
-        if (rs1 == false || rs2 == false) {
-            return "日期格式不正确";
-        }
-        int comid = Integer.parseInt((String) map.get("comid"));
-        Boolean isremind = Boolean.parseBoolean((String) map.get("isremind"));
+        //        if (rs1 == false || rs2 == false) {
+        //            return "日期格式不正确";
+        //        }
+        //        int comid = Integer.parseInt((String) map.get("comid"));
+        //        Boolean isremind = Boolean.parseBoolean((String) map.get("isremind"));
+        //
 
+        //        SimpleDateFormat sdf0 = new SimpleDateFormat("yyyyMMddHHmmss");
+        //        Random random = new Random();
+        //        //        contract.setCnum(sdf0.format(signdate)+ random.nextInt(10));
+        //                contract.setCtype(ctype);
         Contract contract = new Contract();
-        Date createtime = DateUtil.getNowDate();
-        SimpleDateFormat sdf0 = new SimpleDateFormat("yyyyMMddHHmmss");
-        Random random = new Random();
-        //        contract.setCnum(sdf0.format(createtime)+ random.nextInt(10));
+//        LocalDateTime signdate = LocalDateTime.now();
         contract.setCname(cname);
-        //        contract.setCtype(ctype);
         contract.setCamt(camt);
-        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date cstarttime1;
         Date cendtime1;
+        Date signDate = null;
+        Date modTime = new Date();
         try {
+            signDate = sdf1.parse((String) map.get("signdate"));
             cstarttime1 = sdf1.parse(cstarttime);
             contract.setCstarttime(cstarttime1);
+//            contract.setCstarttime(map.get("cstarttime"));
             cendtime1 = sdf1.parse(cendtime);
             contract.setCendtime(cendtime1);
+//            contract.setCendtime((Date) map.get("cendtime"));
         } catch (ParseException e1) {
+//        } catch (Exception e1) {
             result = "时间处理失败";
             e1.printStackTrace();
         }
 
         if ((contract.getCendtime().compareTo(contract.getCstarttime())) == 1) {
-            //            contract.setCremarks(cremarks);
-            //            contract.setComid(comid);
-            //            contract.setIsremind(isremind);
-            //            contract.setCreatetime(createtime);
-            contract.setModtime(createtime);
-            //            contract.setEmpid(this.comempRepository.findByUid(uid).getEmpid());
-            //            contract.setBid(this.comempRepository.findByUid(uid).getBid());
-
+            contract.setAppreason(appreason);
+            contract.setAppusrid((Integer) map.get("appusrid"));
+            contract.setSuppid( (Integer)map.get("suppid"));
+            contract.setSigndate(signDate);
+            contract.setModtime(modTime);
+            contract.setCstat((Integer) map.get("cstat"));
+            contract.setPid((Integer) map.get("pid"));
+            contract.setAuditstatid((Integer) map.get("auditstatid"));
         } else {
             return result = "请查看日期是否准确";
         }
@@ -271,7 +278,7 @@ import java.util.regex.Pattern;
                 //            if (null != fnames && 0 != fnames.size()) {
                 for (int i = 0; i < fnames.size(); i++) {
                     int fid = this.fileService
-                        .addFile(fnames.get(i), comid, GlobalConstants.CONTRACT, cremarks);
+                        .addFile(fnames.get(i), pid, GlobalConstants.CONTRACT, appreason);
                     System.out.println("fid = " + fid);
                     this.cFileService.addCFile(cid, fid);
                 }
@@ -325,7 +332,7 @@ import java.util.regex.Pattern;
             try {
                 cstarttime1 = sdf1.parse(cstarttime);
 
-                contract.setCstarttime(cstarttime1);
+                //                contract.setCstarttime(cstarttime1);
             } catch (ParseException e1) {
                 result = "时间处理失败";
                 e1.printStackTrace();
@@ -335,7 +342,7 @@ import java.util.regex.Pattern;
             try {
                 cstarttime1 = sdf1.parse(cstarttime);
 
-                contract.setCstarttime(cstarttime1);
+                //                contract.setCstarttime(cstarttime1);
 
             } catch (ParseException e1) {
                 result = "时间处理失败";
@@ -439,6 +446,22 @@ import java.util.regex.Pattern;
             logger.error("删除合同异常");
         }
         return result;
+    }
+
+    @Override public Object queryContractByComid(int comid) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        List<Contract> dtos = this.contractMapper.selectByCompany(comid);
+        if (null == dtos || dtos.size() == 0) {
+            return null;
+        } else {
+            for (Contract dto : dtos) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("cid", dto.getCid());
+                map.put("cname", dto.getCname());
+                results.add(map);
+            }
+            return results;
+        }
     }
 
 }

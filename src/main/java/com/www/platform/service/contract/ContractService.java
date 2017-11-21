@@ -24,7 +24,7 @@ public interface ContractService {
 
 
     //根据客户公司comid获取合同列表
-//     Object queryContractByComid(int comid);
+     Object queryContractByComid(int comid);
 
     // 销售员的合同列表
 //     Object saleContractList();

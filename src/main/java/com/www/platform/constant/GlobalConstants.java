@@ -53,7 +53,7 @@ public class GlobalConstants {
     public static final String REMIND_CRON = "0 0/10 * * * ? *";
 
     //合同文件存取路径
-    public static final String CONTRACT = "file/contract";
+    public static final String CONTRACT = "src/main/webapp/uploadFiles";
 
     //脚本文件存取路径
     public static final String SCRIPT_SCRIPT = "file/script/script";

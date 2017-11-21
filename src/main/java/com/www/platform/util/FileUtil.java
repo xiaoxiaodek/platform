@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class FileUtil {
     private static Logger logger = LoggerFactory.getLogger(FileUtil.class);
-    private static String userDir = System.getProperty("user.home");
+    private static String userDir = System.getProperty("user.dir");
 
     /**
      * 新增多个文件

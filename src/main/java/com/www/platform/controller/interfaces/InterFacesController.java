@@ -6,12 +6,15 @@ import com.www.platform.message.MessageCode;
 import com.www.platform.message.StatusCode;
 import com.www.platform.service.interfaces.InterfacesService;
 import com.www.platform.util.ResponseUtil;
+import com.www.platform.util.SystemLog;
+import org.apache.ibatis.annotations.Lang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
@@ -28,6 +31,7 @@ import java.util.Map;
 
     @Autowired private InterfacesService interfacesService;
 
+    @SystemLog(module="公司管理",methods="查询所有")
     @RequestMapping(value = "/", method = RequestMethod.GET) @ResponseBody
     public BaseMessage SearchAll() {
         BaseMessage msg = new BaseMessage();
@@ -43,14 +47,19 @@ import java.util.Map;
     }
 
 
-
+    @SystemLog(module="接口管理",methods="根据项目查询")
     @RequestMapping(value = "/project", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByProject(@RequestParam int projectId) {
         BaseMessage msg = new BaseMessage();
         try {
             Interface[] a = interfacesService.searchByProject(projectId);
-            msg.setData(a);
-            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+            if (a == null || a.length == 0) {
+                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.DATA_ERROR);
+                return msg;
+            } else {
+                msg.setData(a);
+                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
@@ -58,27 +67,29 @@ import java.util.Map;
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="根据公司查询")
     @RequestMapping(value = "/company", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByCompany(@RequestParam int companyId) {
         BaseMessage msg = new BaseMessage();
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="新增接口")
     @RequestMapping(value = "/add", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage add(@RequestBody Map<String, Object> params) throws Exception{
+    public BaseMessage add(@RequestBody Map<String, Object> params) throws Exception {
         BaseMessage msg = new BaseMessage();
         Interface in = new Interface();
         try {
             in.setInfname((String) params.get("infname"));
             in.setInftype((Integer) params.get("inftype"));
-            in.setExinf(Boolean.valueOf( params.get("exinf").toString()));
+            in.setExinf(Boolean.valueOf(params.get("exinf").toString()));
             in.setBasprice(Long.valueOf(params.get("basprice").toString()));
-            in.setDicount(Long.valueOf( params.get("dicount").toString()));
+            in.setDicount(BigDecimal.valueOf((Double) params.get("dicount")));
 
             Date createtime = new Date();
             in.setCreatetime(createtime);
-//            in.setCreatetime((Date) params.get("createtime"));
-//            in.setModtime((Date) params.get("modtime"));
+            //            in.setCreatetime((Date) params.get("createtime"));
+            in.setModtime(createtime);
             Boolean result = interfacesService.add(in);
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
         } catch (Exception e) {
@@ -87,47 +98,48 @@ import java.util.Map;
         }
 
 
-//        Pattern p = Pattern.compile("^(\\d{4})/(\\d{2})/(\\d{2})$");
-//        Matcher matcher1 = p.matcher(cstarttime);
-//        Matcher matcher2 = p.matcher(cendtime);
-//        boolean rs1 = matcher1.matches();
-//        boolean rs2 = matcher2.matches();
-//
-//
-//        if (rs1 == false || rs2 == false) {
-//            return "日期格式不正确";
-//        }
-//        int comid = Integer.parseInt((String) map.get("comid"));
-//        Boolean isremind = Boolean.parseBoolean((String) map.get("isremind"));
-//
-//        Contract contract = new Contract();
-//        Date createtime = DateUtil.getNowDate();
-//        SimpleDateFormat sdf0 = new SimpleDateFormat("yyyyMMddHHmmss");
-//        Random random = new Random();
-//        contract.setCnum(sdf0.format(createtime)+ random.nextInt(10));
-//        contract.setCname(cname);
-//        contract.setCtype(ctype);
-//        contract.setCamt(camt);
-//        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
-//        Date cstarttime1;
-//        Date cendtime1;
-//        try {
-//            cstarttime1 = sdf1.parse(cstarttime);
-//            contract.setCstarttime(cstarttime1);
-//            cendtime1 = sdf1.parse(cendtime);
-//            contract.setCendtime(cendtime1);
-//        } catch (ParseException e1) {
-//            result = "时间处理失败";
-//            e1.printStackTrace();
-//        }
+        //        Pattern p = Pattern.compile("^(\\d{4})/(\\d{2})/(\\d{2})$");
+        //        Matcher matcher1 = p.matcher(cstarttime);
+        //        Matcher matcher2 = p.matcher(cendtime);
+        //        boolean rs1 = matcher1.matches();
+        //        boolean rs2 = matcher2.matches();
+        //
+        //
+        //        if (rs1 == false || rs2 == false) {
+        //            return "日期格式不正确";
+        //        }
+        //        int comid = Integer.parseInt((String) map.get("comid"));
+        //        Boolean isremind = Boolean.parseBoolean((String) map.get("isremind"));
+        //
+        //        Contract contract = new Contract();
+        //        Date createtime = DateUtil.getNowDate();
+        //        SimpleDateFormat sdf0 = new SimpleDateFormat("yyyyMMddHHmmss");
+        //        Random random = new Random();
+        //        contract.setCnum(sdf0.format(createtime)+ random.nextInt(10));
+        //        contract.setCname(cname);
+        //        contract.setCtype(ctype);
+        //        contract.setCamt(camt);
+        //        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
+        //        Date cstarttime1;
+        //        Date cendtime1;
+        //        try {
+        //            cstarttime1 = sdf1.parse(cstarttime);
+        //            contract.setCstarttime(cstarttime1);
+        //            cendtime1 = sdf1.parse(cendtime);
+        //            contract.setCendtime(cendtime1);
+        //        } catch (ParseException e1) {
+        //            result = "时间处理失败";
+        //            e1.printStackTrace();
+        //        }
 
 
 
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="删除接口")
     @RequestMapping(value = "/delete", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage delete(@RequestBody  int[] ids) throws Exception{
+    public BaseMessage delete(@RequestBody int[] ids) throws Exception {
         BaseMessage msg = new BaseMessage();
         try {
             interfacesService.delete(ids);
@@ -138,8 +150,9 @@ import java.util.Map;
         return msg;
     }
 
+    @SystemLog(module="接口管理",methods="编辑接口")
     @RequestMapping(value = "/update", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage edit(@RequestBody Map<String, Object> params) throws Exception{
+    public BaseMessage edit(@RequestBody Map<String, Object> params) throws Exception {
         BaseMessage msg = new BaseMessage();
         Interface in = new Interface();
         in.setIdfid((Integer) params.get("idfid"));
@@ -147,9 +160,9 @@ import java.util.Map;
         in.setInfname((String) params.get("infname"));
         in.setInftype((Integer) params.get("inftype"));
 
-        in.setExinf(Boolean.valueOf( params.get("exinf").toString()));
+        in.setExinf(Boolean.valueOf(params.get("exinf").toString()));
         in.setBasprice(Long.valueOf(params.get("basprice").toString()));
-        in.setDicount(Long.valueOf( params.get("dicount").toString()));
+        in.setDicount(BigDecimal.valueOf((Long) params.get("dicount")));
 
         Date modtime = new Date();
         in.setModtime(modtime);
