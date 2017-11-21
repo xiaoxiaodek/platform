@@ -15,9 +15,7 @@ public class Item {
 
     private String uname;
 
-    private Date starttime;
-
-    private Date endtime;
+    private Date time;
 
     private String remark;
 
@@ -69,20 +67,12 @@ public class Item {
         this.uname = uname == null ? null : uname.trim();
     }
 
-    public Date getStarttime() {
-        return starttime;
+    public Date getTime() {
+        return time;
     }
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
-
-    public Date getEndtime() {
-        return endtime;
-    }
-
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public String getRemark() {

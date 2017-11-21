@@ -180,13 +180,14 @@ public class CompanyServiceImpl implements CompanyService{
     public Company addAndUpdate(Map<String, Object> map,Company company){
 
         try {
-            company.setPid((Integer)map.get("pid"));
+//            company.setPid((Integer)map.get("pid"));
+            company.setPid(1);
             company.setComaddr((String) map.get("comaddr"));
             company.setComemail((String) map.get("comemail"));
             company.setComname((String) map.get("comname"));
             company.setComcontact((String) map.get("comcontact"));
             company.setTypeid((Integer)map.get("typeId"));
-            company.setStatusid((Integer)map.get("statusId"));
+            company.setStatusid(0);
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("新增公司失败，空指针");
