@@ -96,7 +96,7 @@ import java.util.List;
     //删除合同
     @SystemLog(module = "合同管理", methods = "删除合同")
     @RequestMapping(value = "delete", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage delete(@RequestBody int[] cids) {
+    public BaseMessage delete(@RequestParam(value = "cids") int[] cids) {
         BaseMessage msg = new BaseMessage();
         try {
             String result = (String) this.contractService.deleteContract(cids);
@@ -179,7 +179,7 @@ import java.util.List;
         BaseMessage msg = new BaseMessage();
         try {
             // 编辑合同表
-            String path = request.getSession().getServletContext().getRealPath("/file/contract/");
+            String path = request.getSession().getServletContext().getRealPath("src/main/webapp/uploadFiles/");
             String result = this.contractService.editContract(path, s, file1);
 
             if (null != result) {

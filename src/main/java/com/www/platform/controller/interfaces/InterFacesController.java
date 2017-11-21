@@ -139,7 +139,7 @@ import java.util.Map;
 
     @SystemLog(module="接口管理",methods="删除接口")
     @RequestMapping(value = "/delete", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage delete(@RequestBody int[] ids) throws Exception {
+    public BaseMessage delete(@RequestParam(value = "ids") int[] ids) throws Exception {
         BaseMessage msg = new BaseMessage();
         try {
             interfacesService.delete(ids);
@@ -153,6 +153,7 @@ import java.util.Map;
     @SystemLog(module="接口管理",methods="编辑接口")
     @RequestMapping(value = "/update", method = RequestMethod.POST) @ResponseBody
     public BaseMessage edit(@RequestBody Map<String, Object> params) throws Exception {
+        // TODO: 17-11-21 错误输入提示
         BaseMessage msg = new BaseMessage();
         Interface in = new Interface();
         in.setIdfid((Integer) params.get("idfid"));
