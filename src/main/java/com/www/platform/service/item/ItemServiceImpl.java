@@ -65,7 +65,7 @@ public class ItemServiceImpl implements ItemService{
                     return false;
             }
         }else{
-            items = addAndUpdate(map,items,(Integer) map.get("comid"));
+            items = addAndUpdate(map,items,Integer.parseInt((String) map.get("comid")));
             for(Item item:items) {
                 Item iidItem = itemMapper.selectSelective(item);
                 item.setIid(iidItem.getIid());
@@ -122,7 +122,8 @@ public class ItemServiceImpl implements ItemService{
 //            commerceItem.setPid((Integer)map.get("pid"));
             commerceItem.setPid(1);
             commerceItem.setPtypeid(GlobalConstants.COMMERCE_STATUS);
-            commerceItem.setPstatus((Integer)map.get("commerceStatus"));
+//            commerceItem.setPstatus((Integer)map.get("commerceStatus"));
+            commerceItem.setPstatus(Integer.parseInt((String)map.get("commerceStatus")));
             commerceItem.setComid(comid);
             commerceItem.setUname((String)map.get("commerceUname"));
             commerceItem.setTime(sdf.parse((String)map.get("commerceEndtime")));
@@ -130,7 +131,7 @@ public class ItemServiceImpl implements ItemService{
 
             techItem.setPid(1);
             techItem.setPtypeid(GlobalConstants.TECH_STATUS);
-            techItem.setPstatus((Integer)map.get("techStatus"));
+            techItem.setPstatus(Integer.parseInt((String)map.get("techStatus")));
             techItem.setComid(comid);
             techItem.setUname((String)map.get("techUname"));
             techItem.setTime(sdf.parse((String)map.get("techEndtime")));
@@ -138,7 +139,7 @@ public class ItemServiceImpl implements ItemService{
 
             onlineItem.setPid(1);
             onlineItem.setPtypeid(GlobalConstants.ONLINE_STATUS);
-            onlineItem.setPstatus((Integer)map.get("onlineStatus"));
+            onlineItem.setPstatus(Integer.parseInt((String)map.get("onlineStatus")));
             onlineItem.setComid(comid);
             onlineItem.setUname((String)map.get("onlineUname"));
             onlineItem.setTime(sdf.parse((String)map.get("onlineStarttime")));

@@ -144,31 +144,37 @@ public class CompanyServiceImpl implements CompanyService{
         Date c = null;
         try {
             c = sdf.parse(sdf.format(t));
+            Company company = new Company();
+            if(map.get("comid") == null) {
+                company = addAndUpdate(map,company);
+                Company com = companyMapper.selectByAll(company);
+                if(com ==null) {
+                    company.setCreatetime(c);
+                    company.setModtime(c);
+                    companyMapper.insertSelective(company);
+                    com = company;
+                }
+                Boolean itemTrue = itemService.addAndUpdateItem(map,com.getComid());
+                session.setAttribute("comid",company.getComid());
+                return itemTrue;
+            }else{
+                company.setComid(Integer.parseInt((String) map.get("comid")));
+                company = addAndUpdate(map,company);
+                company.setModtime(c);
+                Boolean companyTrue = companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
+//                Boolean itemTrue = itemService.addAndUpdateItem(map,(Integer) map.get("comid"));
+                Boolean itemTrue = itemService.addAndUpdateItem(map,Integer.parseInt((String) map.get("comid")));
+                session.setAttribute("comid",Integer.parseInt((String)map.get("comid")));
+                return companyTrue && itemTrue;
+            }
         } catch (ParseException e) {
             e.printStackTrace();
+        }catch (Exception e){
+            logger.error("新增或修改公司失败，空指针");
+            e.printStackTrace();
+            return false;
         }
-        Company company = new Company();
-        if(map.get("comid") == null) {
-            company = addAndUpdate(map,company);
-            Company com = companyMapper.selectByAll(company);
-            if(com ==null) {
-                company.setCreatetime(c);
-                company.setModtime(c);
-                companyMapper.insertSelective(company);
-                com = company;
-            }
-            Boolean itemTrue = itemService.addAndUpdateItem(map,com.getComid());
-            session.setAttribute("comid",company.getComid());
-            return itemTrue;
-        }else{
-            company.setComid((Integer) map.get("comid"));
-            company = addAndUpdate(map,company);
-            company.setModtime(c);
-            Boolean companyTrue = companyMapper.updateByPrimaryKeySelective(company) != 0 ? true : false;
-            Boolean itemTrue = itemService.addAndUpdateItem(map,(Integer) map.get("comid"));
-            session.setAttribute("comid",map.get("comid"));
-            return companyTrue && itemTrue;
-        }
+        return true;
     }
 
     /**
@@ -186,7 +192,8 @@ public class CompanyServiceImpl implements CompanyService{
             company.setComemail((String) map.get("comemail"));
             company.setComname((String) map.get("comname"));
             company.setComcontact((String) map.get("comcontact"));
-            company.setTypeid((Integer)map.get("typeId"));
+//            company.setTypeid((Integer)map.get("typeId"));
+            company.setTypeid(Integer.parseInt((String)map.get("typeId")));
             company.setStatusid(0);
         } catch (Exception e) {
             e.printStackTrace();
@@ -201,7 +208,7 @@ public class CompanyServiceImpl implements CompanyService{
      * @param map
      * @param companies
      * @param type
-     * @return Map<String, List>
+     * @return Map<String,List>
      */
     public Map<String, List>  putOtherModule(Map<String, List> map,List<Company> companies,String type){
 
@@ -222,6 +229,7 @@ public class CompanyServiceImpl implements CompanyService{
                     }
                 }
             }
+
         }
         return map;
     }
