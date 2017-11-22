@@ -17,6 +17,8 @@ public interface ProjectMapper {
 
     List<Project> selectProjectByAuditstatid(Integer auditstatid);
 
+    List<Project> selectProjectByProjectName(String pname);
+
     int updateByPrimaryKeySelective(Project record);
 
     int updateByPrimaryKeyWithBLOBs(Project record);

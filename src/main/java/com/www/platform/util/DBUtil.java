@@ -34,16 +34,16 @@ public class DBUtil {
     private static Connection conn;
     Savepoint savepoint = null;
 
-    public DBUtil() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public DBUtil() {
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//        } catch (SQLException se) {
+//            se.printStackTrace();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public ResultSet queryData(String name) {
         logger.info("根据用户名查询密码");

@@ -31,7 +31,7 @@
         <property name="uploadTempDir" value="src/main/webapp/uploadFiles" />
     </bean>
     <mvc:annotation-driven conversion-service="conversionService">
-        <mvc:message-converters register-defaults="false">
+        <mvc:message-converters register-defaults="true">
             <bean id="fastJsonHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -41,15 +41,15 @@
                     </list>
                 </property>
             </bean>
-            <!--<bean id="messageConverter" class="org.springframework.http.converter.ResourceHttpMessageConverter">-->
-                <!--<property name="supportedMediaTypes">-->
-                    <!--<list>-->
-                        <!--&lt;!&ndash; 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 &ndash;&gt;-->
-                        <!--<value>text/html;charset=UTF-8</value>-->
-                        <!--<value>application/json;charset=UTF-8</value>-->
-                    <!--</list>-->
-                <!--</property>-->
-            <!--</bean>-->
+            <bean id="messageConverter" class="org.springframework.http.converter.ResourceHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
             <bean id="fastJsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -112,4 +112,22 @@
     <!-- 启动AspectJ支持   只对扫描过的bean有效-->
     <aop:aspectj-autoproxy/>
     <bean id="logAopAction" class="com.www.platform.filter.OperateFilter"/>
+
+
+
+
+
+
+<!--拦截器-->
+
+    <mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/views/**" />
+        <mvc:exclude-mapping path="/views/login.html" />
+        <mvc:exclude-mapping path="/views/register.html" />
+        <!--不拦截样式-->
+        <!--<mvc:exclude-mapping path="/vendors/**" />-->
+        <bean class="com.www.platform.util.AuthInterceptor"></bean>
+    </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
