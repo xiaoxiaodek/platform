@@ -51,13 +51,15 @@ public class LoginController {
 
         if(username!=null&&password!=null) {
             String uid=this.loginService.login(map);
-                if (!("fail".equals(uid )) ){
+                if (!("fail".equals(uid ))){
                     session.setAttribute(GlobalConstants.USERNAME,username);
                     session.setAttribute(GlobalConstants.UID,Integer.parseInt(uid));
                     ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
                     msg.setData("登陆成功");
+                    System.out.println("msg     :    "+msg.getData());
                 } else {
                     msg.setData("用户名或密码错误");
+                    System.out.println("msg     :    "+msg.getData());
                     ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 }
         }else {

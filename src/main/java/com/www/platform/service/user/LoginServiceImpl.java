@@ -29,23 +29,20 @@ import java.util.Map;
         String uname = map.get("uname").toString();
         String upwd = map.get("upwd").toString();
         user.setUname(uname);
-
-
         try {
             user = userMapper.selectByUname(uname);
+
             uid=user.getUid().toString();
             if (user.getUpwd().equals(Md5.MD5(upwd))) {
                 result = uid;
-                System.out.println("登陆成功");
-
+            }else{
+                return "fail";
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
-            result = null;
+            result = "fail";
             return "fail";
-
         }
-
         return result;
     }
 

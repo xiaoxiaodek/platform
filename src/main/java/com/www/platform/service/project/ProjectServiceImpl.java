@@ -26,10 +26,14 @@ public class ProjectServiceImpl implements ProjectService {
     @Override public String addProject(Map<String, Object> map) {
         String result=null;
         Project project=new Project();
-//        List<Project> projectList=new ArrayList<Project>();
+        List<Project> projectList=new ArrayList<Project>();
         project.setPname(map.get("pname").toString());
 
-//        projectList=this.projectMapper.selectProjectByProjectName(project.getPname());
+        projectList=this.projectMapper.selectProjectByProjectName(project.getPname());
+        if(projectList.size()!=0){
+            result="该项目已存在";
+            return result;
+        }
         project.setAuditstatid(Integer.parseInt(map.get("auditstatid").toString()));
         project.setAppreason(map.get("appreason").toString());
         project.setApptype(Integer.parseInt(map.get("suppid").toString()));
