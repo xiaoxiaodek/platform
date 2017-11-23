@@ -112,4 +112,22 @@
     <!-- 启动AspectJ支持   只对扫描过的bean有效-->
     <aop:aspectj-autoproxy/>
     <bean id="logAopAction" class="com.www.platform.filter.OperateFilter"/>
+
+
+
+
+
+
+<!--拦截器-->
+
+    <mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/views/**" />
+        <mvc:exclude-mapping path="/views/login.html" />
+        <mvc:exclude-mapping path="/views/register.html" />
+        <!--不拦截样式-->
+        <!--<mvc:exclude-mapping path="/vendors/**" />-->
+        <bean class="com.www.platform.util.AuthInterceptor"></bean>
+    </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
