@@ -241,6 +241,13 @@
             <artifactId>jedis</artifactId>
             <version>2.7.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
+
 
         <!--protostuff序列化依赖-->
         <dependency>
