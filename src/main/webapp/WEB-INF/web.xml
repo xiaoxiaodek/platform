@@ -69,7 +69,7 @@
 
     <!--welcomeFile设置-->
     <welcome-file-list>
-        <welcome-file>/views/login.html</welcome-file>
+        <welcome-file>/login.html</welcome-file>
     </welcome-file-list>
 
 </web-app>

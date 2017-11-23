@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> 客户列表 </title>
+    <title> 客户运营平台 </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,12 @@
     <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="../vendors/build/css/custom.min.css" rel="stylesheet">
@@ -131,23 +137,68 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
-          <!-- /top tiles -->
-            <div class="page-title">
-              <div class="title_left">
-                <h3>账户列表</h3>
-              </div>
-              <div class="title_right">
-
-              </div>
-            </div>
-          <!-- /top tiles -->
-          <div class="clearfix"></div>
           <div class="row">
+            <div class="x_panel">
+              <!-- x_panel tile fixed_height_320 overflow_hidden -->
+                <div class="x_title">
+                  <h2>客户状态</h2>
+                  <div class="clearfix"></div>
+                </div>
+                  <div class="x_content">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th><i class="fa fa-square aero"></i> 客户名称</th>
+                          <th><i class="fa fa-square blue"></i> 商务洽谈</th>
+                          <th> 负责人</th>
+                          <th> 商务截止时间</th>
+                          <th><i class="fa fa-square purple"></i> 技术对接</th>
+                          <th> 负责人</th>
+                          <th> 技术截止时间</th>
+                          <th><i class="fa fa-square red"></i> 运营情况</th>
+                          <th> 负责人</th>
+                          <th> 运营开始时间</th>
+                        </tr>
+                      </thead>
+                      <tbody id="customerstate">
 
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- <div class="form-group pull-right">
+                    <button type="button" class="btn btn-success" id="stateok">确定</button>
+                  </div> -->
+              </div>
           </div>
 
+          <div class="row">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>操作记录</h2>
+                <div class="clearfix"></div>
+              </div>
+                  <div class="x_content">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>操作模块</th>
+                          <th>操作内容</th>
+                          <th>操作ip</th>
+                          <th>操作时间</th>
+                          <th>响应时长</th>
+                          <th>操作结果</th>
+                          <th>操作人</th>
+                        </tr>
+                      </thead>
+                      <tbody id="operaterecord">
+                      </tbody>
+                    </table>
+
+                  </div>
+              </div>
           </div>
+
         </div>
         <!-- /page content -->
 
@@ -199,9 +250,28 @@
     <!-- bootstrap-daterangepicker -->
     <script src="../vendors/moment/min/moment.min.js"></script>
     <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../vendors/build/js/custom.min.js"></script>
 
+    <!-- Self Scripts -->
+    <!-- <script src="scripts/customerstate.js"></script> -->
+    <script type="text/javascript" src="../scripts/customerstate.js"></script>
   </body>
 </html>
