@@ -220,6 +220,7 @@
     <update id="updateCompany" parameterType="java.util.Map">
         UPDATE company
         SET
+        pid = #{pid},
         comaddr = #{comaddr},
         comemail = #{comemail},
         comname = #{comname},
@@ -232,6 +233,6 @@
     <insert id="insertCompany" parameterType="java.util.Map">
         insert into company
         (comid,pid,comaddr,comemail, comname, comcontact,createtime, typeId, modtime,statusId)
-        values (#{comid,jdbcType=INTEGER},1,#{comaddr},#{comemail}, #{comname}, #{comcontact},#{createtime}, #{typeId}, #{modtime},0)
+        values (#{comid,jdbcType=INTEGER},#{pid},#{comaddr},#{comemail}, #{comname}, #{comcontact},#{createtime}, #{typeId}, #{modtime},0)
     </insert>
 </mapper>

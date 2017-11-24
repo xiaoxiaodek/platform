@@ -16,11 +16,11 @@ public class AuthInterceptor implements HandlerInterceptor {
 //    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
 public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
 
-    System.out.println("sessionObj"+GlobalConstants.USERNAME);
+
         Object sessionObj = request.getSession().getAttribute(GlobalConstants.USERNAME);
-        System.out.println("============"+request.getSession().getAttribute("uname"));
+//        System.out.println("============"+request.getSession().getAttribute("uname"));
         if(sessionObj!=null) {
-            System.out.println("sessionObj"+sessionObj);
+//            System.out.println("sessionObj"+sessionObj);
             return true;
         }
         response.sendRedirect("/views/login.html");

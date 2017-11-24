@@ -48,7 +48,7 @@ public class LoginController {
         BaseMessage msg=new BaseMessage();
         String username=map.get("uname").toString();
         String password=map.get("upwd").toString();
-
+        System.out.println("username======="+username);
         if(username!=null&&password!=null) {
             String uid=this.loginService.login(map);
                 if (!("fail".equals(uid ))){
@@ -66,7 +66,7 @@ public class LoginController {
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
             msg.setData("用户名和密码不能为空");
 }
-
+        System.out.println("session.getAttribute(GlobalConstants.USERNAME)============="+session.getAttribute(GlobalConstants.USERNAME));
 return msg;
     }
 

@@ -27,11 +27,10 @@ import java.util.Map;
  * @modified by  下午2:28
  */
 @Controller @RequestMapping("interfaces") public class InterFacesController {
-    private static Logger logger = LoggerFactory.getLogger(InterFacesController.class);
 
     @Autowired private InterfacesService interfacesService;
 
-    @SystemLog(module="公司管理",methods="查询所有")
+    @SystemLog(module = "接口管理", methods = "查询所有")
     @RequestMapping(value = "/", method = RequestMethod.GET) @ResponseBody
     public BaseMessage SearchAll() {
         BaseMessage msg = new BaseMessage();
@@ -39,6 +38,8 @@ import java.util.Map;
             Interface[] a = interfacesService.searchAll();
             msg.setData(a);
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        } catch (NullPointerException e) {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         } catch (Exception e) {
             e.printStackTrace();
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
@@ -47,14 +48,14 @@ import java.util.Map;
     }
 
 
-    @SystemLog(module="接口管理",methods="根据项目查询")
+    @SystemLog(module = "接口管理", methods = "根据项目查询")
     @RequestMapping(value = "/project", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByProject(@RequestParam int projectId) {
         BaseMessage msg = new BaseMessage();
         try {
             Interface[] a = interfacesService.searchByProject(projectId);
             if (a == null || a.length == 0) {
-                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.DATA_ERROR);
+                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.NO_RESPONSE);
                 return msg;
             } else {
                 msg.setData(a);
@@ -67,16 +68,16 @@ import java.util.Map;
         return msg;
     }
 
-    @SystemLog(module="接口管理",methods="根据公司查询")
+    @SystemLog(module = "接口管理", methods = "根据公司查询")
     @RequestMapping(value = "/company", method = RequestMethod.GET) @ResponseBody
     public BaseMessage searchByCompany(@RequestParam int companyId) {
         BaseMessage msg = new BaseMessage();
         return msg;
     }
 
-    @SystemLog(module="接口管理",methods="新增接口")
+    @SystemLog(module = "接口管理", methods = "新增接口")
     @RequestMapping(value = "/add", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage add(@RequestBody Map<String, Object> params) throws Exception {
+    public BaseMessage add(@RequestBody Map<String, Object> params)  {
         BaseMessage msg = new BaseMessage();
         Interface in = new Interface();
         try {
@@ -92,8 +93,11 @@ import java.util.Map;
             in.setModtime(createtime);
             Boolean result = interfacesService.add(in);
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        } catch (ClassCastException e) {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.INVALID_PARAM);
+            e.printStackTrace();
         } catch (Exception e) {
-            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.DATA_ERROR);
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
             e.printStackTrace();
         }
 
@@ -137,9 +141,9 @@ import java.util.Map;
         return msg;
     }
 
-    @SystemLog(module="接口管理",methods="删除接口")
+    @SystemLog(module = "接口管理", methods = "删除接口")
     @RequestMapping(value = "/delete", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage delete(@RequestParam(value = "ids") int[] ids) throws Exception {
+    public BaseMessage delete(@RequestBody int[] ids)  {
         BaseMessage msg = new BaseMessage();
         try {
             interfacesService.delete(ids);
@@ -150,28 +154,33 @@ import java.util.Map;
         return msg;
     }
 
-    @SystemLog(module="接口管理",methods="编辑接口")
+    @SystemLog(module = "接口管理", methods = "编辑接口")
     @RequestMapping(value = "/update", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage edit(@RequestBody Map<String, Object> params) throws Exception {
+    public BaseMessage edit(@RequestBody Map<String, Object> params)  {
         // TODO: 17-11-21 错误输入提示
         BaseMessage msg = new BaseMessage();
         Interface in = new Interface();
-        in.setIdfid((Integer) params.get("idfid"));
-
-        in.setInfname((String) params.get("infname"));
-        in.setInftype((Integer) params.get("inftype"));
-
-        in.setExinf(Boolean.valueOf(params.get("exinf").toString()));
-        in.setBasprice(Long.valueOf(params.get("basprice").toString()));
-        in.setDicount(BigDecimal.valueOf((Long) params.get("dicount")));
-
-        Date modtime = new Date();
-        in.setModtime(modtime);
         try {
+            in.setIdfid((Integer) params.get("idfid"));
+
+            in.setInfname((String) params.get("infname"));
+            in.setInftype((Integer) params.get("inftype"));
+
+            in.setExinf(Boolean.valueOf(params.get("exinf").toString()));
+            in.setBasprice(Long.valueOf(params.get("basprice").toString()));
+            in.setDicount(BigDecimal.valueOf((Double) params.get("dicount")));
+
+            Date modtime = new Date();
+            in.setModtime(modtime);
+
             interfacesService.update(in);
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        } catch (ClassCastException e){
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.INVALID_PARAM);
+            e.printStackTrace();
         } catch (Exception e) {
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.DATA_ERROR);
+            e.printStackTrace();
         }
         return msg;
     }

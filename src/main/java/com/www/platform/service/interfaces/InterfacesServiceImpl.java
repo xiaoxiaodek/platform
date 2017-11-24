@@ -25,48 +25,85 @@ import org.springframework.stereotype.Service;
     @Autowired private PinterfaceMapper pinterfaceMapper;
 
     /**
-     * @param ids
-     * @return
+     * @param ids：接口id数组
+     * @return 接口对象数组
      */
     @Override public Interface[] searchByList(Integer[] ids) {
-        return interfaceMapper.selectByIds(ids);
+        Interface[] result;
+        try {
+            result = interfaceMapper.selectByIds(ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return result;
     }
 
     @Override public Interface[] searchAll() {
         Interface[] result;
-        result = interfaceMapper.selectAll();
+        try {
+            result = interfaceMapper.selectAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
         return result;
     }
 
+    /**
+     * @param id :接口id
+     * @return 接口对象
+     */
     @Override public Interface searchById(int id) {
-        return interfaceMapper.selectByPrimaryKey(id);
+        Interface result;
+        try {
+            result = interfaceMapper.selectByPrimaryKey(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return result;
     }
 
+    /**
+     * @param id :项目id
+     * @return 接口对象数组
+     */
     @Override public Interface[] searchByProject(int id) {
         Interface[] result;
-        Integer[] a = pinterfaceMapper.selectByProject(id);
-        if (a!=null && a.length!=0) {
-            result = interfaceMapper.selectByIds(a);
-        }else {
-            result=null;
+        Integer[] a;
+        try {
+            a = pinterfaceMapper.selectByProject(id);
+            if (a != null && a.length != 0) {
+                result = interfaceMapper.selectByIds(a);
+            } else {
+                result = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
         return result;
     }
 
     //    @Override
-    //    ArrayList<Interface> searchByProject(int projectId){
-    //
-    //    }
-    //    @Override
     //    ArrayList<Interface> searchByCompany(int companyId){
     //
     //    }
+
+    /**
+     * @param interfaces 接口对象
+     * @return Boolean
+     */
     @Override public Boolean add(Interface interfaces) {
         try {
             interfaceMapper.insert(interfaces);
             return true;
         } catch (ClassCastException e) {
             logs.error("类型不正确");
+            return false;
+        } catch (Exception e) {
+            logs.error("新增出错");
             return false;
         }
     }
@@ -75,23 +112,34 @@ import org.springframework.stereotype.Service;
     //    String add(@Param("interfaces") LinkedList<Interface> interfaces){
     //
     //    }
+
+    /**
+     * @param intefaces 接口对象
+     * @return Boolean
+     */
     @Override public Boolean update(Interface intefaces) {
-        Interface i = new Interface();
+        Interface i;
         try {
             i = interfaceMapper.selectByPrimaryKey(intefaces.getIdfid());
         } catch (NullPointerException e) {
             logs.error("接口不存在");
+            return false;
         }
         try {
-            interfaceMapper.updateByPrimaryKeySelective(intefaces);
+            if (i != null) {
+                interfaceMapper.updateByPrimaryKeySelective(intefaces);
+            }
         } catch (Exception e) {
             logs.error("更新出错");
             e.printStackTrace();
         }
         return false;
-
     }
 
+    /**
+     * @param interfaces 接口对象
+     * @return Boolean
+     */
     @Override public Boolean delete(int[] interfaces) {
         try {
             for (int s : interfaces) {

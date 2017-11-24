@@ -125,6 +125,7 @@ public class CompanyServiceImpl implements CompanyService {
         Date t = DateUtil.getNowDate();
         try {
             map.put("typeId",Integer.parseInt((String)map.get("typeId")));
+            map.put("pid",Integer.parseInt((String)map.get("pid")));
 
             map.put("commerceStatus",Integer.parseInt((String)map.get("commerceStatus")));
             map.put("commerceEndtime",sdf.parse((String) map.get("commerceEndtime")));

@@ -169,8 +169,8 @@
 
   <insert id="insertItem" parameterType="java.util.Map">
     insert into item (pid, pTypeid,pStatus,comid,uname,time,remark)
-    values (3,0,#{commerceStatus}, #{comid}, #{commerceUname},#{commerceEndtime}, #{remark}),
-    (3,1,#{techStatus}, #{comid}, #{techUname},#{techEndtime}, #{remark}),
-    (3,2,#{onlineStatus}, #{comid}, #{onlineUname},#{onlineStarttime}, #{remark})
+    values (#{pid},0,#{commerceStatus}, #{comid}, #{commerceUname},#{commerceEndtime}, #{remark}),
+    (#{pid},1,#{techStatus}, #{comid}, #{techUname},#{techEndtime}, #{remark}),
+    (#{pid},2,#{onlineStatus}, #{comid}, #{onlineUname},#{onlineStarttime}, #{remark})
   </insert>
 </mapper>

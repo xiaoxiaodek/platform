@@ -22,7 +22,7 @@ import java.util.Map;
  * @desc 客户和供应商的相关操作
  */
 @Controller
-@RequestMapping("company2")
+@RequestMapping("company")
 
 public class CompanyController {
 
