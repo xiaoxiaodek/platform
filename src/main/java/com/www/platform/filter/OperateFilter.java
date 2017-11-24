@@ -2,7 +2,11 @@ package com.www.platform.filter;
 
 import com.www.platform.dao.LogMapper;
 import com.www.platform.entity.Log;
+import com.www.platform.message.BaseMessage;
+import com.www.platform.message.MessageCode;
+import com.www.platform.message.StatusCode;
 import com.www.platform.util.GetLocalIp;
+import com.www.platform.util.ResponseUtil;
 import com.www.platform.util.SystemLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,6 +15,7 @@ import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -61,6 +66,7 @@ public class OperateFilter {
     }
 
     @Around("controllerAspect()")
+    @ResponseBody
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         //获取登录用户账户
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
@@ -120,6 +126,7 @@ public class OperateFilter {
                     long end = System.currentTimeMillis();
                     log.setResponsetime(""+(end-start));
                     log.setResult("执行失败");
+                    ResponseUtil.buildResMsg(new BaseMessage(),MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 }
             } else {//没有包含注解
                 object = pjp.proceed();

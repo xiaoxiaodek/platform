@@ -96,7 +96,7 @@ import java.util.List;
     //删除合同
     @SystemLog(module = "合同管理", methods = "删除合同")
     @RequestMapping(value = "delete", method = RequestMethod.POST) @ResponseBody
-    public BaseMessage delete(@RequestParam(value = "cids") int[] cids) {
+    public BaseMessage delete(@RequestBody int[] cids) {
         BaseMessage msg = new BaseMessage();
         try {
             String result = (String) this.contractService.deleteContract(cids);

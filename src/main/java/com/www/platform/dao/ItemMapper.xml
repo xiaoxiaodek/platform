@@ -8,12 +8,11 @@
     <result column="pStatus" jdbcType="INTEGER" property="pstatus" />
     <result column="comid" jdbcType="INTEGER" property="comid" />
     <result column="uname" jdbcType="VARCHAR" property="uname" />
-    <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
-    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
-    iid, pid, pTypeid, pStatus, comid, uname, starttime, endtime, remark
+    iid, pid, pTypeid, pStatus, comid, uname, time, remark
   </sql>
   <select id="selectByComid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,12 +27,10 @@
   <insert id="insert" parameterType="com.www.platform.entity.Item">
     insert into item (iid, pid, pTypeid, 
       pStatus, comid, uname, 
-      starttime, endtime, remark
-      )
+      time, remark)
     values (#{iid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{ptypeid,jdbcType=INTEGER}, 
       #{pstatus,jdbcType=INTEGER}, #{comid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, 
-      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
-      )
+      #{time,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.Item">
     insert into item
@@ -56,11 +53,8 @@
       <if test="uname != null">
         uname,
       </if>
-      <if test="starttime != null">
-        starttime,
-      </if>
-      <if test="endtime != null">
-        endtime,
+      <if test="time != null">
+        time,
       </if>
       <if test="remark != null">
         remark,
@@ -85,11 +79,8 @@
       <if test="uname != null">
         #{uname,jdbcType=VARCHAR},
       </if>
-      <if test="starttime != null">
-        #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null">
-        #{endtime,jdbcType=TIMESTAMP},
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -114,11 +105,8 @@
       <if test="uname != null">
         uname = #{uname,jdbcType=VARCHAR},
       </if>
-      <if test="starttime != null">
-        starttime = #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null">
-        endtime = #{endtime,jdbcType=TIMESTAMP},
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -133,8 +121,7 @@
       pStatus = #{pstatus,jdbcType=INTEGER},
       comid = #{comid,jdbcType=INTEGER},
       uname = #{uname,jdbcType=VARCHAR},
-      starttime = #{starttime,jdbcType=TIMESTAMP},
-      endtime = #{endtime,jdbcType=TIMESTAMP},
+      time = #{time,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
     where iid = #{iid,jdbcType=INTEGER}
   </update>

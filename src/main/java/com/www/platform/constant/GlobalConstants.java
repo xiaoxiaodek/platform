@@ -68,4 +68,8 @@ public class GlobalConstants {
     public static final int COMPANY_COMCONTACT = 4;
     public static final int COMPANY_COMNAME = 5;
 
+    //状态类型
+    public static final int COMMERCE_STATUS = 0;
+    public static final int TECH_STATUS = 1;
+    public static final int ONLINE_STATUS = 2;
 }

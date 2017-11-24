@@ -43,6 +43,10 @@
         </layout>
     </appender>
 
+    <logger name="com.spring.mapperinterface" additivity="true">
+        <level value="DEBUG" />
+    </logger>
+
     <root>
         <priority value="debug" />
         <appender-ref ref="dailyBebugFile" />
