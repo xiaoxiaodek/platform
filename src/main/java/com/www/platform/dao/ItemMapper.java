@@ -3,6 +3,7 @@ package com.www.platform.dao;
 import com.www.platform.entity.Item;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ItemMapper {
     int deleteByPrimaryKey(Integer iid);
@@ -19,5 +20,6 @@ public interface ItemMapper {
 
     Item selectSelective(Item record);
 
-    int deleteByComid(Integer comid);
+    int updateItem(Map<String, Object> map);
+    int insertItem(Map<String, Object> map);
 }

@@ -1,6 +1,7 @@
 package com.www.platform.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Company {
     private Integer comid;
@@ -22,6 +23,26 @@ public class Company {
     private Date modtime;
 
     private Integer statusid;
+
+    private List<Log> logs;
+
+    private List<Item> items;
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
     public Integer getComid() {
         return comid;

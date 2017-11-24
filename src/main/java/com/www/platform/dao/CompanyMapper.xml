@@ -12,6 +12,8 @@
     <result column="typeId" jdbcType="INTEGER" property="typeid" />
     <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
     <result column="statusId" jdbcType="INTEGER" property="statusid" />
+      <collection property="logs" resultMap="com.www.platform.dao.LogMapper.BaseResultMap"></collection>
+      <collection property="items" resultMap="com.www.platform.dao.ItemMapper.BaseResultMap"></collection>
   </resultMap>
   <sql id="Base_Column_List">
     comid, pid, comaddr, comemail, comname, comcontact, createtime, typeId, modtime, 
@@ -154,59 +156,82 @@
     where comid = #{comid,jdbcType=INTEGER}
   </update>
 
-    <select id="selectSelective" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
+    <select id="selectSelective" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from company
         where 1=1
-        <if test="comid != null" >
-            AND comid = #{comid,jdbcType=INTEGER}
-        </if>
-        <if test="typeid != null" >
-            AND typeId = #{typeid,jdbcType=INTEGER}
+        <if test="typeId != null" >
+            AND typeId = #{typeId}
         </if>
         <if test="comaddr != null and !comaddr.trim().equals('')">
-            AND comaddr LIKE '%${comaddr}%'
+            AND comaddr = #{comaddr}
         </if>
         <if test="comemail != null and !comemail.trim().equals('')">
-            AND comemail LIKE '%${comemail}%'
+            AND comemail = #{comemail}
         </if>
         <if test="comname != null and !comname.trim().equals('')">
-            AND comname LIKE '%${comname}%'
+            AND comname = #{comname}
         </if>
         <if test="comcontact != null and !comcontact.trim().equals('')">
-            AND comcontact LIKE '%${comcontact}%'
-        </if>
-        <if test="createtime != null and !createtime.trim().equals('')">
-            AND createtime LIKE '%${createtime}%'
-        </if>
-        <if test="modtime != null and !modtime.trim().equals('')">
-            AND modtime LIKE '%${modtime}%'
+            AND comcontact = #{comcontact}
         </if>
     </select>
 
-    <select id="selectByAll" parameterType="com.www.platform.entity.Company" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from company
-        where 1=1
-        <if test="pid != null" >
-            AND pid = #{pid,jdbcType=INTEGER}
-        </if>
-        <if test="typeid != null" >
-            AND typeId = #{typeid,jdbcType=INTEGER}
-        </if>
-        <if test="comaddr != null">
-            AND comaddr = #{comaddr,jdbcType=VARCHAR}
-        </if>
-        <if test="comemail != null">
-            AND comemail = #{comemail,jdbcType=VARCHAR}
-        </if>
-        <if test="comname != null">
-            AND comname = #{comname,jdbcType=VARCHAR}
-        </if>
-        <if test="comcontact != null">
-            AND comcontact = #{comcontact,jdbcType=VARCHAR}
-        </if>
+    <select id="queryCompanyList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        com.comid, com.pid, comaddr, comemail, comname, comcontact, createtime, typeId, modtime, statusId,
+        iid, i.pid, pTypeid, pStatus, i.comid, i.uname, time, remark,
+        lid, l.comid, l.uname, module, method, ip, otime, responseTime, result
+        FROM company com  LEFT JOIN item i ON com.comid=i.comid LEFT JOIN log l ON com.comid=l.comid
+        <where>
+            <if test= "typeId != null">
+                AND com.typeId = #{typeId}
+            </if>
+            <if test= "searchType.equals('comid')">
+                AND com.comid = #{searchWord}
+            </if>
+            <if test= "searchType.equals('comname')">
+                AND com.comname LIKE '%${searchWord}%'
+            </if>
+            <if test= "searchType.equals('comaddr')">
+                AND com.comaddr LIKE '%${searchWord}%'
+            </if>
+            <if test= "searchType.equals('comemail')">
+                AND com.comemail LIKE '%${searchWord}%'
+            </if>
+            <if test= "searchType.equals('comcontact')">
+                AND com.comcontact LIKE '%${searchWord}%'
+            </if>
+        </where>
+        ORDER BY com.comid
     </select>
+
+    <delete id="deleteCompany" parameterType="int">
+        DELETE com,i
+        FROM company as com
+        LEFT JOIN item as i on com.comid=i.comid
+        WHERE com.comid in
+        <foreach collection="array" item="comid" open="(" separator="," close=")">
+            #{comid}
+        </foreach>
+    </delete>
+
+    <update id="updateCompany" parameterType="java.util.Map">
+        UPDATE company
+        SET
+        comaddr = #{comaddr},
+        comemail = #{comemail},
+        comname = #{comname},
+        comcontact = #{comcontact},
+        typeId = #{typeId},
+        modtime = #{modtime}
+        WHERE comid = #{comid}
+    </update>
+
+    <insert id="insertCompany" parameterType="java.util.Map">
+        insert into company
+        (comid,pid,comaddr,comemail, comname, comcontact,createtime, typeId, modtime,statusId)
+        values (#{comid,jdbcType=INTEGER},1,#{comaddr},#{comemail}, #{comname}, #{comcontact},#{createtime}, #{typeId}, #{modtime},0)
+    </insert>
 </mapper>

@@ -1,5 +1,6 @@
 package com.www.platform.controller.company;
 
+import com.www.platform.entity.Company;
 import com.www.platform.message.BaseMessage;
 import com.www.platform.message.MessageCode;
 import com.www.platform.message.StatusCode;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,7 +22,8 @@ import java.util.Map;
  * @desc 客户和供应商的相关操作
  */
 @Controller
-@RequestMapping("company")
+@RequestMapping("company2")
+
 public class CompanyController {
 
     private static Logger logger = LoggerFactory.getLogger(CompanyController.class);
@@ -28,83 +31,87 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
+    @RequestMapping(value = "/queryCompany", method = RequestMethod.GET)
+    @ResponseBody
+    @SystemLog(module = "公司管理", methods = "查询公司")
+    public BaseMessage selectAll(@RequestParam(value = "typeId") int typeId,
+                                 @RequestParam(value = "searchWord") String serachWord,
+                                 @RequestParam(value = "type") String searchType)throws Exception {
+
+        BaseMessage message = new BaseMessage();
+        List<Company> companies = this.companyService.selectAll(typeId,serachWord,searchType);
+//        PageHelper.startPage(1,5);
+//        PageInfo<Company> pageInfo = new PageInfo<Company>(companies);
+        if (companies!=null) {
+            ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+            message.setData(companies);
+        }else
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        return message;
+    }
+
+
     /**
      * @param comids 客户和供应商的id
      * @return BaseMessage
-     * @desc 删除客户和供应商
+     * @desc 删除客户和供应商2.0
      */
     @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
     @ResponseBody
     @SystemLog(module = "公司管理", methods = "删除公司")
-    public BaseMessage deleteCompany(@RequestBody int[] comids) {
-        BaseMessage message = new BaseMessage();
-        try {
-            if ("删除公司成功" == this.companyService.deleteCompany(comids)) {
-                ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                message.setData("删除公司成功");
-            } else if ("不存在该公司" == this.companyService.deleteCompany(comids)) {
-                ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-                message.setData("不存在该公司");
-            } else {
-                ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-                message.setData("有与公司相关的项目");
-            }
-        } catch (Exception e) {
-            logger.error("获取公司异常");
-            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
-            e.printStackTrace();
-        }
-        return message;
-    }
+    public BaseMessage deleteCompanies(@RequestBody int[] comids)throws Exception {
 
-
-    /**
-     * @param serachWord 搜索关键词
-     * @return BaseMessage
-     * @desc 获取客户和供应商列表
-     */
-    @RequestMapping(value = "/companySelective", method = RequestMethod.GET)
-    @ResponseBody
-    @SystemLog(module = "公司管理", methods = "查询公司")
-    public BaseMessage companySelective(@RequestParam(value = "searchWord") String serachWord,
-                                        @RequestParam(value = "type") String type,
-                                        @RequestParam(value = "typeId") int typeId) {
         BaseMessage message = new BaseMessage();
-        try {
-            if (null != this.companyService.findSelective(serachWord, type, typeId)) {
-                ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                message.setData(this.companyService.findSelective(serachWord, type, typeId));
-            } else {
-                ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-                message.setData("未获取公司数据");
-            }
-        } catch (Exception e) {
-            logger.error("获取公司异常");
-            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
-            e.printStackTrace();
+        String result = this.companyService.deleteCompanies(comids);
+        if(result.equals("删除成功")){
+            ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+            message.setData("删除成功");
+        }else if(result.equals("不存在该公司")) {
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            message.setData("不存在该公司");
+        }else{
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            message.setData("删除失败");
         }
         return message;
     }
 
     /**
-     * @param map 前端参数
+     * @desc 修改
+     * @param map
      * @return BaseMessage
      * @throws Exception
-     * @dessc 添加和修改客户
      */
-    @RequestMapping(value = "/modifyCompany", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module = "公司管理", methods = "修改状态")
-    public BaseMessage modifyCompany(@RequestBody Map<String, Object> map, HttpSession session) throws Exception {
-
+    @SystemLog(module = "公司管理", methods = "修改公司")
+    public BaseMessage updateCompany(@RequestBody Map<String, Object> map, HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
-        Boolean b = this.companyService.modifyCompany(map, session);
-        if (b)
+        Boolean result = this.companyService.updateCompany(map,session);
+        if(result)
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
         else
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         return message;
+    }
 
+    /**
+     * @desc 添加
+     * @param map
+     * @return BaseMessage
+     * @throws Exception
+     */
+    @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
+    @ResponseBody
+    @SystemLog(module = "公司管理", methods = "添加公司")
+    public BaseMessage insertCompany(@RequestBody Map<String, Object> map)throws Exception {
+        BaseMessage message = new BaseMessage();
+        Boolean result = this.companyService.insertCompany(map);
+        if(result)
+            ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        else
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        return message;
     }
 
 }

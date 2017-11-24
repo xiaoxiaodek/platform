@@ -142,8 +142,35 @@
     </if>
   </select>
 
-  <delete id="deleteByComid" parameterType="java.lang.Integer">
-    delete from item
-    where comid = #{comid,jdbcType=INTEGER}
-  </delete>
+  <update id="updateItem" parameterType="java.util.Map">
+    UPDATE item
+        SET
+        pStatus = CASE pTypeid
+        WHEN 0 THEN #{commerceStatus}
+        WHEN 1 THEN #{techStatus}
+        WHEN 2 THEN #{onlineStatus}
+        END,
+        uname = CASE pTypeid
+        WHEN 0 THEN #{commerceUname}
+        WHEN 1 THEN #{techUname}
+        WHEN 2 THEN #{onlineUname}
+        END,
+        time = CASE pTypeid
+        WHEN 0 THEN #{commerceEndtime}
+        WHEN 1 THEN #{techEndtime}
+        WHEN 2 THEN #{onlineStarttime}
+        END
+        WHERE comid = #{comid} AND pTypeid
+        IN (
+        SELECT a.pTypeid FROM(
+        SELECT pTypeid FROM item WHERE comid = #{comid}) a
+        )
+  </update>
+
+  <insert id="insertItem" parameterType="java.util.Map">
+    insert into item (pid, pTypeid,pStatus,comid,uname,time,remark)
+    values (3,0,#{commerceStatus}, #{comid}, #{commerceUname},#{commerceEndtime}, #{remark}),
+    (3,1,#{techStatus}, #{comid}, #{techUname},#{techEndtime}, #{remark}),
+    (3,2,#{onlineStatus}, #{comid}, #{onlineUname},#{onlineStarttime}, #{remark})
+  </insert>
 </mapper>

@@ -3,6 +3,7 @@ package com.www.platform.dao;
 import com.www.platform.entity.Company;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CompanyMapper {
     int deleteByPrimaryKey(Integer comid);
@@ -17,7 +18,10 @@ public interface CompanyMapper {
 
     int updateByPrimaryKey(Company record);
 
-    List<Company> selectSelective(Company record);
-
-    Company selectByAll(Company record);
+    //2.0
+    List<Company> queryCompanyList(Map<String, Object> map);
+    int deleteCompany(int[] comids);
+    int updateCompany(Map<String, Object> map);
+    Company selectSelective(Map<String, Object> map);
+    int insertCompany(Map<String, Object> map);
 }

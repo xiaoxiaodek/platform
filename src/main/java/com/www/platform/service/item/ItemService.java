@@ -1,8 +1,5 @@
 package com.www.platform.service.item;
 
-import com.www.platform.entity.Item;
-
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,8 +10,6 @@ import java.util.Map;
  */
 public interface ItemService {
 
-    Item findSelective(Item item);
-    List<Item> findByComid(int comid);
-    Boolean addAndUpdateItem(Map<String, Object> map,int comid);
-    Boolean deleteByComid(int comid);
+    int updateItem(Map<String, Object> map);
+    Boolean insertItem(Map<String, Object> map);
 }
