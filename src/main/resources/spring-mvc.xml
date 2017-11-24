@@ -114,6 +114,13 @@
     <bean id="logAopAction" class="com.www.platform.filter.OperateFilter"/>
 
 
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/views/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
 
 
 
