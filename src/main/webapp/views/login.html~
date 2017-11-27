@@ -40,9 +40,11 @@
                 <input id="upwd" type="password" class="form-control" placeholder="密码" required="" />
               </div>
               <div>
-
+<<<<<<< HEAD
                 <input id="btnLogin" type="button" value="登录" class="btn btn-lg btn-block btn-primary ">
-
+=======
+                <a class="btn btn-default submit" href="/views/customerlist.html">确定</a>
+>>>>>>> 56eaa37e136a9ab013e6045f4beea00d4ef299b6
 
               </div>
 
