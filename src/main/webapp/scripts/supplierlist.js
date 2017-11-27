@@ -29,29 +29,35 @@ $.ajax({
     }
 })
 
-$("#search_id").click(function(){
-    var searchword=("#searchword").val();
-    var postData={"searchWord":searchword};
-    $.ajax({
-      url: "http://localhost:8888/company/queryCompany?&type=&typeId=0",
-      type: "GET",
-      contentType: "application/json;charset=utf-8",
-      dataType: "json",
-      data:JSON.stringify(postData),
-      success: function (result) {
-        if (result.resCode == "0000") {
-          console.log("添加成功");
-        }
-        else{
-          console.log("添加失败");
-        }
-      },
-      error: function (result) {
-          console.log("添加出错");
+    $("#search_id").click(function(){
+        var searchword=$("#searchword").val();
+        var postData={"searchWord":searchword};
+        $.ajax({
+            url: "http://localhost:8888/company/queryCompany?&type=comname&typeId=1",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data:postData,
+            success: function (result) {
+                var html="";
+                for(var i=0;i<result.data.length;i++){
+                    html=html+"<tr><td>"+result.data[i].comname+"</td><td>"
+                        +result.data[i].comcontact+"</td><td>"
+                        +result.data[i].comemail+"</td><td>"
+                        +result.data[i].comaddr+"</td><td><a id='"
+                        +result.data[i].comid+"'" +
+                        " target='_blank' class='btn btn-info btn-sm' href='/views/supplierdetail.html?comid="+result.data[i].comid+"'>详情</a></td><td>"
+                        +result.data[i].createtime+
+                        "</td><td><button name='" + i + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + i + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
+                }
+                $("#supplierlist").html(html);
+            },
+            error: function (result) {
+                alert("搜索失败");
 
-         }
-    });
-})
+            }
+        });
+    })
 
 $("#create_ok").click(function(){
     const form=document.getElementById("demo-form2");

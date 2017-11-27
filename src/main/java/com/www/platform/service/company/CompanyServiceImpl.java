@@ -121,7 +121,8 @@ public class CompanyServiceImpl implements CompanyService {
      */
     public Map<String, Object> addAndUpdate(Map<String, Object> map,String type){
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         Date t = DateUtil.getNowDate();
         try {
             map.put("typeId",Integer.parseInt((String)map.get("typeId")));
