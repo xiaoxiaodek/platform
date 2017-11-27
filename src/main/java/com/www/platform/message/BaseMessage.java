@@ -2,7 +2,7 @@ package com.www.platform.message;
 
 
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司
@@ -14,8 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  */
 public class BaseMessage extends Message<Object> {
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-    private Object data;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private Object data;
 
     public BaseMessage() {
         super();
@@ -47,18 +46,17 @@ public class BaseMessage extends Message<Object> {
         this.data = data;
     }
 
-    public BaseMessage(MessageCode messageCode, StatusCode statusCode, String appendMessage, Object data) {
+    public BaseMessage(MessageCode messageCode, StatusCode statusCode, String appendMessage,
+        Object data) {
         this(messageCode, statusCode, appendMessage);
         this.data = data;
     }
 
-    @Override
-    public Object getData() {
+    @Override public Object getData() {
         return this.data;
     }
 
-    @Override
-    public void setData(Object data) {
+    @Override public void setData(Object data) {
         this.data = data;
     }
 

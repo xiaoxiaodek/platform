@@ -58,14 +58,18 @@
                         <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
-                <property name="objectMapper">
-                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
-                        <property name="dateFormat">
-                            <bean class="java.text.SimpleDateFormat">
-                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
-                            </bean>
-                        </property>
-                    </bean>
+                <!--<property name="objectMapper">-->
+                <property name="objectMapper" value="#{jsonUtil.mapper}">
+                    <!--<bean class="com.fasterxml.jackson.databind.ObjectMapper">-->
+                        <!--<property name="dateFormat">-->
+                            <!--<bean class="java.text.SimpleDateFormat">-->
+                                <!--<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />-->
+                            <!--</bean>-->
+                            <!--&lt;!&ndash;<bean class="java.time.format.DateTimeFormatter">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<property name="pattern" value="yyyy-MM-dd HH:mm:ss"></property>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</bean>&ndash;&gt;-->
+                        <!--</property>-->
+                    <!--</bean>-->
                 </property>
             </bean>
         </mvc:message-converters>
