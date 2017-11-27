@@ -71,6 +71,7 @@ $("#create_ok").click(function(){
     $.ajax({
       url: "http://localhost:8888/company/insertCompany",
       type: "POST",
+        async:false,
       contentType: "application/json;charset=utf-8",
       dataType: "json",
       data:JSON.stringify(postData),
@@ -84,8 +85,12 @@ $("#create_ok").click(function(){
 
         }
       },
-      error: function (result) {
-          alert("添加出错");
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+          // alert("添加出错");
+          //              $("#p_test").innerHTML = "there is something wrong!";
+               alert(XMLHttpRequest.status);
+               alert(XMLHttpRequest.readyState);
+               alert(textStatus);
          }
     });
   })

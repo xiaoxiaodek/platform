@@ -60,7 +60,7 @@ public class CompanyServiceImpl implements CompanyService {
      * @param comids
      * @return String
      */
-
+    @Transactional
     public String deleteCompanies(int[] comids){
         if (null == comids || comids.length == 0) {
             return "不存在该公司";
