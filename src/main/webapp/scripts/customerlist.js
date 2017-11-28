@@ -6,6 +6,7 @@ $(document).ready(function () {
       type: "GET",
       contentType: "application/json;charset=utf-8",
       dataType: "json",
+        async:false,
       success: function (result) {
         if (result.resCode == "0000") {
           console.log("result.data",result.data)
@@ -27,7 +28,7 @@ $(document).ready(function () {
          else {}
       },
       error: function (result) {
-         alert(result.resMsg);
+         alert("haha");
          }
        });
 
@@ -214,6 +215,8 @@ var phone = false;
 var email = false;
 var address=false;
 var cpid=false;
+
+button();
 //检查客户名称
 function checkCname(name) {
     if (name == "") {

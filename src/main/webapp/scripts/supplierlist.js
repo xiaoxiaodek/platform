@@ -93,7 +93,7 @@ $('#supplierlist').on('click', function(e) {
     // debugger
     if (type == 'button' && operate == '删除') {
       $('#delete').on('click', function(){
-          const array = [data.companies[name].comid];
+          const array = [data[name].comid];
           console.log(array);
           $.ajax({
               url: "http://localhost:8888/company/deleteCompany",
@@ -200,6 +200,8 @@ var phone = false;
 var email = false;
 var address=false;
 var cpid=false;
+
+button();
 //检查客户名称
 function checkCname(name) {
     if (name == "") {

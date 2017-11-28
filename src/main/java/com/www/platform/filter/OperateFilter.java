@@ -58,10 +58,12 @@ public class OperateFilter {
     public void doAfter(JoinPoint joinPoint) {
         System.out.println("=====SysLogAspect前置通知结束=====");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//        int uid = (Integer) request.getSession().getAttribute("uname");
+        String uname = (String) request.getSession().getAttribute("uname");
         Integer comid = (Integer) request.getSession().getAttribute("comid");
         if(comid != null)
             log.setComid(comid);
+        if(uname != null)
+            log.setUname(uname);
         logMapper.insert(log);
     }
 
@@ -72,7 +74,7 @@ public class OperateFilter {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 //        int uid = (Integer) request.getSession().getAttribute("uname");
         //获取系统ip,这里用的是我自己的工具类,可自行网上查询获取ip方法
-        log.setUname("yy");
+//        log.setUname("yy");
         String ip = GetLocalIp.getIpAddr(request);
         log.setIp(ip);
         //获取系统时间
@@ -126,7 +128,6 @@ public class OperateFilter {
                     long end = System.currentTimeMillis();
                     log.setResponsetime(""+(end-start));
                     log.setResult("执行失败");
-                    ResponseUtil.buildResMsg(new BaseMessage(),MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 }
             } else {//没有包含注解
                 object = pjp.proceed();

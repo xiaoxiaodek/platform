@@ -42,7 +42,7 @@
         this.showWeekNumbers = false;
         this.showISOWeekNumbers = false;
         this.showCustomRangeLabel = true;
-        this.timePicker = false;
+        this.timePicker = true;
         this.timePicker24Hour = false;
         this.timePickerIncrement = 1;
         this.timePickerSeconds = false;
@@ -65,7 +65,7 @@
 
         this.locale = {
             direction: 'ltr',
-            format: moment.localeData().longDateFormat('L'),
+            format: 'YYYY-MM-DD HH:mm:ss',
             separator: ' - ',
             applyLabel: 'Apply',
             cancelLabel: 'Cancel',
@@ -1300,7 +1300,7 @@
         },
 
         clickDate: function(e) {
-
+debugger
             if (!$(e.target).hasClass('available')) return;
 
             var title = $(e.target).attr('data-title');

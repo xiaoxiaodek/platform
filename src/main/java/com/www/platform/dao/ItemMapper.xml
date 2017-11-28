@@ -7,7 +7,7 @@
     <result column="pTypeid" jdbcType="INTEGER" property="ptypeid" />
     <result column="pStatus" jdbcType="INTEGER" property="pstatus" />
     <result column="comid" jdbcType="INTEGER" property="comid" />
-    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="iname" jdbcType="VARCHAR" property="uname" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>

@@ -181,8 +181,8 @@
     <select id="queryCompanyList" parameterType="java.util.Map" resultMap="BaseResultMap">
         SELECT
         com.comid, com.pid, comaddr, comemail, comname, comcontact, createtime, typeId, modtime, statusId,
-        iid, i.pid, pTypeid, pStatus, i.comid, i.uname, time, remark,
-        lid, l.comid, l.uname, module, method, ip, otime, responseTime, result
+        iid, i.pid, pTypeid, pStatus, i.uname as iname, time, remark,
+        lid, l.uname, module, method, ip, otime, responseTime, result
         FROM company com  LEFT JOIN item i ON com.comid=i.comid LEFT JOIN log l ON com.comid=l.comid
         <where>
             <if test= "typeId != null">
