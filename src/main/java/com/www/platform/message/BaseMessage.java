@@ -2,7 +2,7 @@ package com.www.platform.message;
 
 
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  */
 public class BaseMessage extends Message<Object> {
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 
     public BaseMessage() {
