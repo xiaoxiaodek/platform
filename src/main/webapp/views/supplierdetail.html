@@ -28,6 +28,8 @@
 
   <!-- Custom Theme Style -->
   <link href="../vendors/build/css/custom.min.css" rel="stylesheet">
+    <!-- Pagination -->
+    <link href="../styles/pagination.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -192,6 +194,7 @@
             </table>
 
           </div>
+            <div class="pull-right" id="pagination-container3"></div>
         </div>
       </div>
 
@@ -250,6 +253,9 @@
 <!-- Custom Theme Scripts -->
 <script src="../vendors/build/js/custom.min.js"></script>
 
+<!-- Pagination -->
+<script src="../scripts/pagination.js"></script>
+
 <!-- Self Scripts -->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -279,8 +285,14 @@
                         ['账号尚未开通', '申请信息准备', '申请测试账号', '进行测试对接', '测试对接完成', '申请生产账号', '进行生产对接', '生产对接完成', '其它'],
                         ['尚未开始运营', '已经开始运营', '停止运营', '暂停运营', '其它']];
                     var html = "";
-                    var html2 = "";
+                    var logsPagination = new Array;
                     for (var i = 0; i < result.data.length; i++) {
+                        for(var j=0;j<result.data[i].logs.length;j++) {
+                            if(result.data[i].logs[j].lid == null) {
+                                continue;
+                            }
+                            logsPagination.push(result.data[i].logs[j]);
+                        }
                         html = html + "<tr><td>" + result.data[i].comname + "</td><td><span class='label label-success'>"
                             + peroid[0][result.data[i].items[0].pstatus] + "</span></td><td>"
                             + result.data[i].items[0].uname + "</td><td>"
@@ -291,22 +303,32 @@
                             + peroid[2][result.data[i].items[2].pstatus] + "</span></td><td>"
                             + result.data[i].items[2].uname + "</td><td>"
                             + result.data[i].items[2].time + "</td></tr>";
-                        for (var j = 0; j < result.data[i].logs.length; j++) {
-                            if(result.data[i].logs[j].lid == null) {
-                                console.log("no data");
-                                break;
-                            }
-                            html2 = html2 + "<tr><td>" + result.data[i].logs[j].module + "</td><td>"
-                                + result.data[i].logs[j].method + "</td><td>"
-                                + result.data[i].logs[j].ip + "</td><td>"
-                                + result.data[i].logs[j].otime + "</td><td>"
-                                + result.data[i].logs[j].responsetime + "</td><td>"
-                                + result.data[i].logs[j].result + "</td><td>"
-                                + result.data[i].logs[j].uname + "</td></tr>";
-                        }
                     }
                     $("#supplierstate").html(html);
-                    $("#operaterecord").html(html2);
+                    $("#pagination-container3").pagination({
+                        dataSource: logsPagination,
+                        pageSize: 10,
+                        showGoInput: true,
+                        showGoButton: true,
+                        className: 'paginationjs-theme-blue',
+                        callback:function(logsPagination,pagination){
+                            var html2="";
+                            for(var i=0;i<logsPagination.length;i++){
+                                if(logsPagination[i].lid == null) {
+                                    console.log("no data");
+                                    continue;
+                                }
+                                html2=html2+"<tr><td>"+logsPagination[i].module+"</td><td>"
+                                    +logsPagination[i].method+"</td><td>"
+                                    +logsPagination[i].ip+"</td><td>"
+                                    +logsPagination[i].otime+"</td><td>"
+                                    +logsPagination[i].responsetime+"</td><td>"
+                                    +logsPagination[i].result+"</td><td>"
+                                    +logsPagination[i].uname+"</td></tr>";
+                            }
+                            $("#operaterecord").html(html2);
+                        }
+                    })
 
                 }
                 else {
