@@ -277,6 +277,7 @@ function checkAddress(name) {
   if (name == "") {
     $("#address-tip").html("地址不能为空");
   }else{
+      $("#address-tip").html("");
     address=true;
   }
   button();
