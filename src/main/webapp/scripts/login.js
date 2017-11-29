@@ -14,7 +14,7 @@ $(function () {
                 data:JSON.stringify(params),
                 success: function (data) {
                     if (data.data == "登陆成功") {
-                        alert("登录成功!!!");
+                        // alert("登录成功!!!");
                         window.location.href="../views/customerlist.html";
 
                     }
