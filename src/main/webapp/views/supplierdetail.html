@@ -292,6 +292,10 @@
                             + result.data[i].items[2].uname + "</td><td>"
                             + result.data[i].items[2].time + "</td></tr>";
                         for (var j = 0; j < result.data[i].logs.length; j++) {
+                            if(result.data[i].logs[j].lid == null) {
+                                console.log("no data");
+                                break;
+                            }
                             html2 = html2 + "<tr><td>" + result.data[i].logs[j].module + "</td><td>"
                                 + result.data[i].logs[j].method + "</td><td>"
                                 + result.data[i].logs[j].ip + "</td><td>"
