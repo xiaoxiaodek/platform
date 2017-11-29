@@ -311,8 +311,8 @@ $(document).ready(function () {
       else {
       }
     },
-    error: function (result) {
-      alert(result.resMsg);
+    error: function (XMLHttprequest,erroThrown) {
+        console.log(erroThrown);
     }
   })
   return false;

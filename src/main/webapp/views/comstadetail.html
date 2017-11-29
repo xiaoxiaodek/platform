@@ -293,7 +293,7 @@ $(document).ready(function () {
 
   var namestorage=sessionStorage.getItem("user_name");
   document.getElementById("username").innerText=namestorage;
-  
+
   $.ajax({
     url: "http://localhost:8888/company/queryCompany?&type=comid&typeId=0",
     type: "GET",
@@ -337,8 +337,8 @@ $(document).ready(function () {
       else {
       }
     },
-    error: function (result) {
-      alert(result.resMsg);
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+      console.log(textStatus);
     }
   })
   return false;

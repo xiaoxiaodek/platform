@@ -36,7 +36,7 @@ $(document).ready(function() {
       }
     },
     error: function(result) {
-      alert("数据获取出错");
+      console.log("数据获取出错");
     }
   })
 
@@ -73,7 +73,7 @@ $(document).ready(function() {
         })
       },
       error: function (result) {
-        alert("搜索失败");
+        console.log("搜索失败");
 
       }
     });
@@ -101,7 +101,7 @@ $(document).ready(function() {
         }
       },
       error: function (result) {
-        alert("添加出错");
+          console.log("添加出错");
       }
     });
   })
@@ -133,7 +133,7 @@ $(document).ready(function() {
             }
           },
           error: function(result) {
-            alert("删除出错");
+              console.log("删除出错");
             window.location.reload();
           }
         })
@@ -201,7 +201,7 @@ $(document).ready(function() {
             }
           },
           error: function(result) {
-            alert("编辑出错");
+              console.log("编辑出错");
             window.location.reload();
           }
         })
