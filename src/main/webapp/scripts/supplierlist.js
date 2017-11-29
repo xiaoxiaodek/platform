@@ -162,16 +162,22 @@ $(document).ready(function() {
           $('#status1').val(item[i].pstatus);
           $('#res1').val(item[i].uname);
           $('#deadline1').val(item[i].time);
+              $('#deadline1').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
           break;
           case 1:
           $('#status2').val(item[i].pstatus);
           $('#res2').val(item[i].uname);
           $('#deadline2').val(item[i].time);
+              $('#deadline2').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
           break;
           case 2:
           $('#status3').val(item[i].pstatus);
           $('#res3').val(item[i].uname);
           $('#deadline3').val(item[i].time);
+              $('#deadline3').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
           break;
           default:return false;
         }
