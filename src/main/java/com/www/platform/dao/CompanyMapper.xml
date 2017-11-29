@@ -8,16 +8,18 @@
     <result column="comemail" jdbcType="VARCHAR" property="comemail" />
     <result column="comname" jdbcType="VARCHAR" property="comname" />
     <result column="comcontact" jdbcType="VARCHAR" property="comcontact" />
+    <result column="comcontactName" jdbcType="VARCHAR" property="comcontactname" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="typeId" jdbcType="INTEGER" property="typeid" />
     <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
     <result column="statusId" jdbcType="INTEGER" property="statusid" />
-      <collection property="logs" resultMap="com.www.platform.dao.LogMapper.BaseResultMap"></collection>
-      <collection property="items" resultMap="com.www.platform.dao.ItemMapper.BaseResultMap"></collection>
+    <result column="comtype" jdbcType="INTEGER" property="comtype" />
+    <collection property="logs" resultMap="com.www.platform.dao.LogMapper.BaseResultMap"></collection>
+    <collection property="items" resultMap="com.www.platform.dao.ItemMapper.BaseResultMap"></collection>
   </resultMap>
   <sql id="Base_Column_List">
-    comid, pid, comaddr, comemail, comname, comcontact, createtime, typeId, modtime, 
-    statusId
+    comid, pid, comaddr, comemail, comname, comcontact, comcontactName, createtime, typeId, 
+    modtime, statusId, comtype
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -32,12 +34,14 @@
   <insert id="insert" parameterType="com.www.platform.entity.Company">
     insert into company (comid, pid, comaddr, 
       comemail, comname, comcontact, 
-      createtime, typeId, modtime, 
-      statusId)
+      comcontactName, createtime, typeId, 
+      modtime, statusId, comtype
+      )
     values (#{comid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{comaddr,jdbcType=VARCHAR}, 
       #{comemail,jdbcType=VARCHAR}, #{comname,jdbcType=VARCHAR}, #{comcontact,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{typeid,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}, 
-      #{statusid,jdbcType=INTEGER})
+      #{comcontactname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{typeid,jdbcType=INTEGER}, 
+      #{modtime,jdbcType=TIMESTAMP}, #{statusid,jdbcType=INTEGER}, #{comtype,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.Company">
     <selectKey keyProperty='comid' resultType='int' order='AFTER'  >
@@ -63,6 +67,9 @@
       <if test="comcontact != null">
         comcontact,
       </if>
+      <if test="comcontactname != null">
+        comcontactName,
+      </if>
       <if test="createtime != null">
         createtime,
       </if>
@@ -74,6 +81,9 @@
       </if>
       <if test="statusid != null">
         statusId,
+      </if>
+      <if test="comtype != null">
+        comtype,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -95,6 +105,9 @@
       <if test="comcontact != null">
         #{comcontact,jdbcType=VARCHAR},
       </if>
+      <if test="comcontactname != null">
+        #{comcontactname,jdbcType=VARCHAR},
+      </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
@@ -106,6 +119,9 @@
       </if>
       <if test="statusid != null">
         #{statusid,jdbcType=INTEGER},
+      </if>
+      <if test="comtype != null">
+        #{comtype,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -127,6 +143,9 @@
       <if test="comcontact != null">
         comcontact = #{comcontact,jdbcType=VARCHAR},
       </if>
+      <if test="comcontactname != null">
+        comcontactName = #{comcontactname,jdbcType=VARCHAR},
+      </if>
       <if test="createtime != null">
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
@@ -139,6 +158,9 @@
       <if test="statusid != null">
         statusId = #{statusid,jdbcType=INTEGER},
       </if>
+      <if test="comtype != null">
+        comtype = #{comtype,jdbcType=INTEGER},
+      </if>
     </set>
     where comid = #{comid,jdbcType=INTEGER}
   </update>
@@ -149,90 +171,93 @@
       comemail = #{comemail,jdbcType=VARCHAR},
       comname = #{comname,jdbcType=VARCHAR},
       comcontact = #{comcontact,jdbcType=VARCHAR},
+      comcontactName = #{comcontactname,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       typeId = #{typeid,jdbcType=INTEGER},
       modtime = #{modtime,jdbcType=TIMESTAMP},
-      statusId = #{statusid,jdbcType=INTEGER}
+      statusId = #{statusid,jdbcType=INTEGER},
+      comtype = #{comtype,jdbcType=INTEGER}
     where comid = #{comid,jdbcType=INTEGER}
   </update>
 
-    <select id="selectSelective" parameterType="java.util.Map" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from company
-        where 1=1
-        <if test="typeId != null" >
-            AND typeId = #{typeId}
-        </if>
-        <if test="comaddr != null and !comaddr.trim().equals('')">
-            AND comaddr = #{comaddr}
-        </if>
-        <if test="comemail != null and !comemail.trim().equals('')">
-            AND comemail = #{comemail}
-        </if>
-        <if test="comname != null and !comname.trim().equals('')">
-            AND comname = #{comname}
-        </if>
-        <if test="comcontact != null and !comcontact.trim().equals('')">
-            AND comcontact = #{comcontact}
-        </if>
-    </select>
+  <select id="selectSelective" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from company
+    where 1=1
+    <if test="typeId != null" >
+      AND typeId = #{typeId}
+    </if>
+    <if test="comaddr != null and !comaddr.trim().equals('')">
+      AND comaddr = #{comaddr}
+    </if>
+    <if test="comemail != null and !comemail.trim().equals('')">
+      AND comemail = #{comemail}
+    </if>
+    <if test="comname != null and !comname.trim().equals('')">
+      AND comname = #{comname}
+    </if>
+    <if test="comcontact != null and !comcontact.trim().equals('')">
+      AND comcontact = #{comcontact}
+    </if>
+  </select>
 
-    <select id="queryCompanyList" parameterType="java.util.Map" resultMap="BaseResultMap">
-        SELECT
-        com.comid, com.pid, comaddr, comemail, comname, comcontact, createtime, typeId, modtime, statusId,
-        iid, i.pid, pTypeid, pStatus, i.uname as iname, time, remark,
-        lid, l.uname, module, method, ip, otime, responseTime, result
-        FROM company com  LEFT JOIN item i ON com.comid=i.comid LEFT JOIN log l ON com.comid=l.comid
-        <where>
-            <if test= "typeId != null">
-                AND com.typeId = #{typeId}
-            </if>
-            <if test= "searchType.equals('comid')">
-                AND com.comid = #{searchWord}
-            </if>
-            <if test= "searchType.equals('comname')">
-                AND com.comname LIKE '%${searchWord}%'
-            </if>
-            <if test= "searchType.equals('comaddr')">
-                AND com.comaddr LIKE '%${searchWord}%'
-            </if>
-            <if test= "searchType.equals('comemail')">
-                AND com.comemail LIKE '%${searchWord}%'
-            </if>
-            <if test= "searchType.equals('comcontact')">
-                AND com.comcontact LIKE '%${searchWord}%'
-            </if>
-        </where>
-        ORDER BY com.comid,i.pTypeid
-    </select>
+  <select id="queryCompanyList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT
+    com.comid, com.pid, comaddr, comemail, comname, comcontact,comcontactName,createtime, typeId, modtime, statusId,
+    iid, i.pid, pTypeid, pStatus, i.uname as iname, time, remark,
+    lid, l.uname, module, method, ip, otime, responseTime, result
+    FROM company com  LEFT JOIN item i ON com.comid=i.comid LEFT JOIN log l ON com.comid=l.comid
+    <where>
+      <if test= "typeId != null">
+        AND com.typeId = #{typeId}
+      </if>
+      <if test= "searchType.equals('comid')">
+        AND com.comid = #{searchWord}
+      </if>
+      <if test= "searchType.equals('comname')">
+        AND com.comname LIKE '%${searchWord}%'
+      </if>
+      <if test= "searchType.equals('comaddr')">
+        AND com.comaddr LIKE '%${searchWord}%'
+      </if>
+      <if test= "searchType.equals('comemail')">
+        AND com.comemail LIKE '%${searchWord}%'
+      </if>
+      <if test= "searchType.equals('comcontact')">
+        AND com.comcontact LIKE '%${searchWord}%'
+      </if>
+    </where>
+    ORDER BY com.comid,i.pTypeid
+  </select>
 
-    <delete id="deleteCompany" parameterType="int">
-        DELETE com,i
-        FROM company as com
-        LEFT JOIN item as i on com.comid=i.comid
-        WHERE com.comid in
-        <foreach collection="array" item="comid" open="(" separator="," close=")">
-            #{comid}
-        </foreach>
-    </delete>
+  <delete id="deleteCompany" parameterType="int">
+    DELETE com,i
+    FROM company as com
+    LEFT JOIN item as i on com.comid=i.comid
+    WHERE com.comid in
+    <foreach collection="array" item="comid" open="(" separator="," close=")">
+      #{comid}
+    </foreach>
+  </delete>
 
-    <update id="updateCompany" parameterType="java.util.Map">
-        UPDATE company
-        SET
-        pid = #{pid},
-        comaddr = #{comaddr},
-        comemail = #{comemail},
-        comname = #{comname},
-        comcontact = #{comcontact},
-        typeId = #{typeId},
-        modtime = #{modtime}
-        WHERE comid = #{comid}
-    </update>
+  <update id="updateCompany" parameterType="java.util.Map">
+    UPDATE company
+    SET
+    pid = #{pid},
+    comaddr = #{comaddr},
+    comemail = #{comemail},
+    comname = #{comname},
+    comcontact = #{comcontact},
+    comcontactName = #{comcontactName},
+    typeId = #{typeId},
+    modtime = #{modtime}
+    WHERE comid = #{comid}
+  </update>
 
-    <insert id="insertCompany" parameterType="java.util.Map">
-        insert into company
-        (comid,pid,comaddr,comemail, comname, comcontact,createtime, typeId, modtime,statusId)
-        values (#{comid,jdbcType=INTEGER},#{pid},#{comaddr},#{comemail}, #{comname}, #{comcontact},#{createtime}, #{typeId}, #{modtime},0)
-    </insert>
+  <insert id="insertCompany" parameterType="java.util.Map">
+    insert into company
+    (comid,pid,comaddr,comemail, comname, comcontact,comcontactName,createtime, typeId, modtime,statusId)
+    values (#{comid,jdbcType=INTEGER},#{pid},#{comaddr},#{comemail}, #{comname}, #{comcontact},#{comcontactName},#{createtime}, #{typeId}, #{modtime},0)
+  </insert>
 </mapper>

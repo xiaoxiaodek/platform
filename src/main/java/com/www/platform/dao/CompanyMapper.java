@@ -18,7 +18,6 @@ public interface CompanyMapper {
 
     int updateByPrimaryKey(Company record);
 
-    //2.0
     List<Company> queryCompanyList(Map<String, Object> map);
     int deleteCompany(int[] comids);
     int updateCompany(Map<String, Object> map);

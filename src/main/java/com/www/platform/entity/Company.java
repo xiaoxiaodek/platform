@@ -16,6 +16,8 @@ public class Company {
 
     private String comcontact;
 
+    private String comcontactname;
+
     private Date createtime;
 
     private Integer typeid;
@@ -23,6 +25,8 @@ public class Company {
     private Date modtime;
 
     private Integer statusid;
+
+    private Integer comtype;
 
     private List<Log> logs;
 
@@ -92,6 +96,14 @@ public class Company {
         this.comcontact = comcontact == null ? null : comcontact.trim();
     }
 
+    public String getComcontactname() {
+        return comcontactname;
+    }
+
+    public void setComcontactname(String comcontactname) {
+        this.comcontactname = comcontactname == null ? null : comcontactname.trim();
+    }
+
     public Date getCreatetime() {
         return createtime;
     }
@@ -122,5 +134,13 @@ public class Company {
 
     public void setStatusid(Integer statusid) {
         this.statusid = statusid;
+    }
+
+    public Integer getComtype() {
+        return comtype;
+    }
+
+    public void setComtype(Integer comtype) {
+        this.comtype = comtype;
     }
 }

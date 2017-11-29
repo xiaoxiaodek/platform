@@ -234,6 +234,8 @@ var phone = false;
 var email = false;
 var address=false;
 var cpid=false;
+
+button();
 //检查客户名称
 function checkCname(name) {
   if (name == "") {
