@@ -204,7 +204,7 @@
                 AND com.comcontact LIKE '%${searchWord}%'
             </if>
         </where>
-        ORDER BY com.comid
+        ORDER BY com.comid,i.pTypeid
     </select>
 
     <delete id="deleteCompany" parameterType="int">

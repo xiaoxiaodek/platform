@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  var namestorage=sessionStorage.getItem("user_name");
+  document.getElementById("username").innerText=namestorage;
     $.ajax({
       url: "http://localhost:8888/company/queryCompany?searchWord=&type=&typeId=1",
       type: "GET",
@@ -6,54 +8,71 @@ $(document).ready(function () {
       dataType: "json",
       success: function (result) {
         if (result.resCode == "0000") {
-          console.log("result.data",result.data)
-          console.log("result.data.companies--",result.data);
-          console.log("result.data.items--",result.data.items);
-          var html="";
-          var html2="";
-          for(var i=0;i<result.data.length;i++){
-               html=html+"<tr><td>"+result.data[i].comname+"</td><td><select><option>"
-                                   +result.data[i].items[0].pstatus+"</option><option>进行商务洽谈</option><option>达成初步意向</option><option>进行合同洽谈</option><option>合同达成意向</option><option>进行合同审核</option><option>合同审核完成</option><option>进行合同用印</option><option>合同签署完成</option><option>尚未预付款</option><option>已经预付款</option><option>月结</option><option>其它</option></select></td><td>"
-                                   +result.data[i].items[0].uname+"</td><td>"
-                                   +result.data[i].items[0].time+"</td><td><select><option>"
-                                   +result.data[i].items[1].pstatus+"</option><option>账号尚未开通</option><option>申请信息准备</option><option>申请测试账号</option><option>进行测试对接</option><option>测试对接完成</option><option>申请生产账号</option><option>进行生产对接</option><option>生产对接完成</option><option>其它</option></select></td><td>"
-                                   +result.data[i].items[1].uname+"</td><td>"
-                                   +result.data[i].items[1].time+"</td><td><select><option>"
-                                   +result.data[i].items[2].pstatus+"</option><option>尚未开始运营</option><option>已经开始运营</option><option>停止运营</option><option>暂停运营</option><option>其它</option></select></td><td>"
-                                   +result.data[i].items[2].uname+"</td><td>"
-                                   +result.data[i].items[2].time+"</td></tr>";
-              for(var j=0;j<result.data[i].logs.length;j++){
-                  if(result.data[i].logs[i].lid == null) {
-                      console.log("no data");
-                      break;
-                  }
-                  html2=html2+"<tr><td>"+result.data[i].logs[j].module+"</td><td>"
-                      +result.data[i].logs[j].method+"</td><td>"
-                      +result.data[i].logs[j].ip+"</td><td>"
-                      +result.data[i].logs[j].otime+"</td><td>"
-                      +result.data[i].logs[j].responsetime+"</td><td>"
-                      +result.data[i].logs[j].result+"</td><td>"
-                      +result.data[i].logs[j].uname+"</td></tr>";
+          console.log("result.data--",result.data)
+          var returndata=result.data;
+          const peroid= [['进行商务洽谈', '达成初步意向', '进行合同洽谈', '合同达成意向', '进行合同审核', '合同审核完成', '进行合同用印', '合同签署完成', '尚未付款', '已经付款', '月结', '其它'],
+                ['账号尚未开通', '申请信息准备', '申请测试账号', '进行测试对接', '测试对接完成', '申请生产账号', '进行生产对接', '生产对接完成', '其它'],
+                ['尚未开始运营', '已经开始运营', '停止运营', '暂停运营', '其它']];
+          $("#pagination-container1").pagination({
+            dataSource: returndata,
+            pageSize: 8,
+            showGoInput: true,
+            showGoButton: true,
+            className: 'paginationjs-theme-blue',
+            callback:function(result,pagination){
+              console.log("result---",result);
+              var html="";
+              for(var i=0;i<result.length;i++){
+                html=html+"<tr><td>"+result[i].comname+"</td><td><span class='label label-success'>"
+                  +peroid[0][result[i].items[0].pstatus]+"</span></td><td>"
+                  +result[i].items[0].uname+"</td><td>"
+                  +result[i].items[0].time+"</td><td><span class='label label-info'>"
+                  +peroid[1][result[i].items[1].pstatus]+"</span></td><td>"
+                  +result[i].items[1].uname+"</td><td>"
+                  +result[i].items[1].time+"</td><td><span class='label label-warning'>"
+                  +peroid[2][result[i].items[2].pstatus]+"</span></td><td>"
+                  +result[i].items[2].uname+"</td><td>"
+                  +result[i].items[2].time+"</td></tr>";
               }
-             }
-          $("#supplierstate").html(html);
-          $("#operaterecord").html(html2);
+              $("#supplierstate").html(html);
+            }
+          })
+
+          $("#pagination-container2").pagination({
+            dataSource: returndata,
+            pageSize: 5,
+            showGoInput: true,
+            showGoButton: true,
+            className: 'paginationjs-theme-blue',
+            callback:function(result,pagination){
+              var html2="";
+              console.log("result---",result);
+              for(var i=0;i<result.length;i++){
+                for(var j=0;j<result[i].logs.length;j++){
+                    if(result[i].logs[j].lid == null) {
+                        console.log("no data");
+                        continue;
+                    }
+                    html2=html2+"<tr><td>"+result[i].logs[j].module+"</td><td>"
+                        +result[i].logs[j].method+"</td><td>"
+                        +result[i].logs[j].ip+"</td><td>"
+                        +result[i].logs[j].otime+"</td><td>"
+                        +result[i].logs[j].responsetime+"</td><td>"
+                        +result[i].logs[j].result+"</td><td>"
+                        +result[i].logs[j].uname+"</td></tr>";
+                }
+              }
+              $("#operaterecord").html(html2);
+            }
+          })
 
         }
-         else {}
+
       },
       error: function (result) {
-         alert(result.resMsg);
+         alert("数据获取出错");
          }
        })
       return false;
 
-      $("stateok").click(function(){
-          stateOk();
-      });
-
   })
-
-function stateOk(){
-
-}

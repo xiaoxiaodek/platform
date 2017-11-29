@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> 客户运营平台 </title>
+
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+  <!-- bootstrap-progressbar -->
+  <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
+  rel="stylesheet">
+  <!-- JQVMap -->
+  <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+  <!-- bootstrap-daterangepicker -->
+  <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- Datatables -->
+  <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+  rel="stylesheet">
+  <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+  rel="stylesheet">
+  <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+  rel="stylesheet">
+  <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+  rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="../vendors/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="customerlist.html" class="site_title">客户运营平台</a>
+          </div>
+          <div class="clearfix"></div>
+
+          <br/>
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <ul class="nav side-menu">
+                <li><a><i class="fa"></i> 客户管理 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="customerlist.html">客户列表</a></li>
+                    <li><a href="customerstate.html">客户状态</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa"></i> 供应商管理 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="supplierlist.html">供应商列表</a></li>
+                    <li><a href="supplierstate.html">供应商状态</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa"></i> 合同管理 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="contractlist.html">合同列表</a></li>
+                    <li><a href="#">更多...</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa"></i> 项目管理 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="projectlist.html">项目列表</a></li>
+                    <li><a href="#">更多...</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa"></i> 账户管理 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="accountlist.html">账户列表</a></li>
+                    <li><a href="#">更多...</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="userlist.html">用户列表</a></li>
+                    <li><a href="#">更多...</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa"></i> 操作记录 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="operation.html">操作记录</a></li>
+                    <li><a href="#">更多...</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa"></i> 接口管理 <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="interface.html">接口管理</a></li>
+                    <li><a href="#">更多...</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+          <!-- /sidebar menu -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <!-- <a id="menu_toggle"><i class="fa fa-bars"></i></a> -->
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a href="javascript:;" class="user-profile dropdown-toggle"
+                data-toggle="dropdown" aria-expanded="false">
+                <label id="username"></label>
+                <span class=" fa fa-angle-down"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-usermenu pull-right">
+                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>退出</a>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- /top navigation -->
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="row">
+    <div class="x_panel">
+      <!-- x_panel tile fixed_height_320 overflow_hidden -->
+      <div class="x_title">
+        <h2>客户状态</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><i class="fa fa-square aero"></i> 客户名称</th>
+              <th><i class="fa fa-square blue"></i> 商务洽谈</th>
+              <th> 负责人</th>
+              <th> 商务截止时间</th>
+              <th><i class="fa fa-square purple"></i> 技术对接</th>
+              <th> 负责人</th>
+              <th> 技术截止时间</th>
+              <th><i class="fa fa-square red"></i> 运营情况</th>
+              <th> 负责人</th>
+              <th> 运营开始时间</th>
+            </tr>
+          </thead>
+          <tbody id="customerstate">
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" id="stateok">确定</button>
+    </div> -->
+  </div>
+</div>
+
+<div class="row">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>操作记录</h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>操作模块</th>
+            <th>操作内容</th>
+            <th>操作ip</th>
+            <th>操作时间</th>
+            <th>响应时长</th>
+            <th>操作结果</th>
+            <th>操作人</th>
+          </tr>
+        </thead>
+        <tbody id="operaterecord">
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+</div>
+<!-- /page content -->
+
+<!-- footer content -->
+<footer>
+  <div class="pull-right">
+
+  </div>
+  <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="../vendors/Flot/jquery.flot.js"></script>
+<script src="../vendors/Flot/jquery.flot.pie.js"></script>
+<script src="../vendors/Flot/jquery.flot.time.js"></script>
+<script src="../vendors/Flot/jquery.flot.stack.js"></script>
+<script src="../vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="../vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../vendors/moment/min/moment.min.js"></script>
+<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Datatables -->
+<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../vendors/build/js/custom.min.js"></script>
+
+<!-- Self Scripts -->
+<!-- <script src="scripts/customerstate.js"></script> -->
+<script type="text/javascript">
+$(document).ready(function () {
+  const url = window.location.search; //获取url中"?"符后的字串
+  const requestParams = new Object();
+  if (url.indexOf("?") != -1) {
+    var str = url.substr(1);
+    strs = str.split("&");
+    for (var i = 0; i < strs.length; i++) {
+      requestParams[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+    }
+  }
+
+  var namestorage=sessionStorage.getItem("user_name");
+  document.getElementById("username").innerText=namestorage;
+  
+  $.ajax({
+    url: "http://localhost:8888/company/queryCompany?&type=comid&typeId=0",
+    type: "GET",
+    data: {"searchWord":requestParams.comid},
+    contentType: "application/json;charset=utf-8",
+    dataType: "json",
+    success: function (result) {
+      if (result.resCode == "0000") {
+        console.log("result.data", result.data)
+        var html = "";
+        var html2 = "";
+        for (var i = 0; i < result.data.length; i++) {
+          html = html + "<tr><td>" + result.data[i].comname + "</td><td><select><option>"
+          + result.data[i].items[0].pstatus + "</option><option>进行商务洽谈</option><option>达成初步意向</option><option>进行合同洽谈</option><option>合同达成意向</option><option>进行合同审核</option><option>合同审核完成</option><option>进行合同用印</option><option>合同签署完成</option><option>尚未到账</option><option>已经到账</option><option>月结</option><option>其它</option></select></td><td>"
+          + result.data[i].items[0].uname + "</td><td>"
+          + result.data[i].items[0].time + "</td><td><select><option>"
+          + result.data[i].items[1].pstatus + "</option><option>账号尚未开通</option><option>开通信息准备</option><option>开通测试账号</option><option>进行测试对接</option><option>测试对接完成</option><option>开通生产账号</option><option>进行生产对接</option><option>生产对接完成</option><option>其它</option></select></td><td>"
+          + result.data[i].items[1].uname + "</td><td>"
+          + result.data[i].items[1].time + "</td><td><select><option>"
+          + result.data[i].items[2].pstatus + "</option><option>尚未开始运营</option><option>已经开始运营</option><option>停止运营</option><option>暂停运营</option><option>其它</option></select></td><td>"
+          + result.data[i].items[2].uname + "</td><td>"
+          + result.data[i].items[2].time + "</td></tr>";
+          for (var j = 0; j < result.data[i].logs.length; j++) {
+            html2 = html2 + "<tr><td>" + result.data[i].logs[j].module + "</td><td>"
+            + result.data[i].logs[j].method + "</td><td>"
+            + result.data[i].logs[j].ip + "</td><td>"
+            + result.data[i].logs[j].otime + "</td><td>"
+            + result.data[i].logs[j].responsetime + "</td><td>"
+            + result.data[i].logs[j].result + "</td><td>"
+            + result.data[i].logs[j].uname + "</td></tr>";
+          }
+        }
+        $("#customerstate").html(html);
+        $("#operaterecord").html(html2);
+
+      }
+      else {
+      }
+    },
+    error: function (result) {
+      alert(result.resMsg);
+    }
+  })
+  return false;
+
+  $("stateok").click(function () {
+    stateOk();
+  });
+
+})
+
+function stateOk() {
+
+}
+</script>
+</body>
+</html>
