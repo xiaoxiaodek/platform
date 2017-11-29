@@ -36,7 +36,7 @@ $(document).ready(function() {
       }
     },
     error: function(result) {
-      alert("数据获取出错");
+      console.log("数据获取出错");
     }
   })
 
@@ -73,7 +73,7 @@ $(document).ready(function() {
         })
       },
       error: function (result) {
-        alert("搜索失败");
+        console.log("搜索失败");
 
       }
     });
@@ -101,7 +101,7 @@ $(document).ready(function() {
         }
       },
       error: function (result) {
-        alert("添加出错");
+          console.log("添加出错");
       }
     });
   })
@@ -133,7 +133,7 @@ $(document).ready(function() {
             }
           },
           error: function(result) {
-            alert("删除出错");
+              console.log("删除出错");
             window.location.reload();
           }
         })
@@ -162,16 +162,22 @@ $(document).ready(function() {
           $('#status1').val(item[i].pstatus);
           $('#res1').val(item[i].uname);
           $('#deadline1').val(item[i].time);
+              $('#deadline1').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
           break;
           case 1:
           $('#status2').val(item[i].pstatus);
           $('#res2').val(item[i].uname);
           $('#deadline2').val(item[i].time);
+              $('#deadline2').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
           break;
           case 2:
           $('#status3').val(item[i].pstatus);
           $('#res3').val(item[i].uname);
           $('#deadline3').val(item[i].time);
+              $('#deadline3').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
           break;
           default:return false;
         }
@@ -201,7 +207,7 @@ $(document).ready(function() {
             }
           },
           error: function(result) {
-            alert("编辑出错");
+              console.log("编辑出错");
             window.location.reload();
           }
         })

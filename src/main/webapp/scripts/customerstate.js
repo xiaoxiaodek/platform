@@ -100,7 +100,7 @@ $(document).ready(function () {
 
       },
       error: function (result) {
-         alert("数据获取出错");
+         console.log("数据获取出错");
          }
        })
       return false;
