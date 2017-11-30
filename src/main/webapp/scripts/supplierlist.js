@@ -246,15 +246,15 @@ $(document).ready(function() {
   })
 });
 
-var cname=false;
-var contactname=false;
-var phone = false;
-var email = false;
-var address=false;
-var cpid=false;
-var res1=false;
-var res2=false;
-var res3=false;
+var cname=true;
+var contactname=true;
+var phone = true;
+var email = true;
+var address=true;
+var cpid=true;
+var res1=true;
+var res2=true;
+var res3=true;
 
 //检查客户名称
 function checkCname(name) {
