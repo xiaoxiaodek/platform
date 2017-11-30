@@ -261,8 +261,10 @@ function checkCname(name) {
   cname=false;
   if (name == "") {
     $("#cname-tip").html("供应商名称不能为空");
+    $("#cname-tip2").html("供应商名称不能为空");
   }else{
     $("#cname-tip").html("");
+    $("#cname-tip2").html("");
     cname=true;
   }
   button();
@@ -272,8 +274,10 @@ function checkContactname(name) {
   contactname=false;
   if (name == "") {
     $("#contactname-tip").html("联系人不能为空");
+    $("#contactname-tip2").html("联系人不能为空");
   } else {
     $("#contactname-tip").html("");
+    $("#contactname-tip2").html("");
     contactname=true;
   }
   button();
@@ -283,11 +287,14 @@ function checkPhone(name) {
   phone = false;
   if (name == "") {
     $("#phone-tip").html("手机号不能为空");
+    $("#phone-tip2").html("手机号不能为空");
   } else if (name.match(/^0?(13|14|15|17|18)[0-9]{9}$/)) {
     $("#phone-tip").html("");
+    $("#phone-tip2").html("");
     phone = true;
   } else {
     $("#phone-tip").html("手机号不符合规则");
+    $("#phone-tip2").html("手机号不符合规则");
   }
   button();
 }
@@ -296,11 +303,14 @@ function checkEmail(name) {
   email = false;
   if (name == "") {
     $("#email-tip").html("邮箱不能为空");
+    $("#email-tip2").html("邮箱不能为空");
   } else if (name.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+\.([a-zA-Z0-9_-])+$/)) {
     $("#email-tip").html("");
+    $("#email-tip2").html("");
     email = true;
   } else {
     $("#email-tip").html("邮箱不符合规范");
+    $("#email-tip2").html("邮箱不符合规范");
   }
   button();
 }
@@ -309,8 +319,10 @@ function checkAddress(name) {
   address=false;
   if (name == "") {
     $("#address-tip").html("地址不能为空");
+    $("#address-tip2").html("地址不能为空");
   }else{
     $("#address-tip").html("");
+    $("#address-tip2").html("");
     address=true;
   }
   button();
@@ -320,11 +332,14 @@ function checkCpid(name) {
   cpid=false;
   if (name == "") {
     $("#cpid-tip").html("项目编号不能为空");
-  } else if (name.match(/[1-9]\d*/)) {
+    $("#cpid-tip2").html("项目编号不能为空");
+  } else if (name.match(/^\d+$/)) {
     $("#cpid-tip").html("");
+    $("#cpid-tip2").html("");
     cpid = true;
   } else {
     $("#cpid-tip").html("请输入数字");
+    $("#cpid-tip2").html("请输入数字");
   }
   button();
 }
@@ -333,8 +348,10 @@ function checkRes1(name) {
   res1=false;
   if (name == "") {
     $("#res1-tip").html("该负责人不能为空");
+    $("#res1-tip2").html("该负责人不能为空");
   } else {
     $("#res1-tip").html("");
+    $("#res1-tip2").html("");
     res1=true;
   }
   button();
@@ -344,8 +361,10 @@ function checkRes2(name) {
   res2=false;
   if (name == "") {
     $("#res2-tip").html("该负责人不能为空");
+    $("#res2-tip2").html("该负责人不能为空");
   } else {
     $("#res2-tip").html("");
+    $("#res2-tip2").html("");
     res2=true;
   }
   button();
@@ -355,8 +374,10 @@ function checkRes3(name) {
   res3=false;
   if (name == "") {
     $("#res3-tip").html("该负责人不能为空");
+    $("#res3-tip2").html("该负责人不能为空");
   } else {
     $("#res3-tip").html("");
+    $("#res3-tip2").html("");
     res3=true;
   }
   button();
@@ -364,7 +385,9 @@ function checkRes3(name) {
 
 function button() {
   var stamp = document.getElementById("create_ok");
+  var stamp2 = document.getElementById("submit_1");
   stamp.disabled = true;
+  stamp2.disabled = false;
   if (cname && contactname && phone && email && address && cpid && res1 && res2 && res3) {
     stamp.disabled = false;
   }

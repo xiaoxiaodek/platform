@@ -16,7 +16,7 @@ $(document).ready(function () {
                 ['尚未开始运营', '已经开始运营', '停止运营', '暂停运营', '其它']];
           $("#pagination-container1").pagination({
             dataSource: returndata,
-            pageSize: 8,
+            pageSize: 6,
             showGoInput: true,
             showGoButton: true,
             className: 'paginationjs-theme-blue',
@@ -47,7 +47,7 @@ $(document).ready(function () {
 
           $("#pagination-container2").pagination({
             dataSource: logsPagination,
-            pageSize: 10,
+            pageSize: 8,
             showGoInput: true,
             showGoButton: true,
             className: 'paginationjs-theme-blue',
@@ -70,31 +70,6 @@ $(document).ready(function () {
               $("#operaterecord").html(html2);
             }
           })
-          // var html="";
-          // var html2="";
-          // for(var i=0;i<result.data.length;i++){
-              //  html=html+"<tr><td>"+result.data[i].comname+"</td><td>"
-              //                      +result.data[i].items[0].pstatus+"</td><td>"
-              //                      +result.data[i].items[0].uname+"</td><td>"
-              //                      +result.data[i].items[0].time+"</td><td>"
-              //                      +result.data[i].items[1].pstatus+"</td><td>"
-              //                      +result.data[i].items[1].uname+"</td><td>"
-              //                      +result.data[i].items[1].time+"</td><td>"
-              //                      +result.data[i].items[2].pstatus+"</td><td>"
-              //                      +result.data[i].items[2].uname+"</td><td>"
-              //                      +result.data[i].items[2].time+"</td></tr>";
-              // for(var j=0;j<result.data[i].logs.length;j++){
-              //     html2=html2+"<tr><td>"+result.data[i].logs[j].module+"</td><td>"
-              //         +result.data[i].logs[j].method+"</td><td>"
-              //         +result.data[i].logs[j].ip+"</td><td>"
-              //         +result.data[i].logs[j].otime+"</td><td>"
-              //         +result.data[i].logs[j].responsetime+"</td><td>"
-              //         +result.data[i].logs[j].result+"</td><td>"
-              //         +result.data[i].logs[j].uname+"</td></tr>";
-          //     }
-          //    }
-          // $("#customerstate").html(html);
-          // $("#operaterecord").html(html2);
 
         }
 
