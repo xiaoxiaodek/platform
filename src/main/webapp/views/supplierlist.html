@@ -337,7 +337,6 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-default" type="button" data-dismiss="modal">取消</button>
-              <button class="btn btn-primary" type="reset">重置</button>
               <button id="create_ok" type="submit" class="btn btn-success" disabled="disabled">提交</button>
             </div>
           </div>
@@ -357,37 +356,43 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">供应商名称: </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="comname_1" name="comname" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="comname_1" name="comname" onblur="checkCname(this.value)" required="required" class="form-control col-md-7 col-xs-12">
+                  <span class="red" id="cname-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">联系人: </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="comcontactname_1" name="comcontactName" equired="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="comcontactname_1" name="comcontactName" onblur="checkContactname(this.value)" equired="required" class="form-control col-md-7 col-xs-12">
+                  <span class="red" id="contactname-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">联系方式: </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="comcontact_1" name="comcontact" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="comcontact_1" name="comcontact" placeholder="请输入11位数字" onblur="checkPhone(this.value)" required="required" class="form-control col-md-7 col-xs-12">
+                  <span class="red" id="phone-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">联系邮箱: </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="comemail_1" class="form-control col-md-7 col-xs-12" type="text" name="comemail">
+                  <input id="comemail_1" class="form-control col-md-7 col-xs-12" type="text" name="comemail" onblur="checkEmail(this.value)">
+                  <span class="red" id="email-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">联系地址: </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="comaddr_1" name="comaddr" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                  <input id="comaddr_1" name="comaddr" onblur="checkAddress(this.value)" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                  <span class="red" id="address-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">项目编号: </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="pid_1" name="pid" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                  <input id="pid_1" name="pid" onblur="checkCpid(this.value)" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                  <span class="red" id="cpid-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
@@ -413,7 +418,8 @@
                 </div>
                 <label class="control-label col-md-2 col-sm-2 col-xs-4">负责人: </label>
                 <div class="col-md-2 col-sm-2 col-xs-4">
-                  <input type="text" id="res1" name="commerceUname" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                  <input type="text" id="res1" name="commerceUname" onblur="checkRes1(this.value)" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                  <span class="red" id="res1-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
@@ -439,7 +445,8 @@
                 </div>
                 <label class="control-label col-md-2 col-sm-2 col-xs-4">负责人: </label>
                 <div class="col-md-2 col-sm-2 col-xs-4">
-                  <input type="text" id="res2" name="techUname" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                  <input type="text" id="res2" name="techUname" onblur="checkRes2(this.value)" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                  <span class="red" id="res2-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
@@ -461,7 +468,8 @@
                 </div>
                 <label class="control-label col-md-2 col-sm-2 col-xs-4">负责人: </label>
                 <div class="col-md-2 col-sm-2 col-xs-4">
-                  <input type="text" id="res3" name="onlineUname" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                  <input type="text" id="res3" name="onlineUname" onblur="checkRes3(this.value)" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                  <span class="red" id="res3-tip2" style="font-size:12px"></span>
                 </div>
               </div>
               <div class="form-group">
