@@ -302,7 +302,7 @@
         document.getElementById("username").innerText=namestorage;
 
         $.ajax({
-            url: "http://localhost:8888/company/queryCompany?&type=comid&typeId=0",
+            url: "/company/queryCompany?&type=comid&typeId=0",
             type: "GET",
             data: {"searchWord":requestParams.comid},
             contentType: "application/json;charset=utf-8",

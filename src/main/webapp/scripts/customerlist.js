@@ -5,7 +5,7 @@ $(document).ready(function () {
   document.getElementById("username").innerText=namestorage;
 
   $.ajax({
-    url: "http://localhost:8888/company/queryCompany?searchWord=&type=&typeId=0",
+    url: "/company/queryCompany?searchWord=&type=&typeId=0",
     type: "GET",
     contentType: "application/json;charset=utf-8",
     dataType: "json",
@@ -53,7 +53,7 @@ $(document).ready(function () {
     var searchword=$("#searchword").val();
     var postData={"searchWord":searchword};
     $.ajax({
-      url: "http://localhost:8888/company/queryCompany?&type=comname&typeId=0",
+      url: "/company/queryCompany?&type=comname&typeId=0",
       type: "GET",
       contentType: "application/json;charset=utf-8",
       dataType: "json",
@@ -104,7 +104,7 @@ $(document).ready(function () {
     formData.append("typeId",0);
     formData.forEach((value, key) => postData[key] = value)
     $.ajax({
-      url: "http://localhost:8888/company/insertCompany",
+      url: "/company/insertCompany",
       type: "POST",
       async:false,
       contentType: "application/json;charset=utf-8",
@@ -138,7 +138,7 @@ $(document).ready(function () {
         const array = [data[name].comid];
         console.log(array);
         $.ajax({
-          url: "http://localhost:8888/company/deleteCompany",
+          url: "/company/deleteCompany",
           type: "POST",
           data:JSON.stringify(array),
           // data:postData,
@@ -208,7 +208,6 @@ $(document).ready(function () {
           ;
         }
       }
-
       $('#submit_1').on('click',function(){
         const form = document.getElementById('demo-form3');
         let postData = {};
@@ -217,7 +216,7 @@ $(document).ready(function () {
         formData.append('comid',company.comid);
         formData.forEach((value, key) => postData[key] = value)
         $.ajax({
-          url: "http://localhost:8888/company/updateCompany",
+          url: "/company/updateCompany",
           type: "POST",
           data:JSON.stringify(postData),
           // data:postData,
@@ -394,6 +393,10 @@ function button() {
   stamp2.disabled = false;
   if (cname && contactname && phone && email && address && cpid && res1 && res2 && res3) {
     stamp.disabled = false;
+    stamp2.disabled = false;
+  }else{
+      stamp.disabled = true;
+      stamp2.disabled = true;
   }
 
 }
