@@ -111,11 +111,11 @@ $(document).ready(function () {
       success: function (result) {
         if (result.resCode == "0000") {
           alert("添加成功");
-
+          window.location.reload();
         }
         else{
           alert("添加失败");
-
+          window.location.reload();
         }
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -253,7 +253,9 @@ var phone = false;
 var email = false;
 var address=false;
 var cpid=false;
-var res=false;
+var res1=false;
+var res2=false;
+var res3=false;
 
 button();
 //检查客户名称
@@ -328,14 +330,36 @@ function checkCpid(name) {
   }
   button();
 }
-//检查负责人
-function checkRes(name) {
-  res=false;
+//检查负责人1
+function checkRes1(name) {
+  res1=false;
   if (name == "") {
-    $("#res-tip").html("该负责人不能为空");
+    $("#res1-tip").html("该负责人不能为空");
   } else {
-    $("#res-tip").html("");
-    res=true;
+    $("#res1-tip").html("");
+    res1=true;
+  }
+  button();
+}
+//检查负责人2
+function checkRes2(name) {
+  res2=false;
+  if (name == "") {
+    $("#res2-tip").html("该负责人不能为空");
+  } else {
+    $("#res2-tip").html("");
+    res2=true;
+  }
+  button();
+}
+//检查负责人3
+function checkRes3(name) {
+  res3=false;
+  if (name == "") {
+    $("#res3-tip").html("该负责人不能为空");
+  } else {
+    $("#res3-tip").html("");
+    res3=true;
   }
   button();
 }
@@ -343,7 +367,7 @@ function checkRes(name) {
 function button() {
   var stamp = document.getElementById("create_ok");
   stamp.disabled = true;
-  if (cname && contactname && phone && email && address && cpid && res) {
+  if (cname && contactname && phone && email && address && cpid && res1 && res2 && res3) {
     stamp.disabled = false;
   }
 }

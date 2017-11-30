@@ -213,7 +213,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">联系人:  </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="com_contactname" name="comcontactname" onblur="checkContactname(this.value)"  class="form-control col-md-7 col-xs-12" required="required">
+                    <input type="text" id="com_contactname" name="comcontactName" onblur="checkContactname(this.value)"  class="form-control col-md-7 col-xs-12" required="required">
                     <span class="red" id="contactname-tip" style="font-size:12px"></span>
                   </div>
                 </div>
@@ -268,8 +268,8 @@
                   </div>
                   <label class="control-label col-md-2 col-sm-2 col-xs-4">负责人: </label>
                   <div class="col-md-2 col-sm-2 col-xs-4">
-                    <input type="text" id="com_bus_person" name="commerceUname" onblur="checkRes(this.value)" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
-                    <span class="red" id="res-tip" style="font-size:12px"></span>
+                    <input type="text" id="com_bus_person" name="commerceUname" onblur="checkRes1(this.value)" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <span class="red" id="res1-tip" style="font-size:12px"></span>
                   </div>
                 </div>
                 <div class="form-group">
@@ -295,7 +295,8 @@
                   </div>
                   <label class="control-label col-md-2 col-sm-2 col-xs-4">负责人: </label>
                   <div class="col-md-2 col-sm-2 col-xs-4">
-                    <input type="text" id="com_tech_person" name="techUname" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <input type="text" id="com_tech_person" name="techUname" onblur="checkRes2(this.value)" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <span class="red" id="res2-tip" style="font-size:12px"></span>
                   </div>
                 </div>
                 <div class="form-group">
@@ -317,13 +318,20 @@
                   </div>
                   <label class="control-label col-md-2 col-sm-2 col-xs-4">负责人: </label>
                   <div class="col-md-2 col-sm-2 col-xs-4">
-                    <input type="text" id="com_ope_person" name="onlineUname" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <input type="text" id="com_ope_person" name="onlineUname" onblur="checkRes3(this.value)" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <span class="red" id="res3-tip" style="font-size:12px"></span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">运营开始时间: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
                     <input type="text" id="single_cal3" name="onlineStarttime" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">备注: </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="com_remark" name="remark" class="form-control col-md-7 col-xs-12" >
                   </div>
                 </div>
               </form>
@@ -355,7 +363,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">联系人:  </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="comcontactname_1" name="comcontactname" class="form-control col-md-7 col-xs-12" required="required">
+                    <input type="text" id="comcontactname_1" name="comcontactName" class="form-control col-md-7 col-xs-12" required="required">
                   </div>
                 </div>
                 <div class="form-group">

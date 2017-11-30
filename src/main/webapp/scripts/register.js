@@ -21,8 +21,9 @@ $(function(){
                   alert("注册成功!请登录!");
                   window.location.href="../views/login.html";
                 }
-                else{
-                  alert("新建失败");
+                else if(data.data=="用户名已存在"){
+                  alert("用户名已注册，请重新输入");
+                  window.location.reload();
                 }
               }
         })

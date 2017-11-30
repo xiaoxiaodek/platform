@@ -40,7 +40,7 @@ $(document).ready(function () {
 
           $("#pagination-container2").pagination({
             dataSource: returndata,
-            pageSize: 5,
+            pageSize: 1,
             showGoInput: true,
             showGoButton: true,
             className: 'paginationjs-theme-blue',
