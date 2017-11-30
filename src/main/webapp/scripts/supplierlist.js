@@ -137,7 +137,7 @@ $(document).ready(function() {
     // debugger
     if (type == 'button' && operate == '删除') {
       $('#delete').on('click', function(){
-        const array = [data.companies[name].comid];
+        const array = [data[name].comid];
         console.log(array);
         $.ajax({
           url: "/company/deleteCompany",
