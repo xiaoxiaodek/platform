@@ -28,14 +28,15 @@ $(document).ready(function () {
             callback:function(result,pagination){
               var html="";
               for(var i=0;i<result.length;i++){
-                html=html+"<tr><td>"+result[i].comname+"</td><td>"
-                +result[i].comcontactname+"</td><td>"
-                +result[i].comcontact+"</td><td>"
-                +result[i].comemail+"</td><td>"
-                +result[i].comaddr+"</td><td><a id='"
-                +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
-                +result[i].createtime+
-                "</td><td><button name='" + i + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + i + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
+                var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+                html=html+"<tr><td>"+result[j].comname+"</td><td>"
+                +result[j].comcontactname+"</td><td>"
+                +result[j].comcontact+"</td><td>"
+                +result[j].comemail+"</td><td>"
+                +result[j].comaddr+"</td><td><a id='"
+                +result[j].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+                +result[j].createtime+
+                "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
               }
               $("#customerlist").html(html);
             }
