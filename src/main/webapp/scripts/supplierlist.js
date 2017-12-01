@@ -11,7 +11,7 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url: "http://localhost:8888/company/queryCompany?searchWord=&type=&typeId=1",
+    url: "/company/queryCompany?searchWord=&type=&typeId=1",
     type: "GET",
     contentType: "application/json;charset=utf-8",
     dataType: "json",
@@ -58,7 +58,7 @@ $(document).ready(function() {
     var searchword=$("#searchword").val();
     var postData={"searchWord":searchword};
     $.ajax({
-      url: "http://localhost:8888/company/queryCompany?&type=comname&typeId=1",
+      url: "/company/queryCompany?&type=comname&typeId=1",
       type: "GET",
       contentType: "application/json;charset=utf-8",
       dataType: "json",
@@ -108,7 +108,7 @@ $(document).ready(function() {
     formData.append("typeId",1);
     formData.forEach((value, key) => postData[key] = value)
     $.ajax({
-      url: "http://localhost:8888/company/insertCompany",
+      url: "/company/insertCompany",
       type: "POST",
       contentType: "application/json;charset=utf-8",
       dataType: "json",
@@ -140,7 +140,7 @@ $(document).ready(function() {
         const array = [data[name].comid];
         console.log(array);
         $.ajax({
-          url: "http://localhost:8888/company/deleteCompany",
+          url: "/company/deleteCompany",
           type: "POST",
           data:JSON.stringify(array),
           // data:postData,
@@ -216,7 +216,7 @@ $(document).ready(function() {
         formData.append('comid',company.comid);
         formData.forEach((value, key) => postData[key] = value)
         $.ajax({
-          url: "http://localhost:8888/company/updateCompany",
+          url: "/company/updateCompany",
           type: "POST",
           data:JSON.stringify(postData),
           // data:postData,
@@ -246,15 +246,15 @@ $(document).ready(function() {
   })
 });
 
-var cname=false;
-var contactname=false;
-var phone = false;
-var email = false;
-var address=false;
-var cpid=false;
-var res1=false;
-var res2=false;
-var res3=false;
+var cname=true;
+var contactname=true;
+var phone = true;
+var email = true;
+var address=true;
+var cpid=true;
+var res1=true;
+var res2=true;
+var res3=true;
 
 //检查客户名称
 function checkCname(name) {
@@ -390,6 +390,10 @@ function button() {
   stamp2.disabled = false;
   if (cname && contactname && phone && email && address && cpid && res1 && res2 && res3) {
     stamp.disabled = false;
+    stamp2.disabled = false;
+  }else{
+      stamp.disabled = true;
+      stamp2.disabled = true;
   }
 }
 

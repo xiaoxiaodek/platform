@@ -127,14 +127,14 @@
 
 <!--拦截器-->
 
-    <!--<mvc:interceptors>-->
-    <!--<mvc:interceptor>-->
-        <!--<mvc:mapping path="/views/**" />-->
-        <!--<mvc:exclude-mapping path="/views/login.html" />-->
-        <!--<mvc:exclude-mapping path="/views/register.html" />-->
-        <!--&lt;!&ndash;不拦截样式&ndash;&gt;-->
-        <!--&lt;!&ndash;<mvc:exclude-mapping path="/vendors/**" />&ndash;&gt;-->
-        <!--<bean class="com.www.platform.util.AuthInterceptor"></bean>-->
-    <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/views/**" />
+        <mvc:exclude-mapping path="/views/login.html" />
+        <mvc:exclude-mapping path="/views/register.html" />
+        <!--不拦截样式-->
+        <!--<mvc:exclude-mapping path="/vendors/**" />-->
+        <bean class="com.www.platform.util.AuthInterceptor"></bean>
+    </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -160,8 +160,10 @@ return msg;
 
     public BaseMessage logout(HttpSession session) {
         BaseMessage msg = new BaseMessage();
+        System.out.println("进去了吗???????????????");
         try {
             session.removeAttribute(GlobalConstants.USERNAME);
+            System.out.println("++++++++++++++="+session.getAttribute(GlobalConstants.USERNAME));
             session.invalidate();
             msg.setData("success");
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);

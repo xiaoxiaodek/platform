@@ -132,7 +132,7 @@
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>退出</a></li>
+                  <li><a href="#" id="logout"><i class="fa fa-sign-out pull-right"></i>退出</a></li>
                 </ul>
               </li>
 
@@ -162,7 +162,7 @@
             </div>
           </div>
           <div class="col-md-2 col-sm-2 col-xs-4 form-group pull-right">
-            <button type="button" class="btn btn-primary" data-toggle='modal' data-target='#create_modal'>新建</button>
+            <button onclick="document.getElementById('create_ok').disabled = true;" type="button" class="btn btn-primary" data-toggle='modal' data-target='#create_modal'>新建</button>
           </div>
         </div>
       </div>
@@ -581,6 +581,8 @@
 <script src="../vendors/build/js/custom.min.js"></script>
 
 <script type="text/javascript" src="../scripts/supplierlist.js"></script>
+
+<script src="../scripts/logout.js"></script>
 </body>
 
 </html>

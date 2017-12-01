@@ -2,7 +2,7 @@ $(document).ready(function () {
   var namestorage=sessionStorage.getItem("user_name");
   document.getElementById("username").innerText=namestorage;
     $.ajax({
-      url: "http://localhost:8888/company/queryCompany?searchWord=&type=&typeId=1",
+      url: "/company/queryCompany?searchWord=&type=&typeId=1",
       type: "GET",
       contentType: "application/json;charset=utf-8",
       dataType: "json",
@@ -16,7 +16,7 @@ $(document).ready(function () {
                 ['尚未开始运营', '已经开始运营', '停止运营', '暂停运营', '其它']];
           $("#pagination-container1").pagination({
             dataSource: returndata,
-            pageSize: 8,
+            pageSize: 6,
             showGoInput: true,
             showGoButton: true,
             className: 'paginationjs-theme-blue',
@@ -47,7 +47,7 @@ $(document).ready(function () {
 
           $("#pagination-container2").pagination({
             dataSource: logsPagination,
-            pageSize: 1,
+            pageSize: 8,
             showGoInput: true,
             showGoButton: true,
             className: 'paginationjs-theme-blue',

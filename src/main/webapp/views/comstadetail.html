@@ -132,7 +132,7 @@
                 <span class=" fa fa-angle-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>退出</a>
+                <li><a href="#" id="logout"><i class="fa fa-sign-out pull-right"></i>退出</a>
                 </li>
               </ul>
             </li>
@@ -284,8 +284,8 @@
 <!-- Pagination -->
 <script src="../scripts/pagination.js"></script>
 
-<!-- Self Scripts -->
-<!-- <script src="scripts/customerstate.js"></script> -->
+<script src="../scripts/logout.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         const url = window.location.search; //获取url中"?"符后的字串
@@ -302,7 +302,7 @@
         document.getElementById("username").innerText=namestorage;
 
         $.ajax({
-            url: "http://localhost:8888/company/queryCompany?&type=comid&typeId=0",
+            url: "/company/queryCompany?&type=comid&typeId=0",
             type: "GET",
             data: {"searchWord":requestParams.comid},
             contentType: "application/json;charset=utf-8",

@@ -121,7 +121,7 @@
                 <span class=" fa fa-angle-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>退出</a>
+                <li><a href="#" id="logout"><i class="fa fa-sign-out pull-right"></i>退出</a>
                 </li>
               </ul>
             </li>
@@ -256,6 +256,8 @@
 <!-- Pagination -->
 <script src="../scripts/pagination.js"></script>
 
+<script src="../scripts/logout.js"></script>
+
 <!-- Self Scripts -->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -273,7 +275,7 @@
         document.getElementById("username").innerText=namestorage;
 
         $.ajax({
-            url: "http://localhost:8888/company/queryCompany?type=comid&typeId=1",
+            url: "/company/queryCompany?type=comid&typeId=1",
             type: "GET",
             data: {"searchWord": requestParams.comid},
             contentType: "application/json;charset=utf-8",
