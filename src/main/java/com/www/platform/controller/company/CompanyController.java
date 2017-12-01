@@ -85,9 +85,9 @@ public class CompanyController {
     @RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
     @ResponseBody
     @SystemLog(module = "公司管理", methods = "修改")
-    public BaseMessage updateCompany(@RequestBody Map<String, Object> map, HttpSession session)throws Exception {
+    public BaseMessage updateCompany(@RequestBody Map<String, Object> map)throws Exception {
         BaseMessage message = new BaseMessage();
-        Boolean result = this.companyService.updateCompany(map,session);
+        Boolean result = this.companyService.updateCompany(map);
         if(result)
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
         else

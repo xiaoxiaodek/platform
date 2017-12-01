@@ -78,14 +78,13 @@ public class CompanyServiceImpl implements CompanyService {
      * @return Boolean
      */
     @Transactional
-    public Boolean updateCompany(Map<String, Object> map,HttpSession session){
+    public Boolean updateCompany(Map<String, Object> map){
 
         map = addAndUpdate(map,"update");
 
         int companyResult = companyMapper.updateCompany(map);
         int itemResult = itemService.updateItem(map);
         if(companyResult !=0 && itemResult!=0) {
-            session.setAttribute("comid",Integer.parseInt((String) map.get("comid")));
             return true;
         }
         return false;

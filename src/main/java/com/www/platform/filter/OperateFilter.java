@@ -66,17 +66,17 @@ public class OperateFilter {
         System.out.println("=====SysLogAspect前置通知结束=====");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String uname = (String) request.getSession().getAttribute("uname");
-        Integer comid = (Integer) request.getSession().getAttribute("comid");
-        if(comid != null)
-            log.setComid(comid);
         if(uname != null)
             log.setUname(uname);
+        else
+            log.setUname("null");
         logMapper.insert(log);
     }
 
     @Around("controllerAspect()")
     @ResponseBody
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
+        log = new Log();
         //获取登录用户账户
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 //        int uid = (Integer) request.getSession().getAttribute("uname");
@@ -131,6 +131,9 @@ public class OperateFilter {
                         }
                     }else if (parameterTypes[0].getName().equals("java.util.Map")){
                         Map map = (Map) args[0];
+                        if(map.get("comid") != null){
+                            log.setComid(Integer.parseInt((String) map.get("comid")));
+                        }
                         if(Integer.parseInt((String) map.get("typeId")) == 0) {
                             log.setModule("客户管理");
                         }else{
