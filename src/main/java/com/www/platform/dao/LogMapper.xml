@@ -147,4 +147,18 @@
     ORDER BY lid DESC
   </select>
 
+  <select id="selectByNoComid" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from log
+      <choose>
+          <when test="typeId==0">
+              where module="客户管理"
+          </when>
+          <otherwise>
+              where module="供应商管理"
+          </otherwise>
+      </choose>
+  </select>
+
 </mapper>

@@ -1,7 +1,9 @@
 package com.www.platform.service.company;
 
 import com.www.platform.dao.CompanyMapper;
+import com.www.platform.dao.LogMapper;
 import com.www.platform.entity.Company;
+import com.www.platform.entity.Log;
 import com.www.platform.service.item.ItemService;
 import com.www.platform.util.DateUtil;
 import org.slf4j.Logger;
@@ -13,10 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -32,7 +31,8 @@ public class CompanyServiceImpl implements CompanyService {
     private CompanyMapper companyMapper;
     @Autowired
     private ItemService itemService;
-
+    @Autowired
+    private LogMapper logMapper;
 
     /**
      * @desc platform2.0版本的查询条件
@@ -41,17 +41,25 @@ public class CompanyServiceImpl implements CompanyService {
      * @param searchType
      * @return
      */
+    @Transactional
     public List<Company> selectAll(int typeId, String serachWord, String searchType){
 
         Map<String,Object> parameter = new HashMap<String, Object>();
-
         parameter.put("typeId",typeId);
         parameter.put("searchType",searchType);
         if(searchType.equals("commid"))
             parameter.put("searchWord",Integer.valueOf(serachWord));
         else
             parameter.put("searchWord",serachWord);
-        return companyMapper.queryCompanyList(parameter);
+        List<Company> companies = companyMapper.queryCompanyList(parameter);
+        if(searchType == "") {
+            List<Log> logs = logMapper.selectByNoComid(parameter);
+            Company company = new Company();
+            company.setLogs(logs);
+            companies.add(company);
+            return companies;
+        }
+        return companies;
     }
 
 

@@ -125,8 +125,15 @@ public class OperateFilter {
                 if(systemlog.module().equals("公司管理")){
                     if(parameterTypes[0].getName().equals("int")){
                         if((Integer) args[0] == 0){
+                            if((String.valueOf(args[2])).equals("comid")){
+                                log.setComid(Integer.parseInt((String) args[1]));
+                                System.out.println(Integer.parseInt((String) args[1]));
+                            }
                             log.setModule("客户管理");
                         }else{
+                            if((String.valueOf(args[2])).equals("commid")){
+                                log.setComid(Integer.parseInt((String) args[1]));
+                            }
                             log.setModule("供应商管理");
                         }
                     }else if (parameterTypes[0].getName().equals("java.util.Map")){

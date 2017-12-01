@@ -27,7 +27,7 @@ $(document).ready(function () {
             className: 'paginationjs-theme-blue',
             callback:function(result,pagination){
               var html="";
-              for(var i=0;i<result.length;i++){
+              for(var i=0;i<result.length-1;i++){
                 var j =i + (pagination.pageNumber-1) * pagination.pageSize;
                 html=html+"<tr><td>"+result[i].comname+"</td><td>"
                 +result[i].comcontactname+"</td><td>"

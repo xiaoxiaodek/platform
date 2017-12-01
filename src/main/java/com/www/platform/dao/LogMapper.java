@@ -3,6 +3,7 @@ package com.www.platform.dao;
 import com.www.platform.entity.Log;
 
 import java.util.List;
+import java.util.Map;
 
 public interface LogMapper {
     int deleteByPrimaryKey(Integer lid);
@@ -18,4 +19,6 @@ public interface LogMapper {
     int updateByPrimaryKey(Log record);
 
     List<Log> selectByComid(int comid);
+
+    List<Log> selectByNoComid(Map<String,Object> map);
 }
