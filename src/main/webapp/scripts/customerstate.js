@@ -2,7 +2,7 @@ $(document).ready(function () {
   var namestorage=sessionStorage.getItem("user_name");
   document.getElementById("username").innerText=namestorage;
     $.ajax({
-      url: "http://localhost:8888/company/queryCompany?searchWord=&type=&typeId=0",
+      url: "/company/queryCompany?searchWord=&type=&typeId=0",
       type: "GET",
       contentType: "application/json;charset=utf-8",
       dataType: "json",

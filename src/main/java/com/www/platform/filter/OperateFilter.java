@@ -1,6 +1,8 @@
 package com.www.platform.filter;
 
+import com.www.platform.dao.CompanyMapper;
 import com.www.platform.dao.LogMapper;
+import com.www.platform.entity.Company;
 import com.www.platform.entity.Log;
 import com.www.platform.message.BaseMessage;
 import com.www.platform.message.MessageCode;
@@ -14,6 +16,7 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -25,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.aspectj.lang.reflect.MethodSignature;
 
@@ -42,6 +47,8 @@ public class OperateFilter {
     //注入service,用来将日志信息保存在数据库
     @Resource(name="logMapper")
     private LogMapper logMapper;
+    @Autowired
+    private CompanyMapper companyMapper;
 
     Log log = new Log();
 
@@ -115,6 +122,30 @@ public class OperateFilter {
             if (method.isAnnotationPresent(SystemLog.class)) {
                 SystemLog systemlog = method.getAnnotation(SystemLog.class);
                 log.setModule(systemlog.module());
+                if(systemlog.module().equals("公司管理")){
+                    if(parameterTypes[0].getName().equals("int")){
+                        if((Integer) args[0] == 0){
+                            log.setModule("客户管理");
+                        }else{
+                            log.setModule("供应商管理");
+                        }
+                    }else if (parameterTypes[0].getName().equals("java.util.Map")){
+                        Map map = (Map) args[0];
+                        if(Integer.parseInt((String) map.get("typeId")) == 0) {
+                            log.setModule("客户管理");
+                        }else{
+                            log.setModule("供应商管理");
+                        }
+                    }else{
+                        int[] comids = (int[]) args[0];
+                        int typeId = companyMapper.selectByPrimaryKey(comids[0]).getTypeid();
+                        if(typeId == 0) {
+                            log.setModule("客户管理");
+                        }else{
+                            log.setModule("供应商管理");
+                        }
+                    }
+                }
                 log.setMethod(systemlog.methods());
                 try {
                     object = pjp.proceed();

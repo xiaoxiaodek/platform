@@ -273,7 +273,7 @@
         document.getElementById("username").innerText=namestorage;
 
         $.ajax({
-            url: "http://localhost:8888/company/queryCompany?type=comid&typeId=1",
+            url: "/company/queryCompany?type=comid&typeId=1",
             type: "GET",
             data: {"searchWord": requestParams.comid},
             contentType: "application/json;charset=utf-8",
@@ -335,7 +335,7 @@
                 }
             },
             error: function (result) {
-                alert(result.resMsg);
+                console.log(result.resMsg);
             }
         })
         return false;

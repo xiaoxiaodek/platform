@@ -33,7 +33,7 @@ public class CompanyController {
 
     @RequestMapping(value = "/queryCompany", method = RequestMethod.GET)
     @ResponseBody
-    @SystemLog(module = "公司管理", methods = "查询公司")
+    @SystemLog(module = "公司管理", methods = "查询")
     public BaseMessage selectAll(@RequestParam(value = "typeId") int typeId,
                                  @RequestParam(value = "searchWord") String serachWord,
                                  @RequestParam(value = "type") String searchType)throws Exception {
@@ -58,7 +58,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module = "公司管理", methods = "删除公司")
+    @SystemLog(module = "公司管理", methods = "删除")
     public BaseMessage deleteCompanies(@RequestBody int[] comids)throws Exception {
 
         BaseMessage message = new BaseMessage();
@@ -84,7 +84,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module = "公司管理", methods = "修改公司")
+    @SystemLog(module = "公司管理", methods = "修改")
     public BaseMessage updateCompany(@RequestBody Map<String, Object> map, HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
         Boolean result = this.companyService.updateCompany(map,session);
@@ -103,7 +103,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(module = "公司管理", methods = "添加公司")
+    @SystemLog(module = "公司管理", methods = "添加")
     public BaseMessage insertCompany(@RequestBody Map<String, Object> map)throws Exception {
         BaseMessage message = new BaseMessage();
         Boolean result = this.companyService.insertCompany(map);
