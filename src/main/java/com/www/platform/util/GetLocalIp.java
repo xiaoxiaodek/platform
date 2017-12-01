@@ -1,6 +1,11 @@
 package com.www.platform.util;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
 
 /**
  * Created by upsmart on 17-11-14.
@@ -13,7 +18,7 @@ public class GetLocalIp {
      * @param request
      * @return
      */
-    public static String getIpAddr(HttpServletRequest request)  {
+    public static String getIpAddr(HttpServletRequest request) throws SocketException {
         String ip  =  request.getHeader( " x-forwarded-for " );
         if (ip  ==   null   ||  ip.length()  ==   0   ||   " unknown " .equalsIgnoreCase(ip))  {
             ip  =  request.getHeader( " Proxy-Client-IP " );
@@ -23,6 +28,16 @@ public class GetLocalIp {
         }
         if (ip  ==   null   ||  ip.length()  ==   0   ||   " unknown " .equalsIgnoreCase(ip))  {
             ip  =  request.getRemoteAddr();
+            if(ip.equals("0:0:0:0:0:0:0:1")){
+                //根据网卡取本机配置的IP
+                InetAddress inet=null;
+                try {
+                    inet = InetAddress.getLocalHost();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                ip= inet.getHostAddress();
+            }
         }
         return  ip;
     }
