@@ -11,6 +11,14 @@ $(document).ready(function () {
           console.log("result.data---",result.data)
           var returndata=result.data;
             var logsPagination = new Array;
+            for(var k=0;k<result.data.length;k++) {
+                for (var l = 0; l < result.data[k].logs.length; l++) {
+                    if (result.data[k].logs[l].lid == null) {
+                        continue;
+                    }
+                    logsPagination.push(result.data[k].logs[l]);
+                }
+            }
           const peroid= [['进行商务洽谈', '达成初步意向', '进行合同洽谈', '合同达成意向', '进行合同审核', '合同审核完成', '进行合同用印', '合同签署完成', '尚未到账', '已经到账', '月结', '其它'],
                 ['账号尚未开通', '开通信息准备', '开通测试账号', '进行测试对接', '测试对接完成', '开通生产账号', '进行生产对接', '生产对接完成', '其它'],
                 ['尚未开始运营', '已经开始运营', '停止运营', '暂停运营', '其它']];
@@ -24,12 +32,6 @@ $(document).ready(function () {
               console.log("result---",result);
               var html="";
               for(var i=0;i<result.length;i++){
-                  for(var j=0;j<result[i].logs.length;j++) {
-                      if(result[i].logs[j].lid == null) {
-                          continue;
-                      }
-                      logsPagination.push(result[i].logs[j]);
-                  }
                 html=html+"<tr><td>"+result[i].comname+"</td><td><span class='label label-success'>"
                   +peroid[0][result[i].items[0].pstatus]+"</span></td><td>"
                   +result[i].items[0].uname+"</td><td>"
