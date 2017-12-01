@@ -23,4 +23,5 @@ public interface CompanyMapper {
     int updateCompany(Map<String, Object> map);
     Company selectSelective(Map<String, Object> map);
     int insertCompany(Map<String, Object> map);
+
 }

@@ -40,8 +40,6 @@ public class CompanyController {
 
         BaseMessage message = new BaseMessage();
         List<Company> companies = this.companyService.selectAll(typeId,serachWord,searchType);
-//        PageHelper.startPage(1,5);
-//        PageInfo<Company> pageInfo = new PageInfo<Company>(companies);
         if (companies!=null) {
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
             message.setData(companies);

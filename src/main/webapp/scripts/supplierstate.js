@@ -43,7 +43,10 @@ $(document).ready(function () {
               }
               $("#supplierstate").html(html);
             }
-          })
+          });
+            logsPagination.sort(function (a,b) {
+                return new Date(b.otime) - new Date(a.otime);
+            });
 
           $("#pagination-container2").pagination({
             dataSource: logsPagination,
