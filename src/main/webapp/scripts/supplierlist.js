@@ -208,6 +208,16 @@ $(document).ready(function() {
         }
       }
 
+        checkRes3($('#res3').val());
+        checkRes2($('#res2').val());
+        checkRes1($('#res1').val());
+        checkPhone($('#comcontact_1').val());
+        checkEmail($('#comemail_1').val());
+        checkCpid($('#pid_1').val());
+        checkContactname($('#comcontactname_1').val());
+        checkCname($('#comname_1').val());
+        checkAddress($('#comaddr_1').val());
+
       $('#submit_1').on('click',function(){
         const form = document.getElementById('demo-form3');
         let postData = {};
@@ -246,15 +256,15 @@ $(document).ready(function() {
   })
 });
 
-var cname=true;
-var contactname=true;
-var phone = true;
-var email = true;
-var address=true;
-var cpid=true;
-var res1=true;
-var res2=true;
-var res3=true;
+var cname=false;
+var contactname=false;
+var phone = false;
+var email = false;
+var address=false;
+var cpid=false;
+var res1=false;
+var res2=false;
+var res3=false;
 
 //检查客户名称
 function checkCname(name) {
@@ -390,9 +400,7 @@ function button() {
   stamp2.disabled = false;
   if (cname && contactname && phone && email && address && cpid && res1 && res2 && res3) {
     stamp.disabled = false;
-    stamp2.disabled = false;
   }else{
-      stamp.disabled = true;
       stamp2.disabled = true;
   }
 }
