@@ -8,9 +8,10 @@
     <result column="uemail" jdbcType="VARCHAR" property="uemail" />
     <result column="uname" jdbcType="VARCHAR" property="uname" />
     <result column="upwd" jdbcType="VARCHAR" property="upwd" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
   </resultMap>
   <sql id="Base_Column_List">
-    uid, createtime, modtime, uemail, uname, upwd
+    uid, createtime, modtime, uemail, uname, upwd, role
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -18,28 +19,17 @@
     from user
     where uid = #{uid,jdbcType=INTEGER}
   </select>
-
-  <!--根据用户名查询-->
-  <select id="selectByUname" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from user
-    where uname = #{uname,jdbcType=VARCHAR}
-  </select>
-
-
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.www.platform.entity.User">
     insert into user (uid, createtime, modtime, 
-      uemail, uname, upwd
-      )
+      uemail, uname, upwd, 
+      role)
     values (#{uid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{modtime,jdbcType=TIMESTAMP}, 
-      #{uemail,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}, #{upwd,jdbcType=VARCHAR}
-      )
+      #{uemail,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}, #{upwd,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.User">
     insert into user
@@ -62,6 +52,9 @@
       <if test="upwd != null">
         upwd,
       </if>
+      <if test="role != null">
+        role,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -81,6 +74,9 @@
       </if>
       <if test="upwd != null">
         #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -102,6 +98,9 @@
       <if test="upwd != null">
         upwd = #{upwd,jdbcType=VARCHAR},
       </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
   </update>
@@ -111,11 +110,22 @@
       modtime = #{modtime,jdbcType=TIMESTAMP},
       uemail = #{uemail,jdbcType=VARCHAR},
       uname = #{uname,jdbcType=VARCHAR},
-      upwd = #{upwd,jdbcType=VARCHAR}
+      upwd = #{upwd,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 
-<!--修改密码 -->
+
+
+
+  <!--根据用户名查询-->
+  <select id="selectByUname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where uname = #{uname,jdbcType=VARCHAR}
+  </select>
+  <!--修改密码 -->
   <update id="updateUpwd" parameterType="com.www.platform.entity.User">
     update user
     set
@@ -124,7 +134,14 @@
     where uname = #{uname,jdbcType=VARCHAR}
   </update>
 
+  <!--修改权限 -->
+  <update id="updateRole" parameterType="com.www.platform.entity.User">
+    update user
+    set
+    role = #{role,jdbcType=VARCHAR}
 
+    where uname = #{uname,jdbcType=VARCHAR}
+  </update>
 
 
   <!--修改信息 -->
@@ -135,6 +152,8 @@
     uemail = #{uemail,jdbcType=VARCHAR}
     where uname = #{uname,jdbcType=VARCHAR}
   </update>
+
+
 
 
 
