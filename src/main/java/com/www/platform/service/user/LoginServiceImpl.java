@@ -197,6 +197,27 @@ import java.util.Map;
         return userList;
     }
 
+    @Override public String deleteUser(Map<String, Object> map) {
+
+        String result=null;
+        User user=new User();
+        int uid=Integer.parseInt(map.get("uid").toString());
+        try {
+            this.userMapper.deleteByPrimaryKey(uid);
+            result="删除成功";
+        }catch(Exception e){
+            result="删除失败";
+            e.printStackTrace();
+            return  result;
+        }
+
+        return result;
+
+
+
+
+    }
+
 
 
 }

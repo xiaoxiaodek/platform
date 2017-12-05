@@ -19,4 +19,5 @@ public interface LoginService {
     String editInfo(Map<String, Object> map);
     String editRole(Map<String, Object> map);
     List<User> selectAllUser();
+    String  deleteUser(Map<String, Object> map);
 }

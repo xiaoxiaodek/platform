@@ -92,8 +92,35 @@ return msg;
 
 
     /**
-     * 查询所有用户
+     * 注册
      * @param map
+     * @return
+     */
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="删除用户")
+
+    public BaseMessage deleteUser(@RequestBody Map<String, Object> map) {
+        BaseMessage msg = new BaseMessage();
+        msg.setData(this.loginService.deleteUser(map));
+        if("删除成功".equals(msg.getData())){
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
+        return msg;
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     * 查询所有用户
+     *
      * @return
      */
     @RequestMapping(value = "/selectAllUser", method = RequestMethod.POST) @ResponseBody
