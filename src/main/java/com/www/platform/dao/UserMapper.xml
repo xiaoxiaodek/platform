@@ -125,6 +125,19 @@
     from user
     where uname = #{uname,jdbcType=VARCHAR}
   </select>
+
+
+  <!--查询所有用户-->
+  <select id="selectAllUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+
+
+
+
+
   <!--修改密码 -->
   <update id="updateUpwd" parameterType="com.www.platform.entity.User">
     update user

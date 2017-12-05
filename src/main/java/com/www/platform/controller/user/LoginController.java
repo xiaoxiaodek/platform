@@ -91,6 +91,31 @@ return msg;
 
 
 
+    /**
+     * 查询所有用户
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/selectAllUser", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="查询所有用户")
+
+    public BaseMessage selectAllUser() {
+        BaseMessage msg = new BaseMessage();
+        msg.setData(this.loginService.selectAllUser());
+        if(msg.getData()!=null){
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
+        return msg;
+    }
+
+
+
+
+
+
+
 
     /**
      * 修改密码
