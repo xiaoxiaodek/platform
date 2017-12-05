@@ -20,6 +20,7 @@ public interface LoginService {
     String editInfo(Map<String, Object> map);
     String editRole(Map<String, Object> map);
     List<User> selectAllUser();
+    List<User> selectLikeUname(Map<String, Object> map);
     String  deleteUser(Map<String, Object> map);
     User selectUserByUname(Map<String, Object> map);
 }

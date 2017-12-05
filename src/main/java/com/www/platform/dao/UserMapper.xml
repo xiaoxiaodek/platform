@@ -130,6 +130,20 @@
   </select>
 
 
+  <!--根据用户名模糊查询-->
+  <select id="selectLikeUname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where uname LIKE '%${uname}%'
+  </select>
+
+
+
+
+
+
+
   <!--查询所有用户-->
   <select id="selectAllUser" parameterType="java.lang.String" resultMap="BaseResultMap">
     select

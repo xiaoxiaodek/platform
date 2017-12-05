@@ -161,9 +161,10 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
 
     public BaseMessage selectUserByUname(@RequestBody Map<String, Object> map,HttpSession session) {
         BaseMessage msg = new BaseMessage();
+        System.out.println("===========进去了吗");
         String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
-        msg.setData(this.loginService.selectUserByUname(map));
+        msg.setData(this.loginService.selectLikeUname(map));
         if(msg.getData()!=null){
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
         }else {

@@ -19,6 +19,7 @@ public interface UserMapper {
 
     List<User> selectAllUser();
 
+    List<User> selectLikeUname(@Param("uname") String uname);
 
     int updateByPrimaryKeySelective(User record);
 
