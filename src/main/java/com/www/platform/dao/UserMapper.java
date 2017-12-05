@@ -4,6 +4,7 @@ import com.www.platform.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer uid);
@@ -15,6 +16,8 @@ public interface UserMapper {
     User selectByPrimaryKey(Integer uid);
 
     User selectByUname(String uname);
+
+    List<User> selectAllUser();
 
     int updateByPrimaryKeySelective(User record);
 

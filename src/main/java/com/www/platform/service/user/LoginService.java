@@ -1,6 +1,9 @@
 package com.www.platform.service.user;
 
 
+import com.www.platform.entity.User;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,4 +18,6 @@ public interface LoginService {
    String editPassword(Map<String, Object> map);
     String editInfo(Map<String, Object> map);
     String editRole(Map<String, Object> map);
+    List<User> selectAllUser();
+    String  deleteUser(Map<String, Object> map);
 }

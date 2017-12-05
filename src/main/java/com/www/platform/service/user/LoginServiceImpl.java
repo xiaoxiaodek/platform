@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -180,6 +182,40 @@ import java.util.Map;
         }
 
         return result;
+    }
+
+    @Override public List<User> selectAllUser() {
+        List<User> userList=new ArrayList<User>();
+        try {
+            userList=  this.userMapper.selectAllUser();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            userList=null;
+        }
+
+
+        return userList;
+    }
+
+    @Override public String deleteUser(Map<String, Object> map) {
+
+        String result=null;
+        User user=new User();
+        int uid=Integer.parseInt(map.get("uid").toString());
+        try {
+            this.userMapper.deleteByPrimaryKey(uid);
+            result="删除成功";
+        }catch(Exception e){
+            result="删除失败";
+            e.printStackTrace();
+            return  result;
+        }
+
+        return result;
+
+
+
+
     }
 
 
