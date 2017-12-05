@@ -199,6 +199,21 @@ import java.util.Map;
         return userList;
     }
 
+    @Override public List<User> selectLikeUname(Map<String, Object> map) {
+        List<User> userList=new ArrayList<User>();
+        System.out.println("===========进service了吗");
+        try {
+        String uname=map.get("uname").toString();
+        userList=this.userMapper.selectLikeUname(uname);
+            System.out.println("service+++++++++++userList:  "+userList);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            userList=null;
+            return userList;
+        }
+        return userList;
+    }
+
     @Override public String deleteUser(Map<String, Object> map) {
 
         String result=null;
@@ -229,6 +244,7 @@ import java.util.Map;
         }catch (NullPointerException e){
             e.printStackTrace();
             user=null;
+            return user;
         }
 
         return user;
