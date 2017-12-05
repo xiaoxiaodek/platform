@@ -14,4 +14,5 @@ public interface LoginService {
   String register(Map<String ,Object> map);
    String editPassword(Map<String, Object> map);
     String editInfo(Map<String, Object> map);
+    String editRole(Map<String, Object> map);
 }

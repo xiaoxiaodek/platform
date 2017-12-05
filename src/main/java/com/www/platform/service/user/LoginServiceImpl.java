@@ -2,8 +2,6 @@ package com.www.platform.service.user;
 
 import com.www.platform.dao.UserMapper;
 import com.www.platform.entity.User;
-
-import com.www.platform.service.user.LoginService;
 import com.www.platform.util.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +38,6 @@ import java.util.Map;
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
-            result = "fail";
             return "fail";
         }
         return result;
@@ -54,11 +51,12 @@ import java.util.Map;
         String uname = (String) map.get("uname");
         String uemail = (String) map.get("uemail");
         String upwd = (String) map.get("upwd");
+        String role = (String) map.get("role");
         System.out.println("uemail++++++"+uemail+"======");
         String upwdconfirm = (String) map.get("upwdconfirm");
         if (null != uname && uname.indexOf(" ") == -1 && null != uemail && uemail.indexOf(" ") == -1
             && null != upwd && upwd.indexOf(" ") == -1 && null != upwdconfirm
-            && upwdconfirm.indexOf(" ") == -1) {
+            && upwdconfirm.indexOf(" ") == -1&&null != role && role.indexOf(" ") == -1) {
 
             user1 = userMapper.selectByUname(uname);
 
@@ -69,6 +67,7 @@ import java.util.Map;
                 user.setUname((String) map.get("uname"));
                 user.setUemail((String) map.get("uemail"));
                 user.setUpwd(Md5.MD5((String) map.get("upwd")));
+                user.setRole((String)map.get("role"));
                 user.setCreatetime(new Date());
                 user.setModtime(new Date());
 
@@ -156,12 +155,31 @@ import java.util.Map;
 
         return result;
 
+    }
 
+    @Override public String editRole(Map<String, Object> map) {
 
+        String result = "0";
+        int a = 21;
+        User user = new User();
+        user.setUname((String) map.get("uname"));
+        user=this.userMapper.selectByUname(user.getUname());
+        if(user!=null){
+            user.setRole(map.get("role").toString());
+            String uname = user.getUname();
+            String role = user.getRole();
+            Date modtime = new Date();
+            a=this.userMapper.updateRole(modtime, role, uname);
+            if(a==1){
+                result="修改成功";
+            }else{
+                result="修改失败";
+                return result;
+            }
 
+        }
 
-
-
+        return result;
     }
 
 
