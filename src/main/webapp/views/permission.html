@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> 客户运营平台 </title>
+  <title> 客户列表 </title>
 
   <!-- Bootstrap -->
   <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,11 @@
 
   <!-- Custom Theme Style -->
   <link href="../vendors/build/css/custom.min.css" rel="stylesheet">
+  <style type="text/css">
+     #tab>tbody>tr>td{
+       vertical-align: middle;
+     }
+  </style>
 </head>
 
 <body class="nav-md">
@@ -136,71 +141,34 @@
 
   <!-- page content -->
   <div class="right_col" role="main">
-    <div class="row">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2>供应商状态</h2>
-          <div class="clearfix"></div>
+    <div class="">
+      <!-- /top tiles -->
+      <div class="page-title">
+        <div class="title_left">
+          <h3>用户权限</h3>
         </div>
-        <div class="x_content">
-          <table class="table text-center">
-            <thead>
-              <tr>
-                <th class="text-center">供应商名称</th>
-                <th class="text-center">商务洽谈</th>
-                <th class="text-center">负责人</th>
-                <th class="text-center">商务截止时间</th>
-                <th class="text-center">技术对接</th>
-                <th class="text-center">负责人</th>
-                <th class="text-center">技术截止时间</th>
-                <th class="text-center">运营情况</th>
-                <th class="text-center">负责人</th>
-                <th class="text-center">运营开始时间</th>
-              </tr>
-            </thead>
-            <tbody id="supplierstate"></tbody>
-          </table>
+        <div class="title_right">
+
         </div>
-        <div class="pull-right" id="pagination-container1"></div>
+      </div>
+      <!-- /top tiles -->
+      <div class="clearfix"></div>
+      <div class="row">
+
+      </div>
+
     </div>
   </div>
+  <!-- /page content -->
 
-  <div class="row">
-    <div class="x_panel">
-      <div class="x_title">
-        <h2>操作记录</h2>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
-        <table class="table text-center">
-          <thead>
-            <tr>
-              <th class="text-center">操作模块</th>
-              <th class="text-center">操作内容</th>
-              <th class="text-center">操作ip</th>
-              <th class="text-center">操作时间</th>
-              <th class="text-center">响应时长(ms)</th>
-              <th class="text-center">操作结果</th>
-              <th class="text-center">操作人</th>
-            </tr>
-          </thead>
-          <tbody id="operaterecord"></tbody>
-        </table>
-      </div>
-      <div class="pull-right" id="pagination-container2"></div>
+  <!-- footer content -->
+  <footer>
+    <div class="pull-right">
+
     </div>
-  </div>
-</div>
-<!-- /page content -->
-
-<!-- footer content -->
-<footer>
-  <div class="pull-right">
-
-  </div>
-  <div class="clearfix"></div>
-</footer>
-<!-- /footer content -->
+    <div class="clearfix"></div>
+  </footer>
+  <!-- /footer content -->
 </div>
 </div>
 
@@ -242,16 +210,10 @@
 <script src="../vendors/moment/min/moment.min.js"></script>
 <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<!-- Pagination -->
-<script src="../scripts/pagination.js"></script>
-
-
 <!-- Custom Theme Scripts -->
 <script src="../vendors/build/js/custom.min.js"></script>
 
-<!-- Self Scripts -->
-<script type="text/javascript" src="../scripts/supplierstate.js"></script>
-
+<script type="text/javascript" src="../scripts/permission.js"></script>
 <script src="../scripts/logout.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@ $(function () {
     $("#btnLogin").click(function () {
         var name = $("#uname").val();
         var pwd = $("#upwd").val();
-        var params = {uname: name, upwd: pwd}
+        var params = {uname: name, upwd: pwd};
         sessionStorage.setItem("user_name",name);
         if (checkInput()) {
             $.ajax
