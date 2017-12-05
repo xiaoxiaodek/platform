@@ -21,8 +21,7 @@ import java.util.Map;
 @Service public class LoginServiceImpl implements LoginService {
     @Autowired private UserMapper userMapper;
 
-
-    @Override public String login(Map<String, Object> map) {
+    @Override public User login(Map<String, Object> map) {
         String result = "";
         User user = new User();
         String uid=null;
@@ -32,17 +31,20 @@ import java.util.Map;
         try {
             user = userMapper.selectByUname(uname);
 
-            uid=user.getUid().toString();
+//            uid=user.getUid().toString();
             if (user.getUpwd().equals(Md5.MD5(upwd))) {
-                result = uid;
+                return user;
+//                result = uid;
             }else{
-                return "fail";
+                user=null;
+                return user;
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return "fail";
+            user=null;
+            return user;
         }
-        return result;
+//        return user;
     }
 
     @Override public String register(Map<String, Object> map) {
@@ -69,7 +71,7 @@ import java.util.Map;
                 user.setUname((String) map.get("uname"));
                 user.setUemail((String) map.get("uemail"));
                 user.setUpwd(Md5.MD5((String) map.get("upwd")));
-                user.setRole((String)map.get("role"));
+                user.setRole(Integer.parseInt(map.get("role").toString()));
                 user.setCreatetime(new Date());
                 user.setModtime(new Date());
 
@@ -167,9 +169,9 @@ import java.util.Map;
         user.setUname((String) map.get("uname"));
         user=this.userMapper.selectByUname(user.getUname());
         if(user!=null){
-            user.setRole(map.get("role").toString());
+            user.setRole(Integer.parseInt(map.get("role").toString()));
             String uname = user.getUname();
-            String role = user.getRole();
+            int role = user.getRole();
             Date modtime = new Date();
             a=this.userMapper.updateRole(modtime, role, uname);
             if(a==1){
@@ -216,6 +218,20 @@ import java.util.Map;
 
 
 
+    }
+
+    @Override public User selectUserByUname(Map<String, Object> map) {
+        User user=new User();
+
+        try {
+            String uname=map.get("uname").toString();
+            user=  this.userMapper.selectByUname( uname);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            user=null;
+        }
+
+        return user;
     }
 
 
