@@ -18,7 +18,7 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 
 
         Object sessionObj = request.getSession().getAttribute(GlobalConstants.USERNAME);
-//        System.out.println("============"+request.getSession().getAttribute("uname"));
+        System.out.println("=======ROLE====="+request.getSession().getAttribute(GlobalConstants.ROLE));
         if(sessionObj!=null) {
 //            System.out.println("sessionObj"+sessionObj);
             return true;

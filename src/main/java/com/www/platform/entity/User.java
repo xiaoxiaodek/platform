@@ -15,7 +15,7 @@ public class User {
 
     private String upwd;
 
-    private String role;
+    private Integer role;
 
     public Integer getUid() {
         return uid;
@@ -65,11 +65,11 @@ public class User {
         this.upwd = upwd == null ? null : upwd.trim();
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role == null ? null : role.trim();
+    public void setRole(Integer role) {
+        this.role = role;
     }
 }

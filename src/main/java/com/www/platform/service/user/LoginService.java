@@ -1,6 +1,9 @@
 package com.www.platform.service.user;
 
 
+import com.www.platform.entity.User;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,9 +13,13 @@ import java.util.Map;
  * @version 0.0
  */
 public interface LoginService {
-   String login(Map<String,Object> map);
+//   String login(Map<String,Object> map);
+    User login(Map<String,Object> map);
   String register(Map<String ,Object> map);
    String editPassword(Map<String, Object> map);
     String editInfo(Map<String, Object> map);
     String editRole(Map<String, Object> map);
+    List<User> selectAllUser();
+    String  deleteUser(Map<String, Object> map);
+    User selectUserByUname(Map<String, Object> map);
 }

@@ -4,6 +4,7 @@ import com.www.platform.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer uid);
@@ -16,6 +17,9 @@ public interface UserMapper {
 
     User selectByUname(String uname);
 
+    List<User> selectAllUser();
+
+
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
@@ -24,5 +28,5 @@ public interface UserMapper {
 
     int     updateInfo(@Param("modtime") Date modtime, @Param("uemail") String uemail, @Param("uname") String uname);
 
-    int     updateRole(@Param("modtime") Date modtime, @Param("role") String role, @Param("uname") String uname);
+    int     updateRole(@Param("modtime") Date modtime, @Param("role") Integer role, @Param("uname") String uname);
 }

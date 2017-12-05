@@ -13,7 +13,7 @@ $(document).ready(function () {
       if (result.resCode == "0000") {
         console.log("result.data",result.data)
         if(result.data.length<=0){
-          var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
+          var nodata="<tr><td colspan = '7'>没有数据</td></tr>";
           $("#customerlist").html(nodata);
         }
         else{

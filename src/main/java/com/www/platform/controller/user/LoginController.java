@@ -1,6 +1,7 @@
 package com.www.platform.controller.user;
 
 import com.www.platform.constant.GlobalConstants;
+import com.www.platform.entity.User;
 import com.www.platform.message.BaseMessage;
 
 import com.www.platform.message.MessageCode;
@@ -48,27 +49,29 @@ public class LoginController {
         BaseMessage msg=new BaseMessage();
         String username=map.get("uname").toString();
         String password=map.get("upwd").toString();
-        System.out.println("username======="+username);
+
         if(username!=null&&password!=null) {
-            String uid=this.loginService.login(map);
-                if (!("fail".equals(uid ))){
-                    session.setAttribute(GlobalConstants.USERNAME,username);
-                    session.setAttribute(GlobalConstants.UID,Integer.parseInt(uid));
-                    ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                    msg.setData("登陆成功");
-                    System.out.println("msg     :    "+msg.getData());
-                } else {
-                    msg.setData("用户名或密码错误");
-                    System.out.println("msg     :    "+msg.getData());
-                    ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-                }
+            User user=this.loginService.login(map);
+            if (user!=null){
+                session.setAttribute(GlobalConstants.USERNAME,username);
+                session.setAttribute(GlobalConstants.UID,user.getUid());
+                session.setAttribute(GlobalConstants.ROLE,user.getRole());
+                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+                msg.setData("登陆成功");
+            } else {
+                msg.setData("用户名或密码错误");
+                System.out.println("msg     :    "+msg.getData());
+                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            }
         }else {
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
             msg.setData("用户名和密码不能为空");
-}
-        System.out.println("session.getAttribute(GlobalConstants.USERNAME)============="+session.getAttribute(GlobalConstants.USERNAME));
-return msg;
+        }
+        System.out.println("session.getAttribute(GlobalConstants.ROLE)============="+session.getAttribute(GlobalConstants.ROLE));
+        return msg;
     }
+
+
 
     /**
      * 注册
@@ -86,6 +89,90 @@ return msg;
         }else {
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         }
+        return msg;
+    }
+
+
+
+    /**
+     * 注册
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="删除用户")
+
+    public BaseMessage deleteUser(@RequestBody Map<String, Object> map,HttpSession session) {
+        BaseMessage msg = new BaseMessage();
+String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+        if(uname!=null) {
+        msg.setData(this.loginService.deleteUser(map));
+        if("删除成功".equals(msg.getData())){
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
+    }else {
+        msg.setData("请登录后再修改");
+        ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+    }
+        return msg;
+    }
+
+
+
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "/selectAllUser", method = RequestMethod.GET) @ResponseBody
+    @SystemLog(module="用户管理",methods="查询所有用户")
+
+    public BaseMessage selectAllUser(HttpSession session) {
+        BaseMessage msg = new BaseMessage();
+String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+        if(uname!=null) {
+        msg.setData(this.loginService.selectAllUser());
+        if(msg.getData()!=null){
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
+    }else {
+        msg.setData("请登录后再修改");
+        ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+    }
+        return msg;
+    }
+
+
+
+
+
+
+    /**
+     * 根据用户名查询用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "/selectUserByUname", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="根据用户名查询用户")
+
+    public BaseMessage selectUserByUname(@RequestBody Map<String, Object> map,HttpSession session) {
+        BaseMessage msg = new BaseMessage();
+        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+        if(uname!=null) {
+        msg.setData(this.loginService.selectUserByUname(map));
+        if(msg.getData()!=null){
+            ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else {
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
+    }else {
+        msg.setData("请登录后再修改");
+        ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+    }
         return msg;
     }
 
@@ -199,6 +286,8 @@ return msg;
         System.out.println("进去了吗???????????????");
         try {
             session.removeAttribute(GlobalConstants.USERNAME);
+            session.removeAttribute(GlobalConstants.UID);
+            session.removeAttribute(GlobalConstants.ROLE);
             System.out.println("++++++++++++++="+session.getAttribute(GlobalConstants.USERNAME));
             session.invalidate();
             msg.setData("success");
