@@ -123,7 +123,7 @@ return msg;
      *
      * @return
      */
-    @RequestMapping(value = "/selectAllUser", method = RequestMethod.POST) @ResponseBody
+    @RequestMapping(value = "/selectAllUser", method = RequestMethod.GET) @ResponseBody
     @SystemLog(module="用户管理",methods="查询所有用户")
 
     public BaseMessage selectAllUser() {
