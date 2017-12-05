@@ -8,7 +8,7 @@
     <result column="uemail" jdbcType="VARCHAR" property="uemail" />
     <result column="uname" jdbcType="VARCHAR" property="uname" />
     <result column="upwd" jdbcType="VARCHAR" property="upwd" />
-    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="role" jdbcType="INTEGER" property="role" />
   </resultMap>
   <sql id="Base_Column_List">
     uid, createtime, modtime, uemail, uname, upwd, role
@@ -29,7 +29,7 @@
       role)
     values (#{uid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{modtime,jdbcType=TIMESTAMP}, 
       #{uemail,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}, #{upwd,jdbcType=VARCHAR}, 
-      #{role,jdbcType=VARCHAR})
+      #{role,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.www.platform.entity.User">
     insert into user
@@ -76,7 +76,7 @@
         #{upwd,jdbcType=VARCHAR},
       </if>
       <if test="role != null">
-        #{role,jdbcType=VARCHAR},
+        #{role,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -99,7 +99,7 @@
         upwd = #{upwd,jdbcType=VARCHAR},
       </if>
       <if test="role != null">
-        role = #{role,jdbcType=VARCHAR},
+        role = #{role,jdbcType=INTEGER},
       </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
@@ -111,9 +111,12 @@
       uemail = #{uemail,jdbcType=VARCHAR},
       uname = #{uname,jdbcType=VARCHAR},
       upwd = #{upwd,jdbcType=VARCHAR},
-      role = #{role,jdbcType=VARCHAR}
+      role = #{role,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+
+
 
 
 
@@ -165,18 +168,6 @@
     uemail = #{uemail,jdbcType=VARCHAR}
     where uname = #{uname,jdbcType=VARCHAR}
   </update>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </mapper>
