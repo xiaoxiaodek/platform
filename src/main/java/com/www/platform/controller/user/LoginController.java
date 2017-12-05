@@ -283,10 +283,10 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
 
     public BaseMessage logout(HttpSession session) {
         BaseMessage msg = new BaseMessage();
-        System.out.println("进去了吗???????????????");
         try {
             session.removeAttribute(GlobalConstants.USERNAME);
-            System.out.println("++++++++++++++="+session.getAttribute(GlobalConstants.USERNAME));
+            session.removeAttribute(GlobalConstants.UID);
+            session.removeAttribute(GlobalConstants.ROLE);
             session.invalidate();
             msg.setData("success");
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
