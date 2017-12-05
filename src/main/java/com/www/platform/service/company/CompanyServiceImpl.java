@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -42,8 +43,8 @@ public class CompanyServiceImpl implements CompanyService {
      * @return
      */
     @Transactional
-    public List<Company> selectAll(int typeId, String serachWord, String searchType){
-
+    public List<Company> selectAll(int typeId, String serachWord, String searchType, String uname, int role){
+        // TODO: 17-12-5 角色暂时（1，2，3，4）分别为管理员，商务，运营，技术，考虑添加角色表
         Map<String,Object> parameter = new HashMap<String, Object>();
         parameter.put("typeId",typeId);
         parameter.put("searchType",searchType);
@@ -52,14 +53,16 @@ public class CompanyServiceImpl implements CompanyService {
         else
             parameter.put("searchWord",serachWord);
         List<Company> companies = companyMapper.queryCompanyList(parameter);
+        List<Company> list2 = companies.stream().filter(s -> s.getItems().get(1).getUname() != uname).collect(Collectors.toList());
         if(searchType == "") {
             List<Log> logs = logMapper.selectByNoComid(parameter);
             Company company = new Company();
             company.setLogs(logs);
             companies.add(company);
-            return companies;
+            list2 = companies.stream().filter(s -> s.getItems().get(1).getUname() != uname).collect(Collectors.toList());
+            return list2;
         }
-        return companies;
+        return list2;
     }
 
 

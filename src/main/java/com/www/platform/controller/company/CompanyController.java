@@ -36,16 +36,24 @@ public class CompanyController {
     @SystemLog(module = "公司管理", methods = "查询")
     public BaseMessage selectAll(@RequestParam(value = "typeId") int typeId,
                                  @RequestParam(value = "searchWord") String serachWord,
-                                 @RequestParam(value = "type") String searchType)throws Exception {
-
+                                 @RequestParam(value = "type") String searchType,
+                                 HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
-        List<Company> companies = this.companyService.selectAll(typeId,serachWord,searchType);
-        if (companies!=null) {
-            ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-            message.setData(companies);
-        }else
-            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-        return message;
+        if (session.getAttribute("role") == null) {
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
+            return message;
+        }else {
+            // TODO: 17-12-5 角色暂时（1，2，3，4）分别为管理员，商务，运营，技术，考虑添加角色表
+            int role =(int) session.getAttribute("role");
+            String  uname = (String)session.getAttribute("GlobalConstants.USERNAME");
+            List<Company> companies = this.companyService.selectAll(typeId, serachWord, searchType, uname, role);
+            if (companies != null) {
+                ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+                message.setData(companies);
+            } else
+                ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            return message;
+        }
     }
 
 
