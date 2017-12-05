@@ -25,11 +25,19 @@
   <!-- bootstrap-daterangepicker -->
   <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+  <!-- Pagination -->
+  <link href="../styles/pagination.css" rel="stylesheet">
+
   <!-- Custom Theme Style -->
   <link href="../vendors/build/css/custom.min.css" rel="stylesheet">
+  <style type="text/css">
+     #tab>tbody>tr>td{
+       vertical-align: middle;
+     }
+  </style>
 </head>
 
-<body class="nav-md">
+<body class="nav-md" onkeydown="keySearch()">
   <div class="container body">
     <div class="main_container">
       <div class="col-md-3 left_col">
@@ -78,6 +86,7 @@
                 <li><a><i class="fa"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="userlist.html">用户列表</a></li>
+                    <li><a href="permission.html">用户权限</a></li>
                     <li><a href="#">更多...</a></li>
                   </ul>
                 </li>
@@ -138,15 +147,179 @@
           <h3>用户列表</h3>
         </div>
         <div class="title_right">
-
+          <div class="col-md-4 col-sm-4 col-xs-8 form-group pull-right top_search">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchword"  placeholder="请输入用户名关键字">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="search_id">搜索</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-4 form-group pull-right">
+            <button onclick="document.getElementById('create_ok').disabled = true;" type="button" class="btn btn-primary" data-toggle='modal' data-target='#create_modal'>新建</button>
+          </div>
         </div>
       </div>
       <!-- /top tiles -->
       <div class="clearfix"></div>
       <div class="row">
-
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_content">
+              <table class="table text-center" id="tab">
+                <thead>
+                  <tr>
+                    <th class="text-center">用户名</th>
+                    <th class="text-center">用户邮箱</th>
+                    <th class="text-center">用户角色</th>
+                    <th class="text-center">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="userlist">
+                  <tr>
+                    <td>11111</td>
+                    <td>11111</td>
+                    <td>11111</td>
+                    <td>
+                      <button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>22222</td>
+                    <td>22222</td>
+                    <td>22222</td>
+                    <td>
+                      <button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button>
+                      <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pull-right" id="pagination-container"></div>
+        </div>
       </div>
-
+      <!-- create_modal -->
+      <div class="modal fade" id="create_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">新增用户</h4>
+            </div>
+            <div class="modal-body">
+              <form id="demo-form2" method="post" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名:  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="user_name" name="" class="form-control col-md-7 col-xs-12" onblur=""  class="form-control col-md-7 col-xs-12" required="required">
+                    <span class="red" id="uname-tip" style="font-size:12px"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">密码:  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="user_pwd" name="" onblur=""  class="form-control col-md-7 col-xs-12" required="required">
+                    <span class="red" id="upwd-tip" style="font-size:12px"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">确认密码:  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="confirm_pwd" name="" onblur=""  class="form-control col-md-7 col-xs-12" required="required">
+                    <span class="red" id="uconfirm-tip" style="font-size:12px"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">邮箱: </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="user_email" name="" onblur="" class="form-control col-md-7 col-xs-12" required="required">
+                    <span class="red" id="email-tip" style="font-size:12px"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">用户角色:  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="user_role" name="" class="form-control" required="required">
+                      <option value="0">超级管理员</option>
+                      <option value="1">商务管理</option>
+                      <option value="2">技术管理</option>
+                      <option value="3">运营管理</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default" type="button" data-dismiss="modal">取消</button>
+              <button class="btn btn-success" type="submit" id="create_ok" >提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- edit_modal -->
+      <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">编辑用户</h4>
+            </div>
+            <div class="modal-body">
+              <form id="demo-form3" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名: </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="username_1" name="" onblur="" required="required" class="form-control col-md-7 col-xs-12">
+                    <span class="red" id="uname-tip2" style="font-size:12px"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">邮箱:  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="userpwd_1" name="" onblur="" class="form-control col-md-7 col-xs-12" required="required">
+                    <span class="red" id="email-tip2" style="font-size:12px"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">用户角色: </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="user_role" name="" class="form-control" required="required">
+                      <option value="0">超级管理员</option>
+                      <option value="1">商务管理</option>
+                      <option value="2">技术管理</option>
+                      <option value="3">运营管理</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default" type="button" data-dismiss="modal">取消</button>
+              <button id="submit_1" class="btn btn-success">提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- del_modal -->
+      <div class="modal fade" id="del_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">删除用户</h4>
+            </div>
+            <div class="modal-body">
+              确定要删除此条信息吗?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="submit" class="btn btn-primary" data-dismiss="modal" id="delete">确定</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- /page content -->
@@ -203,5 +376,7 @@
 <!-- Custom Theme Scripts -->
 <script src="../vendors/build/js/custom.min.js"></script>
 
+<script type="text/javascript" src="../scripts/userlist.js"></script>
+<script src="../scripts/logout.js"></script>
 </body>
 </html>
