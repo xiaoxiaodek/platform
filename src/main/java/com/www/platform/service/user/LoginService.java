@@ -17,9 +17,10 @@ public interface LoginService {
     User login(Map<String,Object> map);
   String register(Map<String ,Object> map);
    String editPassword(Map<String, Object> map);
-    String editInfo(Map<String, Object> map);
-    String editRole(Map<String, Object> map);
+//    String editInfo(Map<String, Object> map);
+    String editRoleAndEmail(Map<String, Object> map);
     List<User> selectAllUser();
+    List<User> selectLikeUname(Map<String, Object> map);
     String  deleteUser(Map<String, Object> map);
     User selectUserByUname(Map<String, Object> map);
 }

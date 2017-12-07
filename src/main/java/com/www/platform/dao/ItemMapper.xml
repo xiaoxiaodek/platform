@@ -144,22 +144,41 @@
 
   <update id="updateItem" parameterType="java.util.Map">
     UPDATE item
-        SET
-        pStatus = CASE pTypeid
-        WHEN 0 THEN #{commerceStatus}
-        WHEN 1 THEN #{techStatus}
-        WHEN 2 THEN #{onlineStatus}
-        END,
-        uname = CASE pTypeid
-        WHEN 0 THEN #{commerceUname}
-        WHEN 1 THEN #{techUname}
-        WHEN 2 THEN #{onlineUname}
-        END,
-        time = CASE pTypeid
-        WHEN 0 THEN #{commerceEndtime}
-        WHEN 1 THEN #{techEndtime}
-        WHEN 2 THEN #{onlineStarttime}
+      <set>
+          pStatus = CASE pTypeid
+        <if test="commerceStatus != null" >
+          WHEN 0 THEN #{commerceStatus}
+        </if>
+        <if test="techStatus != null" >
+          WHEN 1 THEN #{techStatus}
+        </if>
+        <if test="onlineStatus != null" >
+          WHEN 2 THEN #{onlineStatus}
+        </if>
+          END,
+          uname = CASE pTypeid
+        <if test="commerceUname != null" >
+          WHEN 0 THEN #{commerceUname}
+        </if>
+        <if test="techUname != null" >
+          WHEN 1 THEN #{techUname}
+        </if>
+        <if test="onlineUname != null" >
+          WHEN 2 THEN #{onlineUname}
+        </if>
+          END,
+          time = CASE pTypeid
+        <if test="commerceEndtime != null" >
+          WHEN 0 THEN #{commerceEndtime}
+        </if>
+        <if test="techEndtime != null" >
+          WHEN 1 THEN #{techEndtime}
+        </if>
+        <if test="onlineStarttime != null" >
+          WHEN 2 THEN #{onlineStarttime}
+        </if>
         END
+      </set>
         WHERE comid = #{comid} AND pTypeid
         IN (
         SELECT a.pTypeid FROM(

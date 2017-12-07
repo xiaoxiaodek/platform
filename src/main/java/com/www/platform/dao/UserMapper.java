@@ -19,6 +19,7 @@ public interface UserMapper {
 
     List<User> selectAllUser();
 
+    List<User> selectLikeUname(@Param("uname") String uname);
 
     int updateByPrimaryKeySelective(User record);
 
@@ -26,7 +27,7 @@ public interface UserMapper {
 
     int     updateUpwd(@Param("modtime") Date modtime, @Param("upwd") String upwd, @Param("uname") String uname);
 
-    int     updateInfo(@Param("modtime") Date modtime, @Param("uemail") String uemail, @Param("uname") String uname);
+//    int     updateInfo(@Param("modtime") Date modtime, @Param("uemail") String uemail, @Param("uname") String uname);
 
-    int     updateRole(@Param("modtime") Date modtime, @Param("role") Integer role, @Param("uname") String uname);
+    int     updateRoleAndEmail(@Param("uemail") String uemail,@Param("modtime") Date modtime, @Param("role") Integer role, @Param("uname") String uname);
 }

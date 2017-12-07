@@ -243,15 +243,32 @@
 
   <update id="updateCompany" parameterType="java.util.Map">
     UPDATE company
-    SET
-    pid = #{pid},
-    comaddr = #{comaddr},
-    comemail = #{comemail},
-    comname = #{comname},
-    comcontact = #{comcontact},
-    comcontactName = #{comcontactName},
-    typeId = #{typeId},
-    modtime = #{modtime}
+    <set>
+      <if test= "pid != null">
+      pid = #{pid},
+      </if>
+      <if test= "comaddr != null">
+      comaddr = #{comaddr},
+      </if>
+      <if test= "comemail != null">
+      comemail = #{comemail},
+      </if>
+      <if test= "comname != null">
+      comname = #{comname},
+      </if>
+      <if test= "comcontact != null">
+      comcontact = #{comcontact},
+      </if>
+      <if test= "comcontactName != null">
+      comcontactName = #{comcontactName},
+      </if>
+      <if test= "typeId != null">
+      typeId = #{typeId},
+      </if>
+      <if test= "modtime != null">
+      modtime = #{modtime}
+      </if>
+    </set>
     WHERE comid = #{comid}
   </update>
 

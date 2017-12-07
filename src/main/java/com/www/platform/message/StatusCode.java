@@ -18,6 +18,7 @@ public enum StatusCode {
     ACCOUNT_INVALID_NOT_EXISTS("10104", "账号不存在"),
     INVALID_PARAM("10105", "请求参数不合法"),
 
+    USER_LIMITED("10106", "没有权限"),
     SYSTEM_ERROR("20101", "系统异常"),
     DATA_ERROR("20102", "数据异常"),
 

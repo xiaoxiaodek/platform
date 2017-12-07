@@ -136,32 +136,32 @@ import java.util.Map;
         return result;
     }
 
-    @Override public String editInfo(Map<String, Object> map) {
-        String result = "0";
-        int a = 21;
-        User user = new User();
-        user.setUname((String) map.get("uname"));
-        user=this.userMapper.selectByUname(user.getUname());
-        if(user!=null){
-            user.setUemail(map.get("email").toString());
-            String uname = user.getUname();
-            String uemail = user.getUemail();
-            Date modtime = new Date();
-            a=this.userMapper.updateInfo(modtime, uemail, uname);
-            if(a==1){
-                result="修改成功";
-            }else{
-                result="修改失败";
-                return result;
-            }
+//    @Override public String editInfo(Map<String, Object> map) {
+//        String result = "0";
+//        int a = 21;
+//        User user = new User();
+//        user.setUname((String) map.get("uname"));
+//        user=this.userMapper.selectByUname(user.getUname());
+//        if(user!=null){
+//            user.setUemail(map.get("email").toString());
+//            String uname = user.getUname();
+//            String uemail = user.getUemail();
+//            Date modtime = new Date();
+//            a=this.userMapper.updateInfo(modtime, uemail, uname);
+//            if(a==1){
+//                result="修改成功";
+//            }else{
+//                result="修改失败";
+//                return result;
+//            }
+//
+//        }
+//
+//        return result;
+//
+//    }
 
-        }
-
-        return result;
-
-    }
-
-    @Override public String editRole(Map<String, Object> map) {
+    @Override public String editRoleAndEmail(Map<String, Object> map) {
 
         String result = "0";
         int a = 21;
@@ -170,10 +170,12 @@ import java.util.Map;
         user=this.userMapper.selectByUname(user.getUname());
         if(user!=null){
             user.setRole(Integer.parseInt(map.get("role").toString()));
+            user.setUemail(map.get("uemail").toString());
             String uname = user.getUname();
+            String uemail = user.getUemail();
             int role = user.getRole();
             Date modtime = new Date();
-            a=this.userMapper.updateRole(modtime, role, uname);
+            a=this.userMapper.updateRoleAndEmail(uemail,modtime, role, uname);
             if(a==1){
                 result="修改成功";
             }else{
@@ -196,6 +198,21 @@ import java.util.Map;
         }
 
 
+        return userList;
+    }
+
+    @Override public List<User> selectLikeUname(Map<String, Object> map) {
+        List<User> userList=new ArrayList<User>();
+        System.out.println("===========进service了吗");
+        try {
+        String uname=map.get("uname").toString();
+        userList=this.userMapper.selectLikeUname(uname);
+            System.out.println("service+++++++++++userList:  "+userList);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            userList=null;
+            return userList;
+        }
         return userList;
     }
 
@@ -230,6 +247,7 @@ import java.util.Map;
         }catch (NullPointerException e){
             e.printStackTrace();
             user=null;
+            return user;
         }
 
         return user;

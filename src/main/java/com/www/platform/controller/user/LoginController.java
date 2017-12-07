@@ -161,9 +161,10 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
 
     public BaseMessage selectUserByUname(@RequestBody Map<String, Object> map,HttpSession session) {
         BaseMessage msg = new BaseMessage();
+        System.out.println("===========进去了吗");
         String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
-        msg.setData(this.loginService.selectUserByUname(map));
+        msg.setData(this.loginService.selectLikeUname(map));
         if(msg.getData()!=null){
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
         }else {
@@ -207,6 +208,67 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         return msg;
     }
 
+//
+//
+//    /**
+//     * 修改权限
+//     * @param map
+//     * @return
+//     */
+//    @RequestMapping(value = "/editRole", method = RequestMethod.POST) @ResponseBody
+//    @SystemLog(module="用户管理",methods="修改权限")
+//
+//    public BaseMessage editRole(@RequestBody Map<String, Object> map, HttpSession session) {
+//        BaseMessage msg = new BaseMessage();
+//        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+//        if(uname!=null) {
+//            map.put("uname", uname);
+//            msg.setData(this.loginService.editRole(map));
+//            if("修改成功".equals(msg.getData())){
+//                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+//            }else {
+//                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+//            }
+//        }else {
+//            msg.setData("请登录后再修改");
+//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+//        }
+//        return msg;
+//    }
+//
+//
+//    /**
+//     * 修改其他信息
+//     * @param map
+//     * @return
+//     */
+//    @RequestMapping(value = "editInfo", method = RequestMethod.POST) @ResponseBody
+//    @SystemLog(module="用户管理",methods="修改信息")
+//
+//    public BaseMessage editInfo(@RequestBody Map<String, Object> map, HttpSession session) {
+//        BaseMessage msg = new BaseMessage();
+//        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+//        if(uname!=null) {
+//            map.put("uname", uname);
+//            msg.setData(this.loginService.editInfo(map));
+//            if("修改成功".equals(msg.getData())){
+//                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+//            }else {
+//                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+//            }
+//        }else {
+//            msg.setData("请登录后再修改");
+//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+//        }
+//        return msg;
+//    }
+
+
+
+
+
+
+
 
 
     /**
@@ -214,15 +276,15 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
      * @param map
      * @return
      */
-    @RequestMapping(value = "/editRole", method = RequestMethod.POST) @ResponseBody
-    @SystemLog(module="用户管理",methods="修改权限")
+    @RequestMapping(value = "/editRoleAndEmail", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="修改邮箱和权限")
 
-    public BaseMessage editRole(@RequestBody Map<String, Object> map, HttpSession session) {
+    public BaseMessage editRoleAndEmail(@RequestBody Map<String, Object> map, HttpSession session) {
         BaseMessage msg = new BaseMessage();
         String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
             map.put("uname", uname);
-            msg.setData(this.loginService.editRole(map));
+            msg.setData(this.loginService.editRoleAndEmail(map));
             if("修改成功".equals(msg.getData())){
                 ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
             }else {
@@ -234,44 +296,6 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         }
         return msg;
     }
-
-
-
-
-
-
-
-
-
-
-    /**
-     * 修改其他信息
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "editInfo", method = RequestMethod.POST) @ResponseBody
-    @SystemLog(module="用户管理",methods="修改信息")
-
-    public BaseMessage editInfo(@RequestBody Map<String, Object> map, HttpSession session) {
-        BaseMessage msg = new BaseMessage();
-        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
-        if(uname!=null) {
-            map.put("uname", uname);
-            msg.setData(this.loginService.editInfo(map));
-            if("修改成功".equals(msg.getData())){
-                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-            }else {
-                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-            }
-        }else {
-            msg.setData("请登录后再修改");
-            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-        }
-        return msg;
-    }
-
-
-
 
 
     /**
@@ -283,9 +307,10 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
 
     public BaseMessage logout(HttpSession session) {
         BaseMessage msg = new BaseMessage();
-        System.out.println("进去了吗???????????????");
         try {
             session.removeAttribute(GlobalConstants.USERNAME);
+            session.removeAttribute(GlobalConstants.UID);
+            session.removeAttribute(GlobalConstants.ROLE);
             System.out.println("++++++++++++++="+session.getAttribute(GlobalConstants.USERNAME));
             session.invalidate();
             msg.setData("success");

@@ -15,9 +15,9 @@ public class GlobalConstants {
 
     public static final String USERNAME = "uname";
     public static final String UID = "uid";
-    public static final String ROLE = "role";
     public static final String UEMAIL = "uemail";
     public static final String RID = "rid";
+    public static final String ROLE = "role";
 
     public static final String SALT = "upsmart";
 

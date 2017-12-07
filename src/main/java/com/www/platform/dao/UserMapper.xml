@@ -130,6 +130,20 @@
   </select>
 
 
+  <!--根据用户名模糊查询-->
+  <select id="selectLikeUname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where uname LIKE '%${uname}%'
+  </select>
+
+
+
+
+
+
+
   <!--查询所有用户-->
   <select id="selectAllUser" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -151,19 +165,20 @@
   </update>
 
   <!--修改权限 -->
-  <update id="updateRole" parameterType="com.www.platform.entity.User">
-    update user
-    set
-    role = #{role,jdbcType=VARCHAR}
+  <!--<update id="updateRole" parameterType="com.www.platform.entity.User">-->
+    <!--update user-->
+    <!--set-->
+    <!--role = #{role,jdbcType=VARCHAR}-->
 
-    where uname = #{uname,jdbcType=VARCHAR}
-  </update>
+    <!--where uname = #{uname,jdbcType=VARCHAR}-->
+  <!--</update>-->
 
 
   <!--修改信息 -->
-  <update id="updateInfo" parameterType="com.www.platform.entity.User">
+  <update id="updateRoleAndEmail" parameterType="com.www.platform.entity.User">
     update user
     set
+    role = #{role,jdbcType=INTEGER},
     modtime = #{modtime,jdbcType=TIMESTAMP},
     uemail = #{uemail,jdbcType=VARCHAR}
     where uname = #{uname,jdbcType=VARCHAR}
