@@ -311,6 +311,7 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
             session.removeAttribute(GlobalConstants.USERNAME);
             session.removeAttribute(GlobalConstants.UID);
             session.removeAttribute(GlobalConstants.ROLE);
+            System.out.println("++++++++++++++="+session.getAttribute(GlobalConstants.USERNAME));
             session.invalidate();
             msg.setData("success");
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);

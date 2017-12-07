@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -42,8 +43,8 @@ public class CompanyServiceImpl implements CompanyService {
      * @return
      */
     @Transactional
-    public List<Company> selectAll(int typeId, String serachWord, String searchType){
-
+    public List<Company> selectAll(int typeId, String serachWord, String searchType, String uname, int role){
+        // TODO: 17-12-5 角色暂时（1，2，3，4）分别为管理员，商务，运营，技术，考虑添加角色表
         Map<String,Object> parameter = new HashMap<String, Object>();
         parameter.put("typeId",typeId);
         parameter.put("searchType",searchType);
@@ -52,14 +53,38 @@ public class CompanyServiceImpl implements CompanyService {
         else
             parameter.put("searchWord",serachWord);
         List<Company> companies = companyMapper.queryCompanyList(parameter);
+        List<Company> list2 = companies;
+        switch (role){
+            //管理员
+            case 1: break;
+            //商务
+            case 2: list2 = companies.stream().filter(s -> s.getItems().get(0).getUname().equals(uname)).collect(Collectors.toList());
+                    break;
+            //运营
+            case 3: list2 = companies.stream().filter(s -> s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
+                    break;
+            //技术
+            case 4: list2 = companies.stream().filter(s -> s.getItems().get(2).getUname().equals(uname)).collect(Collectors.toList());
+                    break;
+            default:list2 = null;
+        }
+//        list2 = companies.stream().filter(s -> s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
         if(searchType == "") {
             List<Log> logs = logMapper.selectByNoComid(parameter);
             Company company = new Company();
             company.setLogs(logs);
-            companies.add(company);
-            return companies;
+            list2.add(company);
+//            companies.add(company);
+//            try{
+//
+//            list2 = companies.stream().filter(s -> s.getItems()==null ||s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+            return list2;
+//            return companies;
         }
-        return companies;
+        return list2;
     }
 
 
@@ -97,6 +122,7 @@ public class CompanyServiceImpl implements CompanyService {
         }
         return false;
     }
+
 
     /**
      * @desc 添加客户
