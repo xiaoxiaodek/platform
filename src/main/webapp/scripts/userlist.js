@@ -40,18 +40,23 @@ $(function(){
     if(type=="button"&&operate=="删除"){
       //删除
       $("#delUser").click(function(){
-        const array =[data[name].uid];
+        var array={uid:data[name].uid};
         console.log("array---",array);
         $.ajax({
           url:"/user/deleteUser",
           type:"POST",
           data:JSON.stringify(array),
           contentType:"application/json",
-          cache:false,
+          dataType: "json",
           success:function(result){
-            console.log("result1---",result);
-            result=JSON.parse(result);
-            console.log("result2---",result);
+            // result=JSON.parse(result);
+            console.log("delresult1---",result);
+            if(result.data=="删除成功"){
+              alert("删除成功");
+              window.location.reload();
+            }else if(result.data=="删除失败"){
+              console.log("删除失败");
+            }
           },
           error:function(result){
             console.log("删除出错");
@@ -63,28 +68,43 @@ $(function(){
       console.log("user---",user);
       $("#usersname").val(user.uname);
       $("#useremail").val(user.uemail);
+      if(user.role== "超级管理员"){
+        user.role="1";
+      }
+      else if(user.role== "商务管理"){
+        user.role="2";
+      }
+      else if(user.role== "运营管理"){
+        user.role="3";
+      }
+      else if(user.role== "技术管理"){
+        user.role="4";
+      }
       $("#userrole").val(user.role);
+      console.log("userrole---",user.role);
       //编辑
       $("#editUser").click(function(){
         const form =document.getElementById("edit-form");
         let postData={};
-        let formData=new formData(form);
+        let formData=new FormData(form);
         formData.forEach((value,key)=>postData[key]=value);
         $.ajax({
-          url:"",
+          url:"/user/editRoleAndEmail",
           type:"POST",
           contentType: "application/json;charset=utf-8",
           dataType: "json",
           data:JSON.stringify(postData),
           success: function (result) {
-            console.log("editresult---",result);
-            if(result.data==""){
-              alert("编辑成功");
-              window.location.reload();
-            }
-            else{
-              console.log("编辑失败");
-            }
+            // console.log("editresult---",result);
+            // console.log("editresultdata---",result.data);
+            // if(result.data=="修改成功"){
+            //   console.log("编辑成功");
+              // alert("编辑成功");
+              // window.location.reload();
+            // }
+            // else{
+            //   console.log("编辑失败");
+            // }
           },
           error: function (result) {
             console.log("编辑出错");
@@ -111,7 +131,19 @@ function showData(returndata){
       className: 'paginationjs-theme-blue',
       callback:function(result,pagination){
         var html="";
-        for(var i=0;i<result.length-1;i++){
+        for(var i=0;i<result.length;i++){
+          if(result[i].role== "1"){
+            result[i].role="超级管理员";
+          }
+          else if(result[i].role== "2"){
+            result[i].role="商务管理";
+          }
+          else if(result[i].role== "3"){
+            result[i].role="运营管理";
+          }
+          else if(result[i].role== "4"){
+            result[i].role="技术管理";
+          }
           var j=i+(pagination.pageNumber-1)*pagination.pageSize;
           html=html+"<tr><td>"+result[i].uname+"</td><td>"
           +result[i].uemail+"</td><td>"
@@ -138,7 +170,7 @@ function searchUser(){
       console.log("searchresult--",result);
       returndata=result.data;
       console.log("returndata--",result.data);
-
+      showData(returndata);
     },
     error: function (result) {
       console.log("查询数据获取出错");
