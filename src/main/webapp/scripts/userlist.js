@@ -95,16 +95,14 @@ $(function(){
           dataType: "json",
           data:JSON.stringify(postData),
           success: function (result) {
-            // console.log("editresult---",result);
-            // console.log("editresultdata---",result.data);
-            // if(result.data=="修改成功"){
-            //   console.log("编辑成功");
-              // alert("编辑成功");
-              // window.location.reload();
-            // }
-            // else{
-            //   console.log("编辑失败");
-            // }
+            console.log("editresult---",result);
+            if(result.data=="修改成功"){
+              alert("编辑成功");
+              window.location.reload();
+            }
+            else if(result.data=="修改失败"){
+              console.log("编辑失败");
+            }
           },
           error: function (result) {
             console.log("编辑出错");
