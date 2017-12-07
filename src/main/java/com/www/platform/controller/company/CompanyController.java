@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -99,8 +100,19 @@ public class CompanyController {
     @SystemLog(module = "公司管理", methods = "修改")
     public BaseMessage updateCompany(@RequestBody Map<String, Object> map, HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
+        Map<String, Object> change = new HashMap<>();
+        change.put("comid",map.get("comid"));
 //        if (session.getAttribute("role") != null && (int) session.getAttribute("role") == 1) {
-            Boolean result = this.companyService.updateCompany(map);
+        if (session.getAttribute("role") != null) {
+            switch ((int)session.getAttribute("role")){
+                case 1: change = map;break;
+                case 2:change.put("commerceStatus",map.get("commerceStatus"));break;
+                case 3:change.put("onlineStatus",map.get("onlineStatus"));break;
+                case 4:change.put("techStatus",map.get("techStatus"));break;
+                default: break;
+            }
+        }
+            Boolean result = this.companyService.updateCompany(change);
             if (result)
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
             else

@@ -114,11 +114,15 @@ public class CompanyServiceImpl implements CompanyService {
     public Boolean updateCompany(Map<String, Object> map){
 
         map = addAndUpdate(map,"update");
-
-        int companyResult = companyMapper.updateCompany(map);
-        int itemResult = itemService.updateItem(map);
-        if(companyResult !=0 && itemResult!=0) {
-            return true;
+        int companyResult, itemResult;
+        try{
+         companyResult = companyMapper.updateCompany(map);
+         itemResult = itemService.updateItem(map);
+            if(companyResult !=0 && itemResult!=0) {
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return false;
     }
@@ -157,16 +161,22 @@ public class CompanyServiceImpl implements CompanyService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date t = DateUtil.getNowDate();
         try {
-            map.put("typeId",Integer.parseInt((String)map.get("typeId")));
-            map.put("pid",Integer.parseInt((String)map.get("pid")));
+            if(map.get("typeId")!=null&&map.get("pid")!=null&&map.get("commerceStatus")!=null &&
+                map.get("commerceEndtime")!=null&&map.get("techStatus")!=null&&map.get("techEndtime")!=null&&
+                map.get("onlineStatus")!=null&&map.get("onlineStarttime")!=null) {
 
-            map.put("commerceStatus",Integer.parseInt((String)map.get("commerceStatus")));
-            map.put("commerceEndtime",sdf.parse((String) map.get("commerceEndtime")));
-            map.put("techStatus",Integer.parseInt((String)map.get("techStatus")));
-            map.put("techEndtime",sdf.parse((String) map.get("techEndtime")));
-            map.put("onlineStatus",Integer.parseInt((String)map.get("onlineStatus")));
-            map.put("onlineStarttime",sdf.parse((String) map.get("onlineStarttime")));
+                map.put("typeId", Integer.parseInt((String) map.get("typeId")));
+                map.put("pid", Integer.parseInt((String) map.get("pid")));
 
+                map.put("commerceStatus", Integer.parseInt((String) map.get("commerceStatus")));
+                map.put("commerceEndtime", sdf.parse((String) map.get("commerceEndtime")));
+                map.put("techStatus", Integer.parseInt((String) map.get("techStatus")));
+                map.put("techEndtime", sdf.parse((String) map.get("techEndtime")));
+                map.put("onlineStatus", Integer.parseInt((String) map.get("onlineStatus")));
+                map.put("onlineStarttime", sdf.parse((String) map.get("onlineStarttime")));
+            }else {
+
+            }
             if(type.equals("update")) {
                 map.put("modtime", t);
             }
