@@ -70,13 +70,10 @@ public class CompanyServiceImpl implements CompanyService {
         }
 //        list2 = companies.stream().filter(s -> s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
         if(searchType.equals("")) {
-//            List<Log> logs = logMapper.selectByNoComid(parameter);
-            for(Company c:list2) {
-                List<Log> logs = logMapper.selectByComid(c.getComid());
-                Company company = new Company();
-                company.setLogs(logs);
-                list2.add(company);
-            }
+            List<Log> logs = logMapper.selectByNoComid(parameter);
+            Company company = new Company();
+            company.setLogs(logs);
+            list2.add(company);
         }
         return list2;
     }
