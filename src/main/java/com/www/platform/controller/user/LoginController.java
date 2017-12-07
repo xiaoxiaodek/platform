@@ -208,60 +208,6 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         return msg;
     }
 
-//
-//
-//    /**
-//     * 修改权限
-//     * @param map
-//     * @return
-//     */
-//    @RequestMapping(value = "/editRole", method = RequestMethod.POST) @ResponseBody
-//    @SystemLog(module="用户管理",methods="修改权限")
-//
-//    public BaseMessage editRole(@RequestBody Map<String, Object> map, HttpSession session) {
-//        BaseMessage msg = new BaseMessage();
-//        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
-//        if(uname!=null) {
-//            map.put("uname", uname);
-//            msg.setData(this.loginService.editRole(map));
-//            if("修改成功".equals(msg.getData())){
-//                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-//            }else {
-//                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-//            }
-//        }else {
-//            msg.setData("请登录后再修改");
-//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-//        }
-//        return msg;
-//    }
-//
-//
-//    /**
-//     * 修改其他信息
-//     * @param map
-//     * @return
-//     */
-//    @RequestMapping(value = "editInfo", method = RequestMethod.POST) @ResponseBody
-//    @SystemLog(module="用户管理",methods="修改信息")
-//
-//    public BaseMessage editInfo(@RequestBody Map<String, Object> map, HttpSession session) {
-//        BaseMessage msg = new BaseMessage();
-//        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
-//        if(uname!=null) {
-//            map.put("uname", uname);
-//            msg.setData(this.loginService.editInfo(map));
-//            if("修改成功".equals(msg.getData())){
-//                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-//            }else {
-//                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-//            }
-//        }else {
-//            msg.setData("请登录后再修改");
-//            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-//        }
-//        return msg;
-//    }
 
 
 

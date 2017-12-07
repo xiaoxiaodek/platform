@@ -136,42 +136,20 @@ import java.util.Map;
         return result;
     }
 
-//    @Override public String editInfo(Map<String, Object> map) {
-//        String result = "0";
-//        int a = 21;
-//        User user = new User();
-//        user.setUname((String) map.get("uname"));
-//        user=this.userMapper.selectByUname(user.getUname());
-//        if(user!=null){
-//            user.setUemail(map.get("email").toString());
-//            String uname = user.getUname();
-//            String uemail = user.getUemail();
-//            Date modtime = new Date();
-//            a=this.userMapper.updateInfo(modtime, uemail, uname);
-//            if(a==1){
-//                result="修改成功";
-//            }else{
-//                result="修改失败";
-//                return result;
-//            }
-//
-//        }
-//
-//        return result;
-//
-//    }
+
 
     @Override public String editRoleAndEmail(Map<String, Object> map) {
-
         String result = "0";
         int a = 21;
         User user = new User();
         user.setUname((String) map.get("uname"));
         user=this.userMapper.selectByUname(user.getUname());
         if(user!=null){
+            String editorName=map.get("editorName").toString();
+            user=this.userMapper.selectByUname(editorName);
             user.setRole(Integer.parseInt(map.get("role").toString()));
             user.setUemail(map.get("uemail").toString());
-            String uname = user.getUname();
+            String uname = editorName;
             String uemail = user.getUemail();
             int role = user.getRole();
             Date modtime = new Date();
@@ -184,7 +162,7 @@ import java.util.Map;
             }
 
         }
-
+        System.out.println("servicc==========result====="+result);
         return result;
     }
 
