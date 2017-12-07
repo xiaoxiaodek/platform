@@ -11,5 +11,6 @@ import java.util.Map;
 public interface ItemService {
 
     int updateItem(Map<String, Object> map);
+    int updateItemByTypeId(Map<String, Object> map);
     Boolean insertItem(Map<String, Object> map);
 }

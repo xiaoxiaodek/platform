@@ -100,29 +100,12 @@ public class CompanyController {
     @SystemLog(module = "公司管理", methods = "修改")
     public BaseMessage updateCompany(@RequestBody Map<String, Object> map, HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
-        Map<String, Object> change = new HashMap<>();
-        change.put("comid",map.get("comid"));
-//        if (session.getAttribute("role") != null && (int) session.getAttribute("role") == 1) {
-        if (session.getAttribute("role") != null) {
-            switch ((int)session.getAttribute("role")){
-                case 1: change = map;break;
-                case 2:change.put("commerceStatus",map.get("commerceStatus"));break;
-                case 3:change.put("onlineStatus",map.get("onlineStatus"));break;
-                case 4:change.put("techStatus",map.get("techStatus"));break;
-                default: break;
-            }
-        }
-            Boolean result = this.companyService.updateCompany(change);
-            if (result)
-                ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-            else
-                ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        Boolean result = this.companyService.updateCompany(map,session);
+        if (result)
+            ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        else
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
 
-//        else if(session.getAttribute("role")!= null){
-//
-//        }else{
-//            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
-//        }
         return message;
     }
 
