@@ -42,4 +42,14 @@ public class ItemServiceImpl implements ItemService {
         int result = itemMapper.insertItem(map);
         return result==0?false:true;
     }
+
+    /**
+     * @desc 修改权限状态
+     * @param map
+     * @return int
+     */
+    public int updateItemByTypeId(Map<String, Object> map){
+        int resutl = itemMapper.updateItemByTypeId(map);
+        return resutl;
+    }
 }

@@ -21,5 +21,6 @@ public interface ItemMapper {
     Item selectSelective(Item record);
 
     int updateItem(Map<String, Object> map);
+    int updateItemByTypeId(Map<String, Object> map);
     int insertItem(Map<String, Object> map);
 }

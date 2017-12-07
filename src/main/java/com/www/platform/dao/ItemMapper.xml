@@ -186,6 +186,24 @@
         )
   </update>
 
+  <update id="updateItemByTypeId" parameterType="java.util.Map">
+    UPDATE item
+      <set>
+          <choose>
+              <when test="pTypeid==0">
+                  pStatus = #{commerceStatus}
+              </when>
+              <when test="pTypeid==1">
+                  pStatus = #{techStatus}
+              </when>
+              <otherwise>
+                  pStatus = #{onlineStatus}
+              </otherwise>
+          </choose>
+      </set>
+      WHERE comid = #{comid}
+  </update>
+
   <insert id="insertItem" parameterType="java.util.Map">
     insert into item (pid, pTypeid,pStatus,comid,uname,time,remark)
     values (#{pid},0,#{commerceStatus}, #{comid}, #{commerceUname},#{commerceEndtime}, #{remark}),

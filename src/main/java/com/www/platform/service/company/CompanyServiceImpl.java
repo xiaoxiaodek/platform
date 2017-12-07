@@ -61,28 +61,19 @@ public class CompanyServiceImpl implements CompanyService {
             case 2: list2 = companies.stream().filter(s -> s.getItems().get(0).getUname().equals(uname)).collect(Collectors.toList());
                     break;
             //运营
-            case 3: list2 = companies.stream().filter(s -> s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
+            case 3: list2 = companies.stream().filter(s -> s.getItems().get(2).getUname().equals(uname)).collect(Collectors.toList());
                     break;
             //技术
-            case 4: list2 = companies.stream().filter(s -> s.getItems().get(2).getUname().equals(uname)).collect(Collectors.toList());
+            case 4: list2 = companies.stream().filter(s -> s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
                     break;
             default:list2 = null;
         }
 //        list2 = companies.stream().filter(s -> s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
-        if(searchType == "") {
+        if(searchType.equals("")) {
             List<Log> logs = logMapper.selectByNoComid(parameter);
             Company company = new Company();
             company.setLogs(logs);
             list2.add(company);
-//            companies.add(company);
-//            try{
-//
-//            list2 = companies.stream().filter(s -> s.getItems()==null ||s.getItems().get(1).getUname().equals(uname)).collect(Collectors.toList());
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-            return list2;
-//            return companies;
         }
         return list2;
     }
@@ -111,13 +102,30 @@ public class CompanyServiceImpl implements CompanyService {
      * @return Boolean
      */
     @Transactional
-    public Boolean updateCompany(Map<String, Object> map){
+    public Boolean updateCompany(Map<String, Object> map,HttpSession session){
 
         map = addAndUpdate(map,"update");
+        Map<String, Object> change = new HashMap<>();
+        change.put("comid",map.get("comid"));
+        change.put("typeId",map.get("typeId"));
+        if (session.getAttribute("role") != null) {
+            switch ((int)session.getAttribute("role")){
+                case 1: change = map;break;
+                case 2:change.put("commerceStatus",map.get("commerceStatus"));change.put("pTypeid",0);break;
+                case 3:change.put("onlineStatus",map.get("onlineStatus"));change.put("pTypeid",2);break;
+                case 4:change.put("techStatus",map.get("techStatus"));change.put("pTypeid",1);break;
+                default: break;
+            }
+        }
         int companyResult, itemResult;
         try{
-         companyResult = companyMapper.updateCompany(map);
-         itemResult = itemService.updateItem(map);
+            if((int)session.getAttribute("role") == 1) {
+                itemResult = itemService.updateItem(change);
+                companyResult = companyMapper.updateCompany(change);
+            }else{
+                companyResult = companyMapper.updateCompany(change);
+                itemResult = itemService.updateItemByTypeId(change);
+            }
             if(companyResult !=0 && itemResult!=0) {
                 return true;
             }
