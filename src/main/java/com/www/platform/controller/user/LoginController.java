@@ -57,7 +57,8 @@ public class LoginController {
                 session.setAttribute(GlobalConstants.UID,user.getUid());
                 session.setAttribute(GlobalConstants.ROLE,user.getRole());
                 ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                msg.setData("登陆成功");
+                msg.setData(user.getRole());
+//                msg.setData("登陆成功");
             } else {
                 msg.setData("用户名或密码错误");
                 System.out.println("msg     :    "+msg.getData());
