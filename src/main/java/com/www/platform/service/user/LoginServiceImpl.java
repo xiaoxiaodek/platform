@@ -220,6 +220,7 @@ import java.util.Map;
 
         try {
             String uname=map.get("uname").toString();
+            System.out.println("=====uname======"+uname);
             user=  this.userMapper.selectByUname( uname);
         }catch (NullPointerException e){
             e.printStackTrace();

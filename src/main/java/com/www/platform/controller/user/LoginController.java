@@ -104,7 +104,7 @@ public class LoginController {
 
     public BaseMessage deleteUser(@RequestBody Map<String, Object> map,HttpSession session) {
         BaseMessage msg = new BaseMessage();
-String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
         msg.setData(this.loginService.deleteUser(map));
         if("删除成功".equals(msg.getData())){

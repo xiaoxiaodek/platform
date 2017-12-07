@@ -154,9 +154,110 @@
       <!-- /top tiles -->
       <div class="clearfix"></div>
       <div class="row">
-
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_content">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label>选择角色:</label>
+                  <select id="user_role" name="role" class="form-control" required="required">
+                    <option value="0">超级管理员</option>
+                    <option value="1">商务管理</option>
+                    <option value="2">运营管理</option>
+                    <option value="3">技术管理</option>
+                  </select>
+                </div>
+              </form>
+              <br/>
+              <label>编辑权限:</label>
+              <table class="table text-center" id="tab">
+                <thead>
+                  <tr>
+                    <th class="text-center">菜单项</th>
+                    <th class="text-center">链接</th>
+                    <th class="text-center">操作权限</th>
+                  </tr>
+                </thead>
+                <tbody id="permission">
+                  <tr>
+                    <td>客户列表</td>
+                    <td>/customerlist</td>
+                    <td>
+                      <input type="checkbox" class="flat"> 新建
+                      <input type="checkbox" class="flat"> 查看
+                      <input type="checkbox" class="flat"> 编辑
+                      <input type="checkbox" class="flat"> 删除
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>客户状态</td>
+                    <td>/customerstate</td>
+                    <td>
+                      <input type="checkbox" class="flat"> 新建
+                      <input type="checkbox" class="flat"> 查看
+                      <input type="checkbox" class="flat"> 编辑
+                      <input type="checkbox" class="flat"> 删除
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>供应商列表</td>
+                    <td>/supplierlist</td>
+                    <td>
+                      <input type="checkbox" class="flat"> 新建
+                      <input type="checkbox" class="flat"> 查看
+                      <input type="checkbox" class="flat"> 编辑
+                      <input type="checkbox" class="flat"> 删除
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>供应商状态</td>
+                    <td>/supplierstate</td>
+                    <td>
+                      <input type="checkbox" class="flat"> 新建
+                      <input type="checkbox" class="flat"> 查看
+                      <input type="checkbox" class="flat"> 编辑
+                      <input type="checkbox" class="flat"> 删除
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>用户列表</td>
+                    <td>/userlist</td>
+                    <td>
+                      <input type="checkbox" class="flat"> 新建
+                      <input type="checkbox" class="flat"> 查看
+                      <input type="checkbox" class="flat"> 编辑
+                      <input type="checkbox" class="flat"> 删除
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>用户权限</td>
+                    <td>/permission</td>
+                    <td>
+                      <input type="checkbox" class="flat"> 新建
+                      <input type="checkbox" class="flat"> 查看
+                      <input type="checkbox" class="flat"> 编辑
+                      <input type="checkbox" class="flat"> 删除
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>修改密码</td>
+                    <td>/editpwd</td>
+                    <td>
+                      <input type="checkbox" class="flat"> 新建
+                      <input type="checkbox" class="flat"> 查看
+                      <input type="checkbox" class="flat"> 编辑
+                      <input type="checkbox" class="flat"> 删除
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-success" type="submit" id="editPermission" >提交</button>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
   <!-- /page content -->
