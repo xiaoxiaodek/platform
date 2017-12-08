@@ -119,6 +119,18 @@ $(document).ready(function () {
       })
 
     } else if (type == 'button' && operate == '编辑') {
+      if(rolestorage != 1){
+        $("#comname_1").attr("readonly","readonly");
+        $("#comcontactname_1").attr("readonly","readonly");
+        $("#comcontact_1").attr("readonly","readonly");
+        $("#comemail_1").attr("readonly","readonly");
+        $("#comaddr_1").attr("readonly","readonly");
+        $("#pid_1").attr("readonly","readonly");
+        $("#res1").attr("readonly","readonly");
+        $("#res2").attr("readonly","readonly");
+        $("#res3").attr("readonly","readonly");
+
+      }
       let company = data[name];
         console.log(company);
         let item = new Array;
