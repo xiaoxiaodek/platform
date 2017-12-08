@@ -135,7 +135,8 @@ public class LoginController {
 
     public BaseMessage selectAllUser(HttpSession session) {
         BaseMessage msg = new BaseMessage();
-String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+        if(Integer.parseInt(session.getAttribute(GlobalConstants.ROLE).toString())==1){
+        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
         msg.setData(this.loginService.selectAllUser());
         if(msg.getData()!=null){
@@ -147,6 +148,10 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         msg.setData("请登录后再修改");
         ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
     }
+        }else {
+            msg.setData("不给你查");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
         return msg;
     }
 
