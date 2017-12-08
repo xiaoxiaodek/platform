@@ -100,12 +100,13 @@ public class CompanyController {
     @SystemLog(module = "公司管理", methods = "修改")
     public BaseMessage updateCompany(@RequestBody Map<String, Object> map, HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
-        Boolean result = this.companyService.updateCompany(map,session);
-        if (result)
+        String result = this.companyService.updateCompany(map,session);
+        if (result.equals("更新成功"))
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        else if(result.equals("没有权限"))
+            ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.USER_LIMITED);
         else
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
-
         return message;
     }
 

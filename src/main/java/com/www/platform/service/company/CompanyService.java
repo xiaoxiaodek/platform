@@ -15,6 +15,6 @@ public interface CompanyService {
 
     List<Company> selectAll(int typeId, String serachWord, String searchType, String uname, int role);
     String deleteCompanies(int[] comid);
-    Boolean updateCompany(Map<String, Object> map,HttpSession session);
+    String updateCompany(Map<String, Object> map,HttpSession session);
     Boolean insertCompany(Map<String, Object> map);
 }
