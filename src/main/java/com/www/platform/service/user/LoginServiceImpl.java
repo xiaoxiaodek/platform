@@ -199,13 +199,21 @@ import java.util.Map;
         String result=null;
         User user=new User();
         int uid=Integer.parseInt(map.get("uid").toString());
-        try {
-            this.userMapper.deleteByPrimaryKey(uid);
-            result="删除成功";
-        }catch(Exception e){
-            result="删除失败";
-            e.printStackTrace();
-            return  result;
+        int role=Integer.parseInt(map.get("role").toString());
+        System.out.println("============role========="+role);
+        if (role!=1) {
+            try {
+                this.userMapper.deleteByPrimaryKey(uid);
+                result = "删除成功";
+            } catch (Exception e) {
+                result = "删除失败";
+                e.printStackTrace();
+                return result;
+            }
+        }else{
+            result="不能删除管理员";
+            return result;
+
         }
 
         return result;
