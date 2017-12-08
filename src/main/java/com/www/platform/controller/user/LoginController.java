@@ -110,8 +110,11 @@ public class LoginController {
         msg.setData(this.loginService.deleteUser(map));
         if("删除成功".equals(msg.getData())){
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else if("不能删除管理员".equals(msg.getData())){
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         }else {
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+
         }
     }else {
         msg.setData("请登录后再修改");
