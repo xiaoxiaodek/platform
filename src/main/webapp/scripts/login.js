@@ -13,6 +13,7 @@ $(function () {
                 contentType:"application/json",
                 data:JSON.stringify(params),
                 success: function (data) {
+                    sessionStorage.setItem("user_role",data.data);
                     if (data.data == 1||data.data == 2||data.data == 3||data.data == 4) {
                         // alert("登录成功!!!");
                         window.location.href="../views/customerlist.html";
