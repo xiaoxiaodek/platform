@@ -1,7 +1,9 @@
 package com.www.platform.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Interface {
     private Integer idfid;
@@ -16,9 +18,11 @@ public class Interface {
 
     private BigDecimal dicount;
 
-    private Date createtime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDateTime createtime;
 
-    private Date modtime;
+    private LocalDateTime modtime;
 
     public Integer getIdfid() {
         return idfid;
@@ -68,19 +72,19 @@ public class Interface {
         this.dicount = dicount;
     }
 
-    public Date getCreatetime() {
+    public LocalDateTime getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(LocalDateTime createtime) {
         this.createtime = createtime;
     }
 
-    public Date getModtime() {
+    public LocalDateTime getModtime() {
         return modtime;
     }
 
-    public void setModtime(Date modtime) {
+    public void setModtime(LocalDateTime modtime) {
         this.modtime = modtime;
     }
 }

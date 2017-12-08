@@ -7,15 +7,12 @@ import com.www.platform.message.StatusCode;
 import com.www.platform.service.interfaces.InterfacesService;
 import com.www.platform.util.ResponseUtil;
 import com.www.platform.util.SystemLog;
-import org.apache.ibatis.annotations.Lang;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -87,7 +84,7 @@ import java.util.Map;
             in.setBasprice(Long.valueOf(params.get("basprice").toString()));
             in.setDicount(BigDecimal.valueOf((Double) params.get("dicount")));
 
-            Date createtime = new Date();
+            LocalDateTime createtime = LocalDateTime.now();
             in.setCreatetime(createtime);
             //            in.setCreatetime((Date) params.get("createtime"));
             in.setModtime(createtime);
@@ -170,7 +167,7 @@ import java.util.Map;
             in.setBasprice(Long.valueOf(params.get("basprice").toString()));
             in.setDicount(BigDecimal.valueOf((Double) params.get("dicount")));
 
-            Date modtime = new Date();
+            LocalDateTime modtime =LocalDateTime.now();
             in.setModtime(modtime);
 
             interfacesService.update(in);

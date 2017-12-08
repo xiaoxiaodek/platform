@@ -49,7 +49,79 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
-    <!-- 启动AspectJ支持   只对扫描过的bean有效-->
-    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
-    <!--<bean id="logAopAction" class="com.www.platform.filter.OperateFilter"/>-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/views/login.html"/>
+        <property name="successUrl" value="/views/customerlist.html"/>
+        <!--<property name="unauthorizedUrl" value="/unauthorized.jsp"/>-->
+
+        <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean  -->
+        <!-- defined will be automatically acquired and available via its beanName in chain        -->
+        <!-- definitions, but you can perform instance overrides or name aliases here if you like: -->
+        <!-- <property name="filters">
+            <util:map>
+                <entry key="logout" value-ref="logoutFilter" />
+            </util:map>
+        </property> -->
+        <property name="filterChainDefinitions">
+            <value>
+                # some example chain definitions:
+                # /admin/** = authc, roles[admin]
+                # /docs/** = authc, perms[document:read]
+                /user/login = anon
+                /user/logout = anon
+                /error = anon
+                /**/*.js=anon
+                /**/*.css=anon
+                /**/*.png=anon
+                /**/*.jpg=anon
+                /**/*.img=anon
+                /** = user
+                # more URL-to-FilterChain definitions here
+            </value>
+        </property>
+    </bean>
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
+        <property name="realm" ref="myRealm" />
+        <!-- By default the servlet container sessions will be used.  Uncomment this line
+             to use shiro's native sessions (see the JavaDoc for more): -->
+        <!-- <property name="sessionMode" value="native"/> -->
+    </bean>
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean id="hashService" class="org.apache.shiro.crypto.hash.DefaultHashService">
+        <property name="hashAlgorithmName" value="MD5"/>
+        <property name="hashIterations" value="1"/>
+        <!--加盐-->
+        <!--<property name="generatePublicSalt" value="true"/>-->
+    </bean>
+
+    <bean id="passwordService" class="org.apache.shiro.authc.credential.DefaultPasswordService">
+        <property name="hashService" ref="hashService"/>
+    </bean>
+
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.PasswordMatcher">
+        <property name="passwordService" ref="passwordService"/>
+    </bean>
+
+    <!-- Define the Shiro Realm implementation you want to use to connect to your back-end -->
+    <!-- security datasource: -->
+    <bean id="myRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="permissionsLookupEnabled" value="true"/>
+        <property name="authenticationQuery" value="select upwd from user where uname = ?"/>
+        <property name="userRolesQuery" value="SELECT r.role_name FROM roles r INNER JOIN users u ON u.username=? INNER JOIN users_roles ur ON ur.u_id=u.id AND ur.r_id=r.id"/>
+        <property name="permissionsQuery" value="SELECT p.permission FROM roles r INNER JOIN permissions p , roles_permissions rp WHERE p.id=rp.p_id AND r.id=r_id AND r.role_name=?"/>
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+        <!--<property name="saltStyle" ref="COLUMN"/>-->
+    </bean>
+
+    <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after -->
+    <!-- the lifecycleBeanProcessor has run: -->
+    <!--开启Shiro注解-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
 </beans>

@@ -1,14 +1,21 @@
 package com.www.platform.util;
 
 
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by upsmart on 17-8-3.
@@ -18,67 +25,75 @@ import java.util.List;
  * @desc
  * @modified by  下午3:57
  */
+@Component
 public class JsonUtil {
     private static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
     // 定义jackson对象
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper mapper;
 
-    private static final String DEFAULT_DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
+    public ObjectMapper getMapper() {
+        return mapper;
+    }
+
     static {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-        MAPPER.setDateFormat(dateFormat);
-    }
-    /**
-     * 将对象转换成json字符串。
-     * <p>Title: pojoToJson</p>
-     * <p>Description: </p>
-     * @param data
-     * @return
-     */
-    public static String toJson(Object data) {
-        try {
-            String string = MAPPER.writeValueAsString(data);
-            return string;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
+
+        mapper = new ObjectMapper();
+
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(LocalDate.class, new LocalDateSerializer());
+        module.addSerializer(LocalTime.class, new LocalTimeSerializer());
+        module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
+        mapper.registerModule(module);
     }
 
-    /**
-     * 将json结果集转化为对象
-     *
-     * @param jsonData json数据
-     * @param clazz 对象中的object类型
-     * @return
-     */
-    public static <T> T toObject(String jsonData, Class<T> beanType) {
+    public static String toJson(Object obj) {
         try {
-            T t = MAPPER.readValue(jsonData, beanType);
-            return t;
+            return mapper.writeValueAsString(obj);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("转换json字符失败!");
         }
-        return null;
     }
 
-    /**
-     * 将json数据转换成pojo对象list
-     * <p>Title: jsonToList</p>
-     * <p>Description: </p>
-     * @param jsonData
-     * @param beanType
-     * @return
-     */
-    public static <T>List<T> jsonToList(String jsonData, Class<T> beanType) {
-        JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);
+    public static <T> T toObject(String json, Class<T> clazz) {
         try {
-            List<T> list = MAPPER.readValue(jsonData, javaType);
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
+            return mapper.readValue(json, clazz);
+        } catch (IOException e) {
+            throw new RuntimeException("将json字符转换为对象时失败!");
         }
+    }
+}
 
-        return null;
+class LocalDateSerializer extends JsonSerializer<LocalDate> {
+
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    @Override
+    public void serialize(LocalDate value, JsonGenerator jgen, SerializerProvider provider)
+            throws IOException, JsonProcessingException {
+        jgen.writeString(dateFormatter.format(value));
+    }
+}
+
+class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
+
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    @Override
+    public void serialize(LocalDateTime value, JsonGenerator jgen, SerializerProvider provider)
+            throws IOException, JsonProcessingException {
+        jgen.writeString(dateTimeFormatter.format(value));
+    }
+
+}
+
+class LocalTimeSerializer extends JsonSerializer<LocalTime> {
+
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+    @Override
+    public void serialize(LocalTime value, JsonGenerator jgen, SerializerProvider provider)
+            throws IOException, JsonProcessingException {
+        jgen.writeString(timeFormatter.format(value));
+
     }
 }

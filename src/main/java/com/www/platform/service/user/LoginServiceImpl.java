@@ -3,8 +3,15 @@ package com.www.platform.service.user;
 import com.www.platform.dao.UserMapper;
 import com.www.platform.entity.User;
 import com.www.platform.util.Md5;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import java.util.ArrayList;
@@ -26,25 +33,51 @@ import java.util.Map;
         User user = new User();
         String uid=null;
         String uname = map.get("uname").toString();
-        String upwd = map.get("upwd").toString();
+        String upwd = Md5.MD5(map.get("upwd").toString());
         user.setUname(uname);
-        try {
-            user = userMapper.selectByUname(uname);
+//        try {
+//            user = userMapper.selectByUname(uname);
+//
+////            uid=user.getUid().toString();
+//            if (user.getUpwd().equals(Md5.MD5(upwd))) {
+//                return user;
+////                result = uid;
+//            }else{
+//                user=null;
+//                return user;
+//            }
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//            user=null;
+//            return user;
+//        }
+////        return user;
 
-//            uid=user.getUid().toString();
-            if (user.getUpwd().equals(Md5.MD5(upwd))) {
-                return user;
-//                result = uid;
-            }else{
-                user=null;
-                return user;
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            user=null;
-            return user;
+        UsernamePasswordToken token = new UsernamePasswordToken(uname, upwd);
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.login(token);
+        } catch (IncorrectCredentialsException ice) {
+            // 捕获密码错误异常
+            ModelAndView mv = new ModelAndView("error");
+            mv.addObject("message", "password error!");
+            return null;
+        } catch (UnknownAccountException uae) {
+            // 捕获未知用户名异常
+            ModelAndView mv = new ModelAndView("error");
+            mv.addObject("message", "username error!");
+            return null;
+        } catch (ExcessiveAttemptsException eae) {
+            // 捕获错误登录过多的异常
+            ModelAndView mv = new ModelAndView("error");
+            mv.addObject("message", "times error");
+            return null;
         }
-//        return user;
+        user = userMapper.selectByUname(uname);
+        subject.getSession().setAttribute("user", user);
+        return user;
+
+
     }
 
     @Override public String register(Map<String, Object> map) {

@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 public class BaseMessage extends Message<Object> {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Object data;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL) private Object data;
 
     public BaseMessage() {
         super();
@@ -47,18 +47,17 @@ public class BaseMessage extends Message<Object> {
         this.data = data;
     }
 
-    public BaseMessage(MessageCode messageCode, StatusCode statusCode, String appendMessage, Object data) {
+    public BaseMessage(MessageCode messageCode, StatusCode statusCode, String appendMessage,
+        Object data) {
         this(messageCode, statusCode, appendMessage);
         this.data = data;
     }
 
-    @Override
-    public Object getData() {
+    @Override public Object getData() {
         return this.data;
     }
 
-    @Override
-    public void setData(Object data) {
+    @Override public void setData(Object data) {
         this.data = data;
     }
 
