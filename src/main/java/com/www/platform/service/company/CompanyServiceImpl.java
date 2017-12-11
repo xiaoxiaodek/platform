@@ -1,8 +1,10 @@
 package com.www.platform.service.company;
 
 import com.www.platform.dao.CompanyMapper;
+import com.www.platform.dao.ItemMapper;
 import com.www.platform.dao.LogMapper;
 import com.www.platform.entity.Company;
+import com.www.platform.entity.Item;
 import com.www.platform.entity.Log;
 import com.www.platform.service.item.ItemService;
 import com.www.platform.util.DateUtil;
@@ -34,6 +36,8 @@ public class CompanyServiceImpl implements CompanyService {
     private ItemService itemService;
     @Autowired
     private LogMapper logMapper;
+    @Autowired
+    private ItemMapper itemMapper;
 
     /**
      * @desc platform2.0版本的查询条件
@@ -102,9 +106,13 @@ public class CompanyServiceImpl implements CompanyService {
      * @return Boolean
      */
     @Transactional
-    public Boolean updateCompany(Map<String, Object> map,HttpSession session){
+    public String updateCompany(Map<String, Object> map,HttpSession session){
 
         map = addAndUpdate(map,"update");
+        Boolean authority = judgeRole(map,(int)session.getAttribute("role"));
+        if(!authority){
+            return "没有权限";
+        }
         Map<String, Object> change = new HashMap<>();
         change.put("comid",map.get("comid"));
         change.put("typeId",map.get("typeId"));
@@ -127,12 +135,12 @@ public class CompanyServiceImpl implements CompanyService {
                 itemResult = itemService.updateItemByTypeId(change);
             }
             if(companyResult !=0 && itemResult!=0) {
-                return true;
+                return "更新成功";
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return false;
+        return "更新失败";
     }
 
 
@@ -197,5 +205,65 @@ public class CompanyServiceImpl implements CompanyService {
             return null;
         }
         return map;
+    }
+
+    /**
+     * 更新时判断是否有权限修改
+     * @param map
+     * @param role
+     * @return
+     */
+    private Boolean judgeRole(Map<String,Object> map,int role){
+        Company company = companyMapper.selectByPrimaryKey(Integer.parseInt((String) map.get("comid")));
+        List<Item> items = itemMapper.selectByComid(Integer.parseInt((String) map.get("comid")));
+
+        if(!map.get("comname").equals(company.getComname()) ||
+                !map.get("comaddr").equals(company.getComaddr()) ||
+                !map.get("comcontact").equals(company.getComcontact()) ||
+                !map.get("comemail").equals(company.getComemail()) ||
+                !map.get("pid").equals(company.getPid()) ||
+                !map.get("comcontactName").equals(company.getComcontactname())
+                )
+            return false;
+        switch (role) {
+            case 2:
+                for (Item item : items) {
+                    if (item.getPtypeid() == 1 && !map.get("techStatus").equals(item.getPstatus())
+                            || !map.get("techEndtime").equals(item.getTime())
+                            || !map.get("techUname").equals(item.getUname()))
+                        return false;
+                    if (item.getPtypeid() == 2 && !map.get("onlineStatus").equals(item.getPstatus())
+                            || !map.get("onlineStarttime").equals(item.getTime())
+                            || !map.get("onlineUname").equals(item.getUname()))
+                        return false;
+                }
+                break;
+            case 3:
+                for (Item item : items) {
+                    System.out.println(map.get("commerceStatus").equals(item.getPstatus()));
+                    if (item.getPtypeid() == 0 && !map.get("commerceStatus").equals(item.getPstatus())
+                            || !map.get("commerceEndtime").equals(item.getTime())
+                            || !map.get("commerceUname").equals(item.getUname()))
+                        return false;
+                    if (item.getPtypeid() == 1 && !map.get("techStatus").equals(item.getPstatus())
+                            || !map.get("techEndtime").equals(item.getTime())
+                            || !map.get("techUname").equals(item.getUname()))
+                        return false;
+                }
+                break;
+            case 4:
+                for (Item item : items) {
+                    if (item.getPtypeid() == 0 && !map.get("commerceStatus").equals(item.getPstatus())
+                            || !map.get("commerceEndtime").equals(item.getTime())
+                            || !map.get("commerceUname").equals(item.getUname()))
+                        return false;
+                    if (item.getPtypeid() == 2 && !map.get("onlineStatus").equals(item.getPstatus())
+                            || !map.get("onlineStarttime").equals(item.getTime())
+                            || !map.get("onlineUname").equals(item.getUname()))
+                        return false;
+                }
+                break;
+        }
+        return true;
     }
 }
