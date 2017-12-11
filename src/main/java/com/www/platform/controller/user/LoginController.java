@@ -57,7 +57,8 @@ public class LoginController {
                 session.setAttribute(GlobalConstants.UID,user.getUid());
                 session.setAttribute(GlobalConstants.ROLE,user.getRole());
                 ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-                msg.setData("登陆成功");
+                msg.setData(user.getRole());
+//                msg.setData("登陆成功");
             } else {
                 msg.setData("用户名或密码错误");
                 System.out.println("msg     :    "+msg.getData());
@@ -109,8 +110,11 @@ public class LoginController {
         msg.setData(this.loginService.deleteUser(map));
         if("删除成功".equals(msg.getData())){
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+        }else if("不能删除管理员".equals(msg.getData())){
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
         }else {
             ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+
         }
     }else {
         msg.setData("请登录后再修改");
@@ -131,7 +135,8 @@ public class LoginController {
 
     public BaseMessage selectAllUser(HttpSession session) {
         BaseMessage msg = new BaseMessage();
-String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+        if(Integer.parseInt(session.getAttribute(GlobalConstants.ROLE).toString())==1){
+        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         if(uname!=null) {
         msg.setData(this.loginService.selectAllUser());
         if(msg.getData()!=null){
@@ -143,6 +148,10 @@ String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
         msg.setData("请登录后再修改");
         ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
     }
+        }else {
+            msg.setData("不给你查");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
         return msg;
     }
 

@@ -1,14 +1,11 @@
+var returndata;
 $(document).ready(function() {
   let data = {};
 
   var namestorage=sessionStorage.getItem("user_name");
   document.getElementById("username").innerText=namestorage;
 
-  $("body").keydown(function(event) {
-    if (event.keyCode == "13") {//keyCode=13是回车键
-        $("#search_id").click();
-    }
-  });
+  var rolestorage=sessionStorage.getItem("user_role");
 
   $.ajax({
     url: "/company/queryCompany?searchWord=&type=&typeId=1",
@@ -17,35 +14,13 @@ $(document).ready(function() {
     dataType: "json",
     success: function(result) {
       if (result.resCode == "0000") {
-        if(result.data.length<=0){
-          var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
-          $("#supplierlist").html(nodata);
+        data=result.data;
+        returndata=result.data;
+        if(rolestorage==1){
+          showAlldata(returndata);
         }
         else{
-          var returndata=result.data;
-          data=result.data;
-          $("#pagination-container").pagination({
-            dataSource: returndata,
-            pageSize: 10,
-            showGoInput: true,
-            showGoButton: true,
-            className: 'paginationjs-theme-blue',
-            callback:function(result,pagination){
-              var html="";
-              for(var i=0;i<result.length-1;i++){
-                var j =i + (pagination.pageNumber-1) * pagination.pageSize;
-                html=html+"<tr><td>"+result[i].comname+"</td><td>"
-                +result[i].comcontactname+"</td><td>"
-                +result[i].comcontact+"</td><td>"
-                +result[i].comemail+"</td><td>"
-                +result[i].comaddr+"</td><td><a id='"
-                +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/supplierdetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
-                +result[i].createtime+
-                "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
-              }
-              $("#supplierlist").html(html);
-            }
-          })
+          showAlldata2(returndata);
         }
       }
     },
@@ -64,34 +39,12 @@ $(document).ready(function() {
       dataType: "json",
       data:postData,
       success: function (result) {
-        if(result.data.length<=0){
-          var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
-          $("#supplierlist").html(nodata);
+        returndata=result.data;
+        if(rolestorage==1){
+          showData(returndata);
         }
         else{
-          var returndata=result.data;
-          $("#pagination-container").pagination({
-            dataSource: returndata,
-            pageSize: 10,
-            showGoInput: true,
-            showGoButton: true,
-            className: 'paginationjs-theme-blue',
-            callback:function(result,pagination){
-              var html="";
-              for(var i=0;i<result.length;i++){
-                var j =i + (pagination.pageNumber-1) * pagination.pageSize;
-                html=html+"<tr><td>"+result[i].comname+"</td><td>"
-                +result[i].comcontactname+"</td><td>"
-                +result[i].comcontact+"</td><td>"
-                +result[i].comemail+"</td><td>"
-                +result[i].comaddr+"</td><td><a id='"
-                +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/supplierdetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
-                +result[i].createtime+
-                "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
-              }
-              $("#supplierlist").html(html);
-            }
-          })
+          showData2(returndata);
         }
       },
       error: function (result) {
@@ -255,6 +208,132 @@ $(document).ready(function() {
     // return false;
   })
 });
+//管理员显示页面
+function showAlldata(returndata){
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
+    $("#supplierlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length-1;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/supplierdetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
+        }
+        $("#supplierlist").html(html);
+      }
+    })
+  }
+}
+//非管理员显示页面
+function showAlldata2(returndata){
+  document.getElementById("addBtn").style.display="none";
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
+    $("#supplierlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length-1;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/supplierdetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button></td></tr>";
+        }
+        $("#supplierlist").html(html);
+      }
+    })
+  }
+}
+//管理员查询
+function showData(returndata){
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
+    $("#supplierlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/supplierdetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
+        }
+        $("#supplierlist").html(html);
+      }
+    })
+  }
+}
+//非管理员查询
+function showData(returndata){
+  document.getElementById("addBtn").style.display="none";
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
+    $("#supplierlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/supplierdetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button></td></tr>";
+        }
+        $("#supplierlist").html(html);
+      }
+    })
+  }
+}
 
 var cname=false;
 var contactname=false;

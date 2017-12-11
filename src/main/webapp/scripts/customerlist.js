@@ -1,8 +1,11 @@
+var returndata;
 $(document).ready(function () {
   let data = {};
 
   var namestorage=sessionStorage.getItem("user_name");
   document.getElementById("username").innerText=namestorage;
+
+  var rolestorage=sessionStorage.getItem("user_role");
 
   $.ajax({
     url: "/company/queryCompany?searchWord=&type=&typeId=0",
@@ -11,36 +14,15 @@ $(document).ready(function () {
     dataType: "json",
     success: function (result) {
       if (result.resCode == "0000") {
-        console.log("result.data",result.data)
-        if(result.data.length<=0){
-          var nodata="<tr><td colspan = '7'>没有数据</td></tr>";
-          $("#customerlist").html(nodata);
+        console.log("result.data---",result.data)
+        data = result.data;
+        returndata=result.data;
+        console.log("rolestorage---",rolestorage);
+        if(rolestorage==1){
+          showAlldata(returndata);
         }
         else{
-          data = result.data;
-          var returndata=result.data;
-          $("#pagination-container").pagination({
-            dataSource: returndata,
-            pageSize: 10,
-            showGoInput: true,
-            showGoButton: true,
-            className: 'paginationjs-theme-blue',
-            callback:function(result,pagination){
-              var html="";
-              for(var i=0;i<result.length-1;i++){
-                var j =i + (pagination.pageNumber-1) * pagination.pageSize;
-                html=html+"<tr><td>"+result[i].comname+"</td><td>"
-                +result[i].comcontactname+"</td><td>"
-                +result[i].comcontact+"</td><td>"
-                +result[i].comemail+"</td><td>"
-                +result[i].comaddr+"</td><td><a id='"
-                +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
-                +result[i].createtime+
-                "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
-              }
-              $("#customerlist").html(html);
-            }
-          })
+          showAlldata2(returndata);
         }
       }
     },
@@ -59,34 +41,12 @@ $(document).ready(function () {
       dataType: "json",
       data:postData,
       success: function (result) {
-        if(result.data.length<=0){
-          var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
-          $("#customerlist").html(nodata);
+        returndata=result.data;
+        if(rolestorage==1){
+          showData(returndata);
         }
         else{
-          var returndata=result.data;
-          $("#pagination-container").pagination({
-            dataSource: returndata,
-            pageSize: 10,
-            showGoInput: true,
-            showGoButton: true,
-            className: 'paginationjs-theme-blue',
-            callback:function(result,pagination){
-              var html="";
-              for(var i=0;i<result.length;i++){
-                var j =i + (pagination.pageNumber-1) * pagination.pageSize;
-                html=html+"<tr><td>"+result[i].comname+"</td><td>"
-                +result[i].comcontactname+"</td><td>"
-                +result[i].comcontact+"</td><td>"
-                +result[i].comemail+"</td><td>"
-                +result[i].comaddr+"</td><td><a id='"
-                +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
-                +result[i].createtime+
-                "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
-              }
-              $("#customerlist").html(html);
-            }
-          })
+          showData2(returndata);
         }
       },
       error: function (result) {
@@ -116,13 +76,11 @@ $(document).ready(function () {
           window.location.reload();
         }
         else{
-          alert("添加失败");
-          window.location.reload();
+          console.log("添加失败");
         }
       },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        console.log(textStatus);
-        console.log(errorThrown);
+      error: function (result) {
+        console.log("添加出错");
       }
     });
   })
@@ -150,19 +108,29 @@ $(document).ready(function () {
               alert("删除成功");
               window.location.reload();
             } else {
-              alert("删除失败");
-              window.location.reload();
+              console.log("删除失败");
             }
           },
           error: function(result) {
             console.log("删除出错");
-            window.location.reload();
           }
         })
 
       })
 
     } else if (type == 'button' && operate == '编辑') {
+      if(rolestorage != 1){
+        $("#comname_1").attr("readonly","readonly");
+        $("#comcontactname_1").attr("readonly","readonly");
+        $("#comcontact_1").attr("readonly","readonly");
+        $("#comemail_1").attr("readonly","readonly");
+        $("#comaddr_1").attr("readonly","readonly");
+        $("#pid_1").attr("readonly","readonly");
+        $("#res1").attr("readonly","readonly");
+        $("#res2").attr("readonly","readonly");
+        $("#res3").attr("readonly","readonly");
+
+      }
       let company = data[name];
         console.log(company);
         let item = new Array;
@@ -259,7 +227,132 @@ $(document).ready(function () {
   })
 
 })
-
+//管理员显示页面
+function showAlldata(returndata){
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>";
+    $("#customerlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length-1;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
+        }
+        $("#customerlist").html(html);
+      }
+    })
+  }
+}
+//非管理员显示页面
+function showAlldata2(returndata){
+  document.getElementById("addBtn").style.display="none";
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>";
+    $("#customerlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length-1;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button></td></tr>";
+        }
+        $("#customerlist").html(html);
+      }
+    })
+  }
+}
+//管理员查询
+function showData(returndata){
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
+    $("#customerlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button><button name='" + j + "' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#del_modal'>删除</button></td></tr>";
+        }
+        $("#customerlist").html(html);
+      }
+    })
+  }
+}
+//非管理员查询
+function showData2(returndata){
+  document.getElementById("addBtn").style.display="none";
+  if(returndata.length<=0){
+    var nodata="<tr><td colspan = '7'>没有数据</td></tr>"
+    $("#customerlist").html(nodata);
+  }
+  else{
+    $("#pagination-container").pagination({
+      dataSource: returndata,
+      pageSize: 10,
+      showGoInput: true,
+      showGoButton: true,
+      className: 'paginationjs-theme-blue',
+      callback:function(result,pagination){
+        var html="";
+        for(var i=0;i<result.length;i++){
+          var j =i + (pagination.pageNumber-1) * pagination.pageSize;
+          html=html+"<tr><td>"+result[i].comname+"</td><td>"
+          +result[i].comcontactname+"</td><td>"
+          +result[i].comcontact+"</td><td>"
+          +result[i].comemail+"</td><td>"
+          +result[i].comaddr+"</td><td><a id='"
+          +result[i].comid+"' target='_blank' class='btn btn-info btn-sm' href='/views/comstadetail.html?comid="+result[i].comid+"'>详情</a></td><td>"
+          +result[i].createtime+
+          "</td><td><button name='" + j + "' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#edit_modal'>编辑</button></td></tr>";
+        }
+        $("#customerlist").html(html);
+      }
+    })
+  }
+}
 var cname=false;
 var contactname=false;
 var phone = false;
