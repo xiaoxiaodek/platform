@@ -191,7 +191,8 @@ $(document).ready(function() {
             break;
             default:return false;
           }
-        }else{
+        }
+      }else{
           for (let i = 0; i <= 2; i++) {
             let type = item[i].ptypeid;
             switch (type) {
@@ -211,7 +212,6 @@ $(document).ready(function() {
               $('#deadline3').val(item[i].time);
               break;
               default:return false;
-            }
           }
         }
       }

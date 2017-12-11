@@ -194,8 +194,7 @@ $(document).ready(function () {
                 $('#deadline3').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
                     function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
             break;
-            default: return false
-            ;
+            default: return false;
           }
         }
       }else{
@@ -217,8 +216,7 @@ $(document).ready(function () {
             $('#res3').val(item[i].uname);
             $('#deadline3').val(item[i].time);
             break;
-            default: return false
-            ;
+            default: return false;
           }
         }
       }
