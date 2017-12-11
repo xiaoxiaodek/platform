@@ -208,7 +208,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     /**
-     * 判断是否有权限修改
+     * 更新时判断是否有权限修改
      * @param map
      * @param role
      * @return
@@ -229,10 +229,12 @@ public class CompanyServiceImpl implements CompanyService {
             case 2:
                 for (Item item : items) {
                     if (item.getPtypeid() == 1 && !map.get("techStatus").equals(item.getPstatus())
-                            || !map.get("techEndtime").equals(item.getTime()))
+                            || !map.get("techEndtime").equals(item.getTime())
+                            || !map.get("techUname").equals(item.getUname()))
                         return false;
                     if (item.getPtypeid() == 2 && !map.get("onlineStatus").equals(item.getPstatus())
-                            || !map.get("onlineStarttime").equals(item.getTime()))
+                            || !map.get("onlineStarttime").equals(item.getTime())
+                            || !map.get("onlineUname").equals(item.getUname()))
                         return false;
                 }
                 break;
@@ -240,20 +242,24 @@ public class CompanyServiceImpl implements CompanyService {
                 for (Item item : items) {
                     System.out.println(map.get("commerceStatus").equals(item.getPstatus()));
                     if (item.getPtypeid() == 0 && !map.get("commerceStatus").equals(item.getPstatus())
-                            || !map.get("commerceEndtime").equals(item.getTime()))
+                            || !map.get("commerceEndtime").equals(item.getTime())
+                            || !map.get("commerceUname").equals(item.getUname()))
                         return false;
                     if (item.getPtypeid() == 1 && !map.get("techStatus").equals(item.getPstatus())
-                            || !map.get("techEndtime").equals(item.getTime()))
+                            || !map.get("techEndtime").equals(item.getTime())
+                            || !map.get("techUname").equals(item.getUname()))
                         return false;
                 }
                 break;
             case 4:
                 for (Item item : items) {
                     if (item.getPtypeid() == 0 && !map.get("commerceStatus").equals(item.getPstatus())
-                            || !map.get("commerceEndtime").equals(item.getTime()))
+                            || !map.get("commerceEndtime").equals(item.getTime())
+                            || !map.get("commerceUname").equals(item.getUname()))
                         return false;
                     if (item.getPtypeid() == 2 && !map.get("onlineStatus").equals(item.getPstatus())
-                            || !map.get("onlineStarttime").equals(item.getTime()))
+                            || !map.get("onlineStarttime").equals(item.getTime())
+                            || !map.get("onlineUname").equals(item.getUname()))
                         return false;
                 }
                 break;
