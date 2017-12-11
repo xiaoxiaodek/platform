@@ -8,7 +8,13 @@ $(function(){
     var newpwd=$("#newpwd").val();
     var renewpwd=$("#renewpwd").val();
     var params={uoldpassword:oldpwd, unewpassword:newpwd, uconfnewpwd:renewpwd};
-    if(newpwd!=renewpwd){
+    if(oldpwd==""||oldpwd==null){
+      alert("旧密码不能为空");
+    }else if(newpwd==""||newpwd==null){
+      alert("新密码不能为空");
+    }else if(renewpwd==""||renewpwd==null){
+      alert("确认密码不能为空");
+    }else if(newpwd!=renewpwd){
       alert("两次密码不一致");
    }else if(oldpwd==newpwd){
       alert("新旧密码一致");
