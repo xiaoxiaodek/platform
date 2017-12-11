@@ -138,7 +138,13 @@
     where uname LIKE '%${uname}%'
   </select>
 
-
+  <!--根据 权限查询用户-->
+  <select id="selectByRole" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where role = #{role,jdbcType=INTEGER}
+  </select>
 
 
 

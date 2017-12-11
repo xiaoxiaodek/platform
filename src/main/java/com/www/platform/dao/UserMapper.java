@@ -17,6 +17,8 @@ public interface UserMapper {
 
     User selectByUname(String uname);
 
+    List<User> selectByRole(Integer role);
+
     List<User> selectAllUser();
 
     List<User> selectLikeUname(@Param("uname") String uname);

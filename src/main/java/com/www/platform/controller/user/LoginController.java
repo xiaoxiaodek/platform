@@ -188,6 +188,38 @@ public class LoginController {
 
 
 
+    /**
+     * 根据权限查询用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "/selectUserByRole", method = RequestMethod.POST) @ResponseBody
+    @SystemLog(module="用户管理",methods="根据权限查询用户")
+
+    public BaseMessage selectUserByRole(@RequestBody Map<String, Object> map,HttpSession session) {
+        BaseMessage msg = new BaseMessage();
+        System.out.println("===========进去了吗");
+        String uname = (String) session.getAttribute(GlobalConstants.USERNAME);
+        if(uname!=null) {
+            msg.setData(this.loginService.selectUserByRole(map));
+            if(msg.getData()!=null){
+                ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
+            }else {
+                ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            }
+        }else {
+            msg.setData("请登录后再修改");
+            ResponseUtil.buildResMsg(msg, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
+        return msg;
+    }
+
+
+
+
+
+
+
 
     /**
      * 修改密码
