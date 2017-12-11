@@ -91,7 +91,7 @@
                 </li>
                 <li><a><i class="fa"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="userlist.html">用户列表</a></li>
+                    <li id="user_list" style="display:block"><a href="userlist.html">用户列表</a></li>
                     <li><a href="permission.html">用户权限</a></li>
                     <li><a href="editpwd.html">修改密码</a></li>
                     <li><a href="#">更多...</a></li>
@@ -275,7 +275,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">商务截止时间: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
-                    <input type="text" id="single_cal1" name="commerceEndtime" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <input type="text" id="single_cal1" name="commerceEndtime" readonly="readonly" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
                   </div>
                 </div>
                 <div class="form-group">
@@ -302,7 +302,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">技术截止时间: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
-                    <input type="text" id="single_cal2" name="techEndtime" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <input type="text" id="single_cal2" name="techEndtime" readonly="readonly" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
                   </div>
                 </div>
                 <div class="form-group">
@@ -325,7 +325,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">运营开始时间: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
-                    <input type="text" id="single_cal3" name="onlineStarttime" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
+                    <input type="text" id="single_cal3" name="onlineStarttime" readonly="readonly" class="form-control col-md-4 col-sm-4 col-xs-8" required="required">
                   </div>
                 </div>
                 <div class="form-group">
@@ -401,7 +401,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">商务洽谈: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
-                    <select id="status1" name="commerceStatus" required="required" class="form-control">
+                    <select id="status1" name="commerceStatus" required="required" class="form-control" >
                       <option value="0">进行商务洽谈</option>
                       <option value="1">达成初步意向</option>
                       <option value="2">进行合同洽谈</option>
@@ -425,7 +425,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">商务截止时间: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
-                    <input type="text" id="deadline1" name="commerceEndtime" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                    <input type="text" id="deadline1" name="commerceEndtime" readonly="readonly" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
                   </div>
                 </div>
                 <div class="form-group">
@@ -452,7 +452,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">技术截止时间: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
-                    <input type="text" id="deadline2" name="techEndtime" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                    <input type="text" id="deadline2" name="techEndtime" readonly="readonly" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
                   </div>
                 </div>
                 <div class="form-group">
@@ -475,7 +475,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">运营开始时间: </label>
                   <div class="col-md-4 col-sm-4 col-xs-8">
-                    <input type="text" id="deadline3" name="onlineStarttime" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
+                    <input type="text" id="deadline3" name="onlineStarttime" readonly="readonly" required="required" class="form-control col-md-4 col-sm-4 col-xs-8">
                   </div>
                 </div>
               </form>
@@ -582,6 +582,6 @@
 
 <script type="text/javascript" src="../scripts/customerlist.js"></script>
 <script src="../scripts/logout.js"></script>
-
+<script src="../scripts/global.js"></script>
 </body>
 </html>

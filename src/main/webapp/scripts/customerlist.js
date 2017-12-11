@@ -130,7 +130,27 @@ $(document).ready(function () {
         $("#res2").attr("readonly","readonly");
         $("#res3").attr("readonly","readonly");
 
+        if(rolestorage==2){
+          $("#status2").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status2").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status3").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status3").attr("onchange","this.selectedIndex=this.defaultIndex");
+        }
+        if(rolestorage==3){
+          $("#status1").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status1").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status3").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status3").attr("onchange","this.selectedIndex=this.defaultIndex");
+        }
+        if(rolestorage==4){
+          $("#status1").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status1").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status2").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status2").attr("onchange","this.selectedIndex=this.defaultIndex");
+        }
+
       }
+
       let company = data[name];
         console.log(company);
         let item = new Array;
@@ -149,34 +169,60 @@ $(document).ready(function () {
       console.log(item);
       console.log(company);
       //  $('#comname_1').val(company.comname);
-      for (let i = 0; i <= 2; i++) {
-        let type = item[i].ptypeid;
-        switch (type) {
-          case 0:
-          $('#status1').val(item[i].pstatus);
-          $('#res1').val(item[i].uname);
-          $('#deadline1').val(item[i].time);
-              $('#deadline1').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
-                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
-          break;
-          case 1:
-          $('#status2').val(item[i].pstatus);
-          $('#res2').val(item[i].uname);
-          $('#deadline2').val(item[i].time);
-              $('#deadline2').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
-                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
-          break;
-          case 2:
-          $('#status3').val(item[i].pstatus);
-          $('#res3').val(item[i].uname);
-          $('#deadline3').val(item[i].time);
-              $('#deadline3').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
-                  function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
-          break;
-          default: return false
-          ;
+      if(rolestorage == 1){
+        for (let i = 0; i <= 2; i++) {
+          let type = item[i].ptypeid;
+          switch (type) {
+            case 0:
+            $('#status1').val(item[i].pstatus);
+            $('#res1').val(item[i].uname);
+            $('#deadline1').val(item[i].time);
+                $('#deadline1').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                    function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
+            break;
+            case 1:
+            $('#status2').val(item[i].pstatus);
+            $('#res2').val(item[i].uname);
+            $('#deadline2').val(item[i].time);
+                $('#deadline2').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                    function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
+            break;
+            case 2:
+            $('#status3').val(item[i].pstatus);
+            $('#res3').val(item[i].uname);
+            $('#deadline3').val(item[i].time);
+                $('#deadline3').daterangepicker({singleDatePicker:!0,singleClasses:"picker_2"},
+                    function(a,b,c){console.log(a.toISOString(),b.toISOString(),c)})
+            break;
+            default: return false
+            ;
+          }
+        }
+      }else{
+        for (let i = 0; i <= 2; i++) {
+          let type = item[i].ptypeid;
+          switch (type) {
+            case 0:
+            $('#status1').val(item[i].pstatus);
+            $('#res1').val(item[i].uname);
+            $('#deadline1').val(item[i].time);
+            break;
+            case 1:
+            $('#status2').val(item[i].pstatus);
+            $('#res2').val(item[i].uname);
+            $('#deadline2').val(item[i].time);
+            break;
+            case 2:
+            $('#status3').val(item[i].pstatus);
+            $('#res3').val(item[i].uname);
+            $('#deadline3').val(item[i].time);
+            break;
+            default: return false
+            ;
+          }
         }
       }
+
       checkRes3($('#res3').val());
       checkRes2($('#res2').val());
       checkRes1($('#res1').val());
@@ -186,7 +232,6 @@ $(document).ready(function () {
       checkContactname($('#comcontactname_1').val());
       checkCname($('#comname_1').val());
       checkAddress($('#comaddr_1').val());
-
 
       $('#submit_1').on('click',function(){
         const form = document.getElementById('demo-form3');
