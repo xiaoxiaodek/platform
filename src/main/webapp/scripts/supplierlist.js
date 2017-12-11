@@ -136,14 +136,15 @@ $(document).ready(function() {
         if(rolestorage==3){
           $("#status1").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status1").attr("onchange","this.selectedIndex=this.defaultIndex");
-          $("#status3").attr("onfocus","this.defaultIndex=this.selectedIndex");
-          $("#status3").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status2").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status2").attr("onchange","this.selectedIndex=this.defaultIndex");
+
         }
         if(rolestorage==4){
           $("#status1").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status1").attr("onchange","this.selectedIndex=this.defaultIndex");
-          $("#status2").attr("onfocus","this.defaultIndex=this.selectedIndex");
-          $("#status2").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status3").attr("onfocus","this.defaultIndex=this.selectedIndex");
+          $("#status3").attr("onchange","this.selectedIndex=this.defaultIndex");
         }
 
       }
