@@ -239,20 +239,24 @@ import java.util.Map;
         return user;
     }
 
-    @Override public List<User> selectUserByRole(Map<String, Object> map) {
+    @Override public List<String> selectUserByRole(Map<String, Object> map) {
         List<User> userList=new ArrayList<User>();
+        List<String> userNameList=new ArrayList<String>();
 
         try{
             int role=Integer.parseInt(map.get("role").toString());
             userList=this.userMapper.selectByRole(role);
 
+            for(User user:userList){
+                userNameList.add(user.getUname());
+            }
         }catch(NullPointerException e){
             userList=null;
-            return userList;
+            return userNameList;
         }
 
 
-        return userList;
+        return userNameList;
     }
 
 

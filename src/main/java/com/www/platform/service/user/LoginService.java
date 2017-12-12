@@ -23,5 +23,5 @@ public interface LoginService {
     List<User> selectLikeUname(Map<String, Object> map);
     String  deleteUser(Map<String, Object> map);
     User selectUserByUname(Map<String, Object> map);
-    List<User> selectUserByRole(Map<String, Object> map);
+    List<String> selectUserByRole(Map<String, Object> map);
 }
