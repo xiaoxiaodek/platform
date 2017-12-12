@@ -239,6 +239,22 @@ import java.util.Map;
         return user;
     }
 
+    @Override public List<User> selectUserByRole(Map<String, Object> map) {
+        List<User> userList=new ArrayList<User>();
+
+        try{
+            int role=Integer.parseInt(map.get("role").toString());
+            userList=this.userMapper.selectByRole(role);
+
+        }catch(NullPointerException e){
+            userList=null;
+            return userList;
+        }
+
+
+        return userList;
+    }
+
 
 
 }
