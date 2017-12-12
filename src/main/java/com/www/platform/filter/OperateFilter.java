@@ -66,10 +66,15 @@ public class OperateFilter {
         System.out.println("=====SysLogAspect前置通知结束=====");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String uname = (String) request.getSession().getAttribute("uname");
+        MessageCode operateResult = (MessageCode) request.getSession().getAttribute("operateResult");
         if(uname != null)
             log.setUname(uname);
         else
             log.setUname("null");
+        if(operateResult != null) {
+            log.setResult(operateResult.getMsg());
+            request.getSession().removeAttribute("operateResult");
+        }
         logMapper.insert(log);
     }
 

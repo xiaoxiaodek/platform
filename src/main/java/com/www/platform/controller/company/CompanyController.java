@@ -42,6 +42,7 @@ public class CompanyController {
                                  HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
         if (session.getAttribute("role") == null) {
+            session.setAttribute("operateResult",MessageCode.FAILED);
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.SYSTEM_ERROR);
             return message;
         }else {
@@ -52,8 +53,10 @@ public class CompanyController {
             if (companies != null) {
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
                 message.setData(companies);
-            } else
+            } else {
+                session.setAttribute("operateResult",MessageCode.FAILED);
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            }
             return message;
         }
     }
@@ -76,13 +79,16 @@ public class CompanyController {
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
                 message.setData("删除成功");
             } else if (result.equals("不存在该公司")) {
+                session.setAttribute("operateResult",MessageCode.FAILED);
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 message.setData("不存在该公司");
             } else {
+                session.setAttribute("operateResult",MessageCode.FAILED);
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
                 message.setData("删除失败");
             }
         }else{
+            session.setAttribute("operateResult",MessageCode.FAILED);
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.USER_LIMITED);
             message.setData("没有权限");
         }
@@ -101,12 +107,17 @@ public class CompanyController {
     public BaseMessage updateCompany(@RequestBody Map<String, Object> map, HttpSession session)throws Exception {
         BaseMessage message = new BaseMessage();
         String result = this.companyService.updateCompany(map,session);
-        if (result.equals("更新成功"))
+        if (result.equals("更新成功")) {
             ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-        else if(result.equals("没有权限"))
+        }
+        else if(result.equals("没有权限")) {
+            session.setAttribute("operateResult",MessageCode.FAILED);
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.USER_LIMITED);
-        else
+        }
+        else {
+            session.setAttribute("operateResult",MessageCode.FAILED);
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+        }
         return message;
     }
 
@@ -125,9 +136,12 @@ public class CompanyController {
             Boolean result = this.companyService.insertCompany(map);
             if (result)
                 ResponseUtil.buildResMsg(message, MessageCode.SUCCESS, StatusCode.SUCCESS);
-            else
+            else {
+                session.setAttribute("operateResult", MessageCode.FAILED);
                 ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.NO_RESPONSE);
+            }
         }else{
+            session.setAttribute("operateResult", MessageCode.FAILED);
             ResponseUtil.buildResMsg(message, MessageCode.FAILED, StatusCode.USER_LIMITED);
         }
         return message;
