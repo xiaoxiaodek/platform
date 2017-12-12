@@ -127,24 +127,31 @@ $(document).ready(function() {
         $("#res1").attr("readonly","readonly");
         $("#res2").attr("readonly","readonly");
         $("#res3").attr("readonly","readonly");
+
         if(rolestorage==2){
           $("#status2").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status2").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status2").attr("readonly","readonly");
           $("#status3").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status3").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status3").attr("readonly","readonly");
         }
         if(rolestorage==3){
           $("#status1").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status1").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status1").attr("readonly","readonly");
           $("#status2").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status2").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status2").attr("readonly","readonly");
 
         }
         if(rolestorage==4){
           $("#status1").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status1").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status1").attr("readonly","readonly");
           $("#status3").attr("onfocus","this.defaultIndex=this.selectedIndex");
           $("#status3").attr("onchange","this.selectedIndex=this.defaultIndex");
+          $("#status3").attr("readonly","readonly");
         }
 
       }
